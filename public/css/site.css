@@ -13,7 +13,7 @@ body {
     padding: 0;
     max-width: 100%;
     /* list-style: none; */
-    background-image: url(../img/main-background.jpg);
+    background-image: url("../images/main-background.jpg");
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: center;
@@ -41,7 +41,6 @@ body {
 .front-logo:hover {
     transition: .1s;
     cursor: pointer;
-    border: ridge rgb(211 198 181);
     size: 30px;
 }
 
@@ -627,7 +626,6 @@ h4 {
 }
 
 .already-reg img:hover {
-    border: ridge #DECBA4;
     cursor: pointer;
     display: flex;
     /* transition: .1s; */
