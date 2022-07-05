@@ -9,8 +9,7 @@ exports.auth = (req, res, next) => {
     if (token) {
         jwt.verify(token, secret, ((err, decodedToken) => {
             if (err) {
-                res.clearCookie(SESSION_NAME);
-                return res.redirect('/login');
+                return res.clearCookie(SESSION_NAME);
             }
             req.user = decodedToken;
             res.locals.user = decodedToken;
@@ -26,8 +25,8 @@ exports.isAuth = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        return res.render('auth/login', { error: 'You have to login first!' });
-    };
+        res.status(401).json({ message: 'Please log in first!' });
+    }
 };
 
 exports.isGuest = (req, res, next) => {
@@ -35,6 +34,6 @@ exports.isGuest = (req, res, next) => {
     if (!req.user) {
         next();
     } else {
-        return res.render('home', { error: 'You are already logged in!' });
+        res.status(403).json({ message: 'You are already logged in!' });
     };
 };
