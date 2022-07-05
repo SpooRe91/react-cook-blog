@@ -21,7 +21,7 @@ exports.registerValidator = async (req, res, next) => {
         };
 
     } catch (error) {
-        return res.render('auth/register', { error: getErrorMessage(error) })
+        res.status(403).json({ error: getErrorMessage(error) });
     };
     next();
 };
