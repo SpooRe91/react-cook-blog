@@ -1,26 +1,20 @@
 const router = require('express').Router();
 const { isAuth } = require('../middlewares/authMiddleware');
 const foodService = require('../services/foodService');
+const { getErrorMessage } = require('../utils/errorHelpers');
 
 router.get('/browse', async (req, res) => {
 
     try {
         let allMeals = await foodService.getAll(req.query.search);
 
-        if (allMeals.length !== 0) {
-            res.render('browse', { allMeals });
-
-        } else if (allMeals.length == 0) {
-            allMeals = false;
-            res.render('browse', { allMeals });
-
-        } else {
-            throw {
-                message: "Unable to fetch any recipes!"
-            }
+        if (allMeals.length <= 0) {
+            throw new Error("Unable to fetch any recipes!");
         }
+
+        res.json(allMeals);
     } catch (error) {
-        res.render('404', { error: error.message });
+        res.status(400).json({ error: getErrorMessage(error) });
     }
 
 });
@@ -31,20 +25,14 @@ router.get('/myRecipes', isAuth, async (req, res) => {
     try {
         let allMeals = await foodService.getOwn(req.user._id);
 
-        if (allMeals.length !== 0) {
-            res.render('myRecipes', { allMeals });
+        if (allMeals.length <= 0) {
+            throw new Error("Unable to fetch any recipes!");
 
-        } else if (allMeals.length == 0) {
-            allMeals = false;
-            res.render('myRecipes', { allMeals });
-            
-        } else {
-            throw {
-                message: "Unable to fetch your recipes!"
-            }
         }
+        res.json(allMeals);
+
     } catch (error) {
-        res.render('404', { error: error.message });
+        res.status(400).json({ error: getErrorMessage(error) });
     }
 
 });
