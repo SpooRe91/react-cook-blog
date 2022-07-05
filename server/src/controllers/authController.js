@@ -9,6 +9,7 @@ const { getErrorMessage } = require('../utils/errorHelpers');
 const { isAuth, isGuest } = require('../middlewares/authMiddleware');
 const { modelValidator } = require('../middlewares/modelValidatorMiddleware');
 
+
 router.post('/register', isGuest, modelValidator(User), registerValidator, async (req, res, next) => {
 
     const { email, password } = req.body;
@@ -23,12 +24,15 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
             res.status(201).json(token)
 
         } else {
-            throw new Error("Unable to register such user! Please try again!");
+            throw {
+                message: 'Unable to register such user! Please try again!'
+            }
         }
 
     } catch (error) {
 
-        return res.status(401).json({ error: getErrorMessage(req.error || error) });
+        console.error(error);
+        res.status(400).json({ error: getErrorMessage(error) });
     };
 });
 
@@ -40,19 +44,22 @@ router.post('/login', isGuest, async (req, res, next) => {
         const token = await authService.createToken(user);
 
         if (!token) {
-            throw new Error("Unable to register such user! Please try again!");
+            throw {
+                message: 'Unable to login with the given credentials!'
+            };
         };
 
         res.cookie(SESSION_NAME, token, { httpOnly: true });
         res.status(200).json(token);
 
     } catch (error) {
-        return res.send({ error: getErrorMessage(req.error || error) });
+        console.error(error);
+        res.status(400).json({ error: getErrorMessage(error) });
     };
 });
 
 router.get('/logout', isAuth, (req, res) => {
     res.clearCookie(SESSION_NAME);
-    res.redirect('login');
+    res.status(204).end();
 });
 module.exports = router;
