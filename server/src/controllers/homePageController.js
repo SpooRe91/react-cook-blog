@@ -2,30 +2,23 @@ const router = require('express').Router();
 const foodService = require('../services/foodService');
 const { preloadMeal, isMealOwner } = require('../middlewares/mealMiddleware');
 const { getErrorMessage } = require('../utils/errorHelpers');
+const { isAuth } = require('../middlewares/authMiddleware');
+
+
+router.get('/', async (req, res) => {
+
+    const data = await foodService.getAll();
+    res.json(data);
+})
 
 //----------------------------GET DETAILS------------------------------------//
 router.get('/details/:id',
     preloadMeal,
-    async (req, res) => {
+    (req, res) => {
         const meal = req.meal;
-
-        if (meal) {
-            return res.status(200).json(meal);
-        }
-
-        res.status(404).json({ error: getErrorMessage(req.error || error) });
+        res.json(meal);
     });
 
-//----------------------------GET EDIT------------------------------------//
-router.get('/edit/:id',
-    preloadMeal,
-    async (req, res) => {
-        try {
-            res.json(req.meal);
-        } catch (error) {
-            res.status(404).json({ error: getErrorMessage(error.message) });
-        }
-    });
 //----------------------------POST EDIT------------------------------------//
 router.put('/edit/:id',
     preloadMeal,
@@ -33,48 +26,38 @@ router.put('/edit/:id',
     async (req, res) => {
 
         try {
-            await foodService.edit(req.params.id, req.body);
-            res.status(202).json(req.meal);
+            let result = await foodService.edit(req.params.id, req.body);
+
+            if (!result) {
+                throw new Error('Unable to edit the given resource!')
+            }
+            res.json(result);
 
         } catch (error) {
-            res.status(404).json({ error: getErrorMessage(error.message) });
-        }
-    });
-
-//----------------------------GET DELETE------------------------------------//
-router.get('/delete/:id',
-    preloadMeal,
-    isMealOwner,
-    async (req, res) => {
-
-        try {
-            let meal = req.meal;
-            res.render('delete', { meal });
-
-        } catch (error) {
-            res.render('edit', { ...req.body, error: getErrorMessage(error) });
+            console.error(error.message);
+            res.status(400).json({ error: getErrorMessage(error) });
         }
     });
 
 //----------------------------POST DELETE------------------------------------//
-router.post('/delete/:id',
+router.delete('/:id',
+    isAuth,
     preloadMeal,
     isMealOwner,
     async (req, res) => {
 
-        let confirm = req.body.confirm;
-
         try {
             let meal = req.meal;
+            const result = await foodService.delete(meal._id);
+            if (!result) {
+                throw new Error(`Item ${meal._id} not found!`)
+            }
 
-            if (confirm) {
-                await foodService.delete(meal._id);
-                return res.redirect('/recipe/myRecipes');
-            };
-            res.redirect(`/details/${meal._id}`);
+            res.json(result)
 
         } catch (error) {
-            res.render('details', { ...req.body, error: getErrorMessage(error) });
+            console.error(error.message);
+            res.status(404).json({ error: getErrorMessage(error) });
         }
     });
 
