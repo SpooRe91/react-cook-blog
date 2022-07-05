@@ -5,13 +5,14 @@ const homePageController = require('./controllers/homePageController');
 const searchController = require('./controllers/searchController');
 const createController = require('./controllers/createController');
 const authController = require('./controllers/authController');
+const readmeController = require('./controllers/readmeController');
 
 
-router.use(homePageController);
+router.use(homePageController, readmeController);
 router.use('/auth', authController);
 router.use('/recipe', searchController, createController);
 router.get('*', (req, res) => {
-    res.render('404')
+    res.status(404).json({ message: 'Invalid API path!' })
 });
 
 module.exports = router;
