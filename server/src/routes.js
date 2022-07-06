@@ -7,7 +7,10 @@ const createController = require('./controllers/createController');
 const authController = require('./controllers/authController');
 const readmeController = require('./controllers/readmeController');
 
-
+router.use((req, res, next) => {
+    console.log(`METHOD: ${req.method} >> PATH: ${req.path}`);
+    next();
+})
 router.use(homePageController, readmeController);
 router.use('/auth', authController);
 router.use('/recipe', searchController, createController);
