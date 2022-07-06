@@ -14,6 +14,6 @@ export const Register = () => {
 
                 <input className="already-reg" type="submit" value="Регистриране" />
             </form>
-            <h3 className="already-reg">Вече сте регистрирани? Влезте от <a href="/auth/login">TУК</a></h3>
+            <h3 className="already-reg">Вече сте регистрирани?<a href="/auth/login">Влезте от тук!</a></h3>
         </div>);
 }
