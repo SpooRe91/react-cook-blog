@@ -1,6 +1,6 @@
 const { Meal } = require('../models/Meal');
 
-exports.getAll = async (search) => {
+exports.getAll = (search) => {
 
     let result = Meal.find({ name: { $regex: new RegExp(search, "i") } }).lean();
     return result
