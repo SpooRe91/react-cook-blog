@@ -33,6 +33,7 @@ nav ul {
 }
 
 nav ul li a {
+    font-size: 25px;
     text-decoration: none;
     text-transform: uppercase;
     color: #DECBA4;
