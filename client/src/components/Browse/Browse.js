@@ -1,13 +1,12 @@
 import { Meal } from "./Meal"
 export const Browse = (props) => {
     return (
-        <>
-            <div className="search-container">
-                <form method="GET">
-                    <input type="text" placeholder="Търси..." name="search" />
-                    <input type="submit" value={"Търси"} />
-                </form>
-            </div>
+        <div className="search-container">
+            <form method="GET">
+                <input type="text" placeholder="Търси..." name="search" />
+                <input type="submit" value={"Търси"} />
+            </form>
+
             <div className="meal-containter">
                 {props.meal !== undefined && props.meal !== null
                     ? <Meal meal={props.meal} />
@@ -16,5 +15,6 @@ export const Browse = (props) => {
                     </div>
                 }
             </div>
-        </>);
+        </div>
+    );
 }
