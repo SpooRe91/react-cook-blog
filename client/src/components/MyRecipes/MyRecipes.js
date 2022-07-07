@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../../API/endpoints";
 import { MealContainer } from "./MealContainer"
 
 export const MyRecipes = () => {
 
     const [meals, setMeal] = useState([]);
-    const API_URL = "http://localhost:3030/";
 
     useEffect(() => {
         fetch(API_URL)
@@ -21,12 +21,12 @@ export const MyRecipes = () => {
     const mealsRender = meals.map(meal => <MealContainer key={meal._id} {...meal} />);
 
     return (
-        <>
-            <div className="search-container">
+        <div className="search-container">
+            <div>
                 <h1 className="already-reg">Моите рецепти</h1>
                 <form method="GET">
                     <input type="text" placeholder="Търси..." name="search" />
-                    <button type="submit">Търси</button>
+                    <input type="submit" value={'Търси'} />
                 </form>
             </div>
             <div className="meal-containter">
@@ -37,6 +37,6 @@ export const MyRecipes = () => {
                     </div>
                 }
             </div>
-        </>
+        </div>
     );
 }
