@@ -177,7 +177,6 @@ img.meal:hover {
     transition: .1s;
     cursor: pointer;
     display: inline-block;
-    color: rgb(0, 0, 0);
     border-radius: 20% 0;
 }
 
@@ -238,25 +237,19 @@ div.meal {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
 }
 
-p.name:hover {
-    color: rgb(255, 255, 255);
-    transition: .1s;
-    cursor: pointer;
-}
-
 p.name {
     word-break: break-all;
     color: #DECBA4;
     transition: .1s;
-    text-shadow: 5px 3px 20px rgb(0 0 0);
-    border-radius: 8px;
-    text-align: center;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bolder;
-    text-transform: uppercase;
-    padding: 5px;
-    margin: 10px 10px 10px 10px;
-    border-bottom: 1px solid #2b415433;
+    margin: 15px 15px 15px 15px;
+}
+
+p.name:hover {
+    color: rgb(255, 255, 255);
+    transition: .1s;
+    cursor: pointer;
 }
 
 p.recipe {
@@ -268,55 +261,23 @@ p.recipe {
     border-bottom: 5px solid #2b415433;
 }
 
-button,
-/* main a.btn {
-    transition: .1s;
-    padding: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    font-family: auto;
-    font-weight: bolder;
-    font-size: 20px;
-    width: 65%;
-    margin: 13px auto;
-    color: rgb(255, 255, 255);
-    border-radius: 20px;
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
-    border: ridge rgb(211 198 181);
-} */
-
 .btn {
     transition: .1s;
-    text-align: center;
     text-decoration: none;
     display: flex;
     justify-content: center;
-    font-family: auto;
     font-weight: bolder;
-    font-size: 20px;
-    width: 65%;
-    padding: 8px;
-    margin: 10px auto;
+    font-size: 25px;
+    width: max-content;
+    margin: 15px 15px;
     margin-bottom: 15px;
     color: #DECBA4;
-    border-radius: 20px;
-    background: none;
-    border: ridge rgb(211 198 181);
-    text-shadow: none;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .btn:hover {
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 35%;
-    transition: 0s;
-}
-
-
-button:hover {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: #ffffff;
     cursor: pointer;
@@ -375,6 +336,12 @@ span {
     font-size: 35px;
     text-align: center;
     font-weight: bolder;
+}
+
+div.search-container {
+    display: flex;
+
+    width: max-content;
 }
 
 div.about {
@@ -449,12 +416,6 @@ input[type=password] {
     resize: none;
 }
 
-:focus {
-    transition: all 0.3s;
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
-    color: #000000;
-}
-
 #email:focus,
 #password:focus,
 #rePassword:focus {
@@ -465,7 +426,6 @@ input[type=password] {
 ::placeholder {
     color: #ffffff;
 }
-
 
 textarea {
     font-size: 20px;
