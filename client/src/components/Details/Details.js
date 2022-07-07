@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { OnwerButtons } from "./OwnerButtons"
-import { API_DETAILS } from "../../API/endpoints";
+import { endpoints } from "../../API/endpoints";
 
 export const Details = () => {
 
@@ -8,7 +8,7 @@ export const Details = () => {
     const ID = "62b178243cf2539b1d58c442"
 
     useEffect(() => {
-        fetch(API_DETAILS(ID))
+        fetch(endpoints.API_DETAILS(ID))
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -23,7 +23,7 @@ export const Details = () => {
         return (
             <div className="details">
                 <h1 className="already-reg">{meal.name}</h1>
-                <a className="meal" href={meal.image} target="_blank" rel="noreferrer"><img className="meal" src={meal.image}
+                <a href={meal.image} target="_blank" rel="noreferrer"><img className="meal" src={meal.image}
                     alt="" /></a>
                 {meal.owner !== undefined && meal.owner !== null
                     ? <OnwerButtons meal={meal} />
