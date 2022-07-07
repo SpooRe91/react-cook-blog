@@ -5,7 +5,7 @@ export const Browse = (props) => {
             <div className="search-container">
                 <form method="GET">
                     <input type="text" placeholder="Търси..." name="search" />
-                    <button type="submit">Търси</button>
+                    <input type="submit" value={"Търси"} />
                 </form>
             </div>
             <div className="meal-containter">
