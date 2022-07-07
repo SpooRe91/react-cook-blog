@@ -23,6 +23,9 @@ export const UserNavBar = (props) => {
             <li>
                 <a className="profile-name" href="/recipe/myRecipes"><strong>{props.user.name}</strong></a>
             </li>
+            <li>
+                <a href="/auth/login">Изход</a>
+            </li>
         </ul>
     );
 }
