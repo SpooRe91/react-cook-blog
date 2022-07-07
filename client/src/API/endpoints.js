@@ -1,23 +1,17 @@
 
-export const API = "http://localhost:3030";//GET
+export const API_URL = "http://localhost:3030";//GET
 
-//REGULAR + MODIFICATIONS**************
-export const API_DETAILS = (id) => `${API}/details/${id}`;//GET req
-
-export const API_EDIT = (id) => `${API}/edit/${id}`;//PUT req
-
-export const API_DELETE = (id) => `${API}/${id}`;//DELETE req
-
-//AUTH*********************************
-export const API_REGISTER = `${API}/auth/register`;//POST req
-
-export const API_LOGIN = `${API}/auth/login`;//POST req
-
-export const API_LOGOUT = `${API}/auth/logout`;//GET req
-
-//RECIPE*******************************
-export const API_BROWSE = `${API}/recipe/browse`;//GET req
-
-export const API_MYRECIPES = `${API}/recipe/myRecipes`;//GET req
-
-export const API_ADD = `${API}/recipe/add`;//POST req
+export const endpoints = {
+    //REGULAR + MODIFICATIONS**************
+    API_DETAILS: (id) => `${API_URL}/details/${id}`,//GET req
+    API_EDIT: (id) => `${API_URL}/edit/${id}`,//PUT req
+    API_DELETE: (id) => `${API_URL}/${id}`,//DELETE req
+    //AUTH*********************************
+    API_REGISTER:`${API_URL}/auth/register`,//POST req
+    API_LOGIN:`${API_URL}/auth/login`,//POST req
+    API_LOGOUT:`${API_URL}/auth/logout`,//GET req
+    //RECIPE*******************************
+    API_BROWSE:`${API_URL}/recipe/browse`,//GET req
+    API_MYRECIPES:`${API_URL}/recipe/myRecipes`,//GET req
+    API_ADD:`${API_URL}/recipe/add`,//POST req
+}
