@@ -115,13 +115,10 @@ section.already-reg {
     align-content: center;
 }
 
-h1 {
-    border: ridge rgb(211 198 181);
-    border-radius: 15%;
+h1.meal-name {
     font-weight: bold;
-    background-color: rgb(177, 163, 142);
-    color: white;
-    text-align: center;
+    color: #ffffff;
+    text-shadow: #DECBA4 0px 0px 20px;
     text-transform: uppercase;
 }
 
@@ -294,18 +291,20 @@ a {
 }
 
 div.details {
+    display: flex;
     color: white;
-    text-align: center;
-    font-size: 20px;
     text-shadow: 0px 0px 20px rgb(255 255 255);
     border: ridge rgb(211 198 181);
-    display: block;
     margin: auto;
     padding: 1em;
-    width: auto;
-    height: auto;
-    border-radius: 2%;
+    width: max-content;
+    border-radius: 5%;
     word-wrap: break-word;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 article.recipe-details {
@@ -340,8 +339,13 @@ span {
 
 div.search-container {
     display: flex;
-
     width: max-content;
+    margin: auto;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 div.about {
@@ -359,12 +363,11 @@ div.about {
 }
 
 .already-reg a {
-    margin-top: 15px;
     display: flex;
+    width: max-content;
+    margin: auto;
     transition: .1s;
     color: #DECBA4;
-    text-transform: uppercase;
-    text-align: left;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;
@@ -377,7 +380,6 @@ div.already-reg a:hover {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: #ffffff;
     transition: .1s;
-    /* background-image: linear-gradient(to right, #DECBA4, #3E5151); */
     text-decoration: underline;
 }
 
@@ -462,9 +464,9 @@ input[type=submit] {
 
 input[type=submit]:hover {
     cursor: pointer;
-    border-radius: 35%;
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
     transition: .1s;
-    background: rgb(240, 203, 123);
 }
 
 div.form {
