@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <NavBar />
+      <NavBar/>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/auth/login" element={<Login />} />
@@ -26,7 +26,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/404" element={<ErrorPage />} />
-        <Route path="/" element={<AddRecipe />} />
+        <Route path="/recipe/add" element={<AddRecipe />} />
+        <Route path="/recipe/myRecipes" element={<MyRecipes />} />
         <Route path="/recipe/browse" element={<Browse />} />
         <Route path="/details/:userId" element={<Details />} />
         <Route path="/" element={<MyRecipes />} />
