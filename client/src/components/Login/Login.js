@@ -15,6 +15,7 @@ export const Login = () => {
         
         userLogin({ email, password })
             .then(res => {
+                console.log(res);
                 setUser(res)
             });
         return user;
