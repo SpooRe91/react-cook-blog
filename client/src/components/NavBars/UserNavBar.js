@@ -1,30 +1,25 @@
+import { Link } from "react";
 export const UserNavBar = (props) => {
 
     return (
         <ul>
             <li>
-                <a href="/">Начало</a>
+                <Link to="/">Начало</Link>
             </li>
             <li>
-                <a href="/recipe/browse">Търсене на рецепти</a>
+                <Link to="/recipe/browse">Търсене на рецепти</Link>
             </li>
             <li>
-                <a href="/about">Относно</a>
+                <Link to="/recipe/add">Добави рецепта</Link>
             </li>
             <li>
-                <a href="/contacts">Контакти</a>
+                <Link to="/recipe/myRecipes">Моите рецепти</Link>
             </li>
             <li>
-                <a href="/recipe/add">Добави рецепта</a>
+                <Link to="/recipe/myRecipes" className="profile-name"><strong>{props.user.name}</strong></Link>
             </li>
             <li>
-                <a href="/recipe/myRecipes">Моите рецепти</a>
-            </li>
-            <li>
-                <a className="profile-name" href="/recipe/myRecipes"><strong>{props.user.name}</strong></a>
-            </li>
-            <li>
-                <a href="/auth/login">Изход</a>
+                <Link to="/auth/login">Изход</Link>
             </li>
         </ul>
     );
