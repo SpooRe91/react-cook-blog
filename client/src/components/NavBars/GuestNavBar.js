@@ -1,24 +1,19 @@
+import { Link } from "react-router-dom";
 export const GuestNavBar = () => {
 
     return (
         <ul>
             <li>
-                <a href="/">Начало</a>
+                <Link to="/">Начало</Link>
             </li>
             <li>
-                <a href="/recipe/browse">Търсене на рецепти</a>
+                <Link to="/recipe/browse">Търсене на рецепти</Link>
             </li>
             <li>
-                <a href="/about">Относно</a>
+                <Link to="/auth/register">Регистрация</Link>
             </li>
             <li>
-                <a href="/contacts">Контакти</a>
-            </li>
-            <li>
-                <a href="/auth/register">Регистрация</a>
-            </li>
-            <li>
-                <a href="/auth/login">Вход</a>
+                <Link to="/auth/login">Вход</Link>
             </li>
         </ul>
     );
