@@ -39,6 +39,8 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
 router.post('/login', isGuest, async (req, res, next) => {
     const { email, password } = req.body;
 
+
+
     try {
         const user = await authService.login(email, password);
         const token = await authService.createToken(user);
@@ -48,9 +50,14 @@ router.post('/login', isGuest, async (req, res, next) => {
                 message: 'Unable to login with the given credentials!'
             };
         };
+        const userInfo = {
+            token,
+            email,
+            id: user._doc._id
+        }
 
         res.cookie(SESSION_NAME, token, { httpOnly: true });
-        res.status(200).json(token);
+        res.status(200).json(userInfo);
 
     } catch (error) {
         console.error(error);
