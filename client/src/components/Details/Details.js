@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { OnwerButtons } from "./OwnerButtons"
 import { endpoints } from "../../API/endpoints";
+import { getOneById } from "../../services/mealService";
 
 export const Details = () => {
 
@@ -8,16 +9,14 @@ export const Details = () => {
     const ID = "62b178243cf2539b1d58c442"
 
     useEffect(() => {
-        fetch(endpoints.API_DETAILS(ID))
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setMeal(data)
-            })
-            .catch(error => {
-                throw error.message
-            })
-    }, [])
+        const mealData = async (endpoint) => {
+            const result = await getOneById(endpoint);
+            console.log(result);
+            setMeal(result);
+        };
+        mealData(endpoints.API_DETAILS(ID));
+    }, []);
+
 
     return (
         <div className="details">
