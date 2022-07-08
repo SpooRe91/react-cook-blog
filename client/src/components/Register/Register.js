@@ -4,13 +4,13 @@ export const Register = () => {
         <div className="form">
             <form method="POST">
                 <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" name="email" placeholder="e-mail..." required />
+                <input type="text" className="email" name="email" placeholder="e-mail..." required />
 
                 <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" name="password" placeholder="парола..." required />
+                <input type="password" className="password" name="password" placeholder="парола..." required />
 
                 <label className="already-reg" htmlFor="rePassword">повторете паролата</label>
-                <input type="password" name="rePassword" placeholder="повторете паролата..." required />
+                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required />
 
                 <input className="already-reg" type="submit" value="Регистриране" />
             </form>
