@@ -22,14 +22,14 @@ nav ul {
     gap: 50px;
     justify-items: center;
     list-style: none;
-    margin: 25px auto;
+    margin: 35px auto;
     align-content: center;
     justify-content: center;
     align-items: center;
 }
 
 nav ul li a {
-    font-size: 35px;
+    font-size: 32px;
     text-decoration: none;
     text-transform: uppercase;
     color: #DECBA4;
