@@ -1,23 +1,19 @@
 html {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: space-between;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 body {
-    display: flex;
     margin: 0;
-    padding: 0;
+    min-width: 350px;
     max-width: 100%;
+    min-height: 100%;
     /* list-style: none; */
     background-image: url("../images/main-background.jpg");
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 nav ul {
@@ -33,11 +29,18 @@ nav ul {
 }
 
 nav ul li a {
-    font-size: 25px;
+    font-size: 35px;
     text-decoration: none;
     text-transform: uppercase;
     color: #DECBA4;
     font-weight: bold;
+}
+
+nav ul li a:active,
+:focus {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    /* text-decoration: underline; */
 }
 
 nav ul li a:hover {
@@ -96,6 +99,54 @@ div.container {
         width: 0;
         height: 0;
     }
+}
+
+.landing-page-article {
+    width: 100%;
+
+}
+
+.landing-page-article div {
+    background-image: url("../images/landing-page2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10em auto 10em auto;
+    height: 30em;
+    display: flex;
+    text-align: center;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.landing-page-header {
+    color: #c6c6c6;
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+    text-shadow: #000000 -15px 0px 6px;
+    font-size: 5em;
+}
+
+.landing-page-span {
+    text-align: left;
+    text-shadow: #000000 -15px 0px 6px;
+    color: white;
+    font-size: 30px;
+}
+
+.btn-footer {
+    margin: auto 10px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #0e0d0d;
+    text-shadow: #ffffff 0px 0px 20px;
+}
+
+.btn-footer:hover {
+    color: #ffffff;
+    text-shadow: #ffffff 0px 0px 20px;
 }
 
 section.already-reg {
@@ -418,9 +469,9 @@ input[type=password] {
     resize: none;
 }
 
-#email:focus,
-#password:focus,
-#rePassword:focus {
+.email:focus,
+.password:focus,
+.rePassword:focus {
     background-image: linear-gradient(to right, #DECBA4, #3E5151);
     color: #000000;
 }
@@ -502,8 +553,9 @@ h3 a {
 
 .already-reg {
     transition: .1s;
-    margin: 5px;
+    margin: auto;
     display: flex;
+    width: 80%;
     color: white;
     text-align: center;
     font-size: 20px;
@@ -540,6 +592,35 @@ h4 {
     /* text-shadow: -3px 1px 3px rgb(240 203 123); */
     font-size: 25px;
     text-align: center;
+}
+
+.footer {
+    display: flex;
+    position: fixed;
+    padding: 5px 5px 5px 5px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #ffffff;
+    font-size: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #DECBA4, #3e515100);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #ffffff;
+    background-image: linear-gradient(to bottom, #DECBA4, #3e515100);
 }
 
 .wrapper {
