@@ -1,4 +1,4 @@
-import { Link } from "react";
+import { Link } from "react-router-dom";
 export const UserNavBar = (props) => {
 
     return (
@@ -16,7 +16,7 @@ export const UserNavBar = (props) => {
                 <Link to="/recipe/myRecipes">Моите рецепти</Link>
             </li>
             <li>
-                <Link to="/recipe/myRecipes" className="profile-name"><strong>{props.user.name}</strong></Link>
+                <Link to="/recipe/myRecipes" className="profile-name"><strong>{props.email}</strong></Link>
             </li>
             <li>
                 <Link to="/auth/login">Изход</Link>
