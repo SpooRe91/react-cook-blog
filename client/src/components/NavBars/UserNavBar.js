@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-export const UserNavBar = (props) => {
+import { userLogout } from "../../services/userService";
+export const UserNavBar = ({ email }) => {
+    console.log(email);
+
+    const handleLogout = async () => {
+        await userLogout();
+    }
 
     return (
         <ul>
@@ -16,10 +22,10 @@ export const UserNavBar = (props) => {
                 <Link to="/recipe/myRecipes">Моите рецепти</Link>
             </li>
             <li>
-                <Link to="/recipe/myRecipes" className="profile-name"><strong>{props.email}</strong></Link>
+                <Link to="/recipe/myRecipes" className="profile-name"><strong>{email}</strong></Link>
             </li>
             <li>
-                <Link to="/auth/login">Изход</Link>
+                <Link to="/auth/logout" onClick={handleLogout}>Изход</Link>
             </li>
         </ul>
     );
