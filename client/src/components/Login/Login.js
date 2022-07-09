@@ -1,30 +1,9 @@
-import { useState } from "react";
-import { userLogin } from "../../services/userService";
-
-export const Login = () => {
-
-    const [user, setUser] = useState({});
-
-    const onLoginHandler = (e) => {
-
-        e.preventDefault();
-
-        const formData = new FormData(e.target);
-        const { email, password } = Object.fromEntries(formData);
-
-        
-        userLogin({ email, password })
-            .then(res => {
-                console.log(res);
-                setUser(res)
-            });
-        return user;
-    };
+export const Login = ({ loginHandler }) => {
 
     return (
         <div className="form">
             <h3 className="already-reg">Влизане</h3>
-            <form method="POST" onSubmit={onLoginHandler}>
+            <form method="POST" onSubmit={loginHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
                 <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required />
 
