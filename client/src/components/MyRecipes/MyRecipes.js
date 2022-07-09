@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../../API/endpoints";
+import { endpoints } from "../../API/endpoints";
+import { getOwn } from "../../services/mealService";
 import { MealContainer } from "./MealContainer"
 
-export const MyRecipes = () => {
+export const MyRecipes = ({ props }) => {
 
-    const [meals, setMeal] = useState([]);
+    const [meals, setMeals] = useState([]);
 
     useEffect(() => {
-        fetch(API_URL)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setMeal(data);
-            })
-            .catch(err => {
-                throw err.message
-            })
+        getOwn(endpoints.API_MYRECIPES)
+            .then(res => {
+                console.log(res);
+                setMeals(res);
+            });
     }, []);
 
-    const mealsRender = meals.map(meal => <MealContainer key={meal._id} {...meal} />);
 
     return (
         <div className="search-container">
@@ -31,7 +27,7 @@ export const MyRecipes = () => {
             </div>
             <div className="meal-containter">
                 {meals.length > 0
-                    ? mealsRender
+                    ? meals.map(meal => <MealContainer key={meal._id} {...meal} />)
                     : <div className="already-reg">
                         <p>За сега няма намерени рецепти, добавете рецепта <a href="/recipe/add" className="already-reg">ТУК</a></p>
                     </div>
