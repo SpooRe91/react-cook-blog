@@ -22,11 +22,8 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
         if (token) {
             res.cookie(SESSION_NAME, token, { httpOnly: true });//automatic login after registration
             res.status(201).json(token)
-
         } else {
-            throw {
-                message: 'Unable to register such user! Please try again!'
-            }
+            throw new Error('Unable to register such user! Please try again!')
         }
 
     } catch (error) {
@@ -50,12 +47,12 @@ router.post('/login', isGuest, async (req, res, next) => {
                 message: 'Unable to login with the given credentials!'
             };
         };
-        const userInfo = {
-            token,
-            email,
-            id: user._doc._id
-        }
 
+        const userInfo = {
+            id: user._id,
+            email: user.email,
+            token,
+        }
         res.cookie(SESSION_NAME, token, { httpOnly: true });
         res.status(200).json(userInfo);
 
@@ -67,6 +64,7 @@ router.post('/login', isGuest, async (req, res, next) => {
 
 router.get('/logout', isAuth, (req, res) => {
     res.clearCookie(SESSION_NAME);
-    res.status(204).end();
+    res.status(204).json({ message: "Logged out!" }).end();
+    console.log("Logged out!" );
 });
 module.exports = router;
