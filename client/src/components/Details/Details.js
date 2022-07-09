@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { OnwerButtons } from "./OwnerButtons"
 import { endpoints } from "../../API/endpoints";
-import { getOneById } from "../../services/mealService";
+import { getOne } from "../../services/mealService";
 
 export const Details = () => {
 
@@ -10,7 +10,7 @@ export const Details = () => {
 
     useEffect(() => {
         const mealData = async (endpoint) => {
-            const result = await getOneById(endpoint);
+            const result = await getOne(endpoint);
             console.log(result);
             setMeal(result);
         };
