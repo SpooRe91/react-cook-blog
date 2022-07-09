@@ -19,7 +19,6 @@ router.get('/browse', async (req, res) => {
 
 });
 
-
 router.get('/myRecipes', isAuth, async (req, res) => {
 
     try {
