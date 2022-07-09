@@ -7,6 +7,11 @@ const { secret } = require('../config/env');
 
 /*----------------------register--------------------------*/
 exports.register = async ({ email, password }) => {
+    const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
+
+    if (existing) {
+        throw new Error('Please enter another e-mail!');
+    };
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
@@ -23,17 +28,14 @@ exports.login = async (email, password) => {
     let user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
 
     if (!user) {
-        throw {
-            message: 'Invalid e-mail or password!'
-        }
+        throw new Error('Invalid e-mail or password!');
     };
+
     //Verify password
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-        throw {
-            message: 'Invalid e-mail or password!'
-        };
+        throw new Error('Invalid e-mail or password!');
     };
 
     return user;
@@ -49,10 +51,9 @@ exports.createToken = (user) => {
         jwt.sign(payload, secret, options, (err, decodedToken) => {
 
             if (err) {
-                return reject(err);
+                return reject(err.message);
             };
             resolve(decodedToken);
         });
     });
-}
-
+};
