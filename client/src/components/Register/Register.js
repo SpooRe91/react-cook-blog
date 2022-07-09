@@ -2,6 +2,7 @@ export const Register = () => {
 
     return (
         <div className="form">
+            <h3 className="already-reg">Регистрация</h3>
             <form method="POST">
                 <label className="already-reg" htmlFor="email">e-mail</label>
                 <input type="text" className="email" name="email" placeholder="e-mail..." required />
