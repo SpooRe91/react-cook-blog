@@ -12,16 +12,41 @@ import { MyRecipes } from "./components/MyRecipes/MyRecipes";
 import { Homepage } from "./components/Homepage/Homepage";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
+import { userLogin } from "./services/userService";
+import { useEffect, useState } from "react";
+import { setSession, getSession } from "./API/api";
+import { Logout } from "./components/Logout/Logout";
 
 function App() {
 
+  const [user, setUser] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const { email, password } = Object.fromEntries(formData);
+
+    userLogin({ email, password })
+      .then(res => {
+        console.log(res);
+        if (res.token) {
+          setSession(res.email, res.token, res.id);
+        };
+      });
+  };
+
   return (
-    <div className="App">
+    useEffect(() => {
+      setUser(getSession());
+      console.log(getSession());
+    }, []),
+    < div className="App" >
       <Header />
-      <NavBar/>
+      <NavBar user={{ ...user }} />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/login" element={<Login loginHandler={handleSubmit} />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
@@ -30,11 +55,11 @@ function App() {
         <Route path="/recipe/myRecipes" element={<MyRecipes />} />
         <Route path="/recipe/browse" element={<Browse />} />
         <Route path="/details/:userId" element={<Details />} />
-        <Route path="/" element={<MyRecipes />} />
+        <Route path="/auth/logout" element={<Logout />} />
       </Routes>
       <Footer />
-    </div>
+    </div >
   );
-}
+};
 
 export default App;
