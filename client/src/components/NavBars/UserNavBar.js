@@ -22,7 +22,7 @@ export const UserNavBar = ({ email }) => {
                 <Link to="/recipe/myRecipes">Моите рецепти</Link>
             </li>
             <li>
-                <Link to="/recipe/myRecipes" className="profile-name"><strong>{email}</strong></Link>
+                <Link to="/auth/profile" className="profile-name"><strong>{email}</strong></Link>
             </li>
             <li>
                 <Link to="/auth/logout" onClick={handleLogout}>Изход</Link>
