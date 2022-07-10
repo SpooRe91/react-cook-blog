@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom"
 import { Login } from "./components/Login/Login"
 import { NavBar } from "./components/NavBars/Navbar"
 import { Register } from "./components/Register/Register";
-import { About } from "./components/About/About";
 import { Contacts } from "./components/Contacts/Contacts";
+import { About } from "./components/About/About";
 import { ErrorPage } from "./components/ErrorPage/ErrorPage";
 import { AddRecipe } from "./components/AddRecipe/AddRecipe";
 import { Browse } from "./components/Browse/Browse";
@@ -16,6 +16,7 @@ import { userLogin } from "./services/userService";
 import { useEffect, useState } from "react";
 import { setSession, getSession } from "./API/api";
 import { Logout } from "./components/Logout/Logout";
+import { Profile } from "./components/Profile/Profile";
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
         <Route path="/recipe/browse" element={<Browse />} />
         <Route path="/details/:userId" element={<Details />} />
         <Route path="/auth/logout" element={<Logout />} />
+        <Route path="/auth/profile" element={<Profile />} />;
       </Routes>
       <Footer />
     </div >
