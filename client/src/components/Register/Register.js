@@ -1,9 +1,9 @@
-export const Register = () => {
+export const Register = ({ registerHandler }) => {
 
     return (
         <div className="form">
             <h3 className="already-reg">Регистрация</h3>
-            <form method="POST">
+            <form method="POST" onSubmit={registerHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
                 <input type="text" className="email" name="email" placeholder="e-mail..." required />
 
