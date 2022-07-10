@@ -1,0 +1,20 @@
+.darkBG {
+    background-color: rgba(0, 0, 0, 50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+.centered {
+    background-image: url('../../../public/images/main-background.jpg');
+    border: ridge #DECBA4;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
