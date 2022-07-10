@@ -435,21 +435,14 @@ div.already-reg a:hover {
 }
 
 .form label {
-    margin: 5px;
-    display: flex;
+    margin-left: 15px;
+    width: max-content;
     color: #ffffff;
-    text-align: center;
     text-decoration: underline;
     font-size: 20px;
     text-transform: uppercase;
-    padding: 0px 0px;
-    text-shadow: 0px 0px 20px #DECBA4;
-    /* border-radius: 20px; */
-    /* border: ridge rgb(211 198 181); */
-    align-content: center;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
 }
 
 input[type=text],
