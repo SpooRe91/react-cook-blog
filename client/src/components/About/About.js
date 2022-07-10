@@ -9,7 +9,7 @@ export const About = () => {
             </p>
             <p className="about-text">
                 Please enjoy the SPA and don't hesitate to <strong>contact</strong> me for further
-                suggestions at < span > <strong>m.bogdanov9110@gmail.com</strong></span >, or at:
+                suggestions at <span> <strong>m.bogdanov9110@gmail.com</strong></span>, or at:
                 <a href="/about">Martin Bogdanov</a>
             </p>
         </div >);
