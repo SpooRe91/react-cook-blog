@@ -122,12 +122,11 @@ div.container {
 }
 
 .landing-page-header {
-    -webkit-text-fill-color: black;
     -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: #d04a00;
-    margin-left: 10px;
-    text-shadow: #000000 -18px 0px 20px;
-    font-size: 5em;
+    -webkit-text-stroke-color: #cc4900bd;
+    margin: auto;
+    text-shadow: #cdbc98 1px 2px 6px;
+    font-size: 4em;
 }
 
 .landing-page-span {

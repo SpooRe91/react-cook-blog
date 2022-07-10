@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { endpoints } from "../../API/endpoints";
 import { getAll } from "../../services/mealService";
-import { Meal } from "./Meal"
+import { MealContainer } from "../MyRecipes/MealContainer"; 
 
 export const Browse = () => {
 
@@ -17,14 +17,16 @@ export const Browse = () => {
 
     return (
         <div className="search-container">
-            <form method="GET">
-                <input type="text" placeholder="Търси..." name="search" />
-                <input type="submit" value={"Търси"} />
-            </form>
-
+            <div>
+                <h1 className="already-reg">Търсене на рецепти</h1>
+                <form method="GET">
+                    <input type="text" placeholder="Търси..." name="search" />
+                    <input type="submit" value={"Търси"} />
+                </form>
+            </div>
             <div className="meal-containter">
                 {meals !== undefined && meals !== null && meals.length > 0
-                    ? meals.map(meal => <Meal key={meal._id} {...meal} />)
+                    ? meals.map(meal => <MealContainer key={meal._id} {...meal} />)
                     : <div className="already-reg">
                         <p>Все още няма рецепти!</p>
                     </div>
