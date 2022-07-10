@@ -1,10 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 export const UserNavBar = ({ email }) => {
     console.log(email);
+//TODO MAYBE THIS SHOULD NOT BE HERE, EXP UPDATE
+    let navigate = useNavigate();
 
     const handleLogout = async () => {
-        await userLogout();
+        try {
+            await userLogout();
+            logoutSession();
+        } catch (error) {
+            navigate('/404', { error: error.message })
+        }
     }
 
     return (
