@@ -107,25 +107,26 @@ div.container {
 }
 
 .landing-page-article div {
-    background-image: url("../images/landing-page2.jpg");
+    background-image: url(../images/spaghetti-with-pesto-prawns-served-plate.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     margin: 10em auto 10em auto;
     height: 30em;
     display: flex;
     text-align: center;
-    align-content: center;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
+    align-content: center;
     flex-direction: column;
-    justify-content: center;
 }
 
 .landing-page-header {
-    color: #c6c6c6;
-    margin: 10px 10px 10px 10px;
-    text-align: center;
-    text-shadow: #000000 -15px 0px 6px;
+    -webkit-text-fill-color: black;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #d04a00;
+    margin-left: 10px;
+    text-shadow: #000000 -18px 0px 20px;
     font-size: 5em;
 }
 
