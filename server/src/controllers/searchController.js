@@ -9,7 +9,7 @@ router.get('/browse', async (req, res) => {
         let allMeals = await foodService.getAll(req.query.search);
 
         if (allMeals.length <= 0) {
-            throw new Error("Unable to fetch any recipes!");
+            throw new Error("Unable to fetch any recipes or there aren't any!");
         }
 
         res.json(allMeals);
@@ -25,7 +25,7 @@ router.get('/myRecipes', isAuth, async (req, res) => {
         let allMeals = await foodService.getOwn(req.user._id);
 
         if (allMeals.length <= 0) {
-            throw new Error("Unable to fetch any recipes!");
+            throw new Error("Unable to fetch any recipes or there aren't any!");
 
         }
         res.json(allMeals);
