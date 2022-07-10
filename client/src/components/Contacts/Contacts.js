@@ -1,12 +1,18 @@
 export const Contacts = () => {
+
     return (
         <div className="already-reg">
-            <h1 className="already-reg">Cook-blog by Martin Bogdanov - contact</h1>
-            <p className="about-text">
-                "Cook-blog" is a basic website created with "express.js" and "handlebars" entirely on back-end ran on
-                Node.js. Please enjoy the webiste and don't hesitate to <strong>contact</strong> me for further
-                suggestions at <span><strong>m.bogdanov9110@gmail.com</strong></span>, or at:
-                <a href="/about">Martin Bogdanov</a>
+
+            <h1 className="already-reg">Martin Bogdanov</h1>
+            <a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer"><img
+                src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4"
+                alt="#" /></a>
+            <h3>About me:</h3>
+            <p className="already-reg">
+                Hello, my name is Martin, I am a former professional cook and a learning programmer. Below is my GitHub
+                profile, where you can find few interesting ongoing and finished projects.
             </p>
-        </div>);
+            <h4>My GitHub:<a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer">*click here*</a></h4>
+
+        </div >);
 }
