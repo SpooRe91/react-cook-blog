@@ -1,4 +1,30 @@
-export const Register = ({ registerHandler }) => {
+import { useNavigate } from "react-router-dom";
+import { getSession, setSession } from "../../API/api";
+import { userRegister } from "../../services/userService";
+
+export const Register = ({ setUser, setErrorMessage }) => {
+
+    let navigate = useNavigate();
+
+    const registerHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const { email, password, rePassword } = Object.fromEntries(formData);
+
+        userRegister({ email, password, rePassword })
+            .then(res => {
+                console.log(res);
+                if (res.token) {
+                    setSession(res.email, res.token, res.id);
+                    navigate('/recipe/browse');
+                    return setUser(getSession());
+                } else {
+                    setErrorMessage({ error: "Email or password are invalid!" });
+                    throw new Error("Email or password are invalid!");
+                }
+            });
+    }
 
     return (
         <div className="form">
