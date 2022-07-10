@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { Login } from "./components/Login/Login"
 import { NavBar } from "./components/NavBars/Navbar"
 import { Register } from "./components/Register/Register";
@@ -12,7 +12,7 @@ import { MyRecipes } from "./components/MyRecipes/MyRecipes";
 import { Homepage } from "./components/Homepage/Homepage";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
-import { userLogin } from "./services/userService";
+import { userLogin, userRegister } from "./services/userService";
 import { useEffect, useState } from "react";
 import { setSession, getSession } from "./API/api";
 import { Logout } from "./components/Logout/Logout";
@@ -20,9 +20,13 @@ import { Profile } from "./components/Profile/Profile";
 
 function App() {
 
-  const [user, setUser] = useState({});
+  // !!!TODO - RENDER ERROR ELEMENT TO APPEAR ON EVERY PAGE!
 
-  const handleSubmit = (e) => {
+  const [user, setUser] = useState({});
+  const [errorMessage, setErrorMessage] = [{}];
+  let navigate = useNavigate();
+
+  const loginHandler = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -33,25 +37,55 @@ function App() {
         console.log(res);
         if (res.token) {
           setSession(res.email, res.token, res.id);
-        };
+          setUser(getSession());
+          navigate('/recipe/browse');
+        } else {
+          setErrorMessage({ error: "Username or password don't match!" });
+          throw new Error("Username or password don't match!");
+        }
       });
   };
 
+  const registerHandler = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const { email, password, rePassword } = Object.fromEntries(formData);
+
+    console.log(email, password, rePassword);
+
+    userRegister({ email, password, rePassword })
+      .then(res => {
+        console.log(res);
+        if (res.token) {
+          setSession(res.email, res.token, res.id);
+          setUser(getSession());
+          navigate('/recipe/browse');
+        } else {
+          setErrorMessage({ error: "Email or password are invalid!" });
+          throw new Error("Email or password are invalid!");
+        }
+      });
+  }
+
   return (
+
     useEffect(() => {
-      setUser(getSession());
-      console.log(getSession());
+      return () => {
+        console.log(getSession());
+        setUser(user => getSession());
+      }
     }, []),
     < div className="App" >
       <Header />
-      <NavBar user={{ ...user }} />
+      <NavBar user={{ ...getSession() }} />
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/auth/login" element={<Login loginHandler={handleSubmit} />} />
-        <Route path="/auth/register" element={<Register />} />
+        <Route path="/auth/login" element={<Login loginHandler={loginHandler} />} />
+        <Route path="/auth/register" element={<Register registerHandler={registerHandler} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path="/404" element={<ErrorPage />} />
+        <Route path="/404" element={<ErrorPage error={errorMessage} />} />
         <Route path="/recipe/add" element={<AddRecipe />} />
         <Route path="/recipe/myRecipes" element={<MyRecipes />} />
         <Route path="/recipe/browse" element={<Browse />} />
