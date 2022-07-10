@@ -1,4 +1,31 @@
-export const Login = ({ loginHandler }) => {
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getSession, setSession } from "../../API/api";
+import { userLogin } from "../../services/userService";
+
+export const Login = ({ setUser, setErrorMessage }) => {
+
+    const navigate = useNavigate();
+
+    const loginHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const { email, password } = Object.fromEntries(formData);
+
+        userLogin({ email, password })
+            .then(res => {
+                console.log(res);
+                if (res.token) {
+                    setSession(res.email, res.token, res.id);
+                    navigate('/recipe/browse');
+                    return setUser(getSession())
+                } else {
+                    setErrorMessage({ error: "Username or password don't match!" });
+                    throw new Error("Username or password don't match!");
+                }
+            });
+    };
 
     return (
         <div className="form">
@@ -14,6 +41,8 @@ export const Login = ({ loginHandler }) => {
             </form>
 
             <h3 className="already-reg">Нямате регистрация? <a href="/auth/register">Регистрирайте се тук!</a></h3>
-        </div>);
+        </div>
+
+    );
 }
 
