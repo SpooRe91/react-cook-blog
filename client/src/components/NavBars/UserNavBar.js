@@ -1,15 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
-export const UserNavBar = ({ email }) => {
+export const UserNavBar = ({ email, setUser }) => {
     console.log(email);
-//TODO MAYBE THIS SHOULD NOT BE HERE, EXP UPDATE
+
     let navigate = useNavigate();
+
+//TODO: make the page re-render so the NavBar can render properly
 
     const handleLogout = async () => {
         try {
             await userLogout();
             logoutSession();
+            navigate('/auth/login')
         } catch (error) {
             navigate('/404', { error: error.message })
         }
@@ -33,7 +36,7 @@ export const UserNavBar = ({ email }) => {
                 <Link to="/auth/profile" className="profile-name"><strong>{email}</strong></Link>
             </li>
             <li>
-                <Link to="/auth/logout" onClick={handleLogout}>Изход</Link>
+                <Link to="/" onClick={() => setUser(handleLogout)} >Изход</Link>
             </li>
         </ul>
     );
