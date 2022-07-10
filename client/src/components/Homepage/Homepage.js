@@ -4,7 +4,7 @@ export const Homepage = () => {
         <article className="landing-page-article">
             <div>
                 <section className="landing-page-section">
-                    <h1 ><i className="landing-page-header">Welcome to Cook-Blog, your favourite meals await you!</i></h1>
+                    <h1 className="landing-page-header"><i>Welcome to Cook-Blog, your favourite meals await you!</i></h1>
                 </section>
             </div>
         </article>
