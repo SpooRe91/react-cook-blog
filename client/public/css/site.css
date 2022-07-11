@@ -37,11 +37,12 @@ nav ul {
     gap: 35px;
     justify-items: center;
     list-style: none;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin: 15px 15px 15px 15px;
     align-content: center;
+    padding: 0px;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
 }
 
 nav ul li a {
