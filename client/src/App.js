@@ -21,7 +21,7 @@ function App() {
 
   // !!!TODO - RENDER ERROR ELEMENT TO APPEAR ON EVERY PAGE!
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(getSession());
   const [errorMessage, setErrorMessage] = useState({});
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
@@ -48,7 +48,7 @@ function App() {
         <Route path="/details/:userId" element={<Details />} />
         <Route path="/auth/profile" element={<Profile />} />;
       </Routes>
-      
+
       <Footer setIsOpen={setIsOpen} user={user} />
       {isOpen && isOpen.target === "about" && <About setIsOpen={setIsOpen} />}
       {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
