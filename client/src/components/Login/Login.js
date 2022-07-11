@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
