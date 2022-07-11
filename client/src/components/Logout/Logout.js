@@ -3,7 +3,7 @@ import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
 
-export const Logout = ({ setIsOpen, setUser }) => {
+export const Logout = ({ setIsOpen, setUser, cookies }) => {
 
     let navigate = useNavigate();
 
@@ -11,10 +11,12 @@ export const Logout = ({ setIsOpen, setUser }) => {
         try {
             await userLogout();
             logoutSession();
+            cookies.remove(['session']);
             setIsOpen(false);
-            navigate('/auth/login');
+            return navigate('/auth/login');
         } catch (error) {
-            navigate('/404', { error: error.message })
+            console.log(error);
+            navigate('/404', { error: error })
         }
     }
 
