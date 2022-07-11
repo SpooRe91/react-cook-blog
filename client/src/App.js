@@ -15,6 +15,7 @@ import { Header } from "./components/Header/Header";
 import { useEffect, useState } from "react";
 import { getSession } from "./API/api";
 import { Profile } from "./components/Profile/Profile";
+import { Logout } from "./components/Logout/Logout";
 
 function App() {
 
@@ -33,7 +34,9 @@ function App() {
   return (
     < div className="App" >
       <Header />
-      <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen} />
+      {isOpen && isOpen.target === "logout" && <Logout setIsOpen={setIsOpen} setUser={setUser} />}
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/auth/login" element={<Login setUser={setUser} setErrorMessage={setErrorMessage} />} />
@@ -45,6 +48,7 @@ function App() {
         <Route path="/details/:userId" element={<Details />} />
         <Route path="/auth/profile" element={<Profile />} />;
       </Routes>
+      
       <Footer setIsOpen={setIsOpen} user={user} />
       {isOpen && isOpen.target === "about" && <About setIsOpen={setIsOpen} />}
       {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
