@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 export const Footer = ({ setIsOpen, user }) => {
-    console.log(user);
     
     return (
         <footer className="footer">

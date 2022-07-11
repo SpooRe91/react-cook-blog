@@ -10,7 +10,6 @@ export const Browse = () => {
     useEffect(() => {
         getAll(endpoints.API_BROWSE)
             .then(res => {
-                console.log(res);
                 setMeals(res)
             })
     }, []);
