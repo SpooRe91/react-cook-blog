@@ -19,7 +19,7 @@ export const Login = ({ setUser, setErrorMessage }) => {
                 if (res.token) {
                     setSession(res.email, res.token, res.id);
                     navigate('/recipe/browse');
-                    return setUser(getSession())
+                    return setUser(getSession());
                 } else {
                     setErrorMessage({ error: "Username or password don't match!" });
                     throw new Error("Username or password don't match!");
