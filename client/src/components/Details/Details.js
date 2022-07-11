@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { OnwerButtons } from "./OwnerButtons"
 import { endpoints } from "../../API/endpoints";
 import { getOne } from "../../services/mealService";
+import { Link } from "react-router-dom";
 
 export const Details = () => {
 
@@ -25,7 +26,7 @@ export const Details = () => {
                 alt="" /></a>
             {meal.owner !== undefined && meal.owner !== null
                 ? <OnwerButtons meal={meal} />
-                : <a className="btn" href="/recipe/browse">Назад</a>
+                : <Link className="btn" to="/recipe/browse">Назад</Link>
             }
             <article className="recipe-details">
                 <label htmlFor="ingredients">Необходими съставки:</label>
