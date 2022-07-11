@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 export const UserNavBar = ({ email, setUser, setIsOpen }) => {
-    console.log(email);
-
-
+    
     return (
         <>
             <ul>
