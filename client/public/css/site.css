@@ -1,5 +1,11 @@
 html {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -16,29 +22,40 @@ body {
     position: relative;
 }
 
+nav {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 9;
+    margin: 35px auto;
+}
+
 nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 35px;
     justify-items: center;
     list-style: none;
-    margin: 35px auto;
+    margin: 15px auto;
     align-content: center;
     justify-content: center;
     align-items: center;
+
 }
 
 nav ul li a {
-    font-size: 28px;
+    font-size: 30px;
     text-decoration: none;
     text-transform: uppercase;
-    color: #DECBA4;
+    -webkit-text-stroke: 1.5px #000000;
+    color: #ffffff;
     font-weight: bold;
+    text-shadow: black 0px 0px 20px;
 }
 
 nav ul li a:active,
 :focus {
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    text-shadow: 0px 0px 20px #DECBA4;
     color: rgb(255, 255, 255);
     /* text-decoration: underline; */
 }
@@ -177,22 +194,19 @@ h1.meal-name {
 }
 
 .profile-name {
-    margin-top: 15px;
-    transition: .1s;
-    color: #DECBA4;
-    border: ridge rgb(216, 208, 198);
-    /* background-color: rgb(216, 208, 198); */
-    text-align: justify;
-    padding: 5px;
-    text-transform: none;
+    font-size: 20px;
     text-decoration: none;
+    -webkit-text-stroke: 1.5px #000000;
+    color: #ffffff;
+    font-weight: bold;
+    border: ridge #DECBA4;
+    border-radius: 10px;
+    padding:5px 5px 5px 5px ;
+    text-shadow: black 0px 0px 20px;
 }
 
 .profile-name:hover {
     cursor: pointer;
-    transition: .1s;
-    cursor: pointer;
-    background-clip: content-box;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
 }
 
@@ -220,29 +234,6 @@ img.meal:hover {
     display: inline-block;
     border-radius: 20% 0;
 }
-
-a.profile-name {
-    transition: .1s;
-    margin: 5px;
-    display: block;
-    text-align: center;
-    font-size: 20px;
-    padding: 7px 7px;
-    text-shadow: 0px 0px 20px #decba4;
-    border-radius: 20px;
-    color: #ffffff;
-}
-
-a.profile-name:hover {
-
-    text-shadow: -3px 1px 3px rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
-    transition: .1s;
-    text-decoration: underline;
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
-}
-
-
 
 div.meal-containter {
     display: flex;
@@ -283,7 +274,7 @@ p.name {
     color: #DECBA4;
     transition: .1s;
     font-size: 25px;
-    font-weight: bolder;
+    font-weight: bold;
     margin: 15px 15px 15px 15px;
 }
 
@@ -296,7 +287,7 @@ p.name:hover {
 p.recipe {
     text-align: justify;
     font-size: medium;
-    font-weight: bolder;
+    font-weight: bold;
     text-transform: none;
     padding: 2px;
     border-bottom: 5px solid #2b415433;
@@ -307,7 +298,7 @@ p.recipe {
     text-decoration: none;
     display: flex;
     justify-content: center;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 25px;
     width: max-content;
     margin: 15px 15px;
@@ -367,7 +358,7 @@ article.recipe-details {
 }
 
 span {
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 20px;
     text-align: center;
     padding: 5px;
@@ -378,7 +369,7 @@ span {
     text-decoration: underline;
     font-size: 35px;
     text-align: center;
-    font-weight: bolder;
+    font-weight: bold;
 }
 
 div.search-container {
@@ -616,7 +607,7 @@ h4 {
 .btn-footer {
     margin: 10px 10px 0px 10px;
     font-size: 15px;
-    font-weight: bolder;
+    font-weight: bold;
     color: #ffffff;
     text-shadow: #000000 -8px 2px 10px;
     text-decoration: none;
@@ -630,7 +621,7 @@ h4 {
 .btn-footer-created-by {
     margin: 10px 10px 0px 0px;
     font-size: 13px;
-    font-weight: bolder;
+    font-weight: bold;
     color: #ffffff;
     text-shadow: #000000 -3px 2px 10px;
     text-decoration: underline;
@@ -640,7 +631,7 @@ h4 {
     cursor: pointer;
     margin: 10px 10px 0px 0px;
     font-size: 13px;
-    font-weight: bolder;
+    font-weight: bold;
     color: #000000;
     text-shadow: #ffffff -3px 2px 10px;
     text-decoration: underline;
@@ -650,6 +641,7 @@ h4 {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 9;
     height: 30px;
     color: #ffffff;
     text-shadow: 0px 0px 20px #ffffff;
