@@ -6,8 +6,6 @@ export const UserNavBar = ({ email, setUser }) => {
 
     let navigate = useNavigate();
 
-//TODO: make the page re-render so the NavBar can render properly
-
     const handleLogout = async () => {
         try {
             await userLogout();
