@@ -1,0 +1,49 @@
+.darkBG {
+    background-color: rgba(0, 0, 0, 50%);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+}
+
+.centered {
+    z-index: 9;
+    background-image: url('../../../public/images/main-background.jpg');
+    display: flex;
+    border: ridge #DECBA4;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.logoutModalBtn {
+    transition: .1s;
+    margin: 5px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #DECBA4, #3E5151);
+    border: ridge rgb(211 198 181);
+}
+
+.logoutModalHeader {
+    padding: 10px;
+    color: #DECBA4;
+    font-size: 30px;
+    text-align: center;
+}

@@ -10,6 +10,7 @@
 }
 
 .centered {
+    z-index: 9;
     background-image: url('../../../public/images/main-background.jpg');
     border: ridge #DECBA4;
     border-radius: 15px;
