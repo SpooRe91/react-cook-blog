@@ -1,20 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { logoutSession } from "../../API/api";
-import { userLogout } from "../../services/userService";
-export const UserNavBar = ({ email, setUser }) => {
+import { Link } from "react-router-dom";
+export const UserNavBar = ({ email, setUser, setIsOpen }) => {
     console.log(email);
 
-    let navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-            await userLogout();
-            logoutSession();
-            navigate('/auth/login')
-        } catch (error) {
-            navigate('/404', { error: error.message })
-        }
-    }
 
     return (
         <>
@@ -32,7 +19,7 @@ export const UserNavBar = ({ email, setUser }) => {
                     <Link to="/recipe/myRecipes">Моите рецепти</Link>
                 </li>
                 <li>
-                    <Link to="/" onClick={() => setUser(handleLogout)} >Изход</Link>
+                    <Link to="#" name="logout" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</Link>
                 </li>
                 <li>
                     <Link to="/auth/profile" className="profile-name"><strong>{email}</strong></Link>
