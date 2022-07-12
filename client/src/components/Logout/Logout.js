@@ -3,7 +3,7 @@ import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
 
-export const Logout = ({ setIsOpen, setUser, cookies }) => {
+export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
 
     let navigate = useNavigate();
 
@@ -11,7 +11,7 @@ export const Logout = ({ setIsOpen, setUser, cookies }) => {
         try {
             await userLogout();
             logoutSession();
-            cookies.remove(['session']);
+            cookies.remove('user-session', user.token, { path: "/", maxAge: 36000 });
             setIsOpen(false);
             return navigate('/auth/login');
         } catch (error) {
