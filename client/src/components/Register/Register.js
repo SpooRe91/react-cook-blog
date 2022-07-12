@@ -20,8 +20,8 @@ export const Register = ({ setUser, setErrorMessage }) => {
                     navigate('/recipe/browse');
                     return setUser(previous => getSession());
                 } else {
-                    setErrorMessage({ error: "Email or password are invalid!" });
-                    throw new Error("Email or password are invalid!");
+                    setErrorMessage({ error: res.message });
+                    throw new Error(res.message);
                 }
             });
     }
