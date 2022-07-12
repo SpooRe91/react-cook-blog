@@ -25,11 +25,12 @@ function App() {
   const [errorMessage, setErrorMessage] = useState({});
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
+  const [isLoading, setIsLoading] = useState(true);
 
   const cookies = new Cookies();
 
   if (user) {
-    cookies.set('user-session', user.token, { path: "/", maxAge: 36000 })
+    cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
   }
 
   useEffect(() => {
@@ -48,12 +49,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/auth/login" element={<Login setUser={setUser} setErrorMessage={setErrorMessage} cookies={cookies} />} />
+        <Route path="/auth/login" element={<Login setUser={setUser} setErrorMessage={setErrorMessage} isLoading={isLoading} setIsLoading={setIsLoading} />} />
         <Route path="/auth/register" element={<Register setUser={setUser} setErrorMessage={setErrorMessage} />} />
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
         <Route path="/recipe/add" element={<AddRecipe />} />
-        <Route path="/recipe/myRecipes" element={<MyRecipes />} />
-        <Route path="/recipe/browse" element={<Browse />} />
+        <Route path="/recipe/myRecipes" element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
+        <Route path="/recipe/browse" element={<Browse isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
         <Route path="/details/:userId" element={<Details />} />
         <Route path="/auth/profile" element={<Profile />} />;
       </Routes>

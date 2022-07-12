@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
+import { BeatLoader } from "react-spinners";
 
-export const Login = ({ setUser, setErrorMessage, cookies }) => {
+export const Login = ({ setUser, setErrorMessage, isLoading, setIsLoading }) => {
 
     const navigate = useNavigate();
     console.log();
@@ -28,6 +29,7 @@ export const Login = ({ setUser, setErrorMessage, cookies }) => {
                     setSession(res.email, res.token, res.id);
                     setUser(getSession());
                     navigate('/recipe/browse');
+                    setIsLoading(false);
                 } else {
                     setErrorMessage({ error: "Username or password don't match!" });
                     throw new Error("Username or password don't match!");

@@ -17,7 +17,7 @@ export const UserNavBar = ({ email, setUser, setIsOpen }) => {
                     <Link to="/recipe/myRecipes">Моите рецепти</Link>
                 </li>
                 <li>
-                    <Link to="#" name="logout" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</Link>
+                    <Link to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</Link>
                 </li>
                 <li>
                     <Link to="/auth/profile" className="profile-name"><strong>{email}</strong></Link>
