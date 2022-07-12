@@ -16,7 +16,7 @@ router.post('/add', modelValidator(Meal), isAuth, async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(400).json({ error: getErrorMessage(error) });
+        res.status(400).json({ message: getErrorMessage(error) });
     }
 });
 module.exports = router;
