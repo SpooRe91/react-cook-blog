@@ -18,7 +18,7 @@ exports.preloadMeal = async (req, res, next) => {
         next();
 
     } catch (error) {
-        res.status(404).json({ error: getErrorMessage(error) });
+        res.status(404).json({ message: getErrorMessage(error) });
     }
 };
 
