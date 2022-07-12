@@ -12,14 +12,13 @@ import { MyRecipes } from "./components/MyRecipes/MyRecipes";
 import { Homepage } from "./components/Homepage/Homepage";
 import { Footer } from "./components/Footer/Footer";
 import { Header } from "./components/Header/Header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getSession } from "./API/api";
 import { Profile } from "./components/Profile/Profile";
 import { Logout } from "./components/Logout/Logout";
 import Cookies from 'universal-cookie';
 function App() {
   // !!!TODO - RENDER ERROR ELEMENT TO APPEAR ON EVERY PAGE!
-
 
   const [user, setUser] = useState(getSession());
   const [errorMessage, setErrorMessage] = useState({});
