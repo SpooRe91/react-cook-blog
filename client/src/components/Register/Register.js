@@ -18,7 +18,7 @@ export const Register = ({ setUser, setErrorMessage }) => {
                 if (res.token) {
                     setSession(res.email, res.token, res.id);
                     navigate('/recipe/browse');
-                    return setUser(getSession());
+                    return setUser(previous => getSession());
                 } else {
                     setErrorMessage({ error: "Email or password are invalid!" });
                     throw new Error("Email or password are invalid!");
@@ -27,7 +27,7 @@ export const Register = ({ setUser, setErrorMessage }) => {
     }
 
     return (
-        <div className="form">
+        <div className="register-form">
             <h3 className="already-reg">Регистрация</h3>
             <form method="POST" onSubmit={registerHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
