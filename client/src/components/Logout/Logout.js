@@ -15,8 +15,8 @@ export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
             setIsOpen(false);
             return navigate('/auth/login');
         } catch (error) {
-            console.log(error);
-            navigate('/404', { error: error })
+            console.log(error.message);
+            navigate('/404', { error: error.message })
         }
     }
 
