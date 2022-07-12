@@ -26,7 +26,6 @@ router.get('/myRecipes', isAuth, async (req, res) => {
 
         if (allMeals.length <= 0) {
             throw new Error("Unable to fetch any recipes or there aren't any!");
-
         }
         res.json(allMeals);
 
