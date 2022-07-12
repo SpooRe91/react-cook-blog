@@ -33,19 +33,13 @@ function App() {
     cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
   }
 
-  useEffect(() => {
-    return () => {
-      setUser(getSession());
-    }
-  }, []);
-
   const clientCookie = cookies.get('user-session');
 
   return (
     < div className="App" >
       <Header />
       <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen} clientCookie={clientCookie} />
-      {isOpen && isOpen.target === "logout" && <Logout setIsOpen={setIsOpen} setUser={setUser} cookies={cookies} />}
+      {isOpen && isOpen.target === "logout" && <Logout setIsOpen={setIsOpen} setUser={setUser} cookies={cookies} user={user} />}
 
       <Routes>
         <Route path="/" element={<Homepage />} />
