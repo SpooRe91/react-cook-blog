@@ -6,6 +6,6 @@ exports.modelValidator = (Model) => async (req, res, next) => {
                 await Model.validate(req.body);
                 next();
         } catch (error) {
-                res.status(401).json({ error: getErrorMessage(error) });
+                res.status(401).json({ message: getErrorMessage(error) });
         };
 }
