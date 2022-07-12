@@ -35,7 +35,7 @@ router.put('/edit/:id',
 
         } catch (error) {
             console.error(error.message);
-            res.status(400).json({ error: getErrorMessage(error) });
+            res.status(400).json({ message: getErrorMessage(error) });
         }
     });
 
@@ -57,7 +57,7 @@ router.delete('/:id',
 
         } catch (error) {
             console.error(error.message);
-            res.status(404).json({ error: getErrorMessage(error) });
+            res.status(404).json({ message: getErrorMessage(error) });
         }
     });
 
