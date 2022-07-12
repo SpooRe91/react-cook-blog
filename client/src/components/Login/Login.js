@@ -31,8 +31,9 @@ export const Login = ({ setUser, setErrorMessage, setIsLoading }) => {
                     navigate('/recipe/browse');
                     setIsLoading(false);
                 } else {
-                    setErrorMessage({ error: "Username or password don't match!" });
-                    throw new Error("Username or password don't match!");
+                    console.log(res.message);
+                    setErrorMessage({ error: res.message });
+                    throw new Error(res.message);
                 }
             });
     };
