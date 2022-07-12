@@ -87,13 +87,6 @@ nav ul li a {
     text-shadow: black 0px 0px 20px;
 }
 
-nav ul li a:active,
-:focus {
-    text-shadow: 0px 0px 20px #DECBA4;
-    color: rgb(255, 255, 255);
-    /* text-decoration: underline; */
-}
-
 nav ul li a:hover {
     text-decoration: overline white;
     cursor: pointer;
@@ -248,12 +241,10 @@ h1.meal-name {
 
 .profile-name {
     font-size: 20px;
-    text-decoration: none;
+    text-decoration: underline white;
     -webkit-text-stroke: 1.5px #000000;
     color: #ffffff;
     font-weight: bold;
-    border: ridge #DECBA4;
-    border-radius: 10px;
     padding: 5px 5px 5px 5px;
     text-shadow: black 0px 0px 20px;
 }
