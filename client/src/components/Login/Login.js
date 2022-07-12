@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
-import { BeatLoader } from "react-spinners";
 
-export const Login = ({ setUser, setErrorMessage, isLoading, setIsLoading }) => {
+export const Login = ({ setUser, setErrorMessage, setIsLoading }) => {
 
     const navigate = useNavigate();
     console.log();
@@ -12,7 +11,8 @@ export const Login = ({ setUser, setErrorMessage, isLoading, setIsLoading }) => 
     const [value, setValues] = useState({
         email: '',
         password: ''
-    })
+    });
+
 
     const changeHandler = (e) => {
         setValues(state => ({
@@ -27,7 +27,7 @@ export const Login = ({ setUser, setErrorMessage, isLoading, setIsLoading }) => 
             .then(res => {
                 if (res.token) {
                     setSession(res.email, res.token, res.id);
-                    setUser(getSession());
+                    setUser(previous => getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
                 } else {
@@ -38,7 +38,7 @@ export const Login = ({ setUser, setErrorMessage, isLoading, setIsLoading }) => 
     };
 
     return (
-        <div className="form">
+        <div className="login-form">
             <h3 className="already-reg">Влизане</h3>
             <form method="POST" onSubmit={loginHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
