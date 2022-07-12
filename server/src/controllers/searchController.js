@@ -14,7 +14,7 @@ router.get('/browse', async (req, res) => {
 
         res.json(allMeals);
     } catch (error) {
-        res.status(400).json({ error: getErrorMessage(error) });
+        res.status(400).json({ message: getErrorMessage(error) });
     }
 
 });
@@ -30,7 +30,7 @@ router.get('/myRecipes', isAuth, async (req, res) => {
         res.json(allMeals);
 
     } catch (error) {
-        res.status(400).json({ error: getErrorMessage(error) });
+        res.status(400).json({ message: getErrorMessage(error) });
     }
 
 });
