@@ -1,20 +1,20 @@
-import { Link } from "react-router-dom";
-export const GuestNavBar = () => {
+import { NavLink } from 'react-router-dom';
+export const GuestNavBar = ({ focusHandler }) => {
 
     return (
         <ul>
             <li>
-                <Link to="/">Начало</Link>
+                <NavLink to="/" className={focusHandler}>Начало</NavLink>
             </li>
             <li>
-                <Link to="/recipe/browse">Търсене на рецепти</Link>
+                <NavLink to="/recipe/browse" className={focusHandler}>Търсене на рецепти</NavLink>
             </li>
             <li>
-                <Link to="/auth/register">Регистрация</Link>
+                <NavLink to="/auth/register" className={focusHandler}>Регистрация</NavLink>
             </li>
             <li>
-                <Link to="/auth/login">Вход</Link>
+                <NavLink to="/auth/login" className={focusHandler}>Вход</NavLink>
             </li>
-        </ul>
+        </ul >
     );
 }

@@ -1,27 +1,29 @@
-import { Link } from "react-router-dom";
+import { useCallback } from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from "./NavBar.module.css"
 
-export const UserNavBar = ({ email, setUser, setIsOpen }) => {
+export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
 
     return (
         <>
             <ul>
                 <li>
-                    <Link to="/">Начало</Link>
+                    <NavLink to="/">Начало</NavLink>
                 </li>
                 <li>
-                    <Link to="/recipe/browse">Търсене на рецепти</Link>
+                    <NavLink to="/recipe/browse" className={focusHandler}>Търсене на рецепти</NavLink>
                 </li>
                 <li>
-                    <Link to="/recipe/add">Добави рецепта</Link>
+                    <NavLink to="/recipe/add" className={focusHandler}>Добави рецепта</NavLink>
                 </li>
                 <li>
-                    <Link to="/recipe/myRecipes">Моите рецепти</Link>
+                    <NavLink to="/recipe/myRecipes" className={focusHandler}>Моите рецепти</NavLink>
                 </li>
                 <li>
-                    <Link to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</Link>
+                    <NavLink to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</NavLink>
                 </li>
                 <li>
-                    <Link to="/auth/profile" className="profile-name"><strong>{email}</strong></Link>
+                    <NavLink to="/auth/profile" className={useCallback(({ isActive }) => isActive ? styles['profile-name-active'] : "profile-name")}> <strong>{email}</strong></NavLink>
                 </li>
             </ul>
         </>
