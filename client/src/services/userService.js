@@ -16,12 +16,13 @@ export const userRegister = async (registerData) => {
         });
         return await registerResult.json();
     } catch (error) {
+        console.log(error.message);
         throw new Error(error.message);
     }
 }
 
 export const userLogin = async (loginData) => {
-    
+
     try {
         const loginResult = await fetch(endpoints.API_LOGIN, {
             method: 'POST',
