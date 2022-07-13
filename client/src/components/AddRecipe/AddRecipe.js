@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { create } from "../../services/mealService";
 import { useNavigate } from "react-router-dom";
 
-export const AddRecipe = ({ setErrorMessage, setIsLoading }) => {
+export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
+
     const navigate = useNavigate();
-    const [createdMeal, setCreatedMeal] = useState({});
 
     const [values, setValues] = useState({
         name: '',
@@ -13,12 +13,11 @@ export const AddRecipe = ({ setErrorMessage, setIsLoading }) => {
         ingredients: ''
     });
 
-
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
-
+        setErrorMessage('');
     };
 
     const createHandler = (e) => {
@@ -27,7 +26,6 @@ export const AddRecipe = ({ setErrorMessage, setIsLoading }) => {
             .then(res => {
                 console.log(res)
                 if (res._id) {
-                    setCreatedMeal(state => res);
                     navigate('/recipe/myRecipes');
                     setIsLoading(false);
                 } else {
@@ -38,18 +36,21 @@ export const AddRecipe = ({ setErrorMessage, setIsLoading }) => {
             })
     }
 
+    //removes the error message
     useEffect(() => {
-        return (createdMeal) => {
-            setCreatedMeal(createdMeal)
+        return () => {
+            setErrorMessage('');
         }
     }, [])
 
     return (
         <div>
+            {errorMessage !== ""
+                ? <p className="error-message"> {errorMessage.error}</p>
+                : ""
+            }
             <h1 className="already-reg">Добави рецепта</h1>
-            <p className="form-error">
-                First name should be at least 3 characters long!
-            </p>
+
             <form className="add-form" method="POST" onSubmit={createHandler}>
                 <div className="already-reg">
                     <label htmlFor="name">Име</label>
