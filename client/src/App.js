@@ -10,8 +10,8 @@ import { Browse } from "./components/Browse/Browse";
 import { Details } from "./components/Details/Details";
 import { MyRecipes } from "./components/MyRecipes/MyRecipes";
 import { Homepage } from "./components/Homepage/Homepage";
-import { Footer } from "./components/Footer/Footer";
-import { Header } from "./components/Header/Header";
+import { Footer } from "./components/common/Footer";
+import { Header } from "./components/common/Header";
 import { useState } from "react";
 import { getSession } from "./API/api";
 import { Profile } from "./components/Profile/Profile";
@@ -45,10 +45,10 @@ function App() {
         <Route path="/auth/login" element={<Login setUser={setUser} setErrorMessage={setErrorMessage} isLoading={isLoading} setIsLoading={setIsLoading} />} />
         <Route path="/auth/register" element={<Register setUser={setUser} setErrorMessage={setErrorMessage} />} />
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
-        <Route path="/recipe/add" element={<AddRecipe />} />
+        <Route path="/recipe/add" element={<AddRecipe setErrorMessage={setErrorMessage} setIsLoading={setIsLoading} />} />
         <Route path="/recipe/myRecipes" element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
         <Route path="/recipe/browse" element={<Browse isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
-        <Route path="/details/:userId" element={<Details />} />
+        <Route path="/details/:userId" element={<Details isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
         <Route path="/auth/profile" element={<Profile />} />;
       </Routes>
 
