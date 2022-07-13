@@ -9,7 +9,7 @@ import styles from "./NavBar.module.css"
 
 export const NavBar = ({ user, setUser, setIsOpen, clientCookie }) => {
 
-    const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "");
+    const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "", []);
 
     return (
         <nav>
