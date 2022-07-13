@@ -22,11 +22,13 @@ export const Details = ({ setIsLoading, setErrorMessage }) => {
             });
     }, []);
 
+    console.log(meal);
+
     return (
         <div className="details">
             <h1 className="meal-name">{meal.name}</h1>
-            <Link to={meal.image} target="_blank" rel="noreferrer"><img className="meal-details" src={meal.image}
-                alt="" /></Link>
+            <a href={meal.image} target="_blank" rel="noreferrer"><img className="meal-details" src={meal.image}
+                alt="" /></a>
             <div className="meal-buttons">
                 {meal.owner !== undefined && meal.owner !== null
                     ? <OnwerButtons meal={meal} />
@@ -39,6 +41,6 @@ export const Details = ({ setIsLoading, setErrorMessage }) => {
                 <label htmlFor="ingredients">Рецепта:</label>
                 <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
             </article>
-        </div>
+        </div >
     );
 }
