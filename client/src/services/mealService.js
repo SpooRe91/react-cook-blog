@@ -14,7 +14,7 @@ export const getOne = async ({ userId }) => {
         })
         return await res.json();
     } catch (error) {
-        throw new Error(error.message)
+        throw new Error(error.message);
     }
 };
 
