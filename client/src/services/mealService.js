@@ -1,7 +1,7 @@
 import { endpoints } from "../API/endpoints";
 
 export const getOne = async ({ userId }) => {
-    console.log(userId);
+    
     try {
         const res = await fetch(endpoints.API_DETAILS(userId), {
             mode: 'cors',

@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 
 export const Details = ({ setIsLoading, setErrorMessage }) => {
 
-
     const [meal, setMeal] = useState({});
     let id = useParams();
 
