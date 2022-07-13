@@ -850,6 +850,7 @@ h4 {
     border-radius: 20%;
 }
 
+/* Error message and hiding animation */
 .error-message {
     transition: .1s;
     margin: 5px;
@@ -863,4 +864,14 @@ h4 {
     border-radius: 20px;
     background-image: linear-gradient(to right, #ff0000, #3E5151);
     border: ridge rgb(211 198 181);
+    animation: hide 0s 3.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide {
+    to {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 }
