@@ -21,7 +21,7 @@ function App() {
   // !!!TODO - RENDER ERROR ELEMENT TO APPEAR ON EVERY PAGE!
 
   const [user, setUser] = useState(getSession());
-  const [errorMessage, setErrorMessage] = useState({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
   const [isLoading, setIsLoading] = useState(true);
@@ -45,11 +45,11 @@ function App() {
         <Route path="/auth/login" element={<Login setUser={setUser}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage}
           isLoading={isLoading} setIsLoading={setIsLoading} />} />
-          
+
         <Route path="/auth/register" element={<Register setUser={setUser}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage}
           isLoading={isLoading} setIsLoading={setIsLoading} />} />
-          
+
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
         <Route path="/recipe/add" element={<AddRecipe setErrorMessage={setErrorMessage} setIsLoading={setIsLoading} />} />
         <Route path="/recipe/myRecipes" element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
