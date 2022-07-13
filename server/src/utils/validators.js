@@ -9,19 +9,15 @@ exports.registerValidator = async (req, res, next) => {
     try {
 
         if (existing) {
-            throw {
-                message: 'Invalid e-mail or password!'
-            }
+            throw new Error('Invalid e-mail or password!');
         };
 
         if (password !== rePassword) {
-            throw {
-                message: 'Passwords must match!',
-            }
+            throw new Error('Passwords must match!');
         };
-
+        next();
     } catch (error) {
-        res.status(403).json({ error: getErrorMessage(error) });
+        res.status(403).json({ message: getErrorMessage(error) });
     };
-    next();
+
 };
