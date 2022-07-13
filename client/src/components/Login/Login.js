@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
 
 export const Login = ({ setUser, setErrorMessage, setIsLoading }) => {
 
     const navigate = useNavigate();
-    console.log();
-
+    console.log("yes");
     const [value, setValues] = useState({
         email: '',
         password: ''
@@ -51,7 +50,7 @@ export const Login = ({ setUser, setErrorMessage, setIsLoading }) => {
                 <input className="already-reg" type="submit" value="Вход" />
             </form>
 
-            <h3 className="already-reg">Нямате регистрация? <a href="/auth/register">Регистрирайте се тук!</a></h3>
+            <h3 className="already-reg">Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
         </div>
 
     );
