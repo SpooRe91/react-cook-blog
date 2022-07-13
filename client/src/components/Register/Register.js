@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userRegister } from "../../services/userService";
 
@@ -41,6 +41,6 @@ export const Register = ({ setUser, setErrorMessage }) => {
 
                 <input className="already-reg" type="submit" value="Регистриране" />
             </form>
-            <h3 className="already-reg">Вече сте регистрирани?<a href="/auth/login">Влезте от тук!</a></h3>
+            <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
         </div>);
 }
