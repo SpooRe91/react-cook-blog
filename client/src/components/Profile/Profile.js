@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom"
+
 export const Profile = () => {
     return (
-        <div className="already-reg"><a className="maia-button maia-button-primary" href="#/">Edit Profile</a>
+        <div className="already-reg"><Link className="maia-button maia-button-primary" to="#/">Edit Profile</Link>
             <h1 className="already-reg">Martin Bogdanov</h1>
-            <div><a href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4">
-                <img className="already-reg" src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" id="profile-photo" alt="#" /></a>
-                <p><a href="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4">View Full Size</a></p>
+            <div><Link to=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4">
+                <img className="already-reg" src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" id="profile-photo" alt="#" /></Link>
+                <p><Link to="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4">View Full Size</Link></p>
                 <div>
                     <div className="contents-after-sidebar"><h2>My blogs</h2>
-                        <ul><li className="sidebar-item"><span dir="ltr"><a href="http://mbcookinglife.blogspot.com/" target="_blank" rel="noreferrer">Martin's cooking life</a></span></li></ul>
+                        <ul><li className="sidebar-item"><span dir="ltr"><Link to="http://mbcookinglife.blogspot.com/" target="_blank" rel="noreferrer">Martin's cooking life</Link></span></li></ul>
                         <div className="section-divider"></div>
 
                         <h3 className="already-reg">About me</h3>
