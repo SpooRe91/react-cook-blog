@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { endpoints } from "../../API/endpoints";
 import { getOwn } from "../../services/mealService";
@@ -32,7 +33,7 @@ export const MyRecipes = ({ isLoading, setIsLoading, setErrorMessage }) => {
                         {meals.length > 0
                             ? meals.map(meal => <MealContainer key={meal._id} {...meal} />)
                             : <div className="already-reg">
-                                <p>За сега няма намерени рецепти, добавете рецепта <a href="/recipe/add" className="already-reg">ТУК</a></p>
+                                <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
                             </div>
                         }
                     </div>
