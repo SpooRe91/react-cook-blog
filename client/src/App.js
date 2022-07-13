@@ -42,8 +42,14 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/auth/login" element={<Login setUser={setUser} setErrorMessage={setErrorMessage} isLoading={isLoading} setIsLoading={setIsLoading} />} />
-        <Route path="/auth/register" element={<Register setUser={setUser} setErrorMessage={setErrorMessage} />} />
+        <Route path="/auth/login" element={<Login setUser={setUser}
+          setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+          isLoading={isLoading} setIsLoading={setIsLoading} />} />
+          
+        <Route path="/auth/register" element={<Register setUser={setUser}
+          setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+          isLoading={isLoading} setIsLoading={setIsLoading} />} />
+          
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
         <Route path="/recipe/add" element={<AddRecipe setErrorMessage={setErrorMessage} setIsLoading={setIsLoading} />} />
         <Route path="/recipe/myRecipes" element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
