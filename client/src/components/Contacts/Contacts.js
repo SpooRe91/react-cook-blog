@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Contacts.module.css"
 
 export const Contacts = ({ setIsOpen }) => {
@@ -18,7 +19,7 @@ export const Contacts = ({ setIsOpen }) => {
                     <p className="already-reg">
                         Съшо така, можете да се свържете с мен чрез e-mail на:<strong>m.bogdanov9110@gmail.com</strong>
                     </p>
-                    <h4>Линк към GitHub:<a href="https://github.com/SpooRe91" target="_blank" rel="noreferrer">ТУК</a></h4>
+                    <h4>Линк към GitHub:<Link href="https://github.com/SpooRe91" target="_blank" rel="noreferrer">ТУК</Link></h4>
                     <div>
                         {/*button which closes the modal, when clicked */}
                         <input type="button" className="already-reg"
