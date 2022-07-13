@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
@@ -12,16 +12,12 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
         password: ''
     });
 
-    const errorHandler = () => setErrorMessage('');
-
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
-        errorHandler();
+        setErrorMessage('');
     };
-
-
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -40,6 +36,16 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
                 }
             });
     };
+
+    useEffect(() => {
+        setUser(getSession());
+        console.log(getSession());
+        return () => {
+            changeHandler();
+            setUser(getSession());
+            console.log(getSession());
+        };
+    }, []);
 
     return (
         <div className="login-form">
@@ -62,5 +68,5 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
         </div >
 
     );
-}
 
+};
