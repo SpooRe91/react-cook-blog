@@ -6,7 +6,7 @@ import { userLogin } from "../../services/userService";
 export const Login = ({ setUser, setErrorMessage, setIsLoading }) => {
 
     const navigate = useNavigate();
-    console.log("yes");
+
     const [value, setValues] = useState({
         email: '',
         password: ''
