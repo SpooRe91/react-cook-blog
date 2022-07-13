@@ -69,13 +69,12 @@ nav ul {
     position: absolute;
     top: 30px;
     height: 50px;
+    border: ridge #DECBA4;
     margin: auto;
-    transform: scale3d(1, 1, 1);
     border-radius: 50%;
 }
 
 .nav-logo:hover {
-    transform: translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
     transition: .1s;
     cursor: pointer;
@@ -88,7 +87,7 @@ nav ul li a {
     text-decoration: none;
     text-transform: uppercase;
     -webkit-text-stroke: 1.5px #000000;
-    color: #ffffff;
+    color: #cc4e06;
     font-weight: bold;
     text-shadow: black 0px 0px 20px;
 }
@@ -297,22 +296,24 @@ img.logo {
     float: left;
 }
 
+.meal-image-link,
 img.meal {
     margin: 5px 5px 5px 5px;
-    border-radius: 30%;
+    border: none;
+    border-radius: 10%;
     display: inline-block;
     height: 200px;
     width: 200px;
     transform: scale3d(1, 1, 1);
 }
 
-img.meal:hover {
+a img.meal:hover {
     transform: translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
     transition: .1s;
     cursor: pointer;
     display: inline-block;
-    border-radius: 20% 0;
+    border-radius: 20%;
 }
 
 div.meal-containter {
@@ -343,7 +344,7 @@ div.meal {
     align-content: center;
 }
 
-div.meal a {
+div.meal a.btn {
     font-size: 22.5px;
 }
 
