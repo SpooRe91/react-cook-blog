@@ -3,7 +3,7 @@ import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
 
-export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
+export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
 
     let navigate = useNavigate();
 
@@ -22,6 +22,10 @@ export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
 
     return (
         <>
+            {errorMessage
+                ? <p className="error-message"> {errorMessage.error}</p>
+                : ""
+            }
             <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
             <div className={styles.centered}>
                 <h1 className={styles.logoutModalHeader}>Сигурни ли сте, че искате да излезете?</h1>
