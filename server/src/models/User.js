@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
             validator(value) {
                 return EMAIL_PATTERN.test(value);
             },
-            message: 'Email must be valid and may contain only English letters!'
+            message: 'Email must be in a valid format and may contain only English letters!'
         },
     },
     password: {
