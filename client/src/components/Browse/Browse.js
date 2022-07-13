@@ -1,23 +1,34 @@
 import { useEffect, useState } from "react";
-import { endpoints } from "../../API/endpoints";
 import { getAll } from "../../services/mealService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 import { BeatLoader } from "react-spinners";
-export const Browse = ({ isLoading, setIsLoading, setErrorMessage }) => {
+export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
     const [meals, setMeals] = useState([]);
 
     useEffect(() => {
+        async function getBrosweItems() {
 
-        getAll(endpoints.API_BROWSE)
-            .then((res) => setMeals(res))
-            .then(() => setIsLoading(false))
-            .catch((err) => setErrorMessage(err));
-    }, [isLoading, setIsLoading, setErrorMessage]);
+            const res = await getAll();
+            if (res.length > 0) {
+                setMeals(res);
+                setIsLoading(false);
+            } else if (res.message) {
+                console.log(res.message);
+                setErrorMessage({ error: res.message });
+                throw new Error(res.message);
+            }
+        }
+        getBrosweItems();
+    }, []);
 
     return (
         <div className="search-container">
             <div>
+                {errorMessage
+                    ? <p className="error-message"> {errorMessage.error}</p>
+                    : ""
+                }
                 <h1 className="already-reg">Търсене на рецепти</h1>
                 <form className="search" method="GET">
                     <input type="text" placeholder="Търси..." name="search" />
