@@ -37,8 +37,8 @@ function App() {
   return (
     < div className="App" >
       <Header />
-      <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen} c
-        lientCookie={clientCookie} errorMessage={errorMessage} />
+      <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen}
+        clientCookie={clientCookie} />
 
       {isOpen && isOpen.target === "logout" && <Logout setIsOpen={setIsOpen} setUser={setUser} cookies={cookies} user={user} />}
 
@@ -55,7 +55,7 @@ function App() {
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
 
         <Route path="/recipe/add" element={<AddRecipe errorMessage={errorMessage} setErrorMessage={setErrorMessage}
-          setIsLoading={setIsLoading} isLoading={isLoading} />} />
+          setIsLoading={setIsLoading} />} />
 
         <Route path="/recipe/myRecipes" element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} setErrorMessage={setErrorMessage} />} />
 
