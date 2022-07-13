@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userRegister } from "../../services/userService";
@@ -13,14 +13,11 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         rePassword: ''
     });
 
-    const errorHandler = () => {
-        setErrorMessage('')};
-
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
-        errorHandler();
+        setErrorMessage('');
     };
 
     const registerHandler = (e) => {
@@ -41,6 +38,15 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
                 }
             });
     }
+
+    useEffect(() => {
+        console.log(getSession());
+        return () => {
+            changeHandler();
+            setUser(getSession());
+            console.log(getSession());
+        }
+    }, []);
 
     return (
         <div className="register-form">
