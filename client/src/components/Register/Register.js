@@ -12,13 +12,13 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         password: '',
         rePassword: ''
     });
-    const errorHandler = () => setErrorMessage('');
-    
+
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
     }
+    const errorHandler = () => setErrorMessage('');
 
     const registerHandler = (e) => {
         e.preventDefault();
@@ -45,13 +45,13 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
             <h3 className="already-reg">Регистрация</h3>
             <form method="POST" onSubmit={registerHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={(changeHandler, errorHandler)} />
+                <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} onInput={errorHandler} />
 
                 <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" className="password" name="password" placeholder="парола..." required onChange={(changeHandler, errorHandler)} />
+                <input type="password" className="password" name="password" placeholder="парола..." required onChange={changeHandler} onInput={errorHandler} />
 
                 <label className="already-reg" htmlFor="rePassword">повторете паролата</label>
-                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={(changeHandler, errorHandler)} />
+                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} onInput={errorHandler} />
 
                 <input className="already-reg" type="submit" value="Регистриране" />
             </form>
