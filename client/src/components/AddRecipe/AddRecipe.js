@@ -39,7 +39,9 @@ export const AddRecipe = ({ setErrorMessage, setIsLoading }) => {
     }
 
     useEffect(() => {
-        setCreatedMeal(createdMeal)
+        return (createdMeal) => {
+            setCreatedMeal(createdMeal)
+        }
     }, [])
 
     return (
