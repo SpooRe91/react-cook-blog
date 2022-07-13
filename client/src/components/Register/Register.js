@@ -13,12 +13,15 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         rePassword: ''
     });
 
+    const errorHandler = () => {
+        setErrorMessage('')};
+
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
-    }
-    const errorHandler = () => setErrorMessage('');
+        errorHandler();
+    };
 
     const registerHandler = (e) => {
         e.preventDefault();
@@ -41,17 +44,20 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
 
     return (
         <div className="register-form">
-            <h3 style={{ color: "red" }}> {errorMessage && errorMessage.error}</h3>
+            {errorMessage
+                ? <p className="error-message"> {errorMessage.error}</p>
+                : ""
+            }
             <h3 className="already-reg">Регистрация</h3>
             <form method="POST" onSubmit={registerHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} onInput={errorHandler} />
+                <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 
                 <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" className="password" name="password" placeholder="парола..." required onChange={changeHandler} onInput={errorHandler} />
+                <input type="password" className="password" name="password" placeholder="парола..." required onChange={changeHandler} />
 
                 <label className="already-reg" htmlFor="rePassword">повторете паролата</label>
-                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} onInput={errorHandler} />
+                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} />
 
                 <input className="already-reg" type="submit" value="Регистриране" />
             </form>

@@ -12,14 +12,15 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
         password: ''
     });
 
+    const errorHandler = () => setErrorMessage('');
 
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
-    }
+        errorHandler();
+    };
 
-    const errorHandler = () => setErrorMessage('');
 
 
     const loginHandler = (e) => {
@@ -42,14 +43,17 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
 
     return (
         <div className="login-form">
-            <h3 style={{ color: "red" }}> {errorMessage && errorMessage.error}</h3>
+            {errorMessage
+                ? <p className="error-message"> {errorMessage.error}</p>
+                : ""
+            }
             <h3 className="already-reg">Влизане</h3>
             <form method="POST" onSubmit={loginHandler}>
                 <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} onInput={errorHandler} />
+                <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 
                 <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} onInput={errorHandler} />
+                <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} />
 
                 <input className="already-reg" type="submit" value="Вход" />
             </form>
