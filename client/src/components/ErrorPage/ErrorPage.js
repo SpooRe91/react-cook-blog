@@ -1,10 +1,15 @@
-export const ErrorPage = (props) => {
-    console.log(props);
+export const ErrorPage = ({errorMessage}) => {
+    console.log(errorMessage);
+
     return (
         <div className="container">
             <main>
-                <h1 className="error-message">Error</h1>
-                {props.error && <h1 className="error-message">{props.error.message}</h1>}
+                <>
+                    {errorMessage
+                        ? <p style={{ "color": 'red' }}> {errorMessage.error}</p>
+                        : ""
+                    }
+                </>
             </main>
         </div>
     )
