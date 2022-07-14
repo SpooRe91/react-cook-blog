@@ -27,6 +27,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const cookies = new Cookies();
+  console.log(errorMessage);
 
   if (user) {
     cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
@@ -46,11 +47,11 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/auth/login" element={<Login user={user} setUser={setUser}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-          isLoading={isLoading} setIsLoading={setIsLoading} />} />
+          setIsLoading={setIsLoading} />} />
 
         <Route path="/auth/register" element={<Register setUser={setUser}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-          isLoading={isLoading} setIsLoading={setIsLoading} />} />
+          setIsLoading={setIsLoading} />} />
 
         <Route path="/404" element={<ErrorPage error={errorMessage} />} />
 
