@@ -869,6 +869,31 @@ h4 {
     animation-fill-mode: forwards;
 }
 
+.auth-error {
+    transition: .1s;
+    margin: auto;
+    width: fit-content;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    border: ridge rgb(211 198 181);
+}
+
+.auth-error-button {
+    margin: 10px 10px 0px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #000000 -8px 2px 10px;
+    text-decoration: none;
+}
+
+
 @keyframes hide {
     to {
         opacity: 0;
