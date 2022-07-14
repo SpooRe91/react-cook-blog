@@ -83,13 +83,13 @@ nav ul {
 }
 
 nav ul li a {
-    font-size: 30px;
+    font-size: 22px;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-text-stroke: 1.5px #000000;
-    color: #cc4e06;
+    -webkit-text-stroke: 0.3px #000000;
+    color: #000000;
     font-weight: bold;
-    text-shadow: black 0px 0px 20px;
+    text-shadow: #ffffff 0px 0px 20px;
 }
 
 nav ul li a:hover {
@@ -101,13 +101,13 @@ nav ul li a:hover {
 }
 
 a.logout-main {
-    font-size: 30px;
+    font-size: 20px;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-text-stroke: 1.5px #000000;
-    color: #ffffff;
+    -webkit-text-stroke: 0.2px #000000;
+    color: #cc0606;
     font-weight: bold;
-    text-shadow: black 0px 0px 20px;
+    text-shadow: white 0px 0px 20px;
 }
 
 a.logout-main:hover {
@@ -591,6 +591,14 @@ input[type=password] {
     color: #ffffff;
 }
 
+.added-field {}
+
+.unit-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .add-recipe-text {
     background: none;
     color: #DECBA4;
@@ -901,3 +909,4 @@ h4 {
         height: 0;
     }
 }
+
