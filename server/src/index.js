@@ -13,4 +13,10 @@ app.use(auth);//auth middleware
 require('./config/expressConfig')(app);//express config
 app.use(errorHandler)//error handler
 
-app.listen(PORT, console.log(`"Cook-blog API" listening to port http://localhost:${PORT}`), console.log(`"Cook-blog API" documentation is available at http://localhost:${PORT}/readme`));
+app.listen(PORT, (error) => {
+    if (error) {
+        console.log(error.message);
+    }
+    console.log(`"Cook-blog API" listening to port http://localhost:${PORT}`);
+    console.log(`"Cook-blog API" documentation is available at http://localhost:${PORT}/readme`);
+});
