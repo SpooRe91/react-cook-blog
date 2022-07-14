@@ -28,6 +28,10 @@ const mealSchema = new mongoose.Schema({
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 
