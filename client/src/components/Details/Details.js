@@ -36,9 +36,9 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                             <h1 className="meal-name">{meal.name}</h1>
                             <a href={meal.image} target="_blank" rel="noreferrer"><img className="meal-details" src={meal.image}
                                 alt="" /></a>
-                            <div className="meal-buttons">
+                            <div >
                                 {
-                                    user && meal.owner !== user.id
+                                    user && meal.owner === user.id
                                         ? <OnwerButtons meal={meal} />
                                         : <Link className="btn" to="/recipe/browse">Назад</Link>
                                 }
