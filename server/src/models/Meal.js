@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const URL_PATERN = /^https?:\/\/(.+)/;
 
 const mealSchema = new mongoose.Schema({
