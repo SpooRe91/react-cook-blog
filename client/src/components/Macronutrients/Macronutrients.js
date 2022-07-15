@@ -10,8 +10,6 @@ export const Macronutrients = ({ isLoading,
     products,
     setProducts }) => {
 
-//TODO, re-EXPORT THE DATA, as it appears incorrect!
-
     useEffect(() => {
         if (products.length === 0) {
             getMacros()
@@ -47,7 +45,8 @@ export const Macronutrients = ({ isLoading,
                             < h1 className="already-reg">Търсене на продукти</h1>
                             < h3 className="already-reg">Моля въведете име на продукт:</h3>
                             <form className="search" method="GET">
-                                <input type="text" placeholder="Търси..." name="search" value={filterValue} onChange={filterHandler} />
+                                <input type="text" placeholder="Търси..." name="search"
+                                    value={filterValue} onChange={filterHandler} />
                                 <input type="submit" value={"Търси"} />
                             </form>
                             <h3 className="already-reg">На тази таблица можете да намерите основните хранителни
