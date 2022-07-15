@@ -1,7 +1,6 @@
 html {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
-
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -13,7 +12,6 @@ body {
     min-width: fit-content;
     max-width: 100%;
     min-height: 100%;
-    /* list-style: none; */
     background-image: url("../images/main-background.jpg");
     flex-wrap: wrap;
     align-content: space-between;
@@ -38,21 +36,9 @@ nav {
 }
 
 nav ul {
-    /* display: flex;
-    flex-wrap: wrap;
-    gap: 35px;
-    justify-items: center;
-    list-style: none;
-    margin: 11px 0px 5px 0px;
-    align-content: center;
-    padding: 0px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row; */
-
     display: flex;
     flex-wrap: wrap;
-    gap: 35px;
+    gap: 30px;
     justify-items: center;
     list-style: none;
     margin: 10px 25px;
@@ -83,7 +69,7 @@ nav ul {
 }
 
 nav ul li a {
-    font-size: 22px;
+    font-size: 20px;
     text-decoration: none;
     text-transform: uppercase;
     -webkit-text-stroke: 0.3px #000000;
@@ -182,7 +168,7 @@ div.container {
     background-image: url(../images/spaghetti-with-pesto-prawns-served-plate.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    margin: 10em auto 10em auto;
+    margin: 4.5em auto 4.7em auto;
     height: 30em;
     display: flex;
     text-align: center;
