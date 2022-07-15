@@ -92,3 +92,22 @@ export const create = async (createData) => {
         throw new Error(error.message)
     }
 }
+
+export const addLike = async (mealId) => {
+
+    try {
+        const creteResult = await fetch(endpoints.API_LIKE(mealId), {
+            mode: 'cors',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                "Access-Control-Allow-Credentials": true,
+            }
+
+        });
+        return await creteResult.json();
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
