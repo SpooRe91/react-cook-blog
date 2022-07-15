@@ -13,7 +13,7 @@ export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
             logoutSession();
             cookies.remove('user-session', user.token, { path: "/", maxAge: 36000 });
             setIsOpen(false);
-            return navigate('/auth/login');
+            return navigate('/auth/login', { replace: true });
         } catch (error) {
             console.log(error.message);
             navigate('/404', { error: error.message })
