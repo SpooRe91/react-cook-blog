@@ -43,10 +43,10 @@ export const MealContainer = ({
                 </Link>
                 <Link to={`/details/${_id}`} className="meal-image-link">
                     <img className="meal" src={image} alt="" /></Link>
-                <Link className="meal-buttons" to={`/details/${_id}`}>Подробно</Link>
+                <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
                     user.id === owner
-                        ? <span><FaHeart className="like-icon" /> Total likes: {numberOfLikes} </span>
+                        ? <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
                         :
                         timesLiked !== null && timesLiked !== undefined
                             ?
