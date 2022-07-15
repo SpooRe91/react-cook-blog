@@ -14,13 +14,15 @@ exports.getNutritions = async () => {
 
 exports.getOwn = async (id) => {
 
-    let result = await Meal.find({ owner: id }).lean();;
+    let result = await Meal.find({ owner: id }).lean();
     return result;
 }
 
 exports.getOne = (id) => Meal.findById(id);
 
 exports.edit = (id, mealData) => Meal.updateOne({ _id: id }, { $set: mealData }, { runValidators: true });
+
+exports.addLike = (id, userId) => Meal.updateOne({ _id: id }, { $push: { likes: userId } });
 
 exports.delete = (id) => Meal.findByIdAndDelete(id);
 
