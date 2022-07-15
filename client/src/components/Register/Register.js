@@ -29,7 +29,7 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
                 if (res.token) {
                     setSession(res.email, res.token, res.id);
                     setUser(previous => getSession());
-                    navigate('/recipe/browse');
+                    navigate('/recipe/browse', { replace: true });
                     setIsLoading(false);
                 } else {
                     console.log(res.message);
@@ -46,7 +46,7 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
             setUser(getSession());
             console.log(getSession());
         }
-    }, []);
+    }, [setUser]);
 
     return (
         <div className="register-form">
