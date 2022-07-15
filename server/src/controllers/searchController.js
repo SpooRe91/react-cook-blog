@@ -37,7 +37,7 @@ router.get('/myRecipes', isAuth, async (req, res) => {
 router.get('/macros', async (req, res) => {
 
     try {
-        let allMeals = await foodService.getNutritions(req.query.search);
+        let allMeals = await foodService.getNutritions();
 
         if (allMeals.length <= 0) {
             throw new Error("The resource cold not be found!");
