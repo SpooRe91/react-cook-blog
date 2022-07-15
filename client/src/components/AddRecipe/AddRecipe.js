@@ -41,7 +41,7 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
         return () => {
             setErrorMessage('');
         }
-    }, [])
+    }, [setErrorMessage])
 
     return (
         <div>
