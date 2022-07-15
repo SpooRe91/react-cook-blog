@@ -1,9 +1,15 @@
 const { Meal } = require('../models/Meal');
+const { Nutrient } = require('../models/Nutrient');
 
 exports.getAll = (search) => {
 
     let result = Meal.find({ name: { $regex: new RegExp(search, "i") } }).lean();
     return result
+}
+exports.getNutritions = async () => {
+
+    let result = await Nutrient.find({}).lean();
+    return result;
 }
 
 exports.getOwn = async (id) => {
@@ -20,6 +26,7 @@ exports.delete = (id) => Meal.findByIdAndDelete(id);
 
 exports.create = (recipe) => Meal.create(recipe);
 
+exports.createNutrition = (data) => Nutrient.create(data);
 
 exports.getOwner = (meal, user) => {
 
