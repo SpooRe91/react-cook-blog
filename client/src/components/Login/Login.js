@@ -38,8 +38,6 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
     };
 
     useEffect(() => {
-        setUser(getSession());
-        console.log(getSession());
         return () => {
             changeHandler();
             setUser(getSession());
