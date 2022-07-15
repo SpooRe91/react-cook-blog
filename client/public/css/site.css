@@ -425,7 +425,7 @@ div.details {
 }
 
 img.meal-details {
-    margin: 5px 5px 5px 50px;
+    margin: auto;
     border-radius: 30%;
     display: inline-block;
     height: 250px;
