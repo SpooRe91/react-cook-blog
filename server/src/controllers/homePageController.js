@@ -18,6 +18,21 @@ router.get('/details/:id',
         const meal = req.meal;
         res.json(meal);
     });
+//----------------------------GET DETAILS------------------------------------//
+
+router.get('/like/:id', preloadMeal, async (req, res) => {
+
+    const meal = req.meal;
+
+    try {
+        await foodService.addLike(meal._id, req.user._id);
+        res.status(202).json({messag:"Added a like!"}).end();
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ message: getErrorMessage(error) });
+    }
+
+});
 
 //----------------------------POST EDIT------------------------------------//
 router.put('/edit/:id',
