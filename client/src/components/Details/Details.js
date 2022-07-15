@@ -38,9 +38,7 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                                 alt="" /></a>
                             <div >
                                 {
-                                    user && meal.owner === user.id
-                                        ? <OnwerButtons meal={meal} />
-                                        : <Link className="btn" to="/recipe/browse">Назад</Link>
+                                    user && meal.owner === user.id && <OnwerButtons meal={meal} />
                                 }
                             </div>
                             <p className="recipe" name="name"><span>Брой харесвания: {numberOfLikes} <FaHeart /> </span></p>
