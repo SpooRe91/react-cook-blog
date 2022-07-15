@@ -31,6 +31,11 @@ const mealSchema = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false
+    },
+    likes: {
+        type: [mongoose.Types.ObjectId],
+        default: [],
+        ref: "User",
     }
 });
 
