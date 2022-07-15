@@ -11,16 +11,19 @@ export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
                     <NavLink to="/">Начало</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/recipe/browse" className={focusHandler}>Търсене на рецепти</NavLink>
+                    <NavLink to="/recipe/browse" className={focusHandler}>търсене на рецепти</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/recipe/add" className={focusHandler}>Добави рецепта</NavLink>
+                    <NavLink to="/recipe/add" className={focusHandler}>добави рецепта</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/recipe/myRecipes" className={focusHandler}>Моите рецепти</NavLink>
+                    <NavLink to="/recipe/myRecipes" className={focusHandler}>моите рецепти</NavLink>
                 </li>
                 <li>
-                    <NavLink to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>Изход</NavLink>
+                    <NavLink to="/recipe/macros" className={focusHandler}>хранителност</NavLink>
+                </li>
+                <li>
+                    <NavLink to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>изход</NavLink>
                 </li>
                 <li>
                     <NavLink to="/auth/profile" className={useCallback(({ isActive }) => isActive ? styles['profile-name-active'] : "profile-name", [])}> <strong>{email}</strong></NavLink>
