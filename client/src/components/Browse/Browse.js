@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/mealService";
-import { MealContainer } from "../MyRecipes/MealContainer";
+import { MealContainer } from "./MealContainer";
 import { BeatLoader } from "react-spinners";
 export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
