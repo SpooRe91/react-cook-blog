@@ -1,0 +1,55 @@
+body {
+    font-size: 140%;
+}
+
+.table-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table {
+    margin: 10px auto 60px;
+    width: max-content;
+    table-layout: fixed;
+    background-color: #0000004d;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+table-input {
+    border: none;
+}
+
+caption {
+    text-align: center;
+    color: white;
+}
+
+table caption {
+    padding: .5em 0;
+}
+
+.row {
+    border: rgb(245, 231, 220) ridge;
+}
+
+table th,
+table td {
+    width: 30px;
+    white-space: nowrap;
+    color: white;
+    border: #3E5151 ridge;
+    overflow: hidden;
+}
+
+.p {
+    text-align: center;
+    padding-top: 140px;
+    font-size: 14px;
+}
