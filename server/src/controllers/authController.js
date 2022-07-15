@@ -49,9 +49,7 @@ router.post('/login', isGuest, async (req, res, next) => {
         const token = await authService.createToken(user);
 
         if (!token) {
-            throw {
-                message: 'Unable to login with the given credentials!'
-            };
+            throw new Error('Unable to login with the given credentials!')
         };
 
         const userInfo = {
