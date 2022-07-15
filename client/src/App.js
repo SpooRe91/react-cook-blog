@@ -17,23 +17,24 @@ import { getSession } from "./API/api";
 import { Profile } from "./components/Profile/Profile";
 import { Logout } from "./components/Logout/Logout";
 import Cookies from 'universal-cookie';
+import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 
 function App() {
 
-  const [user, setUser] = useState(getSession());
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const [isOpen, setIsOpen] = useState({ state: false, target: null });
-  const [isLoading, setIsLoading] = useState(true);
-
   const cookies = new Cookies();
-  console.log(errorMessage);
+
+  const clientCookie = cookies.get('user-session');
+  const [user, setUser] = useState(getSession());
+  const [isOpen, setIsOpen] = useState({ state: false, target: null });
+  const [products, setProducts] = useState([]);
 
   if (user) {
     cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
+
   };
 
-  const clientCookie = cookies.get('user-session');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     < div className="App" >
@@ -67,6 +68,11 @@ function App() {
           setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
 
         <Route path="/auth/profile" element={<Profile />} />
+        <Route path="/recipe/macros" element={<Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
+          setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+          products={products} setProducts={setProducts}
+        />} />
+        <Route path="*" element={< ErrorPage />} />
       </Routes>
 
       <Footer setIsOpen={setIsOpen} user={user} />
