@@ -1,6 +1,7 @@
 html {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -247,6 +248,61 @@ h1.meal-name {
     cursor: pointer;
     border-radius: 35%;
     transition: 0s;
+}
+
+.dropbtn {
+    background: none;
+    color: #DECBA4;
+    font-size: 25px;
+    border: none;
+    overflow: hidden;
+    font-weight: bolder;
+    border: none;
+}
+
+
+.dropdown {
+    top: -2px;
+    left: 90px;
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: none;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    background: none;
+    color: #DECBA4;
+    padding: 5px 5px;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.btn-details-back {
+    min-width: max-content;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    background: none;
+    color: #DECBA4;
+}
+
+.btn-details-back:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.1s;
 }
 
 .welcome-note {
@@ -577,8 +633,6 @@ input[type=password] {
     color: #ffffff;
 }
 
-.added-field {}
-
 .unit-select {
     width: 100%;
     padding: 10px;
@@ -895,4 +949,3 @@ h4 {
         height: 0;
     }
 }
-
