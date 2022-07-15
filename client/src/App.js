@@ -64,7 +64,7 @@ function App() {
         <Route path="/recipe/browse" element={<Browse isLoading={isLoading} setIsLoading={setIsLoading}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
 
-        <Route path="/details/:userId" element={<Details isLoading={isLoading} setIsLoading={setIsLoading}
+        <Route path="/details/:userId" element={<Details user={user} isLoading={isLoading} setIsLoading={setIsLoading}
           setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
 
         <Route path="/auth/profile" element={<Profile />} />
