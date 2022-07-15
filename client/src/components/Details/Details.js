@@ -4,13 +4,13 @@ import { getOne } from "../../services/mealService";
 import { Link, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 
-export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
     const [meal, setMeal] = useState({});
-    let id = useParams();
+    const { userId } = useParams();
 
     useEffect(() => {
-        getOne({ ...id })
+        getOne(userId)
             .then(res => {
                 if (res._id) {
                     setMeal(res);
@@ -21,7 +21,7 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                     throw new Error(res.message);
                 }
             })
-    }, []);
+    }, [userId, setIsLoading, setErrorMessage]);
 
     return (
         <>
@@ -34,9 +34,12 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                             <a href={meal.image} target="_blank" rel="noreferrer"><img className="meal-details" src={meal.image}
                                 alt="" /></a>
                             <div className="meal-buttons">
-                                {meal.owner !== undefined && meal.owner !== null
-                                    ? <OnwerButtons meal={meal} />
-                                    : <Link className="btn" to="/recipe/browse">Назад</Link>
+                                {
+
+                                    user && meal.owner !== user.id
+                                        ? <OnwerButtons meal={meal} />
+                                        : <Link className="btn" to="/recipe/browse">Назад</Link>
+
                                 }
                             </div>
                             <article className="recipe-details">
