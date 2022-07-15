@@ -7,20 +7,17 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
     const [meals, setMeals] = useState([]);
 
     useEffect(() => {
-        async function getBrosweItems() {
-
-            const res = await getAll();
-            if (res.length > 0) {
-                setMeals(res);
-                setIsLoading(false);
-            } else if (res.message) {
-                console.log(res.message);
-                setErrorMessage({ error: res.message });
-                throw new Error(res.message);
-            }
-        }
-        getBrosweItems();
-    }, []);
+        getAll()
+            .then(res => {
+                if (res.length > 0) {
+                    setMeals(res);
+                    setIsLoading(false);
+                }
+            }).catch(error => {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
+            });
+    }, [setIsLoading, setErrorMessage]);
 
     return (
         <div className="search-container">
