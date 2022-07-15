@@ -3,17 +3,20 @@ import { OnwerButtons } from "./OwnerButtons"
 import { getOne } from "../../services/mealService";
 import { Link, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import { FaHeart } from 'react-icons/fa'
 
 export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
     const [meal, setMeal] = useState({});
-    const { userId } = useParams();
+    const [numberOfLikes, setNumberOfLikes] = useState(0);
+    const { mealId } = useParams();
 
     useEffect(() => {
-        getOne(userId)
+        getOne(mealId)
             .then(res => {
                 if (res._id) {
                     setMeal(res);
+                    setNumberOfLikes(res.likes.length);
                     setIsLoading(false);
                 } else {
                     console.log(res.message);
@@ -21,7 +24,7 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                     throw new Error(res.message);
                 }
             })
-    }, [userId, setIsLoading, setErrorMessage]);
+    }, [mealId, setIsLoading, setErrorMessage]);
 
     return (
         <>
@@ -35,13 +38,12 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                                 alt="" /></a>
                             <div className="meal-buttons">
                                 {
-
                                     user && meal.owner !== user.id
                                         ? <OnwerButtons meal={meal} />
                                         : <Link className="btn" to="/recipe/browse">Назад</Link>
-
                                 }
                             </div>
+                            <p className="recipe" name="name"><span>Брой харесвания: {numberOfLikes} <FaHeart /> </span></p>
                             <article className="recipe-details">
                                 <label htmlFor="ingredients">Необходими съставки:</label>
                                 <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
