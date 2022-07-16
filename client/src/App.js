@@ -28,10 +28,8 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      // if (JSON.stringify(user) !== JSON.stringify(getSession())) {
       cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
       setClientCookie(cookies.get('user-session'));
-      // };
     }
   }, [user])
 
