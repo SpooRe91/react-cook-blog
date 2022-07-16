@@ -49,24 +49,29 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
     }, [setUser]);
 
     return (
-        <div className="register-form">
-            {errorMessage
-                ? <p className="error-message"> {errorMessage.error}</p>
-                : ""
-            }
-            <h3 className="already-reg">Регистрация</h3>
-            <form method="POST" onSubmit={registerHandler}>
-                <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
+        <>
+    <title>Регистрация</title>
 
-                <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" className="password" name="password" placeholder="парола..." required onChange={changeHandler} />
+            <div className="register-form">
+                {errorMessage
+                    ? <p className="error-message"> {errorMessage.error}</p>
+                    : ""
+                }
+                <h3 className="already-reg">Регистрация</h3>
+                <form method="POST" onSubmit={registerHandler}>
+                    <label className="already-reg" htmlFor="email">e-mail</label>
+                    <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 
-                <label className="already-reg" htmlFor="rePassword">повторете паролата</label>
-                <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} />
+                    <label className="already-reg" htmlFor="password">парола</label>
+                    <input type="password" className="password" name="password" placeholder="парола..." required onChange={changeHandler} />
 
-                <input className="already-reg" type="submit" value="Регистриране" />
-            </form>
-            <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
-        </div>);
+                    <label className="already-reg" htmlFor="rePassword">повторете паролата</label>
+                    <input type="password" className="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} />
+
+                    <input className="already-reg" type="submit" value="Регистриране" />
+                </form>
+                <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
+            </div>
+        </>
+    );
 }
