@@ -46,25 +46,27 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
     }, [setUser]);
 
     return (
-        <div className="login-form">
-            {errorMessage
-                ? <p className="error-message"> {errorMessage.error}</p>
-                : ""
-            }
-            <h3 className="already-reg">Влизане</h3>
-            <form method="POST" onSubmit={loginHandler}>
-                <label className="already-reg" htmlFor="email">e-mail</label>
-                <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
+        <>
+        <title>Вход</title>
+            <div className="login-form">
+                {errorMessage
+                    ? <p className="error-message"> {errorMessage.error}</p>
+                    : ""
+                }
+                <h3 className="already-reg">Вход</h3>
+                <form method="POST" onSubmit={loginHandler}>
+                    <label className="already-reg" htmlFor="email">e-mail</label>
+                    <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 
-                <label className="already-reg" htmlFor="password">парола</label>
-                <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} />
+                    <label className="already-reg" htmlFor="password">парола</label>
+                    <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} />
 
-                <input className="already-reg" type="submit" value="Вход" />
-            </form>
+                    <input className="already-reg" type="submit" value="Вход" />
+                </form>
 
-            <h3 className="already-reg">Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
-        </div >
-
+                <h3 className="already-reg">Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
+            </div >
+        </>
     );
 
 };
