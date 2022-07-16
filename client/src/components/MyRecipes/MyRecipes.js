@@ -35,42 +35,45 @@ export const MyRecipes = ({
     console.log(notDeleted);
 
     return (
-        <div className="search-container">
-            <div>
-                <h1 className="already-reg">Моите рецепти</h1>
-                <form className="search" method="GET">
-                    <input type="text" placeholder="Търси..." name="search"
-                        value={filterValue} onChange={filterHandler} />
-                </form>
-            </div>
-            {
-                < div className="meal-containter">
-                    {
-                        isLoading
-                            ? <BeatLoader loading={isLoading} />
-                            : filterValue
-                                ? notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
-                                    .map(meal =>
-                                        <MealContainer key={meal._id} {...meal}
-                                            timesLiked={meal.likes} user={user}
-                                            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
-                                :
-                                notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
-                                    ? notDeleted.map(meal =>
-                                        <MealContainer key={meal._id} {...meal}
-                                            timesLiked={meal.likes} user={user}
-                                            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
-
-                                    : <div className="already-reg">
-                                        <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
-                                    </div>
-                    }
+        <>
+        <title>Моите рецепти</title>
+            <div className="search-container">
+                <div>
+                    <h1 className="already-reg">Моите рецепти</h1>
+                    <form className="search" method="GET">
+                        <input type="text" placeholder="Търси..." name="search"
+                            value={filterValue} onChange={filterHandler} />
+                    </form>
                 </div>
-            }
-            {errorMessage
-                ? <p className="error-message"> {errorMessage.error}</p>
-                : ""
-            }
-        </div >
+                {
+                    < div className="meal-containter">
+                        {
+                            isLoading
+                                ? <BeatLoader loading={isLoading} />
+                                : filterValue
+                                    ? notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
+                                        .map(meal =>
+                                            <MealContainer key={meal._id} {...meal}
+                                                timesLiked={meal.likes} user={user}
+                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                    :
+                                    notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
+                                        ? notDeleted.map(meal =>
+                                            <MealContainer key={meal._id} {...meal}
+                                                timesLiked={meal.likes} user={user}
+                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+
+                                        : <div className="already-reg">
+                                            <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
+                                        </div>
+                        }
+                    </div>
+                }
+                {errorMessage
+                    ? <p className="error-message"> {errorMessage.error}</p>
+                    : ""
+                }
+            </div >
+        </>
     );
 }
