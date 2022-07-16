@@ -28,13 +28,14 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
 
     return (
         <>
+        <title>Детайли: {meal.name}</title>
             <div className="details">
                 {
                     isLoading
                         ? <><BeatLoader loading={() => isLoading} /></>
                         : <>
                             <h1 className="meal-name">{meal.name}</h1>
-                            <a href={meal.image} target="_blank" rel="noreferrer"><img className="meal-details" src={meal.image}
+                            <a href={meal.image} target={"_blank"} rel="noreferrer"><img className="meal-details" src={meal.image}
                                 alt="" /></a>
                             <div >
                                 {
