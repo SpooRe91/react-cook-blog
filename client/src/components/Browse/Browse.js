@@ -9,7 +9,6 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     useEffect(() => {
         getAll()
             .then(res => {
-                console.log(res);
                 if (res.length > 0) {
                     setMeals(res);
                     setIsLoading(false);
@@ -27,11 +26,11 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     };
 
     const notDeleted = meals.filter(x => x.isDeleted !== true);
-    console.log(notDeleted);
 
     return (
 
         <div className="search-container">
+            <title>Търсене на рецепти</title>
             <div>
                 <h1 className="already-reg">Търсене на рецепти</h1>
                 <form className="search" method="GET">
