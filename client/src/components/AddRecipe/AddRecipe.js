@@ -44,7 +44,9 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
     }, [setErrorMessage])
 
     return (
+
         <div>
+            <title>Добави рецепта</title>
             {errorMessage !== ""
                 ? <p className="error-message"> {errorMessage.error}</p>
                 : ""
