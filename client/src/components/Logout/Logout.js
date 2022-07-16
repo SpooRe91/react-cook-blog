@@ -22,6 +22,7 @@ export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
 
     return (
         <>
+        <title>Изход</title>
             {errorMessage
                 ? <p className="error-message"> {errorMessage.error}</p>
                 : ""
