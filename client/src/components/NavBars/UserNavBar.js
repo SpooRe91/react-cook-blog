@@ -20,7 +20,7 @@ export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
                     <NavLink to="/recipe/myRecipes" className={focusHandler}>моите рецепти</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/recipe/macros" className={focusHandler}>хранителност</NavLink>
+                    <NavLink to="/recipe/macros" className={focusHandler}>хранителни стойности</NavLink>
                 </li>
                 <li>
                     <NavLink to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>изход</NavLink>
