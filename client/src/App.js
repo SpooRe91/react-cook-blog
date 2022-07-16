@@ -12,7 +12,7 @@ import { MyRecipes } from "./components/MyRecipes/MyRecipes";
 import { Homepage } from "./components/Homepage/Homepage";
 import { Footer } from "./components/common/Footer";
 import { Header } from "./components/common/Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getSession } from "./API/api";
 import { Profile } from "./components/Profile/Profile";
 import { Logout } from "./components/Logout/Logout";
@@ -23,15 +23,20 @@ function App() {
 
   const cookies = new Cookies();
 
-  const clientCookie = cookies.get('user-session');
+  const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
   const [user, setUser] = useState(getSession());
+
+  useEffect(() => {
+    if (user) {
+      // if (JSON.stringify(user) !== JSON.stringify(getSession())) {
+      cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
+      setClientCookie(cookies.get('user-session'));
+      // };
+    }
+  }, [user])
+
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
   const [products, setProducts] = useState([]);
-
-  if (user) {
-    cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
-
-  };
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
