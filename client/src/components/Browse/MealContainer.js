@@ -9,7 +9,6 @@ export const MealContainer = ({
     timesLiked, user,
     setErrorMessage, errorMessage }) => {
 
-
     const [numberOfLikes, setNumberOfLikes] = useState(0);
 
     useEffect(() => {
@@ -45,35 +44,40 @@ export const MealContainer = ({
                     <img className="meal" src={image} alt="" /></Link>
                 <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
-                    user.id === owner
-                        ? <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
-                        :
-                        timesLiked !== null && timesLiked !== undefined
-                            ?
-                            timesLiked.find(x => x === user.id)
-                                ?
-                                <>
-                                    <span>You already liked this!</span>
-                                    <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
-                                </>
-                                :
-                                <>
-                                    <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Like" />
-                                    {errorMessage
-                                        ? <p className="error-message"> {errorMessage.error}</p>
-                                        : ""
-                                    }
-                                    <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
-                                </>
-                            :
-                            <>
-                                <button className="name" onClick={(e) => likeHandler(e)}>Like</button>
-                                {errorMessage
-                                    ? <p className="error-message"> {errorMessage.error}</p>
-                                    : ""
-                                }
-                                <h4 className="meal">Няма храесвания</h4>
-                            </>
+                    timesLiked !== null && timesLiked !== undefined
+                        ? //if we have likes on the current item
+                        user
+                            ? //if we have logged user
+                            user.id === owner
+                                ? //if the logged user is owner
+                                <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
+                                ://if the logged user is not owner
+                                timesLiked.find(x => x === user.id)
+                                    ? //if the logged user liked this already
+                                    <>
+                                        <span>You already liked this!</span>
+                                        <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
+                                    </>
+                                    ://if the logged user has not liked it yet
+                                    <>
+                                        <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Like" />
+                                        {errorMessage
+                                            ? <p className="error-message"> {errorMessage.error}</p>
+                                            : ""
+                                        }
+                                        <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
+                                    </>
+                            ://if there is no logged user
+                            <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
+                        ://if there are no likes
+                        <>
+                            <button className="name" onClick={(e) => likeHandler(e)}>Like</button>
+                            {errorMessage
+                                ? <p className="error-message"> {errorMessage.error}</p>
+                                : ""
+                            }
+                            <h4 className="meal">Няма храесвания</h4>
+                        </>
                 }
             </div >
         </>
