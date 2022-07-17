@@ -57,7 +57,7 @@ export const Macronutrients = ({ isLoading,
                                 <label htmlFor='search'>Моля въведете име на Български</label>
                                 <input type="text" placeholder="пилешко..." name="search"
                                     value={filterValue} onChange={filterHandler} />
-                                <label htmlFor='quantity'>Моля въведете име количество в грамове</label>
+                                <label htmlFor='quantity'>Моля въведете количество в грамове</label>
                                 <input type="number" placeholder="1000гр..." name="quantity"
                                     value={quantify || ''} onChange={quantityHandler} />
                             </form>
@@ -67,7 +67,7 @@ export const Macronutrients = ({ isLoading,
                             <div className="row">
                                 <div className="col-xs-12">
                                     <caption className="already-reg">!!!Важно:
-                                        Данните относителни,и може да същестуват разминавания с други източници!
+                                        Данните са относителни,и може да същестува разминаване с други източници!
                                     </caption>
                                     <table>
                                         <thead>
