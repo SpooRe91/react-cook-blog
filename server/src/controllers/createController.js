@@ -8,7 +8,7 @@ const { getErrorMessage } = require('../utils/errorHelpers');
 
 router.post('/add', modelValidator(Meal), isAuth, async (req, res) => {
 
-    const recipe = { ...req.body, owner: req.user._id };
+    const recipe = { ...req.body, owner: req.user._id, ownerName: req.user.email };
 
     try {
         const created = await createRecipe.create(recipe);
