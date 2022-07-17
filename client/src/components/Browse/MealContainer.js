@@ -72,12 +72,12 @@ export const MealContainer = ({
                             <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
                         ://if there are no likes
                         <>
-                            <button className="name" onClick={(e) => likeHandler(e)}>Like</button>
+                            <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
                             {errorMessage
                                 ? <p className="error-message"> {errorMessage.error}</p>
                                 : ""
                             }
-                            <h4 className="meal">Няма храесвания</h4>
+                            <span className="meal">Няма храесвания</span>
                         </>
                 }
             </div >
