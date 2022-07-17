@@ -35,7 +35,7 @@
     display: inline-block;
 }
 
-.dropdown-content {
+.content-holder {
     height: 50px;
     display: none;
     position: absolute;
@@ -53,27 +53,24 @@
     color: #ffffff;
     font-weight: bold;
     text-shadow: #ffffff 0px 0px 20px;
+    border-radius: 10px;
 }
 
-.dropdown-content a:hover,
-.dropdown-content a:focus {
+.dropdown-content a:hover {
     background-color: #DECBA4;
     color: #000000;
-    text-decoration: white underline;
 }
 
 .dropbtn:hover {
     cursor: pointer;
     color: #ffffff;
-    text-decoration: overline white;
 }
 
-.dropbtn:active .dropdown-content,
-.dropbtn:focus .dropdown-content,
-.dropbtn:hover .dropdown-content {
+.dropbtn:hover .content-holder{
     display: block;
     cursor: pointer;
-    height: max-content;
+    height: 60px;
+    width: max-content;
     background-color: black;
     border-radius: 6%;
 }
