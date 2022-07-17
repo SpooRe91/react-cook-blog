@@ -48,6 +48,15 @@ table td {
     overflow: hidden;
 }
 
+.table-headers {
+    font-size: 22.5px;
+    color: white;
+    text-align: center;
+    margin: 15px auto;
+    text-shadow: rgb(211 198 181 / 45%) 0px 0px 20px;
+}
+
+
 .p {
     text-align: center;
     padding-top: 140px;
