@@ -16,7 +16,6 @@ export const Macronutrients = ({ isLoading,
         if (products.length === 0) {
             getMacros()
                 .then(res => {
-                    console.log(res);
                     if (res.length > 0) {
                         setProducts(res);
                         setIsLoading(false);
@@ -65,12 +64,12 @@ export const Macronutrients = ({ isLoading,
                             </form>
 
                             <h3 className={styles['table-headers']}>Стойностите са в грамове и се отнасят за 100гр. продукт!</h3>
-                            
+
                             <div className="row">
                                 <h3 className={styles['table-headers']}>!!!Важно:
                                     Данните са относителни, и може да същестува разминаване с други източници!
                                 </h3>
-                                
+
                                 <div className="col-xs-12">
                                     <table>
                                         <thead>
