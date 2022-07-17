@@ -46,7 +46,7 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
             setUser(getSession());
             console.log(getSession());
         }
-    }, [setUser]);
+    }, []);
 
     return (
         <>
