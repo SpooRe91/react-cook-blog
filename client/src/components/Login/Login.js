@@ -43,7 +43,7 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
             setUser(getSession());
             console.log(getSession());
         };
-    }, [setUser]);
+    }, []);
 
     return (
         <>
