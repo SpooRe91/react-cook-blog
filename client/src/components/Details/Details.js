@@ -29,8 +29,6 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
             })
     }, [mealId, setIsLoading, setErrorMessage]);
 
-    console.log(arrayOfLikes);
-
     const likeHandler = async (e) => {
 
         if (!arrayOfLikes.find(x => x === user.id)) {
@@ -105,6 +103,9 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                                 <label htmlFor="ingredients">Рецепта:</label>
                                 <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
                             </article>
+                            {
+                                user && <p className="created-by-details"><span >Създадено от {meal.ownerName}</span></p>
+                            }
                         </>
                 }
                 {errorMessage !== ""
