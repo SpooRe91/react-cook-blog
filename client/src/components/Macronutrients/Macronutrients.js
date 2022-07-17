@@ -45,30 +45,33 @@ export const Macronutrients = ({ isLoading,
 
     return (
         <>
-        <title>Хранителни стойности</title>
+            <title>Хранителни стойности</title>
             <div className={styles['table-container']}>
                 {
                     isLoading
                         ? <><BeatLoader loading={() => isLoading} /></>
                         : <>
-                            < h1 className="already-reg">Търсене на продукти</h1>
-                            < h3 className="already-reg">Моля въведете име на продукт на Български език:</h3>
+                            <h1 className={styles['table-headers']}>Търсене на продукти</h1>
+
+                            <h3 className={styles['table-headers']}>На тази таблица можете да намерите основните хранителни
+                                стойности на най-често срещаните и употребявани продукти!</h3>
                             <form className="search-nutrients" method="GET">
-                                <label htmlFor='search'>Моля въведете име на Български</label>
+                                <label htmlFor={styles['table-headers']}>Моля въведете име на Български</label>
                                 <input type="text" placeholder="пилешко..." name="search"
                                     value={filterValue} onChange={filterHandler} />
                                 <label htmlFor='quantity'>Моля въведете количество в грамове</label>
                                 <input type="number" placeholder="1000гр..." name="quantity"
                                     value={quantify || ''} onChange={quantityHandler} />
                             </form>
-                            <h3 className="already-reg">На тази таблица можете да намерите основните хранителни
-                                стойности на най-често срещаните и употребявани продукти!</h3>
-                            <h3 className="already-reg">Стойностите са в грамове и се отнасят за 100гр. продукт!</h3>
+
+                            <h3 className={styles['table-headers']}>Стойностите са в грамове и се отнасят за 100гр. продукт!</h3>
+                            
                             <div className="row">
+                                <h3 className={styles['table-headers']}>!!!Важно:
+                                    Данните са относителни, и може да същестува разминаване с други източници!
+                                </h3>
+                                
                                 <div className="col-xs-12">
-                                    <caption className="already-reg">!!!Важно:
-                                        Данните са относителни,и може да същестува разминаване с други източници!
-                                    </caption>
                                     <table>
                                         <thead>
                                             <tr>
