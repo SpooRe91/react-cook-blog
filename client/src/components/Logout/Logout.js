@@ -31,7 +31,7 @@ export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
             <div className={styles.centered}>
                 <h1 className={styles.logoutModalHeader}>Сигурни ли сте, че искате да излезете?</h1>
                 <input type="button" className={styles.logoutModalBtn} onClick={() => { setUser(handleLogout) }} value="Изход!" />
-                <input type="button" className={styles.logoutModalBtn} onClick={() => setIsOpen(false)} value="Cancel" />
+                <input type="button" className={styles.logoutModalBtn} onClick={() => setIsOpen(false)} value="Отказ" />
             </div>
         </>
     );
