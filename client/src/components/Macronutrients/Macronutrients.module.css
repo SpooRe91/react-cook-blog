@@ -62,3 +62,7 @@ table td {
     padding-top: 140px;
     font-size: 14px;
 }
+
+::placeholder {
+    color: #919191;
+}

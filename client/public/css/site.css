@@ -390,20 +390,28 @@ p.recipe {
     padding: 5px;
 }
 
+p.created-by-details {
+    margin: 10px 10px 10px 10px;
+    font-size: 20px;
+    color: #DECBA4;
+    text-shadow: #000000 -3px 2px 10px;
+}
+
 .btn {
     transition: .1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
     font-weight: bold;
-    font-size: 25px;
-    width: max-content;
+    max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
     color: #DECBA4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
+    background: #00000075;
+    border-radius: 10px;
 }
 
 .btn:hover {
@@ -500,7 +508,7 @@ span {
 }
 
 span.number-of-likes {
-    margin: 5px auto;
+    margin: 20px auto;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
@@ -655,10 +663,6 @@ input[type=password] {
     color: #000000;
 }
 
-::placeholder {
-    color: #ffffff;
-}
-
 .unit-select {
     width: 100%;
     padding: 10px;
@@ -691,14 +695,14 @@ input.search {
 input[type=button],
 input[type=submit] {
     transition: .1s;
-    margin: 5px;
+    margin: 15px;
     display: inline-block;
     color: white;
     text-align: center;
     font-size: 20px;
     text-decoration: none;
     padding: 14px 50px;
-    text-shadow: -3px 1px 3px rgb(0, 0, 0);
+    text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
     background-image: linear-gradient(to right, #DECBA4, #3E5151);
     border: ridge rgb(211 198 181);
@@ -864,7 +868,7 @@ h4 {
     height: 60px;
     color: #ffffff;
     text-shadow: 0px 0px 20px #ffffff;
-    background-image: linear-gradient(to bottom, #DECBA4, #3e515100);
+    background-image: linear-gradient(to bottom, #DECBA4, #3e5151);
 }
 
 .wrapper {
