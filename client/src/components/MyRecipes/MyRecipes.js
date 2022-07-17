@@ -32,7 +32,6 @@ export const MyRecipes = ({
     };
 
     const notDeleted = meals.filter(x => x.isDeleted !== true);
-    console.log(notDeleted);
 
     return (
         <>
