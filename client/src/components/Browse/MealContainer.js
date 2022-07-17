@@ -14,7 +14,6 @@ export const MealContainer = ({
     useEffect(() => {
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
-
         }
     }, []);
 
@@ -50,13 +49,14 @@ export const MealContainer = ({
                             ? //if we have logged user
                             user.id === owner
                                 ? //if the logged user is owner
-                                <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
+                                <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
                                 ://if the logged user is not owner
                                 timesLiked.find(x => x === user.id)
                                     ? //if the logged user liked this already
                                     <>
-                                        <span>You already liked this!</span>
-                                        <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
+                                        <span>Харесано от Вас!</span>
+                                        <span className="number-of-likes"><FaHeart className="like-icon" />
+                                            Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
                                     </>
                                     ://if the logged user has not liked it yet
                                     <>
@@ -65,10 +65,11 @@ export const MealContainer = ({
                                             ? <p className="error-message"> {errorMessage.error}</p>
                                             : ""
                                         }
-                                        <span><FaHeart className="like-icon" /> Харесано {numberOfLikes} пъти</span>
+                                        <span className="number-of-likes"><FaHeart className="like-icon" />
+                                            Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
                                     </>
                             ://if there is no logged user
-                            <span><FaHeart className="like-icon" /> Общо харесвания {numberOfLikes} </span>
+                            <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
                         ://if there are no likes
                         <>
                             <button className="name" onClick={(e) => likeHandler(e)}>Like</button>
