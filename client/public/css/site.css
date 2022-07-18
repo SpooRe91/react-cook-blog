@@ -212,12 +212,25 @@ section.already-reg {
 }
 
 h1.meal-name {
+    max-width: 62%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 20px auto;
     word-break: break-all;
     font-weight: bold;
     color: #ffffff;
     text-shadow: #decba4 0px 0px 20px;
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.like-container {
+    /* position: absolute; */
+    margin: 30px 30px;
+    gap: 10px;
+    right: 20%;
+    top: 56.5%;
 }
 
 .meal-buttons {
@@ -440,8 +453,8 @@ div.details {
     border: ridge rgb(211 198 181);
     margin: 60px auto;
     padding: 1em;
-    width: 40%;
-    border-radius: 5%;
+    width: 65%;
+    border-radius: 10px;
     align-content: center;
     flex-direction: column;
     justify-content: center;
@@ -479,7 +492,7 @@ article.recipe-details {
     color: rgb(255, 255, 255);
     text-align: center;
     text-shadow: 0px 0px 20px rgb(255 255 255);
-    border-radius: 5%;
+    border-radius: 10px;
     border-top: ridge rgb(211 198 181);
     border-bottom: ridge rgb(211 198 181);
     width: 100%;
@@ -490,7 +503,7 @@ article.recipe-details {
 
 .owner-buttons {
     transition: .1s;
-    margin: 20px;
+    margin: 20px 30px;
     display: inline-block;
     color: white;
     text-align: center;
@@ -510,7 +523,7 @@ span {
 }
 
 span.number-of-likes {
-    margin: 20px auto;
+    margin: 20px 10px;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
@@ -518,7 +531,8 @@ span.number-of-likes {
     color: #DECBA4;
     text-shadow: #9d9d9d 0px 0px 20px;
     background: #0000006e;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: ridge rgb(211 198 181);
 }
 
 .search-nutrients {
