@@ -5,21 +5,20 @@
 }
 
 .profile-name-active {
-    font-size: 22.5px;
+    font-size: 20px;
     text-decoration: overline white;
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
-    -webkit-text-stroke: 1.5px #000000;
-    color: #ffffff;
+    /* -webkit-text-stroke: 1.5px #000000; */
+    color: #000000;
     font-weight: bold;
-    padding: 5px 5px 5px 5px;
+    padding: 5px;
+    text-shadow: white 0px 0px 20px;
 }
 
 .dropbtn {
     width: max-content;
-    font-size: 20px;
+    font-size: 17px;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-text-stroke: 0.3px #000000;
     color: #000000;
     font-weight: bold;
     text-shadow: #ffffff 0px 0px 20px;
@@ -41,19 +40,23 @@
     position: absolute;
     background: none;
     min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+    /* box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%); */
     z-index: 9;
+    padding: 5px;
 }
 
 .dropdown-content a {
-    font-size: 20px;
+    margin: 10px 10px;
+    padding: 0.5px;
+    font-size: 18px;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-text-stroke: 0.3px #000000;
+    /* -webkit-text-stroke: 0.3px #000000; */
     color: #ffffff;
     font-weight: bold;
     text-shadow: #ffffff 0px 0px 20px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border-width: 50px;
 }
 
 .dropdown-content a:hover {
