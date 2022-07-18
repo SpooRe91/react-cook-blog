@@ -50,13 +50,15 @@ export const MealContainer = ({
                             ? //if we have logged user
                             user.id === owner
                                 ? //if the logged user is owner
-                                <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
+                                <span className="number-of-likes">
+                                    <FaHeart className="like-icon" />  {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
                                 ://if the logged user is not owner
                                 timesLiked.find(x => x === user.id)
                                     ? //if the logged user liked this already
                                     <>
                                         <span>Харесано от Вас!</span>
-                                        <span className="number-of-likes"><FaHeart className="like-icon" /> Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
+                                        <span className="number-of-likes">
+                                            <FaHeart className="like-icon" />  {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`}</span>
                                     </>
                                     ://if the logged user has not liked it yet
                                     <>
@@ -65,10 +67,12 @@ export const MealContainer = ({
                                             ? <p className="error-message"> {errorMessage.error}</p>
                                             : ""
                                         }
-                                        <span className="number-of-likes"> <FaHeart className="like-icon" /> Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
+                                        <span className="number-of-likes"> 
+                                        <FaHeart className="like-icon" />  {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`}</span>
                                     </>
                             ://if there is no logged user
-                            <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
+                            <span className="number-of-likes">
+                                <FaHeart className="like-icon" />  {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
                         ://if there are no likes
                         <>
                             {/* if there are no likes, and the user is not the owner */}
