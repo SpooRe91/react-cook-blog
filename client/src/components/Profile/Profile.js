@@ -9,8 +9,8 @@ export const Profile = () => {
             <div  className="profile"><Link className="maia-button maia-button-primary" to="#/">Edit Profile</Link>
                 <h1 className="already-reg">Martin Bogdanov</h1>
                 <div>
-                    <a classname="meal-image-link" style={{ "display": "inline-block", "line-height": 1 }} href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" target={"_blank"} rel="noreferrer">
-                        <img classname="meal-image-link" src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" id="profile-photo" alt="#" /></a>
+                    <a className="meal-image-link" style={{ "display": "inline-block", "lineHeight": 1 }} href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" target={"_blank"} rel="noreferrer">
+                        <img className="meal-image-link" src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" id="profile-photo" alt="#" /></a>
                     <div>
                         <div className="contents-after-sidebar"><h2>My posts</h2>
                             <div className="sidebar-item"><span dir="ltr"><a href="http://mbcookinglife.blogspot.com/" target={"_blank"} rel="noreferrer">Martin's cooking life</a></span></div>
