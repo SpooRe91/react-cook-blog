@@ -50,9 +50,11 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/auth/login" element={<Login user={user} setUser={setUser}
-            setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-            setIsLoading={setIsLoading} />} />
+          <Route path="/auth/login" element={
+            <Login user={user} setUser={setUser}
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+              setIsLoading={setIsLoading} />
+          } />
 
           <Route path="/auth/register" element={<Register setUser={setUser}
             setErrorMessage={setErrorMessage} errorMessage={errorMessage}
@@ -63,20 +65,28 @@ function App() {
           <Route path="/recipe/add" element={<AddRecipe errorMessage={errorMessage} setErrorMessage={setErrorMessage}
             setIsLoading={setIsLoading} />} />
 
-          <Route path="/recipe/myRecipes" element={<MyRecipes user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
+          <Route path="/recipe/myRecipes" element={
+            <MyRecipes user={user} isLoading={isLoading} setIsLoading={setIsLoading}
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
+          } />
 
-          <Route path="/recipe/browse" element={<Browse user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
+          <Route path="/recipe/browse" element={
+            <Browse user={user} isLoading={isLoading} setIsLoading={setIsLoading}
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
+          } />
 
-          <Route path="/details/:mealId" element={<Details user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />} />
+          <Route path="/details/:mealId" element={
+            <Details user={user} isLoading={isLoading} setIsLoading={setIsLoading}
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
+          } />
 
           <Route path="/auth/profile" element={<Profile />} />
-          <Route path="/recipe/macros" element={<Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
-            setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-            products={products} setProducts={setProducts}
-          />} />
+
+          <Route path="/recipe/macros" element={
+            <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+              products={products} setProducts={setProducts} />
+          } />
           <Route path="*" element={< ErrorPage />} />
         </Routes>
       </main>
