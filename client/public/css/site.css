@@ -306,7 +306,7 @@ div.profile {
     color: #ffffff;
     font-weight: bold;
     padding: 5px 5px 5px 5px;
-    text-shadow: black 0px 0px 20px;
+    text-shadow: white 0px 0px 20px;
 }
 
 .profile-name:hover {
