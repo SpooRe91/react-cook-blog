@@ -17,7 +17,7 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             });
-    }, [setIsLoading, setErrorMessage]);
+    }, [setErrorMessage]);
 
     const [filterValue, setFilterValue] = useState("");
 
@@ -26,7 +26,6 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     };
 
     const notDeleted = meals.filter(x => x.isDeleted !== true);
-
     return (
 
         <div className="search-container">
