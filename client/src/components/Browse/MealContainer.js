@@ -15,7 +15,8 @@ export const MealContainer = ({
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
         }
-    }, []);
+    }, [timesLiked]);
+
 
     const likeHandler = async (e) => {
 
@@ -29,7 +30,7 @@ export const MealContainer = ({
                 setErrorMessage({ error: error.message })
             }
         } else {
-            setErrorMessage({ error: "You have already liked this recipe!" })
+            setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
         }
     }
 
@@ -43,7 +44,7 @@ export const MealContainer = ({
                     <img className="meal" src={image} alt="" /></Link>
                 <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
-                    timesLiked !== null && timesLiked !== undefined
+                    numberOfLikes !== 0
                         ? //if we have likes on the current item
                         user
                             ? //if we have logged user
@@ -55,28 +56,31 @@ export const MealContainer = ({
                                     ? //if the logged user liked this already
                                     <>
                                         <span>Харесано от Вас!</span>
-                                        <span className="number-of-likes"><FaHeart className="like-icon" />
-                                            Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
+                                        <span className="number-of-likes"><FaHeart className="like-icon" /> Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
                                     </>
                                     ://if the logged user has not liked it yet
                                     <>
-                                        <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Like" />
+                                        <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
                                         {errorMessage
                                             ? <p className="error-message"> {errorMessage.error}</p>
                                             : ""
                                         }
-                                        <span className="number-of-likes"><FaHeart className="like-icon" />
-                                            Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
+                                        <span className="number-of-likes"> <FaHeart className="like-icon" /> Харесано {numberOfLikes > 1 ? `${numberOfLikes} пъти` : `${numberOfLikes} път`}</span>
                                     </>
                             ://if there is no logged user
                             <span className="number-of-likes"><FaHeart className="like-icon" /> Общо харесвания: {numberOfLikes} </span>
                         ://if there are no likes
                         <>
-                            <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
+                            {/* if there are no likes, and the user is not the owner */}
+                            {user && user.id !== owner &&
+                                <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
+                            }
+
                             {errorMessage
                                 ? <p className="error-message"> {errorMessage.error}</p>
                                 : ""
                             }
+
                             <span className="meal">Няма храесвания</span>
                         </>
                 }
