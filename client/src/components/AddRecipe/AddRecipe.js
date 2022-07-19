@@ -56,19 +56,19 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
             <form className="add-form" method="POST" onSubmit={createHandler}>
                 <div className="already-reg">
                     <label htmlFor="name">Име</label>
-                    <input type="text" name="name" onChange={changeHandler} required />
+                    <input type="text" name="name" onChange={changeHandler} required value={values.name} />
                 </div>
                 <div className="already-reg">
                     <label htmlFor="image">Снимка</label>
-                    <input type="text" name="image" onChange={changeHandler} required />
+                    <input type="text" name="image" onChange={changeHandler} required value={values.image} />
                 </div>
                 <div className="already-reg">
                     <label htmlFor="fullRecipe">Пълна рецепта</label>
-                    <textarea className="add-recipe-text" type="text" name="fullRecipe" onChange={changeHandler} required></textarea>
+                    <textarea className="add-recipe-text" type="text" name="fullRecipe" onChange={changeHandler} value={values.fullRecipe} required />
                 </div >
                 <div className="already-reg">
                     <label htmlFor="ingredients">Необходими продукти</label>
-                    <textarea className="add-recipe-text" type=" text" name="ingredients" onChange={changeHandler} required></textarea>
+                    <textarea className="add-recipe-text" type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
                 <input type="submit" value="Създай" />
             </form >
