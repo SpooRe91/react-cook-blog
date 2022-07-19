@@ -13,9 +13,9 @@ html {
 
 body {
     margin: 0;
-    min-width: fit-content;
-    max-width: 100%;
-    min-height: 100%;
+    /* min-width: fit-content; */
+    width: 100vw;
+    height: 100%;
     background-image: url("../../public/images/main-background.jpg");
     flex-wrap: wrap;
     align-content: space-between;
@@ -361,13 +361,13 @@ div.meal {
     border-radius: 10%;
     display: flex;
     width: 350px;
-    height: min-content;
+    height: 450px;
     vertical-align: text-top;
     margin: 10px;
     color: white;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
     background-image: linear-gradient(45deg, #00000078, #3e5151);
@@ -490,8 +490,8 @@ img.meal-details:hover {
 }
 
 article.recipe-details {
-    color: rgb(255, 255, 255);
-    text-align: center;
+    display: flex;
+    background-image: linear-gradient(360deg, #00000099, #3e5151c4);
     text-shadow: 0px 0px 20px rgb(255 255 255);
     border-radius: 10px;
     border-top: ridge rgb(211 198 181);
@@ -500,6 +500,9 @@ article.recipe-details {
     margin: 20px auto;
     padding: 15px;
     word-break: break-all;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .owner-buttons {
