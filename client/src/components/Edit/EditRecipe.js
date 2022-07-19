@@ -85,7 +85,7 @@ export const EditRecipe = ({ user, errorMessage, setErrorMessage, setIsLoading }
                     <label htmlFor="ingredients">Необходими продукти</label>
                     <textarea className="add-recipe-text" type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
-                <input type="submit" value="Създай" />
+                <input type="submit" value="Промени" />
             </form >
         </div >
     )
