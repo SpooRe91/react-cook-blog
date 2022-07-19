@@ -639,8 +639,8 @@ div.already-reg a:hover {
     border-left: white solid;
 }
 
-.register-form label,
-.login-form label {
+
+.credentials {
     width: max-content;
     color: #ffffff;
     text-decoration: underline;
@@ -667,12 +667,21 @@ div.already-reg a:hover {
     background-image: none;
     background: none;
     border: none;
+    border-bottom: ridge white;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 
 .register-form input.already-reg:hover,
 .login-form input.already-reg:hover {
-    transition: 0.5;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.register-form input.already-reg:not(:hover),
+.login-form input.already-reg:not(:hover) {
+    transition: 0.5s;
 }
 
 
