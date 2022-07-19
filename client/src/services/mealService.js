@@ -1,9 +1,9 @@
 import { endpoints } from "../API/endpoints";
 
-export const getOne = async (userId) => {
+export const getOne = async (mealId) => {
 
     try {
-        const res = await fetch(endpoints.API_DETAILS(userId), {
+        const res = await fetch(endpoints.API_DETAILS(mealId), {
             mode: 'cors',
             credentials: "include",
             headers: {
@@ -107,6 +107,26 @@ export const addLike = async (mealId) => {
 
         });
         return await creteResult.json();
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+export const editMeal = async (mealId, mealData) => {
+    try {
+        const editStatusInfo = await fetch(endpoints.API_EDIT(mealId), {
+            method: "PUT",
+            mode: 'cors',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                "Access-Control-Allow-Credentials": true,
+            },
+            body: JSON.stringify(mealData),
+        });
+        return editStatusInfo;
+
     } catch (error) {
         throw new Error(error.message)
     }
