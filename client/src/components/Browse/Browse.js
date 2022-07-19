@@ -4,20 +4,24 @@ import { MealContainer } from "./MealContainer";
 import { BeatLoader } from "react-spinners";
 export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
-    const [meals, setMeals] = useState([]);
+
+    const [notDeleted, setnotDeleted] = useState([]);
+    const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
+    const [toLoad, setToLoad] = useState(false);
 
     useEffect(() => {
         getAll()
             .then(res => {
                 if (res.length > 0) {
-                    setMeals(res);
+                    setnotDeleted(res.filter(x => x.isDeleted !== true));
+                    setMoreRecipesToLoad(notDeleted.slice(0, notDeleted.length - 4));
                     setIsLoading(false);
                 }
             }).catch(error => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             });
-    }, [setIsLoading, setErrorMessage]);
+    }, [setIsLoading, setErrorMessage, setMoreRecipesToLoad]);
 
     const [filterValue, setFilterValue] = useState("");
 
@@ -25,7 +29,13 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
         setFilterValue(e.target.value.toLowerCase());
     };
 
-    const notDeleted = meals.filter(x => x.isDeleted !== true);
+    const recipesToShow = notDeleted.slice(notDeleted.length - 4);
+
+
+    const toLoadHandler = () => {
+        setMoreRecipesToLoad(notDeleted.slice(0, notDeleted.length - 4));
+        setToLoad(state => !state);
+    }
 
     return (
 
@@ -39,6 +49,16 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                 </form>
             </div>
             {
+                <>
+                    < input type="button" defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler} />
+                    <h1 className="already-reg">{toLoad ?
+                        <p className="arrow">&#11167; Всички рецепти &#11167;</p>
+                        : <p className="arrow">Най-скорокорошни рецепти</p>}</h1>
+
+                </>
+            }
+
+            {
                 < div className="meal-containter">
                     {
                         isLoading
@@ -51,20 +71,29 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                                             setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                 :
                                 notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
-                                    ? notDeleted.map(meal =>
+                                    ?
+                                    recipesToShow.map(meal =>
                                         <MealContainer key={meal._id} {...meal}
                                             user={user} timesLiked={meal.likes}
                                             setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
-
                                     : <div className="already-reg">
                                         <p>Все още няма рецепти!</p>
                                     </div>
                     }
+
+                    {
+                        toLoad &&
+                        moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
+                            user={user} timesLiked={meal.likes}
+                            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)}
+
                 </div>
+
             }
-            {errorMessage
-                ? <p className="error-message"> {errorMessage.error}</p>
-                : ""
+            {
+                errorMessage
+                    ? <p className="error-message"> {errorMessage.error}</p>
+                    : ""
             }
         </div >
 
