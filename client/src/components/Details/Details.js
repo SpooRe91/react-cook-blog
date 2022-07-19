@@ -95,7 +95,9 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                                                 <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
                                         ://if there are no likes
                                         <>
-                                            <button className="name" onClick={(e) => likeHandler(e)}>Like</button>
+                                            {user && user.id !== meal.owner &&
+                                                <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
+                                            }
                                             <h4 className="meal">Няма храесвания</h4>
                                         </>
                                 }
