@@ -53,7 +53,7 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                     < input type="button" defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler} />
                     <p className="arrow">Резултатите от търсенето се отразяват на изобразяването на рецептите, ако няма резултат, нищо няма да се изобрази.</p>
                     <h1 className="already-reg">{toLoad ?
-                        <p className="arrow">&#11167; Всички рецепти(scroll-нете надолу) &#11167;</p>
+                        <p className="arrow">&#11167; Всички рецепти (scroll-нете надолу) &#11167;</p>
                         : <p className="arrow">Най-скорокорошни рецепти</p>}</h1>
 
                 </>
