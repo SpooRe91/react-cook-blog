@@ -47,7 +47,7 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
 
     return (
         <>
-        <title>Вход</title>
+            <title>Вход</title>
             <div>
                 {errorMessage
                     ? <p className="error-message"> {errorMessage.error}</p>
@@ -56,10 +56,10 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
                 <h3 className="already-reg">Вход</h3>
                 <form className="login-form" method="POST" onSubmit={loginHandler}>
                     <label className="credentials" htmlFor="email">e-mail</label>
-                    <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
+                    <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
 
                     <label className="credentials" htmlFor="password">парола</label>
-                    <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} />
+                    <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} value={value.password}/>
 
                     <input className="already-reg" type="submit" value="Вход" />
                 </form>

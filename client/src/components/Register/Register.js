@@ -60,13 +60,16 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
                 <h3 className="already-reg">Регистрация</h3>
                 <form method="POST" onSubmit={registerHandler} className="register-form">
                     <label className="credentials" htmlFor="email">e-mail</label>
-                    <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
+                    <input type="text" className="email" id="email" name="email"
+                        placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
 
                     <label className="credentials" htmlFor="password">парола</label>
-                    <input type="password" className="password" id="password" name="password" placeholder="парола..." required onChange={changeHandler} />
+                    <input type="password" className="password" id="password" name="password"
+                        placeholder="парола..." required onChange={changeHandler} value={value.password} />
 
                     <label className="credentials" htmlFor="rePassword">повторете паролата</label>
-                    <input type="password" className="rePassword" id="rePassword" name="rePassword" placeholder="повторете паролата..." required onChange={changeHandler} />
+                    <input type="password" className="rePassword" id="rePassword" name="rePassword"
+                        placeholder="повторете паролата..." required onChange={changeHandler} value={value.rePassword} />
 
                     <input className="already-reg" type="submit" value="Регистриране" />
                 </form>
