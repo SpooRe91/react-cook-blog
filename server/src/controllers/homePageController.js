@@ -26,7 +26,7 @@ router.get('/like/:id', preloadMeal, async (req, res) => {
 
     try {
         await foodService.addLike(meal._id, req.user._id);
-        res.status(202).json({messag:"Added a like!"}).end();
+        res.status(202).json({ messag: "Added a like!" }).end();
     } catch (error) {
         console.error(error);
         res.status(400).json({ message: getErrorMessage(error) });
@@ -41,12 +41,9 @@ router.put('/edit/:id',
     async (req, res) => {
 
         try {
-            let result = await foodService.edit(req.params.id, req.body);
+            await foodService.edit(req.params.id, req.body);
 
-            if (!result) {
-                throw new Error('Unable to edit the given resource!')
-            }
-            res.json(result);
+            res.status(202).end();
 
         } catch (error) {
             console.error(error.message);
