@@ -34,7 +34,7 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
             <div>
                 <h1 className="already-reg">Търсене на рецепти</h1>
                 <form className="search" method="GET">
-                    <input type="text" placeholder="Търси..." name="search"
+                    <input type="text" className="recipe-browse" placeholder="Търси..." name="search"
                         value={filterValue} onChange={filterHandler} />
                 </form>
             </div>

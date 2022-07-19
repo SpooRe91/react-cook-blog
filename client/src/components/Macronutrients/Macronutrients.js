@@ -56,10 +56,10 @@ export const Macronutrients = ({ isLoading,
                                 стойности на най-често срещаните и употребявани продукти!</h3>
                             <form className="search-nutrients" method="GET">
                                 <label htmlFor={styles['table-headers']}>Моля въведете име на Български</label>
-                                <input type="text" placeholder="пилешко..." name="search"
+                                <input type="text" className ="nutrient-name" placeholder="пилешко..." name="search"
                                     value={filterValue} onChange={filterHandler} />
                                 <label htmlFor='quantity'>Моля въведете количество в грамове</label>
-                                <input type="number" placeholder="1000гр..." name="quantity"
+                                <input type="number" className ="nutrient-qty" placeholder="1000гр..." name="quantity"
                                     value={quantify || ''} onChange={quantityHandler} />
                             </form>
 

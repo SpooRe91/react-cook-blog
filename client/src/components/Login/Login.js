@@ -48,13 +48,13 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
     return (
         <>
         <title>Вход</title>
-            <div className="login-form">
+            <div>
                 {errorMessage
                     ? <p className="error-message"> {errorMessage.error}</p>
                     : ""
                 }
                 <h3 className="already-reg">Вход</h3>
-                <form method="POST" onSubmit={loginHandler}>
+                <form className="login-form" method="POST" onSubmit={loginHandler}>
                     <label className="already-reg" htmlFor="email">e-mail</label>
                     <input type="text" className="email" id="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 

@@ -50,15 +50,15 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
 
     return (
         <>
-    <title>Регистрация</title>
+            <title>Регистрация</title>
 
-            <div className="register-form">
+            <div>
                 {errorMessage
                     ? <p className="error-message"> {errorMessage.error}</p>
                     : ""
                 }
                 <h3 className="already-reg">Регистрация</h3>
-                <form method="POST" onSubmit={registerHandler}>
+                <form method="POST" onSubmit={registerHandler} className="register-form">
                     <label className="already-reg" htmlFor="email">e-mail</label>
                     <input type="text" className="email" name="email" placeholder="e-mail..." required onChange={changeHandler} />
 

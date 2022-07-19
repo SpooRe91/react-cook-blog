@@ -551,20 +551,12 @@ span.number-of-likes {
     margin: 10px;
 }
 
+
+
+
 .search-nutrients label {
     text-shadow: white 0px 0px 20px;
     margin: 10px auto;
-}
-
-.search-nutrients input {
-    margin: 10px auto;
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
-    color: #ffffff;
-}
-
-.search-nutrients input:focus {
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
-    color: #000000;
 }
 
 ::placeholder {
@@ -630,7 +622,7 @@ div.already-reg a:hover {
     transition: .1s;
     margin: auto;
     display: flex;
-    width: 80%;
+    width: 40%;
     color: white;
     text-align: center;
     font-size: 20px;
@@ -643,6 +635,19 @@ div.already-reg a:hover {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    border-right: white solid;
+    border-left: white solid;
+}
+
+.register-form label,
+.login-form label {
+    width: max-content;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
 }
 
 .form label {
@@ -656,28 +661,68 @@ div.already-reg a:hover {
     text-shadow: 0px 0px 20px #decba4;
 }
 
+.register-form input.already-reg,
+.login-form input.already-reg {
+    width: fit-content;
+    background-image: none;
+    background: none;
+    border: none;
+}
+
+
+.register-form input.already-reg:hover,
+.login-form input.already-reg:hover {
+    transition: 0.5;
+}
+
+
 input[type=text],
 input[type=number],
 input[type=url],
 input[type=password] {
     background: none;
+    outline: none;
+    border: none;
     color: #DECBA4;
     font-size: 20px;
-    width: 100%;
+    width: 50%;
     display: inline-block;
-    border: ridge rgb(211 198 181);
+    border-bottom: solid rgb(117, 117, 117);
     box-sizing: border-box;
     padding: 10px;
     border-radius: 0 4px 4px 4px;
-    margin: auto;
+    margin: 15px auto;
     resize: none;
 }
 
 .email:focus,
 .password:focus,
-.rePassword:focus {
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
-    color: #000000;
+.rePassword:focus,
+.recipe-browse:focus,
+.nutrient-name:focus,
+.nutrient-qty:focus {
+    color: #ffffff;
+    width: 60%;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    border-bottom: white solid;
+    background: none;
+    background-image: none;
+}
+
+input.nutrient-name,
+input.nutrient-qty {
+    width: 50%;
+}
+
+.email:not(:focus),
+.password:not(:focus),
+.rePassword:not(:focus),
+.recipe-browse:not(:focus),
+.nutrient-name:not(:focus),
+.nutrient-qty:not(:focus) {
+    transition: 0.5s;
 }
 
 .unit-select {
@@ -734,6 +779,7 @@ input[type=submit]:hover {
 }
 
 form.search {
+    width: 450px;
     font-size: 20px;
     display: flex;
     margin: 20px auto;
@@ -760,6 +806,17 @@ form.search {
     align-content: center;
     flex-wrap: nowrap;
     color: white;
+}
+
+.add-form input[type=text]:focus {
+    transition: 0.5s;
+    width: 100%;
+    border-bottom: solid white;
+}
+
+.add-form input[type=text]:not(:focus) {
+    transition: 0.5s;
+
 }
 
 h3 a {

@@ -40,7 +40,7 @@ export const MyRecipes = ({
                 <div>
                     <h1 className="already-reg">Моите рецепти</h1>
                     <form className="search" method="GET">
-                        <input type="text" placeholder="Търси..." name="search"
+                        <input type="text" className="recipe-browse" placeholder="Търси..." name="search"
                             value={filterValue} onChange={filterHandler} />
                     </form>
                 </div>
