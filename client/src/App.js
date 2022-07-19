@@ -18,6 +18,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Logout } from "./components/Logout/Logout";
 import Cookies from 'universal-cookie';
 import { Macronutrients } from "./components/Macronutrients/Macronutrients";
+import { EditRecipe } from "./components/Edit/EditRecipe";
 
 function App() {
 
@@ -62,7 +63,10 @@ function App() {
 
           <Route path="/404" element={<ErrorPage error={errorMessage} />} />
 
-          <Route path="/recipe/add" element={<AddRecipe errorMessage={errorMessage} setErrorMessage={setErrorMessage}
+          <Route path="/recipe/add" element={<AddRecipe user={user} errorMessage={errorMessage} setErrorMessage={setErrorMessage}
+            setIsLoading={setIsLoading} />} />
+
+          <Route path="/edit/:mealId" element={<EditRecipe errorMessage={errorMessage} setErrorMessage={setErrorMessage}
             setIsLoading={setIsLoading} />} />
 
           <Route path="/recipe/myRecipes" element={
