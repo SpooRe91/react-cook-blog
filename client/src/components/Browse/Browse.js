@@ -44,20 +44,20 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
             <div>
                 <h1 className="already-reg">Търсене на рецепти</h1>
                 <form className="search" method="GET">
-                    <input type="text" className="recipe-browse" placeholder="Търси..." name="search"
-                        value={filterValue} onChange={filterHandler} />
+                    {<input type="text" className="recipe-browse" placeholder="Търси..." name="search"
+                        value={filterValue} onChange={filterHandler} />}
                 </form>
             </div>
             {
                 <>
                     < input type="button" defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler} />
+                    <p className="arrow">Резултатите от търсенето се отразяват на изобразяването на рецептите, ако няма резултат, нищо няма да се изобрази.</p>
                     <h1 className="already-reg">{toLoad ?
-                        <p className="arrow">&#11167; Всички рецепти &#11167;</p>
+                        <p className="arrow">&#11167; Всички рецепти(scroll-нете надолу) &#11167;</p>
                         : <p className="arrow">Най-скорокорошни рецепти</p>}</h1>
 
                 </>
             }
-
             {
                 < div className="meal-containter">
                     {
@@ -80,12 +80,14 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                                         <p>Все още няма рецепти!</p>
                                     </div>
                     }
-
                     {
-                        toLoad &&
-                        moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
-                            user={user} timesLiked={meal.likes}
-                            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)}
+                        toLoad && !filterValue
+                            ?
+                            moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
+                                user={user} timesLiked={meal.likes}
+                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                            : ""
+                    }
 
                 </div>
 
