@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { OnwerButtons } from "./OwnerButtons"
-import { addLike, getOne } from "../../services/mealService";
 import { useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { FaHeart } from 'react-icons/fa'
+
+import { addLike, getOne } from "../../services/mealService";
+
+import { OnwerButtons } from "./OwnerButtons"
+import { ScrollButton } from "../Browse/ScrollButton";
 
 export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
@@ -26,7 +29,10 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                     setErrorMessage({ error: res.message });
                     throw new Error(res.message);
                 }
-            })
+            });
+        return (numberOfLikes) => {
+            setArrayOfLikes(numberOfLikes)
+        }
     }, [mealId, setIsLoading, setErrorMessage]);
 
     const likeHandler = async (e) => {
@@ -36,15 +42,19 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                 await addLike(meal._id);
                 e.target.style.display = "none";
                 setNumberOfLikes(likes => likes + 1);
-
             } catch (error) {
                 setErrorMessage({ error: error.message })
             }
         } else {
-            setErrorMessage({ error: "You have already liked this recipe!" })
+            setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
         }
     }
-    const likeButtonText = (numberOfLikes === 1 ? `${numberOfLikes} харесване` : `${numberOfLikes} харесвания`);
+
+    const isLiked = arrayOfLikes?.find(x => x === user?.id);
+
+    const likeHeartWithCount = <span className="number-of-likes">
+        <FaHeart className="like-icon" />  {numberOfLikes}
+    </span>;
 
     return (
         <>
@@ -64,42 +74,44 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                             </div>
                             <div className="like-container">
                                 {
-                                    arrayOfLikes.length !== 0
+                                    numberOfLikes !== 0
                                         ?
                                         //if we have likes on the current item
                                         user
                                             ? //if we have logged user
                                             user.id === meal.owner
                                                 ? //if the logged user is owner
-                                                <span className="number-of-likes">
-                                                    <FaHeart className="like-icon" /> {likeButtonText} </span>
-                                                ://if the logged user is not owner
-                                                arrayOfLikes.find(x => x === user.id)
-                                                    ? //if the logged user liked this already
+                                                likeHeartWithCount
+                                                :
+                                                //if the logged user is not owner
+                                                isLiked
+                                                    ?
+                                                    //if the logged user liked this already
                                                     <>
-                                                        <span className="number-of-likes">
-                                                            <FaHeart className="like-icon" /> {likeButtonText}</span>
-                                                        <span className="number-of-likes">Харесано от Вас!</span>
+                                                        {likeHeartWithCount}
+                                                        <span>Харесано от Вас!</span>
                                                     </>
                                                     ://if the logged user has not liked it yet
                                                     <>
-                                                        <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="Харесай" />
-                                                        {errorMessage
-                                                            ? <p className="error-message"> {errorMessage.error}</p>
-                                                            : ""
-                                                        }
-                                                        <span className="number-of-likes">
-                                                            <FaHeart className="like-icon" /> {likeButtonText}</span>
+                                                        <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />
+                                                        <>
+                                                            {likeHeartWithCount}
+                                                        </>
                                                     </>
-                                            ://if there is no logged user
-                                            <span className="number-of-likes">
-                                                <FaHeart className="like-icon" /> {likeButtonText} </span>
-                                        ://if there are no likes
+                                            :
+                                            //if there is no logged user
+                                            likeHeartWithCount
+                                        :
+                                        //if there are no likes
                                         <>
+                                            {/* if there are no likes, and the user is not the owner */}
                                             {user && user.id !== meal.owner &&
-                                                <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="Харесай" />
+                                                <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />}
+
+                                            {errorMessage &&
+                                                <p className="error-message"> {errorMessage.error}</p>
                                             }
-                                            <h4 className="meal">Няма харесвания</h4>
+                                            <span className="meal">Няма харесвания</span>
                                         </>
                                 }
                             </div>
@@ -107,19 +119,19 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                             <article className="recipe-details">
                                 <label htmlFor="ingredients">Необходими съставки:</label>
                                 <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
+
                                 <label htmlFor="ingredients">Рецепта:</label>
                                 <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
                             </article>
                             {
-                                user && user.id !== meal.owner
-                                    ? < p className="created-by-details"><span >Създадено от {meal.ownerName}</span></p>
-                                    : ""
+                                user && user.id !== meal.owner &&
+                                < p className="created-by-details"><span >Създадено от {meal.ownerName}</span></p>
                             }
                         </>
                 }
-                {errorMessage !== ""
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
+                {errorMessage !== "" && <p className="error-message"> {errorMessage.error}</p>}
+                {
+                    <ScrollButton />
                 }
             </div >
         </>
