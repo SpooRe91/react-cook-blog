@@ -44,6 +44,7 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
             setErrorMessage({ error: "You have already liked this recipe!" })
         }
     }
+    const likeButtonText = (numberOfLikes === 1 ? `${numberOfLikes} харесване` : `${numberOfLikes} харесвания`);
 
     return (
         <>
@@ -71,34 +72,34 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                                             user.id === meal.owner
                                                 ? //if the logged user is owner
                                                 <span className="number-of-likes">
-                                                    <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
+                                                    <FaHeart className="like-icon" /> {likeButtonText} </span>
                                                 ://if the logged user is not owner
                                                 arrayOfLikes.find(x => x === user.id)
                                                     ? //if the logged user liked this already
                                                     <>
-                                                        <span className="number-of-likes">Харесано от Вас!</span>
                                                         <span className="number-of-likes">
-                                                            <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`}</span>
+                                                            <FaHeart className="like-icon" /> {likeButtonText}</span>
+                                                        <span className="number-of-likes">Харесано от Вас!</span>
                                                     </>
                                                     ://if the logged user has not liked it yet
                                                     <>
-                                                        <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Like" />
+                                                        <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="Харесай" />
                                                         {errorMessage
                                                             ? <p className="error-message"> {errorMessage.error}</p>
                                                             : ""
                                                         }
                                                         <span className="number-of-likes">
-                                                            <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`}</span>
+                                                            <FaHeart className="like-icon" /> {likeButtonText}</span>
                                                     </>
                                             ://if there is no logged user
                                             <span className="number-of-likes">
-                                                <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
+                                                <FaHeart className="like-icon" /> {likeButtonText} </span>
                                         ://if there are no likes
                                         <>
                                             {user && user.id !== meal.owner &&
-                                                <input type="button" className="name" onClick={(e) => likeHandler(e)} value="Харесай" />
+                                                <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="Харесай" />
                                             }
-                                            <h4 className="meal">Няма храесвания</h4>
+                                            <h4 className="meal">Няма харесвания</h4>
                                         </>
                                 }
                             </div>
