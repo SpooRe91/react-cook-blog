@@ -35,9 +35,10 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
 
     } catch (error) {
         console.error(error);
-        res.status(400).json({ message: getErrorMessage(error) }); 
+        res.status(400).json({ message: getErrorMessage(error) });
     };
 });
+
 
 router.post('/login', isGuest, async (req, res, next) => {
     const { email, password } = req.body;
@@ -65,6 +66,7 @@ router.post('/login', isGuest, async (req, res, next) => {
         res.status(400).json({ message: getErrorMessage(error) });
     };
 });
+
 
 router.get('/logout', isAuth, (req, res) => {
     res.clearCookie(SESSION_NAME);

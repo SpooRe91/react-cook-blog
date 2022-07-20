@@ -18,7 +18,7 @@ router.get('/details/:id',
         const meal = req.meal;
         res.json(meal);
     });
-//----------------------------GET DETAILS------------------------------------//
+//----------------------------GET LIKES------------------------------------//
 
 router.get('/like/:id', preloadMeal, async (req, res) => {
 
