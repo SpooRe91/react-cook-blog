@@ -28,7 +28,7 @@ function App() {
   const [user, setUser] = useState(getSession());
 
   useEffect(() => {
-    if (user) {
+    if (user !== null) {
       cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
       setClientCookie(cookies.get('user-session'));
     }
@@ -43,14 +43,16 @@ function App() {
   return (
     < div className="App" >
       <Header />
+      {/* ----------------------------------------------------------------------------------------------- */}
       <main className="App">
         <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen}
-          clientCookie={clientCookie} />
+          clientCookie={clientCookie}
+        />
 
         {isOpen && isOpen.target === "logout" &&
           <Logout setIsOpen={setIsOpen} setUser={setUser}
             cookies={cookies} user={user} />}
-
+        {/* ----------------------------------------------------------------------------------------------- */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/auth/login" element={
@@ -58,44 +60,50 @@ function App() {
               setErrorMessage={setErrorMessage} errorMessage={errorMessage}
               setIsLoading={setIsLoading} />
           } />
-
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="/auth/register" element={<Register setUser={setUser}
             setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-            setIsLoading={setIsLoading} />} />
-
-          <Route path="/404" element={<ErrorPage error={errorMessage} />} />
-
-          <Route path="/recipe/add" element={<AddRecipe user={user} errorMessage={errorMessage} setErrorMessage={setErrorMessage}
-            setIsLoading={setIsLoading} />} />
-
-          <Route path="/edit/:mealId" element={<EditRecipe errorMessage={errorMessage} setErrorMessage={setErrorMessage}
-            setIsLoading={setIsLoading} />} />
-
+            setIsLoading={setIsLoading} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
+          <Route path="/404" element={<ErrorPage error={errorMessage} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
+          <Route path="/recipe/add" element={<AddRecipe user={user} errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage} setIsLoading={setIsLoading} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
+          <Route path="/edit/:mealId" element={<EditRecipe errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage} setIsLoading={setIsLoading} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="/recipe/myRecipes" element={
             <MyRecipes user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
-          } />
-
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="/recipe/browse" element={
             <Browse user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
-          } />
-
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="/details/:mealId" element={
             <Details user={user} isLoading={isLoading} setIsLoading={setIsLoading}
-              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
-          } />
-
+              setErrorMessage={setErrorMessage} errorMessage={errorMessage} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="/auth/profile" element={<Profile />} />
 
           <Route path="/recipe/macros" element={
             <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
               setErrorMessage={setErrorMessage} errorMessage={errorMessage}
-              products={products} setProducts={setProducts} />
-          } />
+              products={products} setProducts={setProducts} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
           <Route path="*" element={< ErrorPage />} />
         </Routes>
       </main>
+      {/* ----------------------------------------------------------------------------------------------- */}
       <Footer setIsOpen={setIsOpen} user={user} />
       {isOpen && isOpen.target === "about" && <About setIsOpen={setIsOpen} />}
       {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
