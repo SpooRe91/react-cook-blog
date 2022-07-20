@@ -17,7 +17,7 @@ export const MyRecipes = ({
                 if (res.length > 0) {
                     setMeals(res);
                     setIsLoading(false);
-                }else{
+                } else {
                     setIsLoading(false);
                 }
             }).catch(error => {
@@ -37,7 +37,7 @@ export const MyRecipes = ({
 
     return (
         <>
-        <title>Моите рецепти</title>
+            <title>Моите рецепти</title>
             <div className="search-container">
                 <div>
                     <h1 className="already-reg">Моите рецепти</h1>
@@ -46,34 +46,37 @@ export const MyRecipes = ({
                             value={filterValue} onChange={filterHandler} />
                     </form>
                 </div>
+
                 {
                     < div className="meal-containter">
                         {
                             isLoading
-                                ? <BeatLoader loading={isLoading} />
-                                : filterValue
-                                    ? notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
+                                ?
+                                <BeatLoader loading={isLoading} />
+                                :
+                                filterValue
+                                    ?
+                                    notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
                                         .map(meal =>
                                             <MealContainer key={meal._id} {...meal}
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
-                                        ? notDeleted.map(meal =>
+                                        ?
+                                        notDeleted.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
-
-                                        : <div className="already-reg">
+                                        :
+                                        <div className="already-reg">
                                             <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
                                         </div>
                         }
                     </div>
                 }
-                {errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
-                }
+
+                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
     );
