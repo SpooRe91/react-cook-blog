@@ -47,7 +47,9 @@ function App() {
         <NavBar user={user} setUser={setUser} setIsOpen={setIsOpen}
           clientCookie={clientCookie} />
 
-        {isOpen && isOpen.target === "logout" && <Logout setIsOpen={setIsOpen} setUser={setUser} cookies={cookies} user={user} />}
+        {isOpen && isOpen.target === "logout" &&
+          <Logout setIsOpen={setIsOpen} setUser={setUser}
+            cookies={cookies} user={user} />}
 
         <Routes>
           <Route path="/" element={<Homepage />} />
