@@ -15,9 +15,10 @@ export const MealContainer = ({
     useEffect(() => {
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
-
         }
     }, [timesLiked]);
+
+    const likeButtonText = (numberOfLikes === 1 ? `${numberOfLikes} харесване` : `${numberOfLikes} харесвания`);
 
     return (
         <>
@@ -32,10 +33,10 @@ export const MealContainer = ({
                     numberOfLikes !== 0
                         ? //if we have likes on the current item
                         <span className="number-of-likes">
-                            <FaHeart className="like-icon" /> {numberOfLikes === 1 ? `${numberOfLikes} храесване` : `${numberOfLikes} харесвания`} </span>
+                            <FaHeart className="like-icon" /> {likeButtonText} </span>
                         : <>
                             {/* //if there is no logged user */}
-                            <span className="meal">Няма храесвания</span>
+                            <span className="meal">Няма харесвания</span>
                         </>
                 }
                 {errorMessage
