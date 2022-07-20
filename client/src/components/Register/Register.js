@@ -12,14 +12,14 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         password: '',
         rePassword: ''
     });
-
+    //--------EVENT HANDLER FOR THE CHANGE IN INPUT FIELDS AND REMOVING THE ERROR STATE------
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
         setErrorMessage('');
     };
-
+    //REGISTER HANDLER - HANDLES THE REGISTRATION REQUEST AND SETS THE REGISTERED USER-------
     const registerHandler = (e) => {
         e.preventDefault();
 
@@ -38,16 +38,16 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
                 }
             });
     }
+    //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
+    //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
 
     useEffect(() => {
-        console.log(getSession());
         return () => {
             changeHandler();
-            setUser(getSession());
-            console.log(getSession());
+            // setUser(getSession());
         }
     }, []);
-
+    //--------------------------------------------------------------------------------------
     return (
         <>
             <title>Регистрация</title>
