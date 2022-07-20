@@ -35,7 +35,7 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     const toLoadHandler = () => {
         setMoreRecipesToLoad(notDeleted.slice(0, notDeleted.length - 4));
         setToLoad(state => !state);
-    }
+    };
 
     return (
 
@@ -81,21 +81,18 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                                     </div>
                     }
                     {
-                        toLoad && !filterValue
-                            ?
-                            moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
-                                user={user} timesLiked={meal.likes}
-                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
-                            : ""
+                        (toLoad && !filterValue)
+                        &&
+                        moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
+                            user={user} timesLiked={meal.likes}
+                            setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                     }
-
                 </div>
 
             }
             {
-                errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
+                errorMessage &&
+                <p className="error-message"> {errorMessage.error}</p>
             }
         </div >
 
