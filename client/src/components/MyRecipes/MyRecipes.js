@@ -16,7 +16,9 @@ export const MyRecipes = ({
             .then(res => {
                 if (res.length > 0) {
                     setMeals(res);
-                    setIsLoading(false)
+                    setIsLoading(false);
+                }else{
+                    setIsLoading(false);
                 }
             }).catch(error => {
                 console.log(error.message);
