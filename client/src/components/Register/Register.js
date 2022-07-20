@@ -27,9 +27,9 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
             .then(res => {
                 console.log(res);
                 if (res.token) {
-                    setSession(res.email, res.token, res.id);
+                    setSession({ ...res });
                     setUser(previous => getSession());
-                    navigate('/recipe/browse', { replace: true });
+                    navigate('/recipe/browse');
                     setIsLoading(false);
                 } else {
                     console.log(res.message);
