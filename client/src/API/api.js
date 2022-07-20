@@ -1,4 +1,4 @@
-export const setSession = (email, token, id) => {
+export const setSession = ({email, token, id}) => {
 
     const user = { email, id, token };
     sessionStorage.setItem("User", JSON.stringify(user));
