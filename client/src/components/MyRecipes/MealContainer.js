@@ -18,7 +18,10 @@ export const MealContainer = ({
         }
     }, [timesLiked]);
 
-    const likeButtonText = (numberOfLikes === 1 ? `${numberOfLikes} харесване` : `${numberOfLikes} харесвания`);
+    const likeHeartWithCount = (
+        <span className="number-of-likes">
+            <FaHeart className="number-of-likes" />{numberOfLikes}
+        </span>);
 
     return (
         <>
@@ -28,20 +31,19 @@ export const MealContainer = ({
                 </Link>
                 <Link to={`/details/${_id}`} className="meal-image-link">
                     <img className="meal" src={image} alt="" /></Link>
-                <Link className="btn    " to={`/details/${_id}`}>Подробно</Link>
+                <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
                     numberOfLikes !== 0
                         ? //if we have likes on the current item
                         <span className="number-of-likes">
-                            <FaHeart className="like-icon" /> {likeButtonText} </span>
+                            <FaHeart className="like-icon" /> {likeHeartWithCount} </span>
                         : <>
                             {/* //if there is no logged user */}
                             <span className="meal">Няма харесвания</span>
                         </>
                 }
-                {errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
+                {errorMessage &&
+                    <p className="error-message"> {errorMessage.error}</p>
                 }
             </div >
         </>
