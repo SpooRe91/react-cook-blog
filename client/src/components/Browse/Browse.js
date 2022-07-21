@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "./ScrollButton";
 
 import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
-export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+    const user = useContext(LoggedUserContext);
 
     const [notDeleted, setnotDeleted] = useState([]);
 
@@ -35,8 +37,10 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
 
 
     useEffect(() => {
-        setMoreRecipesToLoad(state => [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
-        setRecipesToShow(state => [...state, ...(notDeleted.slice(notDeleted.length - 4))]);
+        setMoreRecipesToLoad(state =>
+            [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
+        setRecipesToShow(state =>
+            [...state, ...(notDeleted.slice(notDeleted.length - 4))]);
         setIsLoading(false);
     }, [notDeleted, setIsLoading]);
 
@@ -44,7 +48,6 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
-
 
     const toLoadHandler = () => {
         setToLoad(state => !state);
@@ -84,7 +87,10 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                         {
                             isLoading
                                 ?
-                                <BeatLoader loading={isLoading} />
+                                <div className="already-reg">
+                                    <BeatLoader loading={isLoading} />
+                                    <p>Рецептите се зареждат...</p>
+                                </div>
                                 :
                                 filterValue
                                     ?
