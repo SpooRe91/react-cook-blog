@@ -16,32 +16,33 @@ export const MealContainer = ({
         setErrorMessage('')
     }, [setErrorMessage]);
 
-
     useEffect(() => {
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
         }
-
-        if (timesLiked.find(x => x === user?.id)) {
+        if (timesLiked?.find(x => x === user?.id)) {
             setIsLiked(true)
         }
     }, [timesLiked, setIsLiked, user]);
 
-    const likeHandler = async (e) => {
-        const alreadyLiked = timesLiked.find(x => x === user?.id);
 
-        if (!alreadyLiked) {
+    const likeHandler = async (e) => {
+
+        if (!timesLiked?.find(x => x === user?.id)) {
             try {
-                await addLike(_id);
-                setIsLiked(true);
-                setNumberOfLikes(likes => likes + 1);
+                const result = await addLike(_id);
+                if (result.status !== 400) {
+                    setIsLiked(true);
+                    setNumberOfLikes(likes => likes + 1);
+                }
+                if (result.message) throw new Error(result.message);
             } catch (error) {
                 setErrorMessage({ error: error.message })
             }
         } else {
             setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
         }
-    }
+    };
 
     const likeHeartWithCount = (
         <span className="number-of-likes">
@@ -54,8 +55,7 @@ export const MealContainer = ({
     const likeButton = (
         <button type="button" className="like-button"
             onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
-        </button>
-    )
+        </button>);
 
     return (
         <>
