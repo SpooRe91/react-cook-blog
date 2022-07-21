@@ -7,32 +7,38 @@ import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
 export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
-
     const [notDeleted, setnotDeleted] = useState([]);
     const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
     const [toLoad, setToLoad] = useState(false);
+    const [filterValue, setFilterValue] = useState("");
+
+    useEffect(() => {
+        setMoreRecipesToLoad(notDeleted?.slice(0, notDeleted.length - 4));
+        setIsLoading(false);
+    }, [notDeleted]);
 
     useEffect(() => {
         getAll()
             .then(res => {
                 if (res.length > 0) {
                     setnotDeleted(res.filter(x => x.isDeleted !== true));
-                    setMoreRecipesToLoad(notDeleted.slice(0, notDeleted.length - 4));
                     setIsLoading(false);
                 }
-            }).catch(error => {
+            }, [])
+            .catch(error => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             });
-    }, [setIsLoading, setErrorMessage, setMoreRecipesToLoad]);
+        return () => {
+            setErrorMessage('');
+        }
+    }, []);
 
-    const [filterValue, setFilterValue] = useState("");
+    const recipesToShow = notDeleted.slice(notDeleted.length - 4);
 
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
-
-    const recipesToShow = notDeleted.slice(notDeleted.length - 4);
 
 
     const toLoadHandler = () => {
@@ -77,14 +83,16 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                                         .map(meal =>
                                             <MealContainer key={meal._id} {...meal}
                                                 user={user} timesLiked={meal.likes}
-                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+                                            />)
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
                                         ?
                                         recipesToShow.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
                                                 user={user} timesLiked={meal.likes}
-                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage}
+                                            />)
                                         :
                                         <div className="already-reg">
                                             <p>Все още няма рецепти!</p>
