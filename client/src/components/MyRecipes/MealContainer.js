@@ -9,18 +9,22 @@ export const MealContainer = ({
     timesLiked,
     errorMessage }) => {
 
-
+    const [isLiked, setIsLiked] = useState(false);
     const [numberOfLikes, setNumberOfLikes] = useState(0);
 
     useEffect(() => {
-        if (timesLiked !== null && timesLiked !== undefined) {
+        if (timesLiked.length !== numberOfLikes) {
             setNumberOfLikes(timesLiked.length);
+            setIsLiked(true);
         }
-    }, [timesLiked]);
+    }, []);
 
     const likeHeartWithCount = (
         <span className="number-of-likes">
-            <FaHeart className="number-of-likes" />{numberOfLikes}
+            <FaHeart className="number-of-likes" style={isLiked
+                ? { 'color': "red" }
+                : { 'color': "white" }}
+            />{numberOfLikes}
         </span>);
 
     return (
@@ -35,8 +39,7 @@ export const MealContainer = ({
                 {
                     numberOfLikes !== 0
                         ? //if we have likes on the current item
-                        <span className="number-of-likes">
-                            <FaHeart className="like-icon" /> {likeHeartWithCount} </span>
+                        likeHeartWithCount
                         : <>
                             {/* //if there is no logged user */}
                             <span className="meal">Няма харесвания</span>
