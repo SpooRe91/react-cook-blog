@@ -26,29 +26,32 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                     setArrayOfLikes(res.likes);
                     setNumberOfLikes(res.likes.length);
                     setIsLoading(false);
-                } else {
-                    console.log(res.message);
-                    setErrorMessage({ error: res.message });
-                    throw new Error(res.message);
                 }
+            })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
             });
+        return () => {
+            setErrorMessage('');
+        }
     }, [mealId, setIsLoading, setErrorMessage]);
 
     useEffect(() => {
-        if (arrayOfLikes.find(x => x === user.id)) {
+        if (arrayOfLikes.find(x => x === user?.id)) {
             setIsLiked(true)
         };
-    }, [arrayOfLikes, setIsLiked, user.id]);
+    }, [arrayOfLikes, setIsLiked, user]);
 
     const likeHandler = async (e) => {
 
-        if (!arrayOfLikes.find(x => x === user.id)) {
+        if (!arrayOfLikes.find(x => x === user?.id)) {
             try {
                 await addLike(meal._id);
                 setIsLiked(true);
                 setNumberOfLikes(likes => likes + 1);
             } catch (error) {
-                setErrorMessage({ error: error.message })
+                setErrorMessage({ error: error.message });
             }
         } else {
             setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
@@ -57,7 +60,10 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
 
     const likeHeartWithCount = (
         <span className="number-of-likes">
-            <FaHeart className="number-of-likes" />{numberOfLikes}
+            <FaHeart className="number-of-likes" style={isLiked || user?.id === meal.owner
+                ? { 'color': "red" }
+                : { 'color': "white" }}
+            />{numberOfLikes}
         </span>);
 
     const likeButton = (
@@ -71,51 +77,49 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
             <div className="details">
                 {
                     isLoading
-                        ? <><BeatLoader loading={() => isLoading} /></>
-                        : <>
-                            <h1 className="meal-name">{meal.name}</h1>
+                        ?
+                        <>
+                            <BeatLoader loading={() => isLoading} />
+                        </>
+                        :
+                        <>
+                            <h1 className="meal-name">
+                                {meal.name}
+                            </h1>
                             <a href={meal.image} target={"_blank"} rel="noreferrer"><img className="meal-details" src={meal.image}
-                                alt="" /></a>
+                                alt="" />
+                            </a>
                             <div>
-                                {
-                                    user && meal.owner === user.id && <OnwerButtons {...meal} />
-                                }
+                                {user && meal.owner === user?.id && <OnwerButtons {...meal} />}
                             </div>
                             <div className="like-container">
                                 {
-                                    user !== null && user.id !== meal.owner
-                                        ?
+                                    user !== null && user?.id !== meal.owner
+                                        ?//if we have a logged user and is not the owner
                                         numberOfLikes !== 0
-                                            ?
+                                            ?//if there are likes
                                             isLiked
-                                                ?
+                                                ?//if the current element is liked by the logged user
                                                 <span>Харесано от Вас! {likeHeartWithCount}</span>
-                                                :
+                                                ://if  it's not liked by the logged user
                                                 <>
                                                     {likeButton}
                                                 </>
-                                            :
+                                            ://if there are no likes and the user can like it
                                             <>
                                                 <span className="meal">Няма харесвания</span>
                                                 {likeButton}
                                             </>
-                                        :
-                                        <span className="meal">Няма харесвания {likeHeartWithCount}</span>
+                                        ://if there is no logged user
+                                        likeHeartWithCount
                                 }
                                 {errorMessage &&
                                     <p className="error-message"> {errorMessage.error}</p>
                                 }
                             </div>
 
-                            <article className="recipe-details">
-                                <label htmlFor="ingredients">Необходими съставки:</label>
-                                <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
-
-                                <label htmlFor="ingredients">Рецепта:</label>
-                                <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
-                            </article>
                             {
-                                user && user.id !== meal.owner &&
+                                user && user?.id !== meal.owner &&
                                 < p className="created-by-details"><span >Създадено от {meal.ownerName}</span></p>
                             }
                         </>
@@ -124,6 +128,13 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
 
                 {<ScrollButton />}
             </div >
+            <article className="recipe-details">
+                <label htmlFor="ingredients">Необходими съставки:</label>
+                <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
+
+                <label htmlFor="ingredients">Рецепта:</label>
+                <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
+            </article>
         </>
     );
 }
