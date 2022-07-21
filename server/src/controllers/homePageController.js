@@ -24,14 +24,17 @@ router.get('/like/:id', preloadMeal, async (req, res) => {
 
     const meal = req.meal;
 
-    try {
-        await foodService.addLike(meal._id, req.user._id);
-        res.status(202).json({ messag: "Added a like!" }).end();
-    } catch (error) {
-        console.error(error);
-        res.status(400).json({ message: getErrorMessage(error) });
+    if (meal.likes.find(req.user._id)) {
+        try {
+            await foodService.addLike(meal._id, req.user._id);
+            res.status(202).json({ messag: "Added a like!" }).end();
+        } catch (error) {
+            console.error(error);
+            res.status(400).json({ message: getErrorMessage(error) });
+        }
+    } else {
+        res.status(400).json({ message: "You have already liked this!" });
     }
-
 });
 
 //----------------------------POST EDIT------------------------------------//
