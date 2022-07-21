@@ -1,14 +1,17 @@
 
+import { Link } from "react-router-dom";
+import { useCallback, useContext } from 'react';
+
 import { GuestNavBar } from "./GuestNavBar";
 import { UserNavBar } from "./UserNavBar";
 import logo from './logo.jpg';
-import { Link } from "react-router-dom";
-import { useCallback } from 'react';
 import styles from "./NavBar.module.css"
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 
-export const NavBar = ({ user, setUser, setIsOpen, clientCookie }) => {
+export const NavBar = ({ setUser, setIsOpen, clientCookie }) => {
 
+    const user = useContext(LoggedUserContext);
     const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "", []);
 
     return (
