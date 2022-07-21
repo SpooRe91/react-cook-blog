@@ -4,6 +4,7 @@ import { getMacros } from '../../services/mealService';
 import { Macrotable } from './Macrotable';
 
 import styles from './Macronutrients.module.css';
+import { ScrollButton } from "../Browse/ScrollButton";
 
 export const Macronutrients = ({ isLoading,
     setIsLoading,
@@ -39,7 +40,6 @@ export const Macronutrients = ({ isLoading,
     const quantityHandler = (e) => {
         let value = Number(e.target.value);
         setQuantify(value);
-        console.log(e.target.value);
     };
 
     return (
@@ -48,22 +48,37 @@ export const Macronutrients = ({ isLoading,
             <div className={styles['table-container']}>
                 {
                     isLoading
-                        ? <><BeatLoader loading={() => isLoading} /></>
-                        : <>
-                            <h1 className={styles['table-headers']}>Търсене на продукти</h1>
-
-                            <h3 className={styles['table-headers']}>На тази таблица можете да намерите основните хранителни
-                                стойности на най-често срещаните и употребявани продукти!</h3>
-                            <form className="search-nutrients" method="GET">
-                                <label htmlFor={styles['table-headers']}>Моля въведете име на Български</label>
-                                <input type="text" className ="nutrient-name" placeholder="пилешко..." name="search"
-                                    value={filterValue} onChange={filterHandler} />
-                                <label htmlFor='quantity'>Моля въведете количество в грамове</label>
-                                <input type="number" className ="nutrient-qty" placeholder="1000гр..." name="quantity"
-                                    value={quantify || ''} onChange={quantityHandler} />
-                            </form>
-
-                            <h3 className={styles['table-headers']}>Стойностите са в грамове и се отнасят за 100гр. продукт!</h3>
+                        ?
+                        <>
+                            <BeatLoader loading={() => isLoading} />
+                        </>
+                        :
+                        <>
+                            <div className="search-container">
+                                <h1 className={styles['table-headers']}>Търсене на продукти</h1>
+                                <h3 className={styles['table-headers']}>На тази таблица можете да намерите основните хранителни
+                                    стойности на най-често срещаните и употребявани продукти!
+                                </h3>
+                            </div>
+                            <div className="search-container">
+                                <form className="search-nutrients" method="GET">
+                                    <label htmlFor={styles['table-headers']}>
+                                        Моля въведете име на Български
+                                    </label>
+                                    <input type="text" className="nutrient-name" placeholder="пилешко..." name="search"
+                                        value={filterValue} onChange={filterHandler}
+                                    />
+                                    <label htmlFor='quantity'>
+                                        Моля въведете количество в грамове
+                                    </label>
+                                    <input type="number" className="nutrient-qty" placeholder="1000гр..." name="quantity"
+                                        value={quantify || ''} onChange={quantityHandler}
+                                    />
+                                </form>
+                            </div>
+                            <h3 className={styles['table-headers']}>
+                                Стойностите са в грамове и се отнасят за 100гр. продукт!
+                            </h3>
 
                             <div className="row">
                                 <h3 className={styles['table-headers']}>!!!Важно:
@@ -83,7 +98,6 @@ export const Macronutrients = ({ isLoading,
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             {/* филтриране по време на писане, ако има нещо въведено в state 
                                             тогава работим с първия филтър, ако ли не изобразяваме всичко,
                                             също при въвеждане на стойност самостоятелно или с име, се променят и стойностите */}
@@ -102,10 +116,8 @@ export const Macronutrients = ({ isLoading,
                             </div>
                         </>
                 }
-                {errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
-                }
+                {<ScrollButton />}
+                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
     );
