@@ -24,7 +24,7 @@ router.get('/like/:id', preloadMeal, async (req, res) => {
 
     const meal = req.meal;
 
-    if (!meal.likes.find(req.user._id)) {
+    if (!meal.likes.find(x => x === req.user._id)) {
         try {
             await foodService.addLike(meal._id, req.user._id);
             res.status(202).json({ messag: "Added a like!" }).end();
