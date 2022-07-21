@@ -215,7 +215,7 @@ section.already-reg {
 
 h1.meal-name {
     font-size: 23px;
-    max-width: 80%;
+    max-width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 20px auto;
