@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getOne, editMeal } from "../../services/mealService";
 
 
-export const EditRecipe = ({ user, errorMessage, setErrorMessage, setIsLoading }) => {
+export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
 
     const navigate = useNavigate();
 
@@ -46,17 +46,20 @@ export const EditRecipe = ({ user, errorMessage, setErrorMessage, setIsLoading }
 
         editMeal(mealId, values)
             .then(res => {
-                console.log(res);
                 if (res.ok && res.status === 202) {
                     setMeal(res);
                     setIsLoading(false);
-                    navigate('/recipe/myRecipes');
+                    navigate(`/details/${meal._id}`);
                 }
+                if (res.message) throw new Error(res.message);
             })
             .catch(error => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             })
+        return () => {
+            setErrorMessage('');
+        }
     }
 
     return (
