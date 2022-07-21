@@ -15,9 +15,9 @@ export const MealContainer = ({
     useEffect(() => {
         if (timesLiked.length !== numberOfLikes) {
             setNumberOfLikes(timesLiked.length);
-            setIsLiked(true);
+            setIsLiked(true)
         }
-    }, []);
+    }, [setNumberOfLikes, setIsLiked]);
 
     const likeHeartWithCount = (
         <span className="number-of-likes">
