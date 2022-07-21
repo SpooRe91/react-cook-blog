@@ -10,19 +10,25 @@ export const MealContainer = ({
     setErrorMessage, errorMessage }) => {
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
         }
-    }, [timesLiked]);
+
+        if (timesLiked.find(x => x === user.id)) {
+            setIsLiked(true)
+        }
+    }, [timesLiked, setIsLiked, user.id]);
 
     const likeHandler = async (e) => {
+        const alreadyLiked = timesLiked.find(x => x === user.id);
 
-        if (!timesLiked.find(x => x === user.id)) {
+        if (!alreadyLiked) {
             try {
                 await addLike(_id);
-                e.target.style.display = "none";
+                setIsLiked(true);
                 setNumberOfLikes(likes => likes + 1);
             } catch (error) {
                 setErrorMessage({ error: error.message })
@@ -32,11 +38,18 @@ export const MealContainer = ({
         }
     }
 
-    const isLiked = timesLiked?.find(x => x === user?.id);
 
-    const likeHeartWithCount = (<span className="number-of-likes">
-        <FaHeart className="like-icon" />  {numberOfLikes}
-    </span>);
+
+    const likeHeartWithCount = (
+        <span className="number-of-likes">
+            <FaHeart className="number-of-likes" />{numberOfLikes}
+        </span>);
+
+    const likeButton = (
+        <button type="button" className="like-button"
+            onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
+        </button>
+    )
 
     return (
         <>
@@ -48,45 +61,27 @@ export const MealContainer = ({
                     <img className="meal" src={image} alt="" /></Link>
                 <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
-                    numberOfLikes !== 0
-                        ? //if we have likes on the current item
-                        user
-                            ? //if we have logged user
-                            user.id === owner
-                                ? //if the logged user is owner
-                                likeHeartWithCount
+                    user !== null && user.id !== owner
+                        ?
+                        numberOfLikes !== 0
+                            ?
+                            isLiked
+                                ?
+                                <span>Харесано от Вас! {likeHeartWithCount}</span>
                                 :
-                                //if the logged user is not owner
-                                isLiked
-                                    ?
-                                    //if the logged user liked this already
-                                    <>
-                                        {likeHeartWithCount}
-                                        <span>Харесано от Вас!</span>
-                                    </>
-                                    ://if the logged user has not liked it yet
-                                    <>
-                                        <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />
-                                        <>
-                                            {likeHeartWithCount}
-                                        </>
-                                    </>
+                                <>
+                                    {likeButton}
+                                </>
                             :
-                            //if there is no logged user
-                            likeHeartWithCount
-                        :
-                        //if there are no likes
-                        <>
-                            {/* if there are no likes, and the user is not the owner */}
-                            {user && user.id !== owner &&
-                                <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />}
+                            <>
+                                <span className="meal">Няма харесвания</span>
+                                {likeButton}
 
-                            {errorMessage &&
-                                <p className="error-message"> {errorMessage.error}</p>
-                            }
-                            <span className="meal">Няма харесвания</span>
-                        </>
+                            </>
+                        :
+                        <span className="meal">Няма харесвания {likeHeartWithCount}</span>
                 }
+                {errorMessage &&<p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
     );
