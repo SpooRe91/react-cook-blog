@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { FaHeart } from 'react-icons/fa'
@@ -7,8 +7,11 @@ import { addLike, getOne } from "../../services/mealService";
 
 import { OnwerButtons } from "./OwnerButtons"
 import { ScrollButton } from "../Browse/ScrollButton";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
-export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+
+    const user = useContext(LoggedUserContext);
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
@@ -27,6 +30,8 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                     setNumberOfLikes(res.likes.length);
                     setIsLoading(false);
                 }
+                if (res.message) throw new Error(res.message);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.log(error.message);
@@ -43,8 +48,8 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
         };
     }, [arrayOfLikes, setIsLiked, user]);
 
-    const likeHandler = async (e) => {
 
+    const likeHandler = async (e) => {
         if (!arrayOfLikes.find(x => x === user?.id)) {
             try {
                 await addLike(meal._id);
