@@ -2,29 +2,28 @@ import { useEffect, useState } from "react";
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "./ScrollButton";
 
-
 import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
+
 export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
 
     const [notDeleted, setnotDeleted] = useState([]);
+
     const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
+    const [recipesToShow, setRecipesToShow] = useState([]);
+
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
-
-    useEffect(() => {
-        setMoreRecipesToLoad(notDeleted?.slice(0, notDeleted.length - 4));
-        setIsLoading(false);
-    }, [notDeleted, setIsLoading]);
 
     useEffect(() => {
         getAll()
             .then(res => {
                 if (res.length > 0) {
                     setnotDeleted(res.filter(x => x.isDeleted !== true));
-                    setIsLoading(false);
+                    setIsLoading(state => !state);
                 }
-            }, [])
+                if (res.message) throw new Error(res.message);
+            })
             .catch(error => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
@@ -32,9 +31,15 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
         return () => {
             setErrorMessage('');
         }
-    }, []);
+    }, [setnotDeleted, setIsLoading, setErrorMessage]);
 
-    const recipesToShow = notDeleted.slice(notDeleted.length - 4);
+
+    useEffect(() => {
+        setMoreRecipesToLoad(state => [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
+        setRecipesToShow(state => [...state, ...(notDeleted.slice(notDeleted.length - 4))]);
+        setIsLoading(false);
+    }, [notDeleted, setIsLoading]);
+
 
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
@@ -42,7 +47,6 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
 
 
     const toLoadHandler = () => {
-        setMoreRecipesToLoad(notDeleted.slice(0, notDeleted.length - 4));
         setToLoad(state => !state);
     };
 
@@ -59,14 +63,19 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                 </div>
                 {
                     <>
-                        <p className="arrow">Резултатите от търсенето се отразяват на изобразяването на рецептите, ако няма резултат, нищо няма да се изобрази.</p>
-                        < input type="button" defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler} />
-                        <h1 className="already-reg">{
-                            toLoad
-                                ?
-                                <p className="arrow">&#11167; Всички рецепти (scroll-нете надолу) &#11167;</p>
-                                :
-                                <p className="arrow">Най-скорокорошни рецепти</p>}
+                        <p className="arrow">Резултатите от търсенето се отразяват на изобразяването на рецептите,
+                            ако няма резултат, нищо няма да се изобрази.
+                        </p>
+                        < input type="button" defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
+                        />
+                        <h1 className="already-reg">
+                            {
+                                toLoad
+                                    ?
+                                    <p className="arrow">&#11167; Всички рецепти (scroll-нете надолу) &#11167;</p>
+                                    :
+                                    <p className="arrow">Най-скорокорошни рецепти</p>
+                            }
                         </h1>
                     </>
                 }
@@ -108,7 +117,6 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
                     </div>
                 }
                 {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
-
             </div>
             {<ScrollButton />}
         </>
