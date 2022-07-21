@@ -55,7 +55,7 @@ router.put('/edit/:id',
     });
 
 //----------------------------POST DELETE------------------------------------//
-router.delete('/:id',
+router.delete('/delete/:id',
     isAuth,
     preloadMeal,
     isMealOwner,
