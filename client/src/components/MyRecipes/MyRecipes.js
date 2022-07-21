@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { getOwn } from "../../services/mealService";
 import { MealContainer } from "./MealContainer"
+import { ScrollButton } from "../Browse/ScrollButton";
 
 export const MyRecipes = ({
     user, isLoading,
@@ -20,10 +21,14 @@ export const MyRecipes = ({
                 } else {
                     setIsLoading(false);
                 }
+                if (res.message) throw new Error(res.message);
             }).catch(error => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
-            })
+            });
+        return () => {
+            setErrorMessage('');
+        }
 
     }, [setIsLoading, setErrorMessage]);
 
@@ -76,6 +81,7 @@ export const MyRecipes = ({
                 }
                 {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
+            <ScrollButton />
         </>
     );
 }
