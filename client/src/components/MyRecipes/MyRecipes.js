@@ -46,7 +46,6 @@ export const MyRecipes = ({
                             value={filterValue} onChange={filterHandler} />
                     </form>
                 </div>
-
                 {
                     < div className="meal-containter">
                         {
@@ -75,7 +74,6 @@ export const MyRecipes = ({
                         }
                     </div>
                 }
-
                 {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
