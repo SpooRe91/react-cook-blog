@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     if (user !== null) {
-      cookies.set('user-session', user.token, { path: "/", maxAge: 36000 });
+      cookies.set('user-session', user, { path: "/", maxAge: 48000 });
       setClientCookie(cookies.get('user-session'));
     }
   }, [user])
@@ -100,7 +100,10 @@ function App() {
               products={products} setProducts={setProducts} />}
           />
           {/* ----------------------------------------------------------------------------------------------- */}
-          <Route path="*" element={< ErrorPage />} />
+          <Route path="*" element={< ErrorPage errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage} />}
+          />
+          {/* ----------------------------------------------------------------------------------------------- */}
         </Routes>
       </main>
       {/* ----------------------------------------------------------------------------------------------- */}
