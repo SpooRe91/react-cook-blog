@@ -30,18 +30,18 @@ function App() {
   const [user, setUser] = useState(getSession());
   const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
 
+  const [isOpen, setIsOpen] = useState({ state: false, target: null });
+  const [products, setProducts] = useState([]);
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (user !== null) {
       cookies.set('user-session', user, { path: "/", maxAge: 48000 });
       setClientCookie(cookies.get('user-session'));
     }
   }, [user, setClientCookie])
-
-  const [isOpen, setIsOpen] = useState({ state: false, target: null });
-  const [products, setProducts] = useState([]);
-
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <LoggedUserContext.Provider value={user}>
@@ -92,7 +92,7 @@ function App() {
             />
             {/* ----------------------------------------------------------------------------------------------- */}
             <Route path="/details/:mealId" element={
-              <Details  isLoading={isLoading} setIsLoading={setIsLoading}
+              <Details isLoading={isLoading} setIsLoading={setIsLoading}
                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />}
             />
             {/* ----------------------------------------------------------------------------------------------- */}
