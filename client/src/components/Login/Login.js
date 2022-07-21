@@ -29,18 +29,17 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
                     setUser(previous => getSession());
                     navigate('/recipe/browse', { replace: true });
                     setIsLoading(false);
-                } else {
-                    console.log(res.message);
-                    setErrorMessage({ error: res.message });
-                    throw new Error(res.message);
                 }
                 if (res.message) throw new Error(res.message);
-            });
+            })
+            .catch(error => {
+                setErrorMessage({ error: error.message })
+            })
     };
 
     useEffect(() => {
         return () => {
-            changeHandler();
+            setErrorMessage('');
             setUser(getSession());
             console.log(getSession());
         };
@@ -50,9 +49,8 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
         <>
             <title>Вход</title>
             <div>
-                {errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
+                {errorMessage &&
+                    <p className="error-message"> {errorMessage.error}</p>
                 }
                 <h3 className="already-reg">Вход</h3>
                 <form className="login-form" method="POST" onSubmit={loginHandler}>
