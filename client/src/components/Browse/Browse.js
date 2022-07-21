@@ -15,7 +15,7 @@ export const Browse = ({ user, isLoading, setIsLoading, setErrorMessage, errorMe
     useEffect(() => {
         setMoreRecipesToLoad(notDeleted?.slice(0, notDeleted.length - 4));
         setIsLoading(false);
-    }, [notDeleted]);
+    }, [notDeleted, setIsLoading]);
 
     useEffect(() => {
         getAll()
