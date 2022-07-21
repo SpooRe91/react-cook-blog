@@ -12,6 +12,7 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         password: '',
         rePassword: ''
     });
+
     //--------EVENT HANDLER FOR THE CHANGE IN INPUT FIELDS AND REMOVING THE ERROR STATE------
     const changeHandler = (e) => {
         setValues(state => ({
@@ -19,6 +20,8 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         }));
         setErrorMessage('');
     };
+
+
     //REGISTER HANDLER - HANDLES THE REGISTRATION REQUEST AND SETS THE REGISTERED USER-------
     const registerHandler = (e) => {
         e.preventDefault();
@@ -40,24 +43,25 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
                 if (res.message) throw new Error(res.message);
             });
     }
+
+
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
     //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
-
     useEffect(() => {
         return () => {
-            changeHandler();
-            // setUser(getSession());
+            setErrorMessage('');
+            setUser(getSession());
         }
-    }, []);
+    }, [setErrorMessage, setUser]);
+
     //--------------------------------------------------------------------------------------
     return (
         <>
             <title>Регистрация</title>
 
             <div>
-                {errorMessage
-                    ? <p className="error-message"> {errorMessage.error}</p>
-                    : ""
+                {errorMessage &&
+                    <p className="error-message"> {errorMessage.error}</p>
                 }
                 <h3 className="already-reg">Регистрация</h3>
                 <form method="POST" onSubmit={registerHandler} className="register-form">
