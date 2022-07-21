@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-cookie": "^4.1.1",
     "react-icons": "^4.4.0",
     "react-spinners": "^0.13.3"
   }
