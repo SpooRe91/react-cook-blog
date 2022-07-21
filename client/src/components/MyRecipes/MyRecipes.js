@@ -1,22 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { getOwn } from "../../services/mealService";
 import { MealContainer } from "./MealContainer"
 import { ScrollButton } from "../Browse/ScrollButton";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const MyRecipes = ({
-    user, isLoading,
-    setIsLoading, setErrorMessage,
+    isLoading,
+    setIsLoading,
+    setErrorMessage,
     errorMessage }) => {
+    const user = useContext(LoggedUserContext);
 
-    const [meals, setMeals] = useState([]);
+    const [filterValue, setFilterValue] = useState("");
+    const [notDeleted, setNotDeleted] = useState([])
 
     useEffect(() => {
         getOwn()
             .then(res => {
                 if (res.length > 0) {
-                    setMeals(res);
+                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
                     setIsLoading(false);
                 } else {
                     setIsLoading(false);
@@ -29,16 +33,12 @@ export const MyRecipes = ({
         return () => {
             setErrorMessage('');
         }
-
     }, [setIsLoading, setErrorMessage]);
 
-    const [filterValue, setFilterValue] = useState("");
 
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
-
-    const notDeleted = meals.filter(x => x.isDeleted !== true);
 
     return (
         <>
@@ -56,7 +56,10 @@ export const MyRecipes = ({
                         {
                             isLoading
                                 ?
-                                <BeatLoader loading={isLoading} />
+                                <div className="already-reg">
+                                    <BeatLoader loading={isLoading} />
+                                    <p>Вашите рецепти се зареждат... <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
+                                </div>
                                 :
                                 filterValue
                                     ?
@@ -66,7 +69,7 @@ export const MyRecipes = ({
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                     :
-                                    notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
+                                    notDeleted !== undefined && notDeleted !== null && notDeleted?.length > 0
                                         ?
                                         notDeleted.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
