@@ -1,17 +1,26 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export const ErrorPage = ({ errorMessage }) => {
-    console.log(errorMessage);
+export const ErrorPage = ({ errorMessage, setErrorMessage }) => {
+    console.log(errorMessage.error);
+
+    useEffect(() => {
+        return () => {
+            setErrorMessage("")
+        }
+    }, [])
 
     return (
         <div className="container" style={{ 'display': "flex" }}>
             <title>Грешка...</title>
             <main >
-                <h1 className="auth-error">{errorMessage}</h1>
                 <>
-                    {errorMessage
-                        ? <p className="error-message"> {errorMessage.error}</p>
-                        : ""
+                    {
+                        <p className="error-message"> {errorMessage
+                            ? errorMessage
+                            : "Възникна грешка при изпълнение на заявката Ви"
+                        }
+                        </p>
                     }
                 </>
                 <Link to="/">Обратно към началната страница</Link>

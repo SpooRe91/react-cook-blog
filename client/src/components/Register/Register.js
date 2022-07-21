@@ -26,16 +26,18 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
         userRegister(value)
             .then(res => {
                 console.log(res);
-                if (res.token) {
+                if (res.id) {
                     setSession({ ...res });
                     setUser(previous => getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
+
                 } else {
                     console.log(res.message);
                     setErrorMessage({ error: res.message });
                     throw new Error(res.message);
                 }
+                if (res.message) throw new Error(res.message);
             });
     }
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS

@@ -24,7 +24,7 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
 
         userLogin(value)
             .then(res => {
-                if (res.token) {
+                if (res.id) {
                     setSession({ ...res });
                     setUser(previous => getSession());
                     navigate('/recipe/browse', { replace: true });
@@ -34,6 +34,7 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
                     setErrorMessage({ error: res.message });
                     throw new Error(res.message);
                 }
+                if (res.message) throw new Error(res.message);
             });
     };
 
