@@ -13,17 +13,22 @@ export const MealContainer = ({
     const [isLiked, setIsLiked] = useState(false);
 
     useEffect(() => {
+        setErrorMessage('')
+    }, [setErrorMessage]);
+
+
+    useEffect(() => {
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
         }
 
-        if (timesLiked.find(x => x === user.id)) {
+        if (timesLiked.find(x => x === user?.id)) {
             setIsLiked(true)
         }
-    }, [timesLiked, setIsLiked, user.id]);
+    }, [timesLiked, setIsLiked, user]);
 
     const likeHandler = async (e) => {
-        const alreadyLiked = timesLiked.find(x => x === user.id);
+        const alreadyLiked = timesLiked.find(x => x === user?.id);
 
         if (!alreadyLiked) {
             try {
@@ -38,11 +43,12 @@ export const MealContainer = ({
         }
     }
 
-
-
     const likeHeartWithCount = (
         <span className="number-of-likes">
-            <FaHeart className="number-of-likes" />{numberOfLikes}
+            <FaHeart className="number-of-likes" style={isLiked || user?.id === owner
+                ? { 'color': "red" }
+                : { 'color': "white" }}
+            />{numberOfLikes}
         </span>);
 
     const likeButton = (
@@ -61,27 +67,26 @@ export const MealContainer = ({
                     <img className="meal" src={image} alt="" /></Link>
                 <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
-                    user !== null && user.id !== owner
-                        ?
+                    user !== null && user?.id !== owner
+                        ?//if we have a logged user and is not the owner
                         numberOfLikes !== 0
-                            ?
+                            ?//if there are likes
                             isLiked
-                                ?
-                                <span>Харесано от Вас! {likeHeartWithCount}</span>
-                                :
+                                ?//if the current element is liked by the logged user
+                                <span>харесано от Вас{likeHeartWithCount}</span>
+                                ://if  it's not liked by the logged user
                                 <>
                                     {likeButton}
                                 </>
-                            :
+                            ://if there are no likes and the user can like it
                             <>
                                 <span className="meal">Няма харесвания</span>
                                 {likeButton}
-
                             </>
-                        :
-                        <span className="meal">Няма харесвания {likeHeartWithCount}</span>
+                        ://if there is no logged user
+                        likeHeartWithCount
                 }
-                {errorMessage &&<p className="error-message"> {errorMessage.error}</p>}
+                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
     );
