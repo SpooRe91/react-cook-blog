@@ -42,8 +42,6 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
 router.post('/login', isGuest, async (req, res, next) => {
     const { email, password } = req.body;
 
-
-
     try {
         const user = await authService.login(email, password);
         const token = await authService.createToken(user);
