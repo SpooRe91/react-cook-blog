@@ -33,10 +33,11 @@ nav {
     border-bottom: ridge #DECBA4;
     height: 55px;
     margin-bottom: 15px;
-    justify-content: space-between;
     align-content: flex-end;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
 nav ul {
@@ -360,7 +361,7 @@ div.meal {
     border-radius: 10%;
     display: flex;
     width: 350px;
-    height: 500px;
+    height: 445px;
     vertical-align: text-top;
     margin: 10px;
     color: white;
@@ -396,17 +397,20 @@ p.name:hover {
 }
 
 p.recipe {
-    line-height: 22px;
-    word-spacing: 0.3mm;
-    letter-spacing: 0.2mm;
+    line-height: 23px;
+    word-spacing: 0.8mm;
+    letter-spacing: 0.4mm;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
     text-align: left;
+    padding: 10px;
+    color: #decba4
 }
 
 p.recipe span {
     word-break: break-word;
     white-space: pre-wrap;
+
 }
 
 
@@ -538,11 +542,31 @@ span.number-of-likes {
     font-size: 20px;
     text-align: center;
     padding: 5px;
+    outline: thick white;
     color: #DECBA4;
     text-shadow: #9d9d9d 0px 0px 20px;
     background: #0000006e;
     border-radius: 10px;
     border: ridge rgb(211 198 181);
+}
+
+button.like-button {
+    font-size: 18px;
+    padding: 0px;
+    width: fit-content;
+    margin: 15px;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    text-shadow: 0px 0px 20px white;
+}
+
+button.like-button:hover {
+    transition: 0.1s;
+    cursor: pointer;
+    color: #DECBA4;
+    text-shadow: 0px 0px 20px yellow;
 }
 
 .search-nutrients {
