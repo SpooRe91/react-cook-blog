@@ -16,6 +16,8 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const [arrayOfLikes, setArrayOfLikes] = useState([]);
 
+    const [isLiked, setIsLiked] = useState(false);
+
     useEffect(() => {
         getOne(mealId)
             .then(res => {
@@ -30,17 +32,20 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                     throw new Error(res.message);
                 }
             });
-        return (numberOfLikes) => {
-            setArrayOfLikes(numberOfLikes)
-        }
     }, [mealId, setIsLoading, setErrorMessage]);
+
+    useEffect(() => {
+        if (arrayOfLikes.find(x => x === user.id)) {
+            setIsLiked(true)
+        };
+    }, [arrayOfLikes, setIsLiked, user.id]);
 
     const likeHandler = async (e) => {
 
         if (!arrayOfLikes.find(x => x === user.id)) {
             try {
                 await addLike(meal._id);
-                e.target.style.display = "none";
+                setIsLiked(true);
                 setNumberOfLikes(likes => likes + 1);
             } catch (error) {
                 setErrorMessage({ error: error.message })
@@ -50,12 +55,16 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
         }
     }
 
-    const isLiked = arrayOfLikes?.find(x => x === user?.id);
+    const likeHeartWithCount = (
+        <span className="number-of-likes">
+            <FaHeart className="number-of-likes" />{numberOfLikes}
+        </span>);
 
-    const likeHeartWithCount = <span className="number-of-likes">
-        <FaHeart className="like-icon" />  {numberOfLikes}
-    </span>;
-
+    const likeButton = (
+        <button type="button" className="like-button"
+            onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
+        </button>
+    )
     return (
         <>
             <title>Детайли: {meal.name}</title>
@@ -74,45 +83,27 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                             </div>
                             <div className="like-container">
                                 {
-                                    numberOfLikes !== 0
+                                    user !== null && user.id !== meal.owner
                                         ?
-                                        //if we have likes on the current item
-                                        user
-                                            ? //if we have logged user
-                                            user.id === meal.owner
-                                                ? //if the logged user is owner
-                                                likeHeartWithCount
+                                        numberOfLikes !== 0
+                                            ?
+                                            isLiked
+                                                ?
+                                                <span>Харесано от Вас! {likeHeartWithCount}</span>
                                                 :
-                                                //if the logged user is not owner
-                                                isLiked
-                                                    ?
-                                                    //if the logged user liked this already
-                                                    <>
-                                                        {likeHeartWithCount}
-                                                        <span>Харесано от Вас!</span>
-                                                    </>
-                                                    ://if the logged user has not liked it yet
-                                                    <>
-                                                        <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />
-                                                        <>
-                                                            {likeHeartWithCount}
-                                                        </>
-                                                    </>
+                                                <>
+                                                    {likeButton}
+                                                </>
                                             :
-                                            //if there is no logged user
-                                            likeHeartWithCount
+                                            <>
+                                                <span className="meal">Няма харесвания</span>
+                                                {likeButton}
+                                            </>
                                         :
-                                        //if there are no likes
-                                        <>
-                                            {/* if there are no likes, and the user is not the owner */}
-                                            {user && user.id !== meal.owner &&
-                                                <input type="button" className="like-button" onClick={(e) => likeHandler(e)} value="харесай" />}
-
-                                            {errorMessage &&
-                                                <p className="error-message"> {errorMessage.error}</p>
-                                            }
-                                            <span className="meal">Няма харесвания</span>
-                                        </>
+                                        <span className="meal">Няма харесвания {likeHeartWithCount}</span>
+                                }
+                                {errorMessage &&
+                                    <p className="error-message"> {errorMessage.error}</p>
                                 }
                             </div>
 
@@ -130,9 +121,8 @@ export const Details = ({ user, isLoading, setIsLoading, setErrorMessage, errorM
                         </>
                 }
                 {errorMessage !== "" && <p className="error-message"> {errorMessage.error}</p>}
-                {
-                    <ScrollButton />
-                }
+
+                {<ScrollButton />}
             </div >
         </>
     );
