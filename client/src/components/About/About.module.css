@@ -11,7 +11,7 @@
 
 .centered {
     z-index: 9;
-    background-image: url('../../../public/images/main-background.jpg');
+    background-image: url('../../../public/images/main-background-min.jpg');
     border: ridge #DECBA4;
     border-radius: 15px;
     position: fixed;

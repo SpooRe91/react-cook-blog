@@ -16,7 +16,7 @@ body {
     margin: 0;
     min-width: fit-content;
     width: 100vw;
-    background-image: url("../../public/images/main-background.jpg");
+    background-image: url("../../public/images/main-background-min.jpg");
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: center;
@@ -400,8 +400,7 @@ p.recipe {
     line-height: 30px;
     word-spacing: 0.2mm;
     letter-spacing: 0.4mm;
-    font-weight: bold;
-    font-size: 19px;
+    font-size: 21px;
     text-align: left;
     padding: 10px;
     color: #decba4;
