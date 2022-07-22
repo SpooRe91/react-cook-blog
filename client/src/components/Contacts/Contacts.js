@@ -22,9 +22,9 @@ export const Contacts = ({ setIsOpen }) => {
                     <h4>Линк към GitHub:<a href="https://github.com/SpooRe91" target={"_blank"} rel="noreferrer">ТУК</a></h4>
                     <div>
                         {/*button which closes the modal, when clicked */}
-                        <input type="button" className="already-reg"
+                        <input type="button" className="show-more-less "
                             onClick={() => setIsOpen(false)}
-                            value="Cancel" />
+                            value="затвори" />
                     </div>
                 </div >
             </div >
