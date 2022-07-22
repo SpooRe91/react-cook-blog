@@ -61,14 +61,19 @@ router.delete('/delete/:id',
     isMealOwner,
     async (req, res) => {
 
+        let meal = req.meal;
         try {
-            let meal = req.meal;
-            const result = await foodService.delete(meal._id);
-            if (!result) {
-                throw new Error(`Item ${meal._id} not found!`)
+            const result = await foodService.delete(req.params.id);
+
+            if (!result.acknowledged && result.modifiedCount === 0) {
+                throw new Error(`Item ${meal._id} not found!`);
             }
 
-            res.json(result)
+            if (meal.isDeleted) {
+                throw new Error(`This item is already deleted!`)
+            }
+
+            res.status(202).end();
 
         } catch (error) {
             console.error(error.message);
