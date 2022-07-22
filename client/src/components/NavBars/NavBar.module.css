@@ -21,7 +21,7 @@
     text-transform: uppercase;
     color: #ffffff;
     font-weight: bold;
-    text-shadow: #ffffff 0px 0px 20px;
+    text-shadow: #000000 -4px 1px 3px;
     background: none;
     border: none;
 }
