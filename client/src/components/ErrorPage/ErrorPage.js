@@ -8,7 +8,7 @@ export const ErrorPage = ({ errorMessage, setErrorMessage }) => {
         return () => {
             setErrorMessage("")
         }
-    }, [])
+    }, [setErrorMessage])
 
     return (
         <div className="error-container">
