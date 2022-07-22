@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getOne, editMeal } from "../../services/mealService";
 
@@ -88,8 +88,10 @@ export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
                     <label htmlFor="ingredients">Необходими продукти</label>
                     <textarea className="add-recipe-text" type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
-                <input type="submit" value="Промени" />
+                <input type="submit" value="Промени" className="add-form-submit" />
+                <Link to={`/details/${mealId}`} className="btn">назад</Link>
             </form >
+
         </div >
     )
 
