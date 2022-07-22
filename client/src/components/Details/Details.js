@@ -24,11 +24,13 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
     useEffect(() => {
         getOne(mealId)
             .then(res => {
-                if (res._id) {
+                if (!res.isDeleted) {
                     setMeal(res);
                     setArrayOfLikes(res.likes);
                     setNumberOfLikes(res.likes.length);
                     setIsLoading(false);
+                } else {
+                    throw new Error("Не е намерена такава рецепта!")
                 }
                 if (res.message) throw new Error(res.message);
                 setIsLoading(false);
@@ -74,8 +76,9 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
     const likeButton = (
         <button type="button" className="like-button"
             onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
-        </button>
-    )
+        </button>)
+
+
     return (
         <>
             <title>Детайли: {meal.name}</title>
@@ -95,7 +98,7 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                                 alt="" />
                             </a>
                             <div>
-                                {user && meal.owner === user?.id && <OnwerButtons {...meal} />}
+                                {user && meal.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
                             </div>
                             <div className="like-container">
                                 {
@@ -129,7 +132,10 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                             }
                         </>
                 }
-                {errorMessage !== "" && <p className="error-message"> {errorMessage.error}</p>}
+                {errorMessage !== "" &&
+                    <p className="error-message">
+                        {errorMessage.error}
+                    </p>}
 
                 {<ScrollButton />}
             </div >
