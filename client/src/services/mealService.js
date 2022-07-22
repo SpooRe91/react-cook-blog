@@ -131,3 +131,27 @@ export const editMeal = async (mealId, mealData) => {
         throw new Error(error.message)
     }
 }
+
+export const deleteMeal = async (mealId) => {
+
+    try {
+        const deleteStatus = await fetch(endpoints.API_DELETE(mealId), {
+            method: "DELETE",
+            mode: 'cors',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                "Access-Control-Allow-Credentials": true,
+            },
+
+        });
+        console.log(deleteStatus);
+        return deleteStatus;
+
+    } catch (error) {
+        throw new Error(error.message)
+    }
+
+
+}
