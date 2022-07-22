@@ -11,20 +11,18 @@ export const ErrorPage = ({ errorMessage, setErrorMessage }) => {
     }, [])
 
     return (
-        <div className="container" style={{ 'display': "flex" }}>
+        <div className="error-container">
             <title>Грешка...</title>
-            <main >
-                <>
-                    {
-                        <p className="error-message"> {errorMessage
-                            ? errorMessage
-                            : "Възникна грешка при изпълнение на заявката Ви"
-                        }
-                        </p>
+            <>
+                {
+                    <p className="error-message"> {errorMessage
+                        ? errorMessage
+                        : "Възникна грешка при изпълнение на заявката Ви"
                     }
-                </>
-                <Link to="/">Обратно към началната страница</Link>
-            </main>
+                    </p>
+                }
+            </>
+            <Link to="/">Обратно към началната страница</Link>
         </div>
     )
 }
