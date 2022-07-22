@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { create } from "../../services/mealService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
 
@@ -47,7 +47,11 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
 
         <div>
             {errorMessage !== "" &&
-                <p className="error-message"> {errorMessage.error}</p>
+                <div className="error-container">
+                    <p className="error-message">
+                        {errorMessage.error}
+                    </p>
+                </div>
             }
             <title>Добави рецепта</title>
 
@@ -75,6 +79,7 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
                         onChange={changeHandler} value={values.ingredients} placeholder="Продукт 1, продукт 2..." required />
                 </div>
                 <input type="submit" value="създай" className="add-form-submit" />
+                <Link to={'/recipe/browse'} className="btn">назад</Link>
             </form >
             <div>
                 <article className="recipe-details">
@@ -94,6 +99,7 @@ export const AddRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
                         4. Докато изброявате продуктите в полето "необходими продукти", имайте предвид,
                         че форматирането на текста се запазва, така че, ако желаете можете да ги въвеждате един под друг.
                     </p>
+
                 </article>
             </div>
         </div >
