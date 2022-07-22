@@ -24,7 +24,7 @@ exports.edit = (id, mealData) => Meal.updateOne({ _id: id }, { $set: mealData },
 
 exports.addLike = (id, userId) => Meal.updateOne({ _id: id }, { $push: { likes: userId } });
 
-exports.delete = (id) => Meal.findByIdAndDelete(id);
+exports.delete = (id) => Meal.updateOne({ _id: id }, { $set: { isDeleted: true } });
 
 exports.create = (recipe) => Meal.create(recipe);
 
