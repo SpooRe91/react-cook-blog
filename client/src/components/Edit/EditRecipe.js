@@ -1,11 +1,11 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getOne, editMeal } from "../../services/mealService";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
-
-export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
-
+export const EditRecipe = ({ setIsLoading }) => {
     const navigate = useNavigate();
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
@@ -34,6 +34,7 @@ export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
             })
     }, [mealId, setIsLoading, setErrorMessage]);
 
+
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
@@ -41,12 +42,13 @@ export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
         setErrorMessage('');
     };
 
+
     const editHandler = (e) => {
         e.preventDefault();
 
         editMeal(mealId, values)
             .then(res => {
-                if (res.ok && res.status === 202) {
+                if (res.acknowledged && res.modifiedCount !== 0) {
                     setMeal(res);
                     setIsLoading(false);
                     navigate(`/details/${meal._id}`);
@@ -54,7 +56,7 @@ export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
-                console.log(error.message);
+                console.log(error);
                 setErrorMessage({ error: error.message });
             })
         return () => {
@@ -65,9 +67,13 @@ export const EditRecipe = ({ errorMessage, setErrorMessage, setIsLoading }) => {
     return (
         <div>
             <title>Промени рецепта {meal.name}</title>
-            {errorMessage !== ""
-                ? <p className="error-message"> {errorMessage.error}</p>
-                : ""
+            {errorMessage !== "" &&
+                <div className="error-container">
+                    <p className="error-message">
+                        {errorMessage.error}
+                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                    </p>
+                </div>
             }
             <h1 className="already-reg">Промени рецепта</h1>
 
