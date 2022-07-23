@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+export const ErrorPage = () => {
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
-export const ErrorPage = ({ errorMessage, setErrorMessage }) => {
     console.log(errorMessage.error);
 
     useEffect(() => {
