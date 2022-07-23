@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BeatLoader } from 'react-spinners';
 import { getMacros } from '../../services/mealService';
 import { Macrotable } from './Macrotable';
 
 import styles from './Macronutrients.module.css';
 import { ScrollButton } from "../Browse/ScrollButton";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+export const Macronutrients = ({ isLoading, setIsLoading, products, setProducts }) => {
 
-export const Macronutrients = ({ isLoading,
-    setIsLoading,
-    setErrorMessage,
-    errorMessage,
-    products,
-    setProducts }) => {
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     useEffect(() => {
         if (products.length === 0) {
@@ -45,6 +42,14 @@ export const Macronutrients = ({ isLoading,
     return (
         <>
             <title>Хранителни стойности</title>
+            {errorMessage !== "" &&
+                <div className="error-container">
+                    <p className="error-message">
+                        {errorMessage.error}
+                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                    </p>
+                </div>
+            }
             <div className={styles['table-container']}>
                 {
                     isLoading
@@ -117,7 +122,6 @@ export const Macronutrients = ({ isLoading,
                         </>
                 }
                 {<ScrollButton />}
-                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
         </>
     );
