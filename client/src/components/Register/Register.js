@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userRegister } from "../../services/userService";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
-export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) => {
-
+export const Register = ({ setUser, setIsLoading }) => {
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     let navigate = useNavigate();
 
     const [value, setValues] = useState({
@@ -60,8 +61,13 @@ export const Register = ({ setUser, setErrorMessage, errorMessage, setIsLoading 
             <title>Регистрация</title>
 
             <div>
-                {errorMessage &&
-                    <p className="error-message"> {errorMessage.error}</p>
+                {errorMessage !== "" &&
+                    <div className="error-container">
+                        <p className="error-message">
+                            {errorMessage.error}
+                            <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                        </p>
+                    </div>
                 }
                 <h3 className="already-reg">Регистрация</h3>
                 <form method="POST" onSubmit={registerHandler} className="register-form">
