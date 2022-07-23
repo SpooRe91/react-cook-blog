@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
 
-export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) => {
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
+export const Login = ({ setUser, setIsLoading }) => {
+
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
 
     const [value, setValues] = useState({
@@ -43,14 +46,19 @@ export const Login = ({ setUser, setErrorMessage, errorMessage, setIsLoading }) 
             setUser(getSession());
             console.log(getSession());
         };
-    }, []);
+    }, [errorMessage, setErrorMessage, setUser]);
 
     return (
         <>
             <title>Вход</title>
             <div>
-                {errorMessage &&
-                    <p className="error-message"> {errorMessage.error}</p>
+                {errorMessage !== "" &&
+                    <div className="error-container">
+                        <p className="error-message">
+                            {errorMessage.error}
+                            <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                        </p>
+                    </div>
                 }
                 <h3 className="already-reg">Вход</h3>
                 <form className="login-form" method="POST" onSubmit={loginHandler}>

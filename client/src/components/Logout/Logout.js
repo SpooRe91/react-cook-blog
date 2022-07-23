@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { useContext } from "react";
 
-export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
+export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();
 
@@ -16,13 +19,14 @@ export const Logout = ({ setIsOpen, setUser, cookies, user, errorMessage }) => {
             return navigate('/auth/login', { replace: true });
         } catch (error) {
             console.log(error.message);
-            navigate('/404', { error: error.message })
+            setErrorMessage({ error: error.message });
+            navigate('/404');
         }
     }
 
     return (
         <>
-        <title>Изход</title>
+            <title>Изход</title>
             {errorMessage
                 ? <p className="error-message"> {errorMessage.error}</p>
                 : ""
