@@ -44,9 +44,8 @@ router.put('/edit/:id',
     async (req, res) => {
 
         try {
-            await foodService.edit(req.params.id, req.body);
-
-            res.status(202).end();
+            let editResult = await foodService.edit(req.params.id, req.body);
+            res.status(202).json(editResult);
 
         } catch (error) {
             console.error(error.message);
