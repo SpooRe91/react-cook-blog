@@ -1,22 +1,11 @@
 const { Meal } = require('../models/Meal');
 const { Nutrient } = require('../models/Nutrient');
 
-exports.getAll = (search) => {
+exports.getAll = (search) => Meal.find({ name: { $regex: new RegExp(search, "i") } }).lean();
 
-    let result = Meal.find({ name: { $regex: new RegExp(search, "i") } }).lean();
-    return result
-}
-exports.getNutritions = async () => {
+exports.getNutritions = async () => await Nutrient.find({}).lean();
 
-    let result = await Nutrient.find({}).lean();
-    return result;
-}
-
-exports.getOwn = async (id) => {
-
-    let result = await Meal.find({ owner: id }).lean();
-    return result;
-}
+exports.getOwn = async (id) => await Meal.find({ owner: id }).lean();
 
 exports.getOne = (id) => Meal.findById(id);
 
