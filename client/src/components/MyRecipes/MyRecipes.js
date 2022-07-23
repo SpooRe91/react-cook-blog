@@ -5,13 +5,11 @@ import { getOwn } from "../../services/mealService";
 import { MealContainer } from "./MealContainer"
 import { ScrollButton } from "../Browse/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+export const MyRecipes = ({ isLoading, setIsLoading }) => {
 
-export const MyRecipes = ({
-    isLoading,
-    setIsLoading,
-    setErrorMessage,
-    errorMessage }) => {
     const user = useContext(LoggedUserContext);
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [filterValue, setFilterValue] = useState("");
     const [notDeleted, setNotDeleted] = useState([])
@@ -43,6 +41,14 @@ export const MyRecipes = ({
     return (
         <>
             <title>Моите рецепти</title>
+            {errorMessage !== "" &&
+                <div className="error-container">
+                    <p className="error-message">
+                        {errorMessage.error}
+                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                    </p>
+                </div>
+            }
             <div className="search-container">
                 <div>
                     <h1 className="already-reg">Моите рецепти</h1>
@@ -82,7 +88,6 @@ export const MyRecipes = ({
                         }
                     </div>
                 }
-                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div >
             <ScrollButton />
         </>
