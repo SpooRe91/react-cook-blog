@@ -5,9 +5,11 @@ import { ScrollButton } from "./ScrollButton";
 import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
-export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+export const Browse = ({ isLoading, setIsLoading }) => {
     const user = useContext(LoggedUserContext);
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [notDeleted, setnotDeleted] = useState([]);
 
@@ -16,6 +18,7 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
 
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
+
 
     useEffect(() => {
         getAll()
@@ -45,6 +48,9 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
     }, [notDeleted, setIsLoading]);
 
 
+    const filtered = notDeleted.filter(x => x.name.toLowerCase().includes(filterValue));
+
+
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
@@ -53,10 +59,19 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
         setToLoad(state => !state);
     };
 
+    
     return (
         <>
             <div className="search-container">
                 <title>Търсене на рецепти</title>
+                {errorMessage !== "" &&
+                    <div className="error-container">
+                        <p className="error-message">
+                            {errorMessage.error}
+                            <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                        </p>
+                    </div>
+                }
                 <div>
                     <h1 className="already-reg">Търсене на рецепти</h1>
                     <form className="search" method="GET">
@@ -95,12 +110,15 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
                                 :
                                 filterValue
                                     ?
-                                    notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
-                                        .map(meal =>
+                                    filtered.length > 0
+                                        ?
+                                        filtered.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
                                                 user={user} timesLiked={meal.likes}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)
+                                        :
+                                        <p className="arrow">Няма намерени резултати</p>
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
                                         ?
@@ -123,7 +141,6 @@ export const Browse = ({ isLoading, setIsLoading, setErrorMessage, errorMessage 
                         }
                     </div>
                 }
-                {errorMessage && <p className="error-message"> {errorMessage.error}</p>}
             </div>
             {<ScrollButton />}
         </>
