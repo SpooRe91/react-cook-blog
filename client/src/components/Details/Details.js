@@ -8,10 +8,12 @@ import { addLike, getOne } from "../../services/mealService";
 import { OnwerButtons } from "./OwnerButtons"
 import { ScrollButton } from "../Browse/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
-export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage }) => {
+export const Details = ({ isLoading, setIsLoading }) => {
 
     const user = useContext(LoggedUserContext);
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
@@ -30,7 +32,7 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                     setNumberOfLikes(res.likes.length);
                     setIsLoading(false);
                 } else {
-                    throw new Error("Не е намерена такава рецепта!")
+                    throw new Error("Не е намерена такава рецепта!");
                 }
                 if (res.message) throw new Error(res.message);
                 setIsLoading(false);
@@ -45,7 +47,7 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
     }, [mealId, setIsLoading, setErrorMessage]);
 
     useEffect(() => {
-        if (arrayOfLikes.find(x => x === user?.id)) {
+        if (arrayOfLikes?.find(x => x === user?.id)) {
             setIsLiked(true)
         };
     }, [arrayOfLikes, setIsLiked, user]);
@@ -82,6 +84,14 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
     return (
         <>
             <title>Детайли: {meal.name}</title>
+            {errorMessage !== "" &&
+                <div className="error-container">
+                    <p className="error-message">
+                        {errorMessage.error}
+                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                    </p>
+                </div>
+            }
             <div className="details">
                 {
                     isLoading
@@ -121,9 +131,6 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                                         ://if there is no logged user
                                         likeHeartWithCount
                                 }
-                                {errorMessage &&
-                                    <p className="error-message"> {errorMessage.error}</p>
-                                }
                             </div>
 
                             {
@@ -132,13 +139,14 @@ export const Details = ({ isLoading, setIsLoading, setErrorMessage, errorMessage
                             }
                         </>
                 }
-                {errorMessage !== "" &&
-                    <p className="error-message">
-                        {errorMessage.error}
-                    </p>}
+                <article>
+                    <p className="recipe-diff-count">порции: <strong>{meal.portions}</strong></p>
+                    <p className="recipe-diff-count">сложност: <strong>{meal.difficulty}</strong></p>
 
+                </article>
                 {<ScrollButton />}
-            </div >
+            </div>
+
             <article className="recipe-details">
                 <label htmlFor="ingredients">Необходими съставки:</label>
                 <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
