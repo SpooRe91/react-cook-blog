@@ -12,7 +12,7 @@ router.post('/add', modelValidator(Meal), isAuth, async (req, res) => {
 
     try {
         const created = await createRecipe.create(recipe);
-        res.json(created);
+        res.status(202).json(created);
 
     } catch (error) {
         console.error(error);
