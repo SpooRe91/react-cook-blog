@@ -2,10 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userRegister } from "../../services/userService";
+
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const Register = ({ setUser, setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
+    const user = useContext(LoggedUserContext);
+
     let navigate = useNavigate();
 
     const [value, setValues] = useState({
@@ -69,23 +73,39 @@ export const Register = ({ setUser, setIsLoading }) => {
                         </p>
                     </div>
                 }
-                <h3 className="already-reg">Регистрация</h3>
-                <form method="POST" onSubmit={registerHandler} className="register-form">
-                    <label className="credentials" htmlFor="email">e-mail</label>
-                    <input type="text" className="email" id="email" name="email"
-                        placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
+                <>
+                    {
+                        user ?
+                            <div className="error-container">
+                                <p className="error-message">
+                                    {"Вече сте влязли!"}
+                                    <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                        OK
+                                    </button>
+                                </p>
+                            </div>
+                            :
+                            <>
+                                <h3 className="already-reg">Регистрация</h3>
+                                <form method="POST" onSubmit={registerHandler} className="register-form">
+                                    <label className="credentials" htmlFor="email">e-mail</label>
+                                    <input type="text" className="email" id="email" name="email"
+                                        placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
 
-                    <label className="credentials" htmlFor="password">парола</label>
-                    <input type="password" className="password" id="password" name="password"
-                        placeholder="парола..." required onChange={changeHandler} value={value.password} />
+                                    <label className="credentials" htmlFor="password">парола</label>
+                                    <input type="password" className="password" id="password" name="password"
+                                        placeholder="парола..." required onChange={changeHandler} value={value.password} />
 
-                    <label className="credentials" htmlFor="rePassword">повторете паролата</label>
-                    <input type="password" className="rePassword" id="rePassword" name="rePassword"
-                        placeholder="повторете паролата..." required onChange={changeHandler} value={value.rePassword} />
+                                    <label className="credentials" htmlFor="rePassword">повторете паролата</label>
+                                    <input type="password" className="rePassword" id="rePassword" name="rePassword"
+                                        placeholder="повторете паролата..." required onChange={changeHandler} value={value.rePassword} />
 
-                    <input className="already-reg" type="submit" value="Регистриране" />
-                </form>
-                <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
+                                    <input className="already-reg" type="submit" value="Регистриране" />
+                                </form>
+                                <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
+                            </>
+                    }
+                </>
             </div>
         </>
     );
