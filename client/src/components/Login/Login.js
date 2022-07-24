@@ -71,7 +71,7 @@ export const Login = ({ setUser, setIsLoading }) => {
                         user ?
                             <div className="error-container">
                                 <p className="error-message">
-                                    {"Вече сте влязли!"}
+                                    {"Вече сте влезли!"}
                                     <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                                 </p>
                             </div>
