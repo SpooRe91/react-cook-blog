@@ -1,15 +1,15 @@
-import { endpoints } from "../API/endpoints";
+import { endpoints } from '../API/endpoints';
 
 export const getOne = async (mealId) => {
 
     try {
         const res = await fetch(endpoints.API_DETAILS(mealId), {
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
         })
         return await res.json();
@@ -23,11 +23,11 @@ export const getAll = async () => {
     try {
         const res = await fetch(endpoints.API_BROWSE, {
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             }
         });
         return await res.json();
@@ -41,11 +41,11 @@ export const getOwn = async () => {
     try {
         const res = await fetch(endpoints.API_MYRECIPES, {
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             }
         });
         return await res.json();
@@ -59,11 +59,11 @@ export const getMacros = async () => {
     try {
         const res = await fetch(endpoints.API_MACROS, {
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             }
         });
         return await res.json();
@@ -76,13 +76,13 @@ export const create = async (createData) => {
 
     try {
         const creteResult = await fetch(endpoints.API_ADD, {
-            method: "POST",
+            method: 'POST',
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
             body: JSON.stringify(createData),
         });
@@ -95,16 +95,15 @@ export const create = async (createData) => {
 
 
 export const editMeal = async (mealId, mealData) => {
-    
     try {
         const editStatusInfo = await fetch(endpoints.API_EDIT(mealId), {
-            method: "PUT",
+            method: 'PUT',
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
             body: JSON.stringify(mealData),
         });
@@ -115,17 +114,16 @@ export const editMeal = async (mealId, mealData) => {
     }
 }
 
-
 export const addLike = async (mealId) => {
 
     try {
         const creteResult = await fetch(endpoints.API_LIKE(mealId), {
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             }
 
         });
@@ -135,19 +133,19 @@ export const addLike = async (mealId) => {
     }
 }
 
-
 export const deleteMeal = async (mealId) => {
 
     try {
         const deleteStatus = await fetch(endpoints.API_DELETE(mealId), {
-            method: "DELETE",
+            method: 'DELETE',
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
+
         });
         return deleteStatus;
 
