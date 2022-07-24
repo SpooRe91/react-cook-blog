@@ -184,7 +184,7 @@ div.container {
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #cc4900bd;
     margin: auto;
-    text-shadow: #cdbc98 1px 2px 6px;
+    text-shadow: #cdbc98 2px 3px 2px;
     font-size: 4em;
 }
 
