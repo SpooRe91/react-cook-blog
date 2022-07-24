@@ -6,7 +6,7 @@ export const Profile = () => {
         <>
             <title>Profile - Martin Bogdanov {/* should be profile name of the user */}</title>
 
-            <div  className="profile"><Link className="maia-button maia-button-primary" to="#/">Edit Profile</Link>
+            <div className="profile"><Link className="maia-button maia-button-primary" to="/auth/edit-profile">Edit Profile</Link>
                 <h1 className="already-reg">Martin Bogdanov</h1>
                 <div>
                     <a className="meal-image-link" style={{ "display": "inline-block", "lineHeight": 1 }} href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" target={"_blank"} rel="noreferrer">
