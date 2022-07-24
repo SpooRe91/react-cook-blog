@@ -11,7 +11,7 @@ router.post('/add', modelValidator(Meal), isAuth, async (req, res) => {
     const recipe = { ...req.body, owner: req.user._id, ownerName: req.user.email };
 
     try {
-        const created = await createRecipe.create(recipe);
+        const created = await createRecipe.createMeal(recipe);
         res.status(202).json(created);
 
     } catch (error) {
