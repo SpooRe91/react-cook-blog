@@ -49,7 +49,7 @@ const mealSchema = new mongoose.Schema({
         default: [],
         ref: "User",
     }
-});
+}, { timestamps: true });
 
 const Meal = mongoose.model('Meal', mealSchema);
 
