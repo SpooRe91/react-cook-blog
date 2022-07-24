@@ -80,6 +80,8 @@ export const Details = ({ isLoading, setIsLoading }) => {
             onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
         </button>)
 
+    let createdOn = new Date(meal.updatedAt).toString();
+    createdOn = createdOn.slice(0, createdOn.indexOf('GMT'));
 
     return (
         <>
@@ -135,7 +137,10 @@ export const Details = ({ isLoading, setIsLoading }) => {
 
                             {
                                 user && user?.id !== meal.owner &&
-                                < p className="created-by-details"><span >Създадено от {meal.ownerName}</span></p>
+                                <>
+                                    < p className="created-by-details"><span >Създадено: {createdOn}</span> </p>
+                                    < p className="created-by-details"><span >Създадено от: {meal.ownerName}</span> </p>
+                                </>
                             }
                         </>
                 }
