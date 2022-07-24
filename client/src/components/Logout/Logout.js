@@ -14,9 +14,9 @@ export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
         try {
             await userLogout();
             logoutSession();
-            cookies.remove('user-session', user.token, { path: "/", maxAge: 36000 });
+            cookies.remove('user-session', user, { path: "/", maxAge: 48000 });
+            navigate('/auth/login', { replace: true });
             setIsOpen(false);
-            return navigate('/auth/login', { replace: true });
         } catch (error) {
             console.log(error.message);
             setErrorMessage({ error: error.message });
@@ -24,9 +24,19 @@ export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
         }
     }
 
+
     return (
         <>
             <title>Изход</title>
+            {
+                !user &&
+                <div className="error-container">
+                    <p className="error-message">
+                        {"Тази операция не може да се изпълни, ако не сте влезли!"}
+                        <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                    </p>
+                </div>
+            }
             {errorMessage
                 ? <p className="error-message"> {errorMessage.error}</p>
                 : ""
@@ -34,7 +44,7 @@ export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
             <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
             <div className={styles.centered}>
                 <h1 className={styles.logoutModalHeader}>Сигурни ли сте, че искате да излезете?</h1>
-                <input type="button" className={styles.logoutModalBtn} onClick={() => { setUser(handleLogout) }} value="Изход!" />
+                <input type="button" className={styles.logoutModalBtn} onClick={() => [setUser(null), handleLogout()]} value="Изход!" />
                 <input type="button" className={styles.logoutModalBtn} onClick={() => setIsOpen(false)} value="Отказ" />
             </div>
         </>
