@@ -48,11 +48,13 @@ options = {
 **API**: "http://localhost:3030"
 
 ***AUTH:***
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 API/auth/register - **POST**
+Provide your e-email, password and repeat password 
+
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 API/auth/login - **POST**
 <br/>
@@ -83,7 +85,7 @@ const getOne = async (mealId) => {
 };
 ```
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 API/recipe/add - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
 
 example of an ADD request:
@@ -112,7 +114,7 @@ const create = async (createData) => {
 }
 ```
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 **API/edit/id** - **PUT** - update/edit a current recipe (requires authentication and authorization). Returns information in JSON format, if the requst is acknowledged and if there are modified elements:
 {
@@ -147,7 +149,7 @@ const editMeal = async (mealId, mealData) => {
 }
 ```
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 API/like/id - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
 
@@ -172,7 +174,7 @@ const addLike = async (mealId) => {
     }
 }
 ```
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 **API/delete/id** - **DELETE** - delete a particular recipe (requires authentication and authorization) - doesn't delete the recipe, rather than adding TRUE to a property called "isDeleted" in order to preserve the data, but not return it on GET request
 example of a delete request:
 API_DELETE = http://localhost:3030/delete/id - (id of the recipe)
@@ -198,7 +200,7 @@ const deleteMeal = async (mealId) => {
 }
 ```
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 API/recipe/browse - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
 
 example of a BROWSE request, API_BROWSE = http://localhost:3030/recipe/browse
@@ -223,7 +225,7 @@ const getAll = async () => {
 ```
 
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 API/recipe/myRecipes - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
 example of a myRecipes request:
 API_MYRECIPES = http://localhost:3030/recipe/myRecipes
@@ -249,4 +251,4 @@ const getOwn = async () => {
 ```
 
 <br/>
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
