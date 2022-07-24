@@ -6,8 +6,10 @@ import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { useNavigate } from "react-router-dom";
 
 export const Browse = ({ isLoading, setIsLoading }) => {
+    const navigate = useNavigate();
     const user = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
@@ -59,16 +61,19 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         setToLoad(state => !state);
     };
 
-    
+
     return (
         <>
             <div className="search-container">
                 <title>Търсене на рецепти</title>
+                
                 {errorMessage !== "" &&
                     <div className="error-container">
                         <p className="error-message">
                             {errorMessage.error}
-                            <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                            <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                OK
+                            </button>
                         </p>
                     </div>
                 }
