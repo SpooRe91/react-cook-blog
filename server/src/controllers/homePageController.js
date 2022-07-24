@@ -7,8 +7,7 @@ const { isAuth } = require('../middlewares/authMiddleware');
 
 router.get('/', async (req, res) => {
 
-    const data = await foodService.getAll();
-    res.json(data);
+    res.status(200).json(`Welcome to the "Cook-Blog" API, please visit: http://localhost:3030/readme , to download the API documentation! `);
 })
 
 //----------------------------GET DETAILS------------------------------------//
