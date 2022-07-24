@@ -130,6 +130,7 @@ export const userLogout = async () => {
 }
 ```
 ***RECIPE:***
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 **API/details/id** - **GET** - fetch the details of a particular recipe - doesn't require authentication. Returns an oject with the information about the current item. If there is no such item, it will return an error message: "Resource not found!"
 example of a DETAILS request function, where API_DETAILS is: ttp://localhost:3030/details/id(the id of the current recipe);
