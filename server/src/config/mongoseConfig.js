@@ -11,11 +11,3 @@ exports.connecter = async () => {
         return process.exit(1);
     }
 };
-//or this below
-//     .then(() => {
-//     console.log('DB connected');
-// })
-//     .catch((err) => {
-//         console.log('DB error', err);
-//     });
-
