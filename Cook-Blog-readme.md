@@ -51,15 +51,83 @@ options = {
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 API/auth/register - **POST**
-Provide your e-email, password and repeat password 
+Provide your e-email, password and repeat password. Submit a POST request with the data provided as a body. 
 
+example of the REGISTER request:
+
+```js
+const userRegister = async (registerData) => {
+
+    try {
+        const registerResult = await fetch(endpoints.API_REGISTER, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                'Access-Control-Allow-Credentials': true,
+            },
+            body: JSON.stringify(registerData),
+        });
+        return await registerResult.json();
+    } catch (error) {
+        console.log(error.message);
+        throw new Error(error.message);
+    }
+}
+```
 <br/>
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 <br/>
 API/auth/login - **POST**
+Provide your e-email and password so and submit a POST request with the data provided as body.
+
+example of the LOGIN request:
+```js
+const userLogin = async (loginData) => {
+
+    try {
+        const loginResult = await fetch(endpoints.API_LOGIN, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                'Access-Control-Allow-Credentials': true,
+            },
+            body: JSON.stringify(loginData),
+        });
+        return await loginResult.json();
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
+```
 <br/>
 API/auth/logout - **GET**
+To make a logout request, simply submit the request itself as shown below:
 
+```js
+export const userLogout = async () => {
+
+    try {
+        await fetch(endpoints.API_LOGOUT, {
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                'Access-Control-Allow-Credentials': true,
+            }
+        });
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
+```
 ***RECIPE:***
 <br/>
 **API/details/id** - **GET** - fetch the details of a particular recipe - doesn't require authentication. Returns an oject with the information about the current item. If there is no such item, it will return an error message: "Resource not found!"
