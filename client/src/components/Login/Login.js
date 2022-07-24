@@ -29,6 +29,7 @@ export const Login = ({ setUser, setIsLoading }) => {
 
         userLogin(value)
             .then(res => {
+                console.log(res);
                 if (res.id) {
                     setSession({ ...res });
                     setUser(previous => getSession());
@@ -38,9 +39,10 @@ export const Login = ({ setUser, setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
-                setErrorMessage({ error: error.message })
+                return setErrorMessage({ error: error.message })
             })
     };
+    console.log(errorMessage);
 
     useEffect(() => {
         return () => {
@@ -48,7 +50,7 @@ export const Login = ({ setUser, setIsLoading }) => {
             setUser(getSession());
             console.log(getSession());
         };
-    }, [errorMessage, setErrorMessage, setUser]);
+    }, [setErrorMessage, setUser]);
 
     return (
         <>
