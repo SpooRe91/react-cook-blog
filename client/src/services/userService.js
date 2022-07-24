@@ -6,11 +6,11 @@ export const userRegister = async (registerData) => {
         const registerResult = await fetch(endpoints.API_REGISTER, {
             method: 'POST',
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
             body: JSON.stringify(registerData),
         });
@@ -27,11 +27,11 @@ export const userLogin = async (loginData) => {
         const loginResult = await fetch(endpoints.API_LOGIN, {
             method: 'POST',
             mode: 'cors',
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             },
             body: JSON.stringify(loginData),
         });
@@ -45,12 +45,12 @@ export const userLogout = async () => {
 
     try {
         await fetch(endpoints.API_LOGOUT, {
-            mode: "cors",
+            mode: 'cors',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
-                "Access-Control-Allow-Credentials": true,
+                'Access-Control-Allow-Credentials': true,
             }
         });
     } catch (error) {
