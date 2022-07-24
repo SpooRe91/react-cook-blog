@@ -21,7 +21,6 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
 
-
     useEffect(() => {
         getAll()
             .then(res => {
@@ -66,7 +65,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         <>
             <div className="search-container">
                 <title>Търсене на рецепти</title>
-                
+
                 {errorMessage !== "" &&
                     <div className="error-container">
                         <p className="error-message">
