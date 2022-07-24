@@ -95,6 +95,7 @@ export const create = async (createData) => {
 
 
 export const editMeal = async (mealId, mealData) => {
+    
     try {
         const editStatusInfo = await fetch(endpoints.API_EDIT(mealId), {
             method: "PUT",
@@ -147,14 +148,10 @@ export const deleteMeal = async (mealId) => {
                 'Allow-Control-Access-Policy': true,
                 "Access-Control-Allow-Credentials": true,
             },
-
         });
-        console.log(deleteStatus);
         return deleteStatus;
 
     } catch (error) {
         throw new Error(error.message)
     }
-
-
 }
