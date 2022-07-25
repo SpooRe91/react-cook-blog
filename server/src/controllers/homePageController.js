@@ -53,7 +53,7 @@ router.put('/edit/:id',
     });
 
 //----------------------------POST CREATE profile------------------------------------//
-router.post('/profile-create', modelValidator(Profile), isAuth, async (req, res) => {
+router.post('/profile-create', isAuth, async (req, res) => {
 
     const person = { ...req.body };
 
@@ -68,7 +68,7 @@ router.post('/profile-create', modelValidator(Profile), isAuth, async (req, res)
 });
 
 //----------------------------PUT EDIT profile------------------------------------//
-router.put('/profile-edit/:id', modelValidator(Profile), isAuth, async (req, res) => {
+router.put('/profile-edit/:id', isAuth, async (req, res) => {
 
     const person = { ...req.body };
 
