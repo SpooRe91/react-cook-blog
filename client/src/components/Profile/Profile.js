@@ -2,11 +2,10 @@ import { Link } from "react-router-dom"
 
 export const Profile = () => {
     return (
-        //TODO: Title should hold the profile name
         <>
             <title>Profile - Martin Bogdanov {/* should be profile name of the user */}</title>
 
-            <div className="profile"><Link className="maia-button maia-button-primary" to="/auth/edit-profile">Edit Profile</Link>
+            <div className="profile">
                 <h1 className="already-reg">Martin Bogdanov</h1>
                 <div>
                     <a className="meal-image-link" style={{ "display": "inline-block", "lineHeight": 1 }} href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" target={"_blank"} rel="noreferrer">
@@ -16,25 +15,38 @@ export const Profile = () => {
                             <div className="sidebar-item"><span dir="ltr"><a href="http://mbcookinglife.blogspot.com/" target={"_blank"} rel="noreferrer">Martin's cooking life</a></span></div>
                             <div className="section-divider"></div>
 
-                            <table className="about-me-table">
-                                <caption className="about-me-table">General information:</caption>
-                                <tbody><tr><th className="item-key">Gender</th>
-                                    <td>MALE</td></tr>
-                                    <tr><th className="item-key">Industry</th>
-                                        <td><span className="role">Tourism</span></td></tr>
-                                    <tr><th className="item-key">Occupation</th>
-                                        <td><span className="role">Cook/Chef</span></td></tr>
-                                    <tr><th className="item-key">Location</th>
-                                        <td><span className="locality">Varna,</span>
-                                            <span className="country-name">Bulgaria</span></td></tr>
-                                    <tr><th className="item-key">Introduction</th>
-                                        <td>My name is Martin, I am a professional chef, and I would like to share some of my favorite dishes with you.</td></tr>
-                                    <tr><th className="item-key">Interests</th>
-                                        <td><span className="favorites">Cooking, Sports, Movies, PC Games, Music</span></td></tr>
-                                </tbody></table>
+                            <article>
+                                <h1 className="recipe-diff-count" style={{ "color": "white" }}><strong>General information:</strong></h1>
+
+                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Пол:</strong>
+                                    <span style={{ "color": "white" }}>
+                                        Male
+                                    </span>
+                                </p>
+
+                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Хобита:</strong>
+                                    <span style={{ "color": "white" }}>
+                                        Cooking, Sports, Movies, PC Games, Music
+                                    </span>
+                                </p>
+
+                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Длъжност/Работа:</strong>
+                                    <span style={{ "color": "white" }}>
+                                        Главен готвач
+                                    </span>
+                                </p>
+
+                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Относно:</strong>
+                                    <span style={{ "color": "white" }}>
+                                        Здравейте, аз съм Мартин и съм човек!
+                                    </span>
+                                </p>
+
+                            </article>
                         </div>
                     </div>
                 </div>
+                <Link className="maia-button maia-button-primary" to="/auth/edit-profile">Edit Profile</Link>
             </div >
         </>
     )
