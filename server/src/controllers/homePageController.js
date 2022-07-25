@@ -52,6 +52,36 @@ router.put('/edit/:id',
         }
     });
 
+//----------------------------POST CREATE profile------------------------------------//
+router.post('/profile-create', modelValidator(Profile), isAuth, async (req, res) => {
+
+    const person = { ...req.body };
+
+    try {
+        const created = await createRecipe.createProfile(person);
+        res.status(202).json(created);
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ message: getErrorMessage(error) });
+    }
+});
+
+//----------------------------PUT EDIT profile------------------------------------//
+router.put('/profile-edit/:id', modelValidator(Profile), isAuth, async (req, res) => {
+
+    const person = { ...req.body };
+
+    try {
+        const created = await createRecipe.createProfile(person, req.params.id);
+        res.status(202).json(created);
+
+    } catch (error) {
+        console.error(error);
+        res.status(400).json({ message: getErrorMessage(error) });
+    }
+});
+
 //----------------------------POST DELETE------------------------------------//
 router.delete('/delete/:id',
     isAuth,
