@@ -15,7 +15,7 @@ export const EditProfile = () => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [img, setImg] = useState(null);
-    const [progress, setProgress] = useState(null);
+    const [progress, setProgress] = useState(0);
     const [url, setUrl] = useState(null);
 
     const resizeFile = (file) =>
@@ -34,12 +34,6 @@ export const EditProfile = () => {
             );
         });
 
-    const handleChange = (e) => {
-        if (e.target.files[0]) {
-            setImg(e.target.files[0]);
-        }
-    };
-
     const handleFileUpload = async (e, file) => {
         e.preventDefault();
         if (!file) return;
@@ -50,7 +44,12 @@ export const EditProfile = () => {
         const uploadTask = uploadBytesResumable(storageRef, image);
         uploadTask.on(
             "state_changed",
-            snapshot => { },
+            snapshot => {
+                const progress = Math.round(
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                setProgress(progress)
+            },
             error => {
                 console.log(error);
             },
@@ -77,19 +76,18 @@ export const EditProfile = () => {
             })
     };
 
-    console.log("url:", url);
+
     return (
         //TODO - MAKE THE FORM MATCH THE PROFILE MODEL!!!
         <>
             <form className="profile-edit-form" onSubmit={(e) => handleFileUpload(e, img)}>
                 <div className="already-reg">
-                    <input type="file" id="picture" onChange={handleChange}
+                    <input type="file" id="picture" onChange={(e) => e.target.files[0] && setImg(e.target.files[0])}
                         accept="image/x-png,image/gif, image/jpeg,image/jpg" />
+                    <progress value={progress} max="100" /><p>{progress}{progress === 100 ? "% DONE!" : "%"}</p>
                     <div>
                         <p>
-                            {progress > 0 && progress < 100 &&
-                                `качва се...${progress}`
-                            }
+
                         </p>
                     </div>
                     <input type="submit" value="създай" className="add-form-submit" />
