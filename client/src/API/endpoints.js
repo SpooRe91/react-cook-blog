@@ -7,6 +7,8 @@ export const endpoints = {
     API_EDIT: (id) => `${API_URL}/edit/${id}`,//PUT req
     API_DELETE: (id) => `${API_URL}/delete/${id}`,//DELETE req
     API_LIKE: (id) => `${API_URL}/like/${id}`,//GET req
+    API_CREATE_PROFILE: `${API_URL}/profile-create`,//POST req
+    API_EDIT_PROFILE: (id) => `${API_URL}/profile-edit/${id}`,//PUT req
     //AUTH**********************************
     API_REGISTER: `${API_URL}/auth/register`,//POST req
     API_LOGIN: `${API_URL}/auth/login`,//POST req
