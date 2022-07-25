@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { MealContainer } from "./MealContainer";
-import { ScrollButton } from "./ScrollButton";
+import { ScrollButton } from "../common/ScrollButton";
 
 import { getAll } from "../../services/mealService";
 import { BeatLoader } from "react-spinners";
@@ -146,7 +146,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                     </div>
                 }
             </div>
-            {<ScrollButton />}
+            <ScrollButton />
         </>
     );
 }

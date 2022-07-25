@@ -4,8 +4,9 @@ import { getMacros } from '../../services/mealService';
 import { Macrotable } from './Macrotable';
 
 import styles from './Macronutrients.module.css';
-import { ScrollButton } from "../Browse/ScrollButton";
+
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { ScrollButton } from '../common/ScrollButton';
 export const Macronutrients = ({ isLoading, setIsLoading, products, setProducts }) => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
@@ -121,7 +122,7 @@ export const Macronutrients = ({ isLoading, setIsLoading, products, setProducts 
                             </div>
                         </>
                 }
-                {<ScrollButton />}
+                <ScrollButton />
             </div >
         </>
     );

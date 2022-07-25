@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+
 import { getOwn } from "../../services/mealService";
 import { MealContainer } from "./MealContainer"
-import { ScrollButton } from "../Browse/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { ScrollButton } from "../common/ScrollButton";
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
 
     const user = useContext(LoggedUserContext);

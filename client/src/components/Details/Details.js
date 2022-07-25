@@ -6,7 +6,7 @@ import { FaHeart } from 'react-icons/fa'
 import { addLike, getOne } from "../../services/mealService";
 
 import { OnwerButtons } from "./OwnerButtons"
-import { ScrollButton } from "../Browse/ScrollButton";
+import { ScrollButton } from "../common/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
@@ -181,6 +181,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                         </article>
                     </>
             }
+            <ScrollButton />
         </>
     );
 }
