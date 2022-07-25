@@ -144,24 +144,28 @@ export const Details = ({ isLoading, setIsLoading }) => {
                             }
                             <article>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>порции:
-                                    <strong style={{ "color": "wheat" }}>{meal.portions}</strong>
+                                <p className="recipe-diff-count" style={{ "color": "white" }}>порции: <strong
+                                    style={{ "color": "wheat" }}>
+                                    {meal.portions}
+                                </strong>
                                 </p>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>сложност:
-                                    <strong style={{ "color": "wheat" }}>{meal.difficulty}</strong>
+                                <p className="recipe-diff-count" style={{ "color": "white" }}>сложност: <strong
+                                    style={{ "color": "wheat" }}>
+                                    {meal.difficulty}
+                                </strong>
                                 </p>
 
-                                < p className="created-by-details">Създадено:
-                                    <span style={meal.updatedAt ? { "color": "wheat" } : { color: "" }} >
-                                        {createdOn}
-                                    </span>
+                                <p className="recipe-diff-count" style={{ "color": "white" }}>Създадено: <span
+                                    style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
+                                    {createdOn}
+                                </span>
                                 </p>
 
-                                < p className="created-by-details">Създадено от:
-                                    <span style={meal.ownerName ? { "color": "wheat" } : { color: "" }}>
-                                        {meal.ownerName}
-                                    </span>
+                                <p className="recipe-diff-count" style={{ "color": "white" }}>Създадено от: <span
+                                    style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
+                                    {meal.ownerName}
+                                </span>
                                 </p>
 
                             </article>
