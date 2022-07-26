@@ -5,37 +5,39 @@ IF YOU DOWNLOAD THE WHOLE PROJECT.
 BEFORE YOU DO ANYTHING FURTHER:
 
 You need the following commands to statrt the server and to start React project:
----------------
-SERVER: In the main "server" folder run the commands:
-<br/>
-"npm install"
-<br/>
-after that:
-<br/>
-"npm start"
-<br/>
-to start the server. if it is started successfully you should see the 
+--------------------------------------------------------------------------------
 
-"<br/>
-"Cook-blog API" listening to port http://localhost:3030
-<br/>
-"Cook-blog API" documentation is available at http://localhost:3030/readme
-<br/>
-"
----------------
-<br/>
-for the React project, you will need to open the "client" folder in a separate terminal and type in:
-<br/>
+SERVER: In the main "server" folder run the commands:
+
 "npm install"
-<br/>
+
 after that:
-<br/>
+
 "npm start"
-<br/>
----------------
-<br/>
+
+to start the server. if it is started successfully you should see the
+
+"
+
+"Cook-blog API" listening to port http://localhost:3030
+
+"Cook-blog API" documentation is available at http://localhost:3030/readme
+
+"
+-
+
+for the React project, you will need to open the "client" folder in a separate terminal and type in:
+
+"npm install"
+
+after that:
+
+"npm start"
+
+---
+
 **A food recipe Rest API build with Express.js**
-<br/>
+
 ![cover](https://user-images.githubusercontent.com/85784810/174287568-5c1a4d6b-6f1c-43f6-b881-31a0e52fafbc.JPG)
 
 **Using the cook-blog-API:**
@@ -65,6 +67,7 @@ export const endpoints = {
 ```
 
 **!please make sure to include the following options in each request you make**!!
+
 ```js
 options = {
             method: 'POST',
@@ -83,9 +86,9 @@ options = {
 **README AVAILABLE TO DOWNLOAD**: http://localhost:3030/readme
 
 ***AUTH:***
-<br/>
+
 API/auth/register - **POST**
-Provide your e-email, password and repeat password. Submit a POST request with the data provided as a body. 
+Provide your e-email, password and repeat password. Submit a POST request with the data provided as a body.
 
 example of the REGISTER request:
 
@@ -111,12 +114,12 @@ const userRegister = async (registerData) => {
     }
 }
 ```
-<br/>
-<br/>
+
 API/auth/login - **POST**
 Provide your e-email and password so and submit a POST request with the data provided as body.
 
 example of the LOGIN request:
+
 ```js
 const userLogin = async (loginData) => {
 
@@ -139,7 +142,7 @@ const userLogin = async (loginData) => {
 };
 
 ```
-<br/>
+
 API/auth/logout - **GET**
 To make a logout request, simply submit the request itself as shown below:
 
@@ -161,8 +164,9 @@ export const userLogout = async () => {
     }
 }
 ```
+
 ***RECIPE:***
-<br/>
+
 **API/details/id** - **GET** - fetch the details of a particular recipe - doesn't require authentication. Returns an oject with the information about the current item. If there is no such item, it will return an error message: "Resource not found!"
 example of a DETAILS request function, where API_DETAILS is: ttp://localhost:3030/details/id(the id of the current recipe);
 
@@ -185,7 +189,7 @@ const getOne = async (mealId) => {
     }
 };
 ```
-<br/>
+
 API/recipe/add - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
 
 example of an ADD request:
@@ -213,8 +217,7 @@ const create = async (createData) => {
     }
 }
 ```
-<br/>
-<br/>
+
 **API/edit/id** - **PUT** - update/edit a current recipe (requires authentication and authorization). Returns information in JSON format, if the requst is acknowledged and if there are modified elements:
 {
   acknowledged: true,
@@ -225,9 +228,10 @@ const create = async (createData) => {
 }
 
 example of an EDIT request function:
+
 ```js
 const editMeal = async (mealId, mealData) => {
-    
+  
     try {
         const editStatusInfo = await fetch(endpoints.API_EDIT(mealId), {
             method: "PUT",
@@ -247,11 +251,11 @@ const editMeal = async (mealId, mealData) => {
     }
 }
 ```
-<br/>
-<br/>
+
 API/like/id - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
 
 example of a LIKE request:
+
 ```js
 const addLike = async (mealId) => {
 
@@ -272,9 +276,11 @@ const addLike = async (mealId) => {
     }
 }
 ```
+
 **API/delete/id** - **DELETE** - delete a particular recipe (requires authentication and authorization) - doesn't delete the recipe, rather than adding TRUE to a property called "isDeleted" in order to preserve the data, but not return it on GET request
 example of a delete request:
 API_DELETE = http://localhost:3030/delete/id - (id of the recipe)
+
 ```js
 const deleteMeal = async (mealId) => {
 
@@ -296,10 +302,11 @@ const deleteMeal = async (mealId) => {
     }
 }
 ```
-<br/>
+
 API/recipe/browse - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
 
 example of a BROWSE request, API_BROWSE = http://localhost:3030/recipe/browse
+
 ```js
 const getAll = async () => {
 
@@ -320,7 +327,6 @@ const getAll = async () => {
 };
 ```
 
-<br/>
 API/recipe/myRecipes - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
 example of a myRecipes request:
 API_MYRECIPES = http://localhost:3030/recipe/myRecipes
@@ -344,5 +350,3 @@ const getOwn = async () => {
     }
 };
 ```
-
-<br/>
