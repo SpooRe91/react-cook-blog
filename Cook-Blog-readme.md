@@ -26,7 +26,7 @@ to start the server. if it is started successfully you should see the
 <br/>
 for the React project, you will need to open the "client" folder in a separate terminal and type in:
 <br/>
-"npm i"
+"npm install"
 <br/>
 after that:
 <br/>
