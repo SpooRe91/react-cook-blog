@@ -58,18 +58,17 @@ export const userLogout = async () => {
     }
 }
 
-export const createProfile = async (profileData) => {
+export const getUser = async (id) => {
 
     try {
-        const profileResult = await fetch(endpoints.API_CREATE_PROFILE, {
+        const profileResult = await fetch(endpoints.API_GET_USER(id), {
             mode: 'cors',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
                 'Allow-Control-Access-Policy': true,
                 'Access-Control-Allow-Credentials': true,
-            },
-            body: JSON.stringify(profileData),
+            }
         });
         return await profileResult.json();
     } catch (error) {
@@ -77,10 +76,11 @@ export const createProfile = async (profileData) => {
     }
 };
 
-export const editProfile = async (editDate, id) => {
+export const editUserImage = async (editData, id) => {
 
     try {
-        const profileResult = await fetch(endpoints.API_EDIT_PROFILE(id), {
+        const profileResult = await fetch(endpoints.API_EDIT_USER_IMAGE(id), {
+            method: 'PUT',
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -88,7 +88,7 @@ export const editProfile = async (editDate, id) => {
                 'Allow-Control-Access-Policy': true,
                 'Access-Control-Allow-Credentials': true,
             },
-            body: JSON.stringify(editDate),
+            body: JSON.stringify({ image: editData }),
         });
         return await profileResult.json();
     } catch (error) {
