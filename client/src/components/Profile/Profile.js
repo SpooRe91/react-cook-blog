@@ -1,53 +1,189 @@
-import { Link } from "react-router-dom"
+import { useContext, useEffect, useState } from "react";
+import { v4 } from "uuid";
+import Resizer from "react-image-file-resizer";
+
+
+import { storage } from "../../firebase/firebase-config";
+import {
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+} from "firebase/storage";
+
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+
+import { editUserImage, getUser } from "../../services/userService";
+import { getOwn } from "../../services/mealService";
+import { MealContainer } from "../MyRecipes/MealContainer";
 
 export const Profile = () => {
+
+    const user = useContext(LoggedUserContext);
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
+
+
+    const [img, setImg] = useState(null);
+    const [url, setUrl] = useState("");
+    const [progress, setProgress] = useState(0);
+    const [notDeleted, setNotDeleted] = useState([])
+    const [toUpdate, setToUpdate] = useState(false);
+    const [userProfile, setUserProfile] = useState(null);
+
+    //UPLOAD THE IMAGE, ONCE THE FILE IS SELECTED-------------------------------------------------------------------------
+    useEffect(() => {
+        const uploadImg = async (img) => {
+            if (!img) return;
+            const image = await resizeFile(img);
+            const imageName = image.name + v4();
+            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${imageName}`);
+
+            const uploadTask = uploadBytesResumable(storageRef, image);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress = Math.round(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                    );
+                    setProgress(progress)
+                },
+                error => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(storageRef)
+                        .then((url) => {
+                            setUrl(url);
+                            console.log(url);
+                        })
+                        .catch((error) => {
+                            setErrorMessage(error.message);
+                            console.log(error.message);
+                        })
+                }
+            );
+        };
+        uploadImg(img);
+    }, [img]);
+
+    //GET THE CURRENT USER-------------------------------------------------------------------------
+    useEffect(() => {
+        getUser(user?.id)
+            .then(res => {
+                if (res._id) {
+                    setUserProfile(res)
+                }
+                if (res.message) throw new Error(res.message);
+            })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
+            })
+    }, [img, setUserProfile, setErrorMessage]);
+
+    //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
+    useEffect(() => {
+        getOwn()
+            .then(res => {
+                if (res.length > 0) {
+                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
+                }
+                if (res.message) throw new Error(res.message);
+            }).catch(error => {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
+            });
+        return () => {
+            setErrorMessage('');
+        }
+    }, [notDeleted, setErrorMessage]);
+    //RESIZE THE IMAGE-------------------------------------------------------------------------
+    const resizeFile = (file) =>
+        new Promise((resolve) => {
+            Resizer.imageFileResizer(
+                file,
+                1240,
+                1240,
+                "JPEG",
+                100,
+                0,
+                (uri) => {
+                    resolve(uri);
+                },
+                "file"
+            );
+        });
+
+    //submit the url to the back-end, setThe img to null, set the updateState(so the chose file buttons appears and set progress bar to 0)------------
+    const editHandler = () => {
+        if (url) {
+            console.log(url);
+            editUserImage(url, user?.id)
+                .then(res => {
+                    console.log(res);
+                    setImg(null);
+                    setToUpdate(false);
+                    setProgress(0);
+                    if (res.message) throw new Error(res.message);
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    setErrorMessage({ error: error.message });
+                })
+        }
+    }
+
     return (
         <>
-            <title>Profile - Martin Bogdanov {/* should be profile name of the user */}</title>
+            <title>Profile</title>
 
             <div className="profile">
-                <h1 className="already-reg">Martin Bogdanov</h1>
+
                 <div>
-                    <a className="meal-image-link" style={{ "display": "inline-block", "lineHeight": 1 }} href=" https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" target={"_blank"} rel="noreferrer">
-                        <img className="meal-image-link" src="https://avatars.githubusercontent.com/u/85784810?s=400&u=575287644400378b5bfb641dd8484aa03d2fe063&v=4" id="profile-photo" alt="#" /></a>
-                    <div>
-                        <div className="contents-after-sidebar"><h2>My posts</h2>
-                            <div className="sidebar-item"><span dir="ltr"><a href="http://mbcookinglife.blogspot.com/" target={"_blank"} rel="noreferrer">Martin's cooking life</a></span></div>
-                            <div className="section-divider"></div>
+                    <img className="meal-image-link" src={userProfile?.image} id="profile-photo" alt="../../../public/images/dummy-profile-pic.png" />
 
-                            <article>
-                                <h1 className="recipe-diff-count" style={{ "color": "white" }}><strong>General information:</strong></h1>
+                    <button className="already-reg" onClick={() => img ? editHandler() : setToUpdate(state => !state)}>{progress < 100 ? 'избери снимка' : 'качи снимка'}</button>
 
-                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Пол:</strong>
-                                    <span style={{ "color": "white" }}>
-                                        Male
-                                    </span>
-                                </p>
+                    {
+                        toUpdate
+                            ?
+                            <>
+                                <input type="file" id="picture" name="смени снимка" onChange={(e) => [e.target.files[0], setImg(e.target.files[0])]}
+                                    accept="image/x-png,image/gif, image/jpeg, image/jpg" />
+                                <progress value={progress} max="100" defaultValue={<p style={progress === 100 && img ? { "display": "none" } : { "display": "block" }}>
+                                    {progress}{progress === 100 ? "% DONE!" : "%"}
+                                </p>}
+                                />
+                            </>
+                            :
+                            ""
+                    }
+                    < div >
 
-                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Хобита:</strong>
-                                    <span style={{ "color": "white" }}>
-                                        Cooking, Sports, Movies, PC Games, Music
-                                    </span>
-                                </p>
+                        <article>
+                            <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>email:</strong>
+                                <span style={{ "color": "white" }}>
+                                    {userProfile?.email}
+                                </span>
+                            </p>
 
-                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Длъжност/Работа:</strong>
-                                    <span style={{ "color": "white" }}>
-                                        Главен готвач
-                                    </span>
-                                </p>
-
-                                <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Относно:</strong>
-                                    <span style={{ "color": "white" }}>
-                                        Здравейте, аз съм Мартин и съм човек!
-                                    </span>
-                                </p>
-
-                            </article>
-                        </div>
+                            <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>публикации:</strong></p>
+                            <div className="profile-publications-container">
+                                {
+                                    notDeleted.length > 0
+                                        ?
+                                        notDeleted.map(meal =>
+                                            <MealContainer key={meal._id} {...meal}
+                                                timesLiked={meal.likes} user={user}
+                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                        :
+                                        <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>
+                                }
+                            </div>
+                        </article>
                     </div>
                 </div>
-                <Link className="maia-button maia-button-primary" to="/auth/edit-profile">Edit Profile</Link>
-            </div >
+            </div>
         </>
     )
 }
