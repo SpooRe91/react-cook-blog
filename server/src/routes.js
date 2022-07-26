@@ -5,13 +5,13 @@ const homePageController = require('./controllers/homePageController');
 const searchController = require('./controllers/searchController');
 const createController = require('./controllers/createController');
 const authController = require('./controllers/authController');
-const readmeController = require('./controllers/readmeController');
+// const readmeController = require('./controllers/readmeController');
 
 router.use((req, res, next) => {
     console.log(`METHOD: ${req.method} >> PATH: ${req.path}`);
     next();
 })
-router.use(homePageController, readmeController);
+router.use(homePageController);
 router.use('/auth', authController);
 router.use('/recipe', searchController, createController);
 router.get('*', (req, res) => {
