@@ -1,6 +1,6 @@
-export const setSession = ({ email, id }) => {
+export const setSession = ({ email, id, image }) => {
 
-    const user = { email, id, };
+    const user = { email, id, image };
     sessionStorage.setItem("User", JSON.stringify(user));
     localStorage.setItem("User", JSON.stringify(user));
 }
