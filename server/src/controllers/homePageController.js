@@ -4,10 +4,9 @@ const { preloadMeal, isMealOwner } = require('../middlewares/mealMiddleware');
 const { getErrorMessage } = require('../utils/errorHelpers');
 const { isAuth } = require('../middlewares/authMiddleware');
 
-
 router.get('/', async (req, res) => {
 
-    res.status(200).json(`Welcome to the "Cook-Blog" API, please visit: http://localhost:3030/readme , to download the API documentation! `);
+    res.status(200).json(`Welcome to the "Cook-Blog" API, please visit: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md , to download the API documentation! `);
 })
 
 //----------------------------GET DETAILS------------------------------------//
@@ -52,29 +51,34 @@ router.put('/edit/:id',
         }
     });
 
-//----------------------------POST CREATE profile------------------------------------//
-router.post('/profile-create', isAuth, async (req, res) => {
-
-    const person = { ...req.body };
+//----------------------------PUT EDIT profile------------------------------------//
+router.get('/user-get/:id', isAuth, async (req, res) => {
 
     try {
-        const created = await createRecipe.createProfile(person);
-        res.status(202).json(created);
+
+        const user = await foodService.getUser(req.params.id);
+
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            throw new Error("Няма такъв потребител!")
+        }
 
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
         res.status(400).json({ message: getErrorMessage(error) });
     }
+
+
 });
 
-//----------------------------PUT EDIT profile------------------------------------//
-router.put('/profile-edit/:id', isAuth, async (req, res) => {
+router.put('/user-edit/:id', isAuth, async (req, res) => {
 
-    const person = { ...req.body };
+    const image = { ...req.body }
 
     try {
-        const created = await createRecipe.createProfile(person, req.params.id);
-        res.status(202).json(created);
+        const edited = await foodService.editUserImage(image.image, req.params.id);
+        res.status(202).json(edited);
 
     } catch (error) {
         console.error(error);
