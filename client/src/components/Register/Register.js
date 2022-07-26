@@ -15,7 +15,8 @@ export const Register = ({ setUser, setIsLoading }) => {
     const [value, setValues] = useState({
         email: '',
         password: '',
-        rePassword: ''
+        rePassword: '',
+        image: "",
     });
 
     //--------EVENT HANDLER FOR THE CHANGE IN INPUT FIELDS AND REMOVING THE ERROR STATE------
@@ -39,7 +40,6 @@ export const Register = ({ setUser, setIsLoading }) => {
                     setUser(previous => getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
-
                 } else {
                     console.log(res.message);
                     setErrorMessage({ error: res.message });
