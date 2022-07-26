@@ -23,7 +23,6 @@ import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 import { EditRecipe } from "./components/Edit/EditRecipe";
 import { LoggedUserContext } from "./contexts/LoggedUserContext";
 import { ErrorContext } from "./contexts/ErrorMessageContext";
-import { EditProfile } from "./components/Profile/EditProfile";
 
 function App() {
 
@@ -91,8 +90,7 @@ function App() {
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/profile" element={<Profile />} />
-              <Route path="/auth/edit-profile" element={<EditProfile />} />
+              <Route path="/auth/profile" element={<Profile setUser={setUser} />} />
 
               <Route path="/recipe/macros" element={
                 <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
