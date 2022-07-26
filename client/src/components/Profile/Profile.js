@@ -54,7 +54,6 @@ export const Profile = () => {
                     getDownloadURL(storageRef)
                         .then((url) => {
                             setUrl(url);
-                            console.log(url);
                         })
                         .catch((error) => {
                             setErrorMessage(error.message);
@@ -117,10 +116,8 @@ export const Profile = () => {
     //submit the url to the back-end, setThe img to null, set the updateState(so the chose file buttons appears and set progress bar to 0)------------
     const editHandler = () => {
         if (url) {
-            console.log(url);
             editUserImage(url, user?.id)
                 .then(res => {
-                    console.log(res);
                     setImg(null);
                     setToUpdate(false);
                     setProgress(0);
@@ -147,14 +144,14 @@ export const Profile = () => {
                     {
                         toUpdate
                             ?
-                            <>
+                            <div style={{ "display": "block" }}>
                                 <input type="file" id="picture" name="смени снимка" onChange={(e) => [e.target.files[0], setImg(e.target.files[0])]}
                                     accept="image/x-png,image/gif, image/jpeg, image/jpg" />
-                                <progress value={progress} max="100" defaultValue={<p style={progress === 100 && img ? { "display": "none" } : { "display": "block" }}>
-                                    {progress}{progress === 100 ? "% DONE!" : "%"}
-                                </p>}
-                                />
-                            </>
+
+                                <progress value={progress} max="100" style={progress === 100 ? { "display": "none" } : { "display": "block" }} />
+                                <p style={progress === 100 ? { "display": "none" } : { "display": "block" }}> {progress}{progress === 100 ? "% DONE!" : "%"}
+                                </p>
+                            </div>
                             :
                             ""
                     }
