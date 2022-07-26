@@ -5,7 +5,7 @@ IF YOU DOWNLOAD THE WHOLE PROJECT.
 BEFORE YOU DO ANYTHING FURTHER:
 
 You need the following commands to statrt the server and to start React project:
-
+---------------
 SERVER: In the main "server" folder run the commands:
 "npm install"
 
@@ -18,11 +18,13 @@ to start the server. if it is started successfully you should see the
 "Cook-blog API" documentation is available at http://localhost:3030/readme
 "
 ---------------
+<br/>
 for the React project, you will need to open the "client" folder in a separate terminal and type in:
 "npm i"
 after that:
 "npm start"
 ---------------
+<br/>
 **A food recipe Rest API build with Express.js**
 <br/>
 ![cover](https://user-images.githubusercontent.com/85784810/174287568-5c1a4d6b-6f1c-43f6-b881-31a0e52fafbc.JPG)
