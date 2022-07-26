@@ -27,10 +27,15 @@ const userSchema = new mongoose.Schema({
             message: 'Password must be without non-english characters!',
         },
     },
+    image: {
+        type: String,
+        default: "",
+    },
     favorites: {
         type: [mongoose.Types.ObjectId],
         ref: "Meal"
-    }
+    },
+
 });
 
 const User = mongoose.model('User', userSchema);
