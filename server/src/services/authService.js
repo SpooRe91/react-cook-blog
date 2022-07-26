@@ -7,7 +7,7 @@ const { secret } = require('../config/env');
 const { getErrorMessage } = require('../utils/errorHelpers');
 
 /*----------------------register--------------------------*/
-exports.register = async ({ email, password }) => {
+exports.register = async ({ email, password, image }) => {
     try {
         const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
 
@@ -20,6 +20,7 @@ exports.register = async ({ email, password }) => {
         let createdUser = await User.create({
             email,
             password: hashedPassword,
+            image,
         });
 
         return createdUser;
