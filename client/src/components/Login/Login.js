@@ -29,7 +29,6 @@ export const Login = ({ setUser, setIsLoading }) => {
 
         userLogin(value)
             .then(res => {
-                console.log(res);
                 if (res.id) {
                     setSession({ ...res });
                     setUser(previous => getSession());
