@@ -37,7 +37,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
         <>
             <title>Изход</title>
             {
-                !user &&
+                !user.token &&
                 <div className="error-container">
                     <p className="error-message">
                         {"Тази операция не може да се изпълни, ако не сте влезли!"}
