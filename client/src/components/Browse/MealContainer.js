@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { FaHeart } from 'react-icons/fa'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { addLike } from "../../services/mealService";
+
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
 export const MealContainer = ({
     _id, name,
     image, owner,
-    timesLiked, user,
-    setErrorMessage, errorMessage }) => {
+    timesLiked }) => {
+    const { user, setUser } = useContext(LoggedUserContext);
+    const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const [isLiked, setIsLiked] = useState(false);
@@ -67,7 +71,7 @@ export const MealContainer = ({
                     <img className="meal" src={image} alt="" /></Link>
                 <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
                 {
-                    user !== null && user?.id !== owner
+                    user?.token && user?.id !== owner
                         ?//if we have a logged user and is not the owner
                         numberOfLikes !== 0
                             ?//if there are likes

@@ -96,7 +96,9 @@ export const Profile = () => {
             setErrorMessage('');
         }
     }, [notDeleted, setErrorMessage]);
+    
     //RESIZE THE IMAGE-------------------------------------------------------------------------
+
     const resizeFile = (file) =>
         new Promise((resolve) => {
             Resizer.imageFileResizer(
@@ -137,7 +139,7 @@ export const Profile = () => {
             <div className="profile">
 
                 <div>
-                    <img className="meal-image-link" src={userProfile?.image} id="profile-photo" alt="../../../public/images/dummy-profile-pic.png" />
+                    <img className="meal-image-link" src={userProfile?.image} id="profile-photo" alt="" />
 
                     <button className="already-reg" onClick={() => img ? editHandler() : setToUpdate(state => !state)}
                         style={progress < 100 ? { "color": "red" } : { "color": "green" }}>

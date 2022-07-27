@@ -75,7 +75,8 @@ export const Register = ({ setIsLoading }) => {
                 }
                 <>
                     {
-                        user ?
+                        user?.token
+                            ?
                             <div className="error-container">
                                 <p className="error-message">
                                     {"Вече сте влезли!"}

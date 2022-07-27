@@ -25,7 +25,8 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
             const userInfo = {
                 id: created._id,
                 email: created.email,
-                image: created.image
+                image: created.image,
+                token,
             }
 
             res.cookie(SESSION_NAME, token, { httpOnly: true });//automatic login after registration
@@ -55,7 +56,8 @@ router.post('/login', isGuest, async (req, res, next) => {
         const userInfo = {
             id: user._id,
             email: user.email,
-            image: user.image
+            image: user.image,
+            token,
         }
 
         res.cookie(SESSION_NAME, token, { httpOnly: true });

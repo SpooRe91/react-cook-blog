@@ -30,7 +30,7 @@ export const Login = ({ setIsLoading }) => {
 
         userLogin(value)
             .then(res => {
-                if (res.id) {
+                if (res.token) {
                     setSession({ ...res });
                     setUser(previous => getSession());
                     navigate('/recipe/browse', { replace: true });
@@ -42,7 +42,6 @@ export const Login = ({ setIsLoading }) => {
                 return setErrorMessage({ error: error.message })
             })
     };
-    console.log(errorMessage);
 
     useEffect(() => {
         return () => {

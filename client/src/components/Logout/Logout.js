@@ -15,16 +15,20 @@ export const Logout = ({ setIsOpen, cookies }) => {
     let navigate = useNavigate();
 
     const handleLogout = async () => {
-        try {
-            await userLogout();
-            logoutSession();
-            cookies.remove('user-session', user, { path: "/", maxAge: 48000 });
-            navigate('/auth/login', { replace: true });
-            setIsOpen(false);
-        } catch (error) {
-            console.log(error.message);
-            setErrorMessage({ error: error.message });
-            navigate('/404');
+        if (user?.token) {
+            try {
+                await userLogout();
+                logoutSession();
+                cookies.remove('user-session', user, { path: "/", maxAge: 48000 });
+                navigate('/auth/login', { replace: true });
+                setIsOpen(false);
+            } catch (error) {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
+                navigate('/404');
+            }
+        } else {
+            throw new Error("Първо трябва да влезете!") && setErrorMessage({ error: "Първо трябва да влезете!" });
         }
     }
 

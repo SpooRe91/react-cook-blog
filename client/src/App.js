@@ -38,12 +38,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
+    if (user?.token) {
       cookies.set('user-session', user, { path: "/", maxAge: 48000 });
       setClientCookie(cookies.get('user-session'));
     }
   }, [user, setClientCookie])
-
 
   return (
     <ErrorContext.Provider value={{ errorMessage, setErrorMessage }}>
