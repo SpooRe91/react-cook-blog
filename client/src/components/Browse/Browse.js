@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
+
     const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
@@ -66,21 +67,30 @@ export const Browse = ({ isLoading, setIsLoading }) => {
             <div className="search-container">
                 <title>Търсене на рецепти</title>
 
-                {errorMessage !== "" &&
-                    <div className="error-container">
-                        <p className="error-message">
-                            {errorMessage.error}
-                            <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
-                                OK
-                            </button>
-                        </p>
-                    </div>
+                {errorMessage !== ""
+                    ?
+                    !notDeleted?.length > 0
+                        ?
+                        ""
+                        :
+                        <>
+                            <div className="error-container">
+                                <p className="error-message">
+                                    {errorMessage.error}
+                                    <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                        OK
+                                    </button>
+                                </p>
+                            </div>
+                        </>
+                    :
+                    ""
                 }
                 <div>
                     <h1 className="already-reg">Търсене на рецепти</h1>
                     <form className="search" method="GET">
                         {<input type="text" className="recipe-browse" placeholder="Търси..." name="search"
-                            value={filterValue} onChange={filterHandler} />}
+                            defaultValue={filterValue} onChange={filterHandler} />}
                     </form>
                 </div>
                 {
@@ -117,8 +127,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                     filtered.length > 0
                                         ?
                                         filtered.map(meal =>
-                                            <MealContainer key={meal._id} {...meal}
-                                                user={user} timesLiked={meal.likes}
+                                            <MealContainer key={meal._id} {...meal} timesLiked={meal.likes}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)
                                         :
@@ -127,8 +136,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
                                         ?
                                         recipesToShow.map(meal =>
-                                            <MealContainer key={meal._id} {...meal}
-                                                user={user} timesLiked={meal.likes}
+                                            <MealContainer key={meal._id} {...meal} timesLiked={meal.likes}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)
                                         :
