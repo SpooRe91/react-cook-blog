@@ -9,7 +9,7 @@ router.get('/browse', async (req, res) => {
         let allMeals = await foodService.getAll(req.query.search);
 
         if (allMeals.length <= 0) {
-            throw new Error("Unable to fetch any recipes or there aren't any!");
+            throw new Error("Не можахме да намерим рецепти или сървърът не отговаря!");
         }
 
         res.json(allMeals);
@@ -24,8 +24,8 @@ router.get('/myRecipes', isAuth, async (req, res) => {
     try {
         let allMeals = await foodService.getOwn(req.user._id);
 
-        if (allMeals.length <= 0) {
-            throw new Error("Unable to fetch any recipes or there aren't any!");
+        if (!allMeals.length > 0) {
+            throw new Error("Няма намерени рецепти!");
         }
         res.json(allMeals);
 
@@ -40,7 +40,7 @@ router.get('/macros', async (req, res) => {
         let allMeals = await foodService.getNutritions();
 
         if (allMeals.length <= 0) {
-            throw new Error("The resource cold not be found!");
+            throw new Error("Ресурсите не могат да бъдат намерени!");
         };
         res.json(allMeals);
     } catch (error) {

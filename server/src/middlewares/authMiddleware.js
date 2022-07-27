@@ -25,7 +25,7 @@ exports.isAuth = (req, res, next) => {
     if (req.user) {
         next();
     } else {
-        res.status(401).json({ message: 'Please log in first!' });
+        res.status(401).json({ message: 'Моля, първо влезте!' });
     }
 };
 
@@ -34,6 +34,6 @@ exports.isGuest = (req, res, next) => {
     if (!req.user) {
         next();
     } else {
-        res.status(403).json({ message: 'You are already logged in!' });
+        res.status(403).json({ message: 'Вече сте влезли!' });
     };
 };

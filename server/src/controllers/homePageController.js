@@ -6,7 +6,8 @@ const { isAuth } = require('../middlewares/authMiddleware');
 
 router.get('/', async (req, res) => {
 
-    res.status(200).json(`Welcome to the "Cook-Blog" API, please visit: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md , to download the API documentation! `);
+    res.status(200).json(`Добре дошли в "Cook-Blog" API, моля посетете този линк, за README файл
+    : https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md , to download the API documentation! `);
 })
 
 //----------------------------GET DETAILS------------------------------------//
@@ -25,13 +26,13 @@ router.get('/like/:id', preloadMeal, async (req, res) => {
     if (!meal.likes.find(x => x === req.user._id)) {
         try {
             await foodService.addLike(meal._id, req.user._id);
-            res.status(202).json({ messag: "Added a like!" }).end();
+            res.status(202).json({ messag: "Добавено харесване!" }).end();
         } catch (error) {
             console.error(error);
             res.status(400).json({ message: getErrorMessage(error) });
         }
     } else {
-        res.status(400).json({ message: "You have already liked this!" });
+        res.status(400).json({ message: "Вече сте харесали това!" });
     }
 });
 
@@ -98,11 +99,11 @@ router.delete('/delete/:id',
             const result = await foodService.delete(req.params.id);
 
             if (!result.acknowledged && result.modifiedCount === 0) {
-                throw new Error(`Item ${meal._id} not found!`);
+                throw new Error(`Елемент с ID: ${meal._id} не е намерен!`);
             }
 
             if (meal.isDeleted) {
-                throw new Error(`This item is already deleted!`)
+                throw new Error(`Този елемент вече е изтрит!`)
             }
 
             res.status(202).end();

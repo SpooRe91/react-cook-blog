@@ -6,25 +6,25 @@ const PASS_PATTERN = /[a-zA-Z0-9]/;
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        minlength: [10, 'Email must be more than 10 characters long'],
-        required: [true, "Email is required"],
+        minlength: [10, 'Email-a трябва да е по-дълъг от 10 символа!'],
+        required: [true, "Email е задължителен!"],
         unique: true,
         validate: {
             validator(value) {
                 return EMAIL_PATTERN.test(value);
             },
-            message: 'Email must be in a valid format and may contain only English letters!'
+            message: 'Email-ът трябва да е валиден и да не съдържа специални символи и знаци!'
         },
     },
     password: {
         type: String,
-        required: [true, "Password is required"],
-        minlength: [5, 'Your password should be at least 5 characters'],
+        required: [true, "Паролата е задължитена!"],
+        minlength: [5, 'Паролата ви трябва да е по-дълга от 5 символа!'],
         validate: {
             validator(value) {
                 return PASS_PATTERN.test(value);
             },
-            message: 'Password must be without non-english characters!',
+            message: 'Паролата може да съдържа само букви на Аглийски език, както и цифри!',
         },
     },
     image: {
