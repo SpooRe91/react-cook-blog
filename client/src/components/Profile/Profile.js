@@ -95,8 +95,8 @@ export const Profile = () => {
         return () => {
             setErrorMessage('');
         }
-    }, [notDeleted, setErrorMessage]);
-    
+    }, [setErrorMessage]);
+
     //RESIZE THE IMAGE-------------------------------------------------------------------------
 
     const resizeFile = (file) =>
