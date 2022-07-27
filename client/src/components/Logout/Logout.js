@@ -19,7 +19,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
             try {
                 await userLogout();
                 logoutSession();
-                cookies.remove('user-session', user, { path: "/", maxAge: 48000 });
+                cookies.remove('user-session', { path: "/", maxAge: 48000 });
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
@@ -37,7 +37,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
         <>
             <title>Изход</title>
             {
-                !user.token &&
+                !user?.token &&
                 <div className="error-container">
                     <p className="error-message">
                         {"Тази операция не може да се изпълни, ако не сте влезли!"}
