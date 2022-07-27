@@ -6,9 +6,9 @@ import { userRegister } from "../../services/userService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
-export const Register = ({ setUser, setIsLoading }) => {
+export const Register = ({ setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    const user = useContext(LoggedUserContext);
+    const { user, setUser } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
 

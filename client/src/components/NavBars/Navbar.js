@@ -9,9 +9,9 @@ import styles from "./NavBar.module.css"
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 
-export const NavBar = ({ setUser, setIsOpen, clientCookie }) => {
+export const NavBar = ({ setIsOpen, clientCookie }) => {
 
-    const user = useContext(LoggedUserContext);
+    const { user, setUser } = useContext(LoggedUserContext);
     const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "", []);
 
     return (

@@ -9,7 +9,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from "../common/ScrollButton";
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
 
-    const user = useContext(LoggedUserContext);
+    const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [filterValue, setFilterValue] = useState("");

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
-    const user = useContext(LoggedUserContext);
+    const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [notDeleted, setnotDeleted] = useState([]);

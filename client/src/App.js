@@ -47,26 +47,23 @@ function App() {
 
   return (
     <ErrorContext.Provider value={{ errorMessage, setErrorMessage }}>
-      <LoggedUserContext.Provider value={user}>
+      <LoggedUserContext.Provider value={{ user, setUser }}>
         < div className="App" >
           <Header />
           {/* ----------------------------------------------------------------------------------------------- */}
           <main className="App">
-            <NavBar setUser={setUser} setIsOpen={setIsOpen}
-              clientCookie={clientCookie}
-            />
+            <NavBar setIsOpen={setIsOpen} clientCookie={clientCookie} />
 
             {isOpen && isOpen.target === "logout" &&
-              <Logout setIsOpen={setIsOpen} setUser={setUser}
-                cookies={cookies} user={user} />}
+              <Logout setIsOpen={setIsOpen} cookies={cookies} />}
             {/* ----------------------------------------------------------------------------------------------- */}
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/auth/login" element={
-                <Login setUser={setUser} setIsLoading={setIsLoading} />
+                <Login setIsLoading={setIsLoading} />
               } />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/register" element={<Register setUser={setUser} setIsLoading={setIsLoading} />}
+              <Route path="/auth/register" element={<Register setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="/404" element={<ErrorPage />}
@@ -90,7 +87,7 @@ function App() {
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/profile" element={<Profile setUser={setUser} />} />
+              <Route path="/auth/profile" element={<Profile />} />
 
               <Route path="/recipe/macros" element={
                 <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}

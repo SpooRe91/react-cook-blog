@@ -2,10 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
-import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { useContext } from "react";
 
-export const Logout = ({ setIsOpen, setUser, cookies, user }) => {
+import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+
+export const Logout = ({ setIsOpen, cookies }) => {
+
+    const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();

@@ -19,7 +19,7 @@ import { MealContainer } from "../MyRecipes/MealContainer";
 
 export const Profile = () => {
 
-    const user = useContext(LoggedUserContext);
+    const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
 

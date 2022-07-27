@@ -13,7 +13,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Details = ({ isLoading, setIsLoading }) => {
 
     const navigate = useNavigate();
-    const user = useContext(LoggedUserContext);
+    const { user, setuser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});

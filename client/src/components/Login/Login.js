@@ -6,9 +6,10 @@ import { userLogin } from "../../services/userService";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
-export const Login = ({ setUser, setIsLoading }) => {
+export const Login = ({ setIsLoading }) => {
 
-    const user = useContext(LoggedUserContext);
+
+    const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
 
