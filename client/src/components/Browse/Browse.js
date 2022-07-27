@@ -89,7 +89,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             ако няма резултат, нищо няма да се изобрази.
                         </p>
                         <input type="button" className="show-more-less"
-                            defaultValue={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
+                            value={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
                         />
                         <h1 className="already-reg">
                             {
