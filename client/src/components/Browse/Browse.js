@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
+import { BeatLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "../common/ScrollButton";
 
 import { getAll } from "../../services/mealService";
-import { BeatLoader } from "react-spinners";
+
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-import { useNavigate } from "react-router-dom";
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
