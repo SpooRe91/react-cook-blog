@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
 import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
 import styles from "./Logout.module.css"
-import { useContext } from "react";
 
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
