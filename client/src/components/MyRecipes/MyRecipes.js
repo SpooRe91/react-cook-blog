@@ -1,13 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 
 import { getOwn } from "../../services/mealService";
+
+import { ScrollButton } from "../common/ScrollButton";
 import { MealContainer } from "./MealContainer"
+
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-import { ScrollButton } from "../common/ScrollButton";
+
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
+    const navigate = useNavigate();
 
     const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
@@ -42,13 +46,24 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     return (
         <>
             <title>Моите рецепти</title>
-            {errorMessage !== "" &&
-                <div className="error-container">
-                    <p className="error-message">
-                        {errorMessage.error}
-                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
-                    </p>
-                </div>
+            {errorMessage !== ""
+                ?
+                !notDeleted?.length > 0
+                    ?
+                    ""
+                    :
+                    <>
+                        <div className="error-container">
+                            <p className="error-message">
+                                {errorMessage.error}
+                                <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                    OK
+                                </button>
+                            </p>
+                        </div>
+                    </>
+                :
+                ""
             }
             <div className="search-container">
                 <div>
