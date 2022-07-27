@@ -21,7 +21,7 @@ export const NavBar = ({ setIsOpen, clientCookie }) => {
                     <Link to="/"><img className="nav-logo" src={logo} alt="#" /></Link>
                 </li>
             </ul>
-            {user?.token && clientCookie !== undefined
+            {user?.token && clientCookie !== null
                 ? <UserNavBar {...user} setUser={setUser} setIsOpen={setIsOpen} focusHandler={focusHandler} />
                 : <GuestNavBar focusHandler={focusHandler} />
             }
