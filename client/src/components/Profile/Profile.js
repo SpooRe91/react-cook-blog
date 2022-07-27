@@ -36,7 +36,7 @@ export const Profile = () => {
             if (!img) return;
             const image = await resizeFile(img);
             const imageName = image.name + v4();
-            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${imageName}`);
+            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${user?.email}/${imageName}`);
 
             const uploadTask = uploadBytesResumable(storageRef, image);
             uploadTask.on(
