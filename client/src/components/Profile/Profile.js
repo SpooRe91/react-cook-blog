@@ -63,7 +63,7 @@ export const Profile = () => {
             );
         };
         uploadImg(img);
-    }, [img]);
+    }, [img, setErrorMessage]);
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
@@ -139,7 +139,9 @@ export const Profile = () => {
                 <div>
                     <img className="meal-image-link" src={userProfile?.image} id="profile-photo" alt="../../../public/images/dummy-profile-pic.png" />
 
-                    <button className="already-reg" onClick={() => img ? editHandler() : setToUpdate(state => !state)}>{progress < 100 ? 'избери снимка' : 'качи снимка'}</button>
+                    <button className="already-reg" onClick={() => img ? editHandler() : setToUpdate(state => !state)}
+                        style={progress < 100 ? { "color": "red" } : { "color": "green" }}>
+                        {progress < 100 ? 'ИЗБЕРИ СНИМКА' : 'КАЧИ СНИМКА'}</button>
 
                     {
                         toUpdate
