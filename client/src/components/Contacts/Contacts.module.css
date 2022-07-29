@@ -1,4 +1,4 @@
-.darkBG {
+.dark-bg {
     background-color: rgba(0, 0, 0, 50%);
     width: 100vw;
     height: 100vh;
@@ -18,4 +18,113 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.already-reg {
+    transition: .1s;
+    margin: auto;
+    display: flex;
+    width: 80%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.already-reg h1 {
+    width: fit-content;
+    display: flex;
+    border: ridge rgb(211 198 181);
+    font-weight: bold;
+    background: none;
+    color: white;
+    margin: auto;
+    padding: 14px 16px;
+    border-radius: 20px;
+    text-align: center;
+    text-transform: inherit;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.already-reg a {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    transition: .1s;
+    color: #DECBA4;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-more-less {
+    transition: .1s;
+    text-decoration: none;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    border: ridge 1px white;
+    border-radius: 10px;
+    background-image: linear-gradient(180deg, #000000d1, #3e5151);
+    font-size: 26px;
+}
+
+.show-more-less:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0s;
+    background-image: linear-gradient(360deg, #000000d1, #3e5151);
+}
+
+h4 {
+    border-radius: 50%;
+    /* text-shadow: -3px 1px 3px rgb(240 203 123); */
+    font-size: 25px;
+    text-align: center;
+}
+
+
+h3 a {
+    color: #DECBA4;
+    font-size: 20px;
+    text-align: center;
+    /* text-shadow: -3px 1px 3px rgb(0, 0, 0); */
+}
+
+.already-reg a {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    transition: .1s;
+    color: #DECBA4;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+div.already-reg a:hover {
+
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+    text-decoration: underline;
 }
