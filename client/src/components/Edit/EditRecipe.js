@@ -1,5 +1,8 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+
+import styles from "./EditRecipe.module.css";
+
 import { getOne, editMeal } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 
@@ -27,6 +30,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 } else {
                     throw new Error('No recipe found!')
                 }
+                if (res.message) throw new Error(res.message);
             })
             .catch(error => {
                 console.log(error.message);
@@ -68,34 +72,36 @@ export const EditRecipe = ({ setIsLoading }) => {
         <div>
             <title>Промени рецепта {meal.name}</title>
             {errorMessage !== "" &&
-                <div className="error-container">
-                    <p className="error-message">
+                <div className={styles["error-container"]}>
+                    <p className={styles["error-message"]}>
                         {errorMessage.error}
-                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
+                            OK
+                        </button>
                     </p>
                 </div>
             }
-            <h1 className="already-reg">Промени рецепта</h1>
+            <h1 className={styles["already-reg"]}>Промени рецепта</h1>
 
-            <form className="add-form" method="POST" onSubmit={editHandler}>
-                <div className="already-reg">
+            <form className={styles["add-form"]} method="POST" onSubmit={editHandler}>
+                <div className={styles["already-reg"]}>
                     <label htmlFor="name">Име</label>
                     <input type="text" name="name" value={values.name} onChange={changeHandler} required />
                 </div>
-                <div className="already-reg">
+                <div className={styles["already-reg"]}>
                     <label htmlFor="image">Снимка</label>
                     <input type="text" name="image" value={values.image} onChange={changeHandler} required />
                 </div>
-                <div className="already-reg">
+                <div className={styles["already-reg"]}>
                     <label htmlFor="fullRecipe">Пълна рецепта</label>
-                    <textarea className="add-recipe-text" type="text" name="fullRecipe" onChange={changeHandler} value={values.fullRecipe} required />
+                    <textarea className={styles["add-recipe-text"]} type="text" name="fullRecipe" onChange={changeHandler} value={values.fullRecipe} required />
                 </div >
-                <div className="already-reg">
+                <div className={styles["already-reg"]}>
                     <label htmlFor="ingredients">Необходими продукти</label>
-                    <textarea className="add-recipe-text" type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
+                    <textarea className={styles["add-recipe-text"]} type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
-                <input type="submit" value="Промени" className="add-form-submit" />
-                <Link to={`/details/${mealId}`} className="btn">назад</Link>
+                <input type="submit" value="Промени" className={styles["add-form-submit"]} />
+                <Link to={`/details/${mealId}`} className={styles["btn"]}>назад</Link>
             </form >
 
         </div >

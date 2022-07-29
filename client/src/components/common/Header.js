@@ -1,6 +1,7 @@
+import styles from "./Common.module.css"
 export const Header = () => {
     return (
-        <header className="header">
+        <header className={styles["header"]}>
         </header>
     );
 }

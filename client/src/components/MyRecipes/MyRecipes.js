@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import styles from "./MyRecipes.module.css";
 
 import { getOwn } from "../../services/mealService";
 
@@ -53,10 +54,10 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                     ""
                     :
                     <>
-                        <div className="error-container">
-                            <p className="error-message">
+                        <div className={styles["error-container"]}>
+                            <p className={styles["error-message"]}>
                                 {errorMessage.error}
-                                <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                     OK
                                 </button>
                             </p>
@@ -65,22 +66,22 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                 :
                 ""
             }
-            <div className="search-container">
+            <div className={styles["search-container"]}>
                 <div>
-                    <h1 className="already-reg">Моите рецепти</h1>
-                    <form className="search" method="GET">
-                        <input type="text" className="recipe-browse" placeholder="Търси..." name="search"
+                    <h1 className={styles["already-reg"]}>Моите рецепти</h1>
+                    <form className={styles["search"]} method="GET">
+                        <input type="text" className={styles["recipe-browse"]} placeholder="Търси..." name="search"
                             value={filterValue} onChange={filterHandler} />
                     </form>
                 </div>
                 {
-                    < div className="meal-containter">
+                    < div className={styles["meal-containter"]}>
                         {
                             isLoading
                                 ?
-                                <div className="already-reg">
+                                <div className={styles["already-reg"]}>
                                     <BeatLoader loading={isLoading} />
-                                    <p>Вашите рецепти се зареждат... <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
+                                    <p>Вашите рецепти се зареждат... <Link to="/recipe/add" className={styles["already-reg"]}>ТУК</Link></p>
                                 </div>
                                 :
                                 filterValue
@@ -98,8 +99,8 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
-                                        <div className="already-reg">
-                                            <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className="already-reg">ТУК</Link></p>
+                                        <div className={styles["already-reg"]}>
+                                            <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className={styles["already-reg"]}>ТУК</Link></p>
                                         </div>
                         }
                     </div>

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { FaHeart } from 'react-icons/fa'
 import { useEffect, useState } from "react";
 
+import styles from "./MyRecipes.module.css";
+
 export const MealContainer = ({
     _id,
     name,
@@ -20,8 +22,8 @@ export const MealContainer = ({
     }, [setNumberOfLikes, setIsLiked]);
 
     const likeHeartWithCount = (
-        <span className="number-of-likes">
-            <FaHeart className="number-of-likes" style={isLiked
+        <span className={styles["number-of-likes"]}>
+            <FaHeart className={styles["number-of-likes"]} style={isLiked
                 ? { 'color': "red" }
                 : { 'color': "white" }}
             />{numberOfLikes}
@@ -29,24 +31,24 @@ export const MealContainer = ({
 
     return (
         <>
-            <div className="meal" data={_id}>
+            <div className={styles['meal']} data={_id}>
                 <Link to={`/details/${_id}`} >
-                    <p className="name">{name}</p>
+                    <p className={styles["name"]}>{name}</p>
                 </Link>
-                <Link to={`/details/${_id}`} className="meal-image-link">
-                    <img className="meal" src={image} alt="" /></Link>
-                <Link className="btn" to={`/details/${_id}`}>Подробно</Link>
+                <Link to={`/details/${_id}`} className={styles['meal-image-link']}>
+                    <img className={styles['meal']} src={image} alt="" /></Link>
+                <Link className={styles.btn} to={`/details/${_id}`}>Подробно</Link>
                 {
                     numberOfLikes !== 0
                         ? //if we have likes on the current item
                         likeHeartWithCount
                         : <>
                             {/* //if there is no logged user */}
-                            <span className="meal">Няма харесвания</span>
+                            <span className={styles['meal']}>Няма харесвания</span>
                         </>
                 }
                 {errorMessage &&
-                    <p className="error-message"> {errorMessage.error}</p>
+                    <p className={styles["error-message"]}> {errorMessage.error}</p>
                 }
             </div >
         </>

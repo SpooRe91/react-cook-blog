@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { FaHeart } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa';
+import styles from "./Details.module.css";
 
 import { addLike, getOne } from "../../services/mealService";
 
@@ -68,8 +69,8 @@ export const Details = ({ isLoading, setIsLoading }) => {
 
 
     const likeHeartWithCount = (
-        <span className="number-of-likes">
-            <FaHeart className="number-of-likes" style={isLiked || user?.id === meal.owner
+        <span className={styles["number-of-likes"]}>
+            <FaHeart className={styles["number-of-likes"]} style={isLiked || user?.id === meal.owner
                 ? { 'color': "red" }
                 : { 'color': "white" }}
             />{numberOfLikes}
@@ -77,7 +78,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
 
 
     const likeButton = (
-        <button type="button" className="like-button"
+        <button type="button" className={styles["like-button"]}
             onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
         </button>)
 
@@ -91,16 +92,16 @@ export const Details = ({ isLoading, setIsLoading }) => {
             {
                 errorMessage !== ""
                     ?
-                    <div className="error-container">
-                        <p className="error-message">
+                    <div className={styles["error-container"]}>
+                        <p className={styles["error-message"]}>
                             {errorMessage.error}
-                            <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                            <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                         </p>
                     </div>
                     :
                     <>
                         <title>Детайли: {meal.name}</title>
-                        <div className="details">
+                        <div className={styles["details"]}>
                             {
                                 isLoading
                                     ?
@@ -109,16 +110,16 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                     </>
                                     :
                                     <>
-                                        <h1 className="meal-name">
+                                        <h1 className={styles["meal-name"]}>
                                             {meal.name}
                                         </h1>
-                                        <a href={meal.image} target={"_blank"} rel="noreferrer"><img className="meal-details" src={meal.image}
+                                        <a href={meal.image} target={"_blank"} rel="noreferrer"><img className={styles["meal-details"]} src={meal.image}
                                             alt="" />
                                         </a>
                                         <div>
                                             {user?.token && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
                                         </div>
-                                        <div className="like-container">
+                                        <div className={styles["like-container"]}>
                                             {
                                                 user !== null && user?.id !== meal.owner
                                                     ?//if we have a logged user and is not the owner
@@ -133,7 +134,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                                             </>
                                                         ://if there are no likes and the user can like it
                                                         <>
-                                                            <span className="meal">Няма харесвания</span>
+                                                            <span>Няма харесвания</span>
                                                             {likeButton}
                                                         </>
                                                     ://if there is no logged user
@@ -144,25 +145,25 @@ export const Details = ({ isLoading, setIsLoading }) => {
                             }
                             <article>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>порции: <strong
+                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
                                     style={{ "color": "wheat" }}>
                                     {meal.portions}
                                 </strong>
                                 </p>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>сложност: <strong
+                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
                                     style={{ "color": "wheat" }}>
                                     {meal.difficulty}
                                 </strong>
                                 </p>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>Създадено: <span
+                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
                                     style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
                                     {createdOn}
                                 </span>
                                 </p>
 
-                                <p className="recipe-diff-count" style={{ "color": "white" }}>Създадено от: <span
+                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
                                     style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
                                     {meal.ownerName}
                                 </span>
@@ -172,12 +173,12 @@ export const Details = ({ isLoading, setIsLoading }) => {
                             {<ScrollButton />}
                         </div>
 
-                        <article className="recipe-details">
+                        <article className={styles["recipe-details"]}>
                             <label htmlFor="ingredients">Необходими съставки:</label>
-                            <p className="recipe" name="ingredients"><span>{meal.ingredients}</span></p>
+                            <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
 
                             <label htmlFor="ingredients">Рецепта:</label>
-                            <p className="recipe" name="ingredients"><span>{meal.fullRecipe}</span></p>
+                            <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
                         </article>
                     </>
             }

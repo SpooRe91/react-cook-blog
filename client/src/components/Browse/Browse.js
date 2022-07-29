@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+import styles from "./Browse.module.css"
 
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "../common/ScrollButton";
@@ -66,7 +67,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
 
     return (
         <>
-            <div className="search-container">
+            <div className={styles["search-container"]}>
                 <title>Търсене на рецепти</title>
 
                 {errorMessage !== ""
@@ -76,10 +77,10 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                         ""
                         :
                         <>
-                            <div className="error-container">
-                                <p className="error-message">
+                            <div className={styles["error-container"]}>
+                                <p className={styles["error-message"]}>
                                     {errorMessage.error}
-                                    <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                         OK
                                     </button>
                                 </p>
@@ -89,37 +90,37 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                     ""
                 }
                 <div>
-                    <h1 className="already-reg">Търсене на рецепти</h1>
-                    <form className="search" method="GET">
-                        {<input type="text" className="recipe-browse" placeholder="Търси..." name="search"
+                    <h1 className={styles["already-reg"]}>Търсене на рецепти</h1>
+                    <form className={styles["search"]} method="GET">
+                        {<input type="text" className={styles["recipe-browse"]} placeholder="Търси..." name="search"
                             defaultValue={filterValue} onChange={filterHandler} />}
                     </form>
                 </div>
                 {
                     <>
-                        <p className="arrow">Резултатите от търсенето се отразяват на изобразяването на рецептите,
+                        <p className={styles["arrow"]}>Резултатите от търсенето се отразяват на изобразяването на рецептите,
                             ако няма резултат, нищо няма да се изобрази.
                         </p>
-                        <input type="button" className="show-more-less"
+                        <input type="button" className={styles["show-more-less"]}
                             value={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
                         />
-                        <h1 className="already-reg">
+                        <h1 className={styles["already-reg"]}>
                             {
                                 toLoad
                                     ?
-                                    <p className="arrow">&#11167; Всички рецепти (scroll-нете надолу) &#11167;</p>
+                                    <p className={styles["arrow"]}>&#11167; Всички рецепти (scroll-нете надолу) &#11167;</p>
                                     :
-                                    <p className="arrow">Най-скорокорошни рецепти</p>
+                                    <p className={styles["arrow"]}>Най-скорокорошни рецепти</p>
                             }
                         </h1>
                     </>
                 }
                 {
-                    < div className="meal-containter">
+                    < div className={styles["meal-containter"]}>
                         {
                             isLoading
                                 ?
-                                <div className="already-reg">
+                                <div className={styles["already-reg"]}>
                                     <BeatLoader loading={isLoading} />
                                     <p>Рецептите се зареждат...</p>
                                 </div>
@@ -133,7 +134,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)
                                         :
-                                        <p className="arrow">Няма намерени резултати</p>
+                                        <p className={styles["arrow"]}>Няма намерени резултати</p>
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
                                         ?
@@ -142,7 +143,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)
                                         :
-                                        <div className="already-reg">
+                                        <div className={styles["already-reg"]}>
                                             <p>Все още няма рецепти!</p>
                                         </div>
                         }

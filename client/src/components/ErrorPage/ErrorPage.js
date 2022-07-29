@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import styles from "./ErrorPage.module.css";
+
 export const ErrorPage = () => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
@@ -13,11 +15,11 @@ export const ErrorPage = () => {
     }, [setErrorMessage])
 
     return (
-        <div className="error-container">
+        <div className={styles["error-container"]}>
             <title>Грешка...</title>
             <>
                 {
-                    <p className="error-message"> {errorMessage
+                    <p className={styles["error-message"]}> {errorMessage
                         ? errorMessage
                         : "Възникна грешка при изпълнение на заявката Ви"
                     }
