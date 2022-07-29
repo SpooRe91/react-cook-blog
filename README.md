@@ -5,6 +5,14 @@
 IF YOU DOWNLOAD THE WHOLE PROJECT.
 
 BEFORE YOU DO ANYTHING FURTHER:
+PLEASE MAKE SURE YOU INSTALL MONGOSE FROM HERE AND START THE MONGO SERVER:
+follow this link: https://www.mongodb.com/try/download/community
+
+start the setup and press next until done.
+
+Setups and test
+**Navigate to the installed MongoDB bin folder**
+**Open the folder in command prompt and run >mongod - command**
 
 You need the following commands to statrt the server and to start React project:
 --------------------------------------------------------------------------------
