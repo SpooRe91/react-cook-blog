@@ -12,7 +12,7 @@ start the setup and press next until done.
 
 Setups and test
 **Navigate to the installed MongoDB bin folder**
-**Open the folder in command prompt and run >mongo command**
+**Open the folder in command prompt and run >mongod - command**
 
 You need the following commands to statrt the server and to start React project:
 --------------------------------------------------------------------------------
