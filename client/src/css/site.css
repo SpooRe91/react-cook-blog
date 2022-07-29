@@ -216,7 +216,7 @@ h1.meal-name {
     text-overflow: ellipsis;
     overflow: hidden;
     margin: 20px auto;
-    word-break: break-all;
+    word-break: break-word;
     font-weight: bold;
     color: #ffffff;
     text-shadow: #decba4 0px 0px 20px;
@@ -573,7 +573,7 @@ article.recipe-details {
     width: 50%;
     margin: 5%;
     padding: 15px;
-    word-break: break-all;
+    word-break: break-word;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -847,6 +847,8 @@ input.nutrient-qty {
 
 .add-recipe-text {
     background: none;
+    white-space: pre-wrap;
+    word-break: break-word;
     color: #DECBA4;
     font-size: 20px;
     width: 100%;
