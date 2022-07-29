@@ -32,7 +32,6 @@ function App() {
   const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
-  const [products, setProducts] = useState([]);
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -89,8 +88,7 @@ function App() {
               <Route path="/auth/profile" element={<Profile />} />
 
               <Route path="/recipe/macros" element={
-                <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}
-                  products={products} setProducts={setProducts} />}
+                <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}/>}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="*" element={< ErrorPage />}

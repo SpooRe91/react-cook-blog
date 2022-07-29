@@ -19,7 +19,7 @@ export const MealContainer = ({
             setNumberOfLikes(timesLiked.length);
             setIsLiked(true)
         }
-    }, [setNumberOfLikes, setIsLiked]);
+    }, [numberOfLikes, setNumberOfLikes, setIsLiked]);
 
     const likeHeartWithCount = (
         <span className={styles["number-of-likes"]}>

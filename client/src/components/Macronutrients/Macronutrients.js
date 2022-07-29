@@ -7,10 +7,12 @@ import styles from './Macronutrients.module.css';
 
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from '../common/ScrollButton';
-export const Macronutrients = ({ isLoading, setIsLoading, products, setProducts }) => {
+export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-
+    
+    const [products, setProducts] = useState([]);
+    
     useEffect(() => {
         if (products.length === 0) {
             getMacros()
