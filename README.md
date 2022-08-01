@@ -361,7 +361,7 @@ const getOwn = async () => {
 };
 ```
 
-
+```js
 const getOne = async (mealId) => {
 
     try {
