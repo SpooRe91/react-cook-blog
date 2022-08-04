@@ -75,7 +75,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
                         {errorMessage.error}
-                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
+                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
                             OK
                         </button>
                     </p>
