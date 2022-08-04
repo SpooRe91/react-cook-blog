@@ -19,8 +19,8 @@ export const ErrorPage = () => {
             <title>Грешка...</title>
             <>
                 {
-                    <p className={styles["error-message"]}> {errorMessage
-                        ? errorMessage
+                    <p className={styles["error-message"]}> {errorMessage.error
+                        ? errorMessage.error || errorMessage
                         : "Възникна грешка при изпълнение на заявката Ви"
                     }
                     </p>
