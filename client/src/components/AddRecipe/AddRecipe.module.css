@@ -178,6 +178,23 @@ recipe-browse:focus {
     background: #0000008c;
 }
 
+.btn {
+    transition: .1s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #00000075;
+    border-radius: 10px;
+}
+
 a.btn {
     transition: .1s;
     text-decoration: none;

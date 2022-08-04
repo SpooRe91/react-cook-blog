@@ -34,11 +34,12 @@ export const AddRecipe = ({ setIsLoading }) => {
                 if (res._id) {
                     navigate('/recipe/myRecipes');
                     setIsLoading(false);
-                } else {
-                    console.log(res.message);
-                    setErrorMessage({ error: res.message });
-                    throw new Error(res.message);
                 }
+                if (res.message) throw new Error(res.message);
+            })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage({ error: error.message });
             })
     }
 
