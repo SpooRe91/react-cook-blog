@@ -45,6 +45,8 @@ after that:
 
 ---
 
+**COOK-BLOG** is a recipe app, which allows you to browse recipes, create an account and add your own recipes. You can update or delete your recipes as well. There are a few features, such as adding likes to a post (if you are a registered user), have your own profile and update your profile picture. You can like other posts by other users, but you can't like your own. Basically that's all about this App.
+
 **A food recipe Rest API build with Express.js**
 
 ![cover](https://user-images.githubusercontent.com/85784810/174287568-5c1a4d6b-6f1c-43f6-b881-31a0e52fafbc.JPG)
