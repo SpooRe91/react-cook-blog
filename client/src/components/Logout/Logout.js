@@ -8,7 +8,7 @@ import styles from "./Logout.module.css"
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
-export const Logout = ({ setIsOpen, cookies }) => {
+export const Logout = ({ setIsOpen, cookies, setClientCookie }) => {
 
     const { user, setUser } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
@@ -21,6 +21,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
                 await userLogout();
                 logoutSession();
                 cookies.remove('user-session', { path: "/", maxAge: 48000 });
+                setClientCookie(cookies.get('user-session'));
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
