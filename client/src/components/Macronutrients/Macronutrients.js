@@ -39,7 +39,6 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const quantityHandler = (e) => {
         let value = Number(e.target.value);
-        if (value && value <= 0) value = 1;
         setQuantify(value);
     };
 
