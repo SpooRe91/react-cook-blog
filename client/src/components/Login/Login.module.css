@@ -1,0 +1,213 @@
+.error-container {
+    margin: 50px;
+    padding: 0px;
+    width: inherit;
+    word-break: break-word;
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    transition: .1s;
+    margin: 40px auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    border: ridge rgb(211 198 181);
+    animation: hide 0s 3.5s;
+    animation-fill-mode: forwards;
+}
+
+.btn {
+    transition: .1s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #00000075;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.login-form {
+    transition: .1s;
+    margin: 5% auto;
+    display: flex;
+    width: 40%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-right: white solid;
+    border-left: white solid;
+}
+
+.login-form input.already-reg {
+    width: fit-content;
+    background-image: none;
+    background: none;
+    border: none;
+    border-bottom: ridge white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.login-form input.already-reg:hover {
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.login-form input.already-reg:not(:hover) {
+    transition: 0.5s;
+}
+
+.already-reg {
+    transition: .1s;
+    margin: auto;
+    display: flex;
+    width: 80%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.credentials {
+    width: max-content;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
+}
+
+input[type=text],
+input[type=password] {
+    background: none;
+    outline: none;
+    border: none;
+    color: #DECBA4;
+    font-size: 20px;
+    width: 50%;
+    display: inline-block;
+    border-bottom: solid rgb(117, 117, 117);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0 4px 4px 4px;
+    margin: 15px auto;
+    resize: none;
+}
+
+.email:focus,
+.password:focus {
+    color: #ffffff;
+    width: 60%;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    border-bottom: white solid;
+    background: none;
+    background-image: none;
+}
+
+.email:not(:focus),
+.password:not(:focus) {
+    transition: 0.5s;
+}
+
+.form label {
+    margin-left: 15px;
+    width: max-content;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
+}
+
+
+input[type=submit] {
+    transition: .1s;
+    margin: 15px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 50px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #DECBA4, #3E5151);
+    border: ridge rgb(211 198 181);
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+}
+
+.already-reg a {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    transition: .1s;
+    color: #DECBA4;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.already-reg a:hover {
+
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+    text-decoration: underline;
+}

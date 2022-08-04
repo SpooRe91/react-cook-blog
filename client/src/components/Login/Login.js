@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getSession, setSession } from "../../API/api";
 import { userLogin } from "../../services/userService";
+import styles from "./Login.module.css";
 
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
@@ -55,43 +56,44 @@ export const Login = ({ setIsLoading }) => {
         <>
             <title>Вход</title>
             <div>
-                {errorMessage !== "" &&
-                    <div className="error-container">
-                        <p className="error-message">
-                            {errorMessage.error}
-                            <button className="btn" onClick={() => setErrorMessage('')}>
-                                OK
-                            </button>
-                        </p>
-                    </div>
-                }
                 <>
+                    {errorMessage !== "" &&
+                        <div className={styles["error-container"]}>
+                            <p className={styles["error-message"]}>
+                                {errorMessage.error}
+                                <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
+                                    OK
+                                </button>
+                            </p>
+                        </div>
+                    }
                     {
                         user ?
-                            <div className="error-container">
-                                <p className="error-message">
+                            <div className={styles["error-container"]}>
+                                <p className={styles["error-message"]}>
                                     {"Вече сте влезли!"}
-                                    <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                                 </p>
                             </div>
                             :
                             <>
-                                <h3 className="already-reg">Вход</h3>
-                                <form className="login-form" method="POST" onSubmit={loginHandler}>
-                                    <label className="credentials" htmlFor="email">e-mail</label>
-                                    <input type="text" className="email" id="email" name="email"
+                                <h3 className={styles["already-reg"]}>Вход</h3>
+                                <form className={styles["login-form"]} method="POST" onSubmit={loginHandler}>
+                                    <label className={styles["credentials"]} htmlFor="email">e-mail</label>
+                                    <input type="text" className={styles["email"]} id="email" name="email"
                                         placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
 
-                                    <label className="credentials" htmlFor="password">парола</label>
-                                    <input type="password" className="password" id="password" name="password"
+                                    <label className={styles["credentials"]} htmlFor="password">парола</label>
+                                    <input type="password" className={styles["password"]} id="password" name="password"
                                         placeholder="парола..." required onChange={changeHandler} value={value.password} />
 
-                                    <input className="already-reg" type="submit" value="Вход" />
+                                    <input className={styles["already-reg"]} type="submit" value="Вход" />
                                 </form>
 
-                                <h3 className="already-reg">Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
+                                <h3 className={styles["already-reg"]}>Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
                             </>
                     }
+
                 </>
             </div >
         </>
