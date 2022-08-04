@@ -17,6 +17,8 @@ import { editUserImage, getUser } from "../../services/userService";
 import { getOwn } from "../../services/mealService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
+import styles from "./Profile.module.css";
+
 export const Profile = () => {
 
     const { user, setUser } = useContext(LoggedUserContext);
@@ -63,7 +65,7 @@ export const Profile = () => {
             );
         };
         uploadImg(img);
-    }, [img, setErrorMessage]);
+    }, [img, setErrorMessage, user?.email]);
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
@@ -78,7 +80,7 @@ export const Profile = () => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             })
-    }, [img, setUserProfile, setErrorMessage]);
+    }, [img, setUserProfile, setErrorMessage, user?.id]);
 
     //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
     useEffect(() => {
@@ -136,16 +138,17 @@ export const Profile = () => {
         <>
             <title>Profile</title>
 
-            <div className="profile">
+            <div className={styles["profile"]}>
 
-                <div>
-                    <img className="meal-image-link" src={userProfile?.image} id="profile-photo" alt="" />
+                <div className={styles["profile-containter"]}>
+                    <a href={userProfile?.image} target="_blank" rel="noreferrer"><img className={styles["profile-image-link"]} src={userProfile?.image} id="profile-photo" alt="" /></a>
 
-                    <button className="already-reg" onClick={() => img ? editHandler() : setToUpdate(state => !state)}
+                    <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
                         style={progress < 100 ? { "color": "red" } : { "color": "green" }}>
-                        {progress < 100 ? 'ИЗБЕРИ СНИМКА' : 'КАЧИ СНИМКА'}</button>
+                        {progress < 100 ? 'ПРОМЕНИ СНИМКАТА' : 'КАЧИ СНИМКАТА'}</button>
 
                     {
+                        //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
                         toUpdate
                             ?
                             <div style={{ "display": "block" }}>
@@ -162,14 +165,14 @@ export const Profile = () => {
                     < div >
 
                         <article>
-                            <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>email:</strong>
+                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>email: </strong>
                                 <span style={{ "color": "white" }}>
                                     {userProfile?.email}
                                 </span>
                             </p>
 
-                            <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>публикации:</strong></p>
-                            <div className="profile-publications-container">
+                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>публикации</strong></p>
+                            <div className={styles["profile-publications-container"]}>
                                 {
                                     notDeleted.length > 0
                                         ?
@@ -178,7 +181,7 @@ export const Profile = () => {
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
-                                        <p className="recipe-diff-count" style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>
+                                        <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>
                                 }
                             </div>
                         </article>
