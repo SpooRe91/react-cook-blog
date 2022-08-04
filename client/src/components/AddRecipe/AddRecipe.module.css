@@ -109,21 +109,6 @@
     background-image: none;
 }
 
-recipe-browse:focus {
-    color: #ffffff;
-    width: 60%;
-    transition: 0.5s;
-    border: none;
-    outline: none;
-    border-bottom: white solid;
-    background: none;
-    background-image: none;
-}
-
-.recipe-browse:not(:focus) {
-    transition: 0.5s;
-}
-
 .select-container {
     width: 100%;
     min-width: 15ch;

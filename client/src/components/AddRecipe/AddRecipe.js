@@ -5,10 +5,13 @@ import styles from "./AddRecipe.module.css";
 
 import { create } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const AddRecipe = ({ setIsLoading }) => {
 
     const navigate = useNavigate();
+    const { user, setUser } = useContext(LoggedUserContext);
+
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({
         name: '',
@@ -18,6 +21,19 @@ export const AddRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
+    
+    useEffect(() => {
+        if (!user) {
+            navigate('/404');
+        };
+    });
+    
+    //removes the error message
+    useEffect(() => {
+        return () => {
+            setErrorMessage('');
+        }
+    }, [setErrorMessage]);
 
     const changeHandler = (e) => {
         setValues(state => ({
@@ -43,12 +59,7 @@ export const AddRecipe = ({ setIsLoading }) => {
             })
     }
 
-    //removes the error message
-    useEffect(() => {
-        return () => {
-            setErrorMessage('');
-        }
-    }, [setErrorMessage])
+
 
     return (
 
