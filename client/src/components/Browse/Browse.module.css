@@ -126,7 +126,7 @@ input[type=text] {
     resize: none;
 }
 
-recipe-browse:focus {
+.recipe-browse:focus {
     color: #ffffff;
     width: 60%;
     transition: 0.5s;
@@ -180,6 +180,7 @@ p.name:hover {
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
+    padding: 5px;
     color: #DECBA4;
     border: ridge 1px white;
     border-radius: 10px;
