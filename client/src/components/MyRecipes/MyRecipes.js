@@ -21,6 +21,14 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const [notDeleted, setNotDeleted] = useState([])
 
     useEffect(() => {
+        if (!user) {
+            setErrorMessage('Моля, първо влезте!');
+            navigate('/404');
+        };
+    });
+
+
+    useEffect(() => {
         getOwn()
             .then(res => {
                 if (res.length > 0) {
