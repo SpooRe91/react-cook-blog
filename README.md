@@ -14,7 +14,7 @@ Setups and test
 **Navigate to the installed MongoDB bin folder**
 **Open the folder in command prompt and run >mongod - command**
 
-You need the following commands to statrt the server and to start React project:
+You need the following commands to start the server and to start the React project:
 --------------------------------------------------------------------------------
 
 SERVER: In the main "server" folder run the commands:
@@ -28,11 +28,9 @@ after that:
 to start the server. if it is started successfully you should see the
 
 "
-
 "Cook-blog API" listening to port http://localhost:3030
-
-"Cook-blog API" documentation is available at http://localhost:3030/readme
-
+"Cook-blog" React APP and REST API documentation is available at: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md
+DB connected
 "
 -
 
@@ -59,19 +57,21 @@ export const API_URL = "http://localhost:3030";//GET
 
 export const endpoints = {
     //REGULAR + MODIFICATIONS***************
-    API_DETAILS: (id) => `${API_URL}/details/${id}`,//GET req
-    API_EDIT: (id) => `${API_URL}/edit/${id}`,//PUT req
-    API_DELETE: (id) => `${API_URL}/delete/${id}`,//DELETE req
-    API_LIKE: (id) => `${API_URL}/like/${id}`,//GET req
+    API_DETAILS: (id) => `${API_URL}/details/${id}` ---- //GET req
+    API_EDIT: (id) => `${API_URL}/edit/${id}` ---- //PUT req
+    API_DELETE: (id) => `${API_URL}/delete/${id}` ---- //DELETE req
+    API_LIKE: (id) => `${API_URL}/like/${id}` ---- //GET req
+    API_GET_USER: (id) => `${API_URL}/user-get/${id}` ---- //POST req
+    API_EDIT_USER_IMAGE: (id) => `${API_URL}/user-edit/${id}` ---- //PUT req
     //AUTH**********************************
-    API_REGISTER: `${API_URL}/auth/register`,//POST req
-    API_LOGIN: `${API_URL}/auth/login`,//POST req
-    API_LOGOUT: `${API_URL}/auth/logout`,//GET req
+    API_REGISTER: `${API_URL}/auth/register` ---- //POST req
+    API_LOGIN: `${API_URL}/auth/login` ---- //POST req
+    API_LOGOUT: `${API_URL}/auth/logout` ---- //GET req
     //RECIPE********************************
-    API_BROWSE: `${API_URL}/recipe/browse`,//GET req
-    API_MYRECIPES: `${API_URL}/recipe/myRecipes`,//GET req
-    API_MACROS: `${API_URL}/recipe/macros`,//GET req
-    API_ADD: `${API_URL}/recipe/add`,//POST req
+    API_BROWSE: `${API_URL}/recipe/browse` ---- //GET req
+    API_MYRECIPES: `${API_URL}/recipe/myRecipes` ---- //GET req
+    API_MACROS: `${API_URL}/recipe/macros` ---- //GET req
+    API_ADD: `${API_URL}/recipe/add` ---- //POST req
     // *************************************
 }
 ```
@@ -173,6 +173,40 @@ export const userLogout = async () => {
         throw new Error(error.message);
     }
 }
+```
+ API/user-get/:id - **GET** - You need to be authorized to make this request. If you are authorized, you just need to make a simple GET request with the particular user ID, if there is such a user - you will receive the information about them, if not - you will receive the following error: "Няма такъв потребител!".
+ 
+ A simple example of the get request:
+ ```js
+export const getUser = async (id) => {
+
+    try {
+        const profileResult = await fetch(endpoints.API_GET_USER(id), {
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Allow-Control-Access-Policy': true,
+                'Access-Control-Allow-Credentials': true,
+            }
+        });
+        return await profileResult.json();
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+```
+API/user-edit/:id **PUT** - You need to be authorized to make this request. If you are authorized, you just need to make a simple PUT request with the particular user ID, and add the body header with the image file. If the ID provided is correct, you will receive the following response - 
+```js
+{
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+
+and if the ID is not correct, you will receive the similar response, however the matchedCount and updatedCount will be 0;
 ```
 
 ***RECIPE:***
