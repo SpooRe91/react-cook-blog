@@ -6,6 +6,8 @@ import { userRegister } from "../../services/userService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
+import styles from "./Register.module.css";
+
 export const Register = ({ setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const { user, setUser } = useContext(LoggedUserContext);
@@ -66,10 +68,10 @@ export const Register = ({ setIsLoading }) => {
 
             <div>
                 {errorMessage !== "" &&
-                    <div className="error-container">
-                        <p className="error-message">
+                    <div className={styles["error-container"]}>
+                        <p className={styles["error-message"]}>
                             {errorMessage.error}
-                            <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                            <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
                         </p>
                     </div>
                 }
@@ -77,33 +79,33 @@ export const Register = ({ setIsLoading }) => {
                     {
                         user?.token
                             ?
-                            <div className="error-container">
-                                <p className="error-message">
+                            <div className={styles["error-container"]}>
+                                <p className={styles["error-message"]}>
                                     {"Вече сте влезли!"}
-                                    <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                         OK
                                     </button>
                                 </p>
                             </div>
                             :
                             <>
-                                <h3 className="already-reg">Регистрация</h3>
-                                <form method="POST" onSubmit={registerHandler} className="register-form">
-                                    <label className="credentials" htmlFor="email">e-mail</label>
-                                    <input type="text" className="email" id="email" name="email"
+                                <h3 className={styles["already-reg"]}>Регистрация</h3>
+                                <form method="POST" onSubmit={registerHandler} className={styles["register-form"]}>
+                                    <label className={styles["credentials"]} htmlFor="email">e-mail</label>
+                                    <input type="text" className={styles["email"]} id="email" name="email"
                                         placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
 
-                                    <label className="credentials" htmlFor="password">парола</label>
-                                    <input type="password" className="password" id="password" name="password"
+                                    <label className={styles["credentials"]} htmlFor="password">парола</label>
+                                    <input type="password" className={styles["password"]} id="password" name="password"
                                         placeholder="парола..." required onChange={changeHandler} value={value.password} />
 
-                                    <label className="credentials" htmlFor="rePassword">повторете паролата</label>
-                                    <input type="password" className="rePassword" id="rePassword" name="rePassword"
+                                    <label className={styles["credentials"]} htmlFor="rePassword">повторете паролата</label>
+                                    <input type="password" className={styles["rePassword"]} id="rePassword" name="rePassword"
                                         placeholder="повторете паролата..." required onChange={changeHandler} value={value.rePassword} />
 
-                                    <input className="already-reg" type="submit" value="Регистриране" />
+                                    <input className={styles["already-reg"]} type="submit" value="Регистриране" />
                                 </form>
-                                <h3 className="already-reg">Вече сте регистрирани?<Link to="/auth/login">Влезте от тук!</Link></h3>
+                                <h3 className={styles["already-reg"]}>Вече сте регистрирани?<Link to="/auth/login" className={styles["already-reg"]}>Влезте от тук!</Link></h3>
                             </>
                     }
                 </>
