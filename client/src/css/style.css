@@ -27,3 +27,1120 @@
     border: ridge rgb(255, 0, 0);
 }
 
+
+.already-reg-error {
+    font-size: 20px;
+    color: red;
+    animation: hideAnimation 0s ease-in 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hideAnimation {
+    to {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+.landing-page-article {
+    width: 100%;
+
+}
+
+.landing-page-section {
+    margin-left: 35%
+}
+
+.landing-page-article div {
+    background-image: url(../../public/images/spaghetti-with-pesto-prawns-served-plate.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 4.5em auto 4.7em auto;
+    height: 30em;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.landing-page-header {
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #cc4900bd;
+    margin: auto;
+    text-shadow: #cdbc98 2px 3px 2px;
+    font-size: 4em;
+}
+
+.landing-page-span {
+    text-align: left;
+    text-shadow: #000000 -15px 0px 6px;
+    color: white;
+    font-size: 30px;
+}
+
+section.already-reg {
+    transition: .1s;
+    margin: 5px;
+    display: inline-flex;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+h1.meal-name {
+    font-size: 23px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 20px auto;
+    word-break: break-word;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #decba4 0px 0px 20px;
+    text-transform: uppercase;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.like-container {
+    margin: 20px 20px;
+    gap: 10px;
+    right: 20%;
+    top: 56.5%;
+}
+
+.meal-buttons {
+    font-size: 30px;
+    display: flex;
+}
+
+input.delete-confirm-btn {
+    background: none;
+    outline: none;
+    border: none;
+    color: #DECBA4;
+    font-size: 30px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 5px 10px;
+}
+
+.delete-confirm-btn:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0s;
+    background-color: transparent;
+    background: none;
+}
+
+.btn-details {
+    transition: .1s;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 21px;
+    width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-details:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 35%;
+    transition: 0s;
+}
+
+.btn-details-back {
+    min-width: max-content;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    background: none;
+    color: #DECBA4;
+}
+
+.btn-details-back:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.welcome-note {
+    max-width: fit-content;
+    color: #1a0c03;
+    background-color: rgb(216, 208, 198);
+    text-transform: none;
+    text-align: justify;
+    padding: 5px;
+    text-decoration: solid;
+}
+
+div.profile {
+    border: none;
+    color: white;
+    text-shadow: white 0px 0px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 40px 40px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.profile-name {
+    font-size: 20px;
+    text-decoration: underline white;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 5px 5px 5px;
+    text-shadow: white 0px 0px 20px;
+}
+
+.profile-name:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 20px #ffffff;
+    text-decoration: none;
+}
+
+.profile-publications-container {
+    display: flex;
+    gap: 1.5rem;
+    margin: 15px;
+    margin-bottom: 3em;
+    padding: 10px;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+img.logo {
+    width: 80px;
+    height: 80px;
+    padding: 1em;
+    float: left;
+}
+
+.profile-image-link img,
+img.meal-image-link,
+a.meal-image-link,
+img.meal {
+    margin: 5px 5px 5px 5px;
+    border: none;
+    border-radius: 10%;
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    transform: scale3d(1, 1, 1);
+}
+
+a img.meal:hover {
+    transform: translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    transition: .1s;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 20%;
+}
+
+div.meal-containter {
+    display: flex;
+    gap: 1.5rem;
+    margin: 15px;
+    margin-bottom: 3em;
+    padding: 10px;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+div.meal {
+    border: ridge rgb(211 198 181);
+    border-radius: 10%;
+    display: flex;
+    width: 350px;
+    height: 445px;
+    vertical-align: text-top;
+    margin: 10px;
+    color: white;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    background-image: linear-gradient(45deg, #00000078, #3e5151);
+}
+
+div.meal a.btn {
+    font-size: 22.5px;
+    background: none;
+}
+
+p.name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 325px;
+    font-size: 17.5px;
+    font-weight: bold;
+    margin: 15px auto;
+}
+
+p.name:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    transition: .1s;
+    cursor: pointer;
+    background: none;
+}
+
+p.recipe {
+    line-height: 30px;
+    word-spacing: 0.2mm;
+    letter-spacing: 0.4mm;
+    font-size: 21px;
+    text-align: left;
+    padding: 10px;
+    color: #decba4;
+    text-shadow: 0px 0px 20px #000000;
+}
+
+.recipe-diff-count {
+    word-break: break-word;
+    line-height: 26px;
+    word-spacing: 0.2mm;
+    letter-spacing: 0.4mm;
+    font-size: 21px;
+    text-align: left;
+    padding: 5px;
+    color: #decba4;
+    text-shadow: 0px 0px 20px #ffffff;
+}
+
+p.recipe span {
+    word-break: break-word;
+    white-space: pre-wrap;
+
+}
+
+
+
+p.created-by-details {
+    margin: 10px 10px 10px 10px;
+    color: #ffffff;
+    text-shadow: #decba4 0px 0px 10px;
+}
+
+.show-more-less {
+    transition: .1s;
+    text-decoration: none;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    border: ridge 1px white;
+    border-radius: 10px;
+    background-image: linear-gradient(180deg, #000000d1, #3e5151);
+    font-size: 26px;
+}
+
+.show-more-less:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    transition: 0s;
+    background-image: linear-gradient(360deg, #000000d1, #3e5151);
+}
+
+.btn {
+    transition: .1s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #00000075;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 35%;
+    transition: 0s;
+}
+
+a {
+    word-break: break-word;
+    transition: .1s;
+    color: #DECBA4;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+div.details {
+    display: flex;
+    color: white;
+    height: max-content;
+    text-shadow: 0px 0px 20px rgb(255 255 255);
+    border: ridge rgb(211 198 181);
+    margin: 30px 30px;
+    padding: 1em;
+    width: 35%;
+    border-radius: 10px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    float: left;
+}
+
+img.meal-details {
+    margin: auto;
+    border-radius: 30%;
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    transform: scale3d(1, 1, 1);
+}
+
+img.meal-details:hover {
+    transform: translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+    transition: .1s;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 20% 0;
+}
+
+.recipe-details label {
+    position: static;
+    text-decoration: underline;
+    font-size: 35px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 20px white;
+}
+
+article.recipe-details {
+    display: flex;
+    background-image: linear-gradient(360deg, #00000099, #3e5151c4);
+    text-shadow: 0px 0px 20px rgb(0 0 0);
+    border-radius: 10px;
+    border-top: ridge rgb(211 198 181);
+    border-bottom: ridge rgb(211 198 181);
+    width: 50%;
+    margin: 5%;
+    padding: 15px;
+    word-break: break-word;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.owner-buttons {
+    transition: .1s;
+    margin: 20px 30px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px;
+    text-shadow: 0px 0px 20px rgb(255 255 255);
+    border-radius: 20px;
+    border: ridge rgb(211 198 181);
+}
+
+p.created-by-details span {
+    font-weight: bold;
+    font-size: 21px;
+    text-align: center;
+    line-height: 25px;
+    padding: 5px;
+}
+
+span.number-of-likes {
+    margin: 20px 10px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    outline: thick white;
+    color: #DECBA4;
+    text-shadow: #9d9d9d 0px 0px 20px;
+    background: #0000006e;
+    border-radius: 10px;
+    border: ridge rgb(211 198 181);
+}
+
+button.like-button {
+    font-size: 18px;
+    padding: 0px;
+    width: fit-content;
+    margin: 15px;
+    background: none;
+    outline: none;
+    border: none;
+    color: white;
+    text-shadow: 0px 0px 20px white;
+}
+
+button.like-button:hover {
+    transition: 0.1s;
+    cursor: pointer;
+    color: #DECBA4;
+    text-shadow: 0px 0px 20px yellow;
+}
+
+.search-nutrients {
+    display: flex;
+    max-width: fit-content;
+    min-width: max-content;
+    position: static;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.search-nutrients label {
+    text-shadow: white 0px 0px 20px;
+    margin: 10px auto;
+}
+
+::placeholder {
+    color: #000000;
+}
+
+
+div.search-container {
+    display: flex;
+    width: auto;
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+p.arrow {
+    font-size: 25px;
+    color: white;
+    text-shadow: 0px 0px 20px white;
+}
+
+div.about {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    position: inherit;
+    border-radius: 10%;
+    font-size: 25px;
+    display: block;
+    margin: auto;
+    border: ridge rgb(211 198 181);
+    background-color: rgb(172, 149, 116);
+    padding: 1em;
+}
+
+.about-me-table {
+    text-align: left;
+    text-shadow: #000000 -15px 0px 6px;
+    color: white;
+    font-size: 25px;
+}
+
+.already-reg a {
+    display: flex;
+    width: max-content;
+    margin: auto;
+    transition: .1s;
+    color: #DECBA4;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+div.already-reg a:hover {
+
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+    text-decoration: underline;
+}
+
+.register-form,
+.login-form {
+    transition: .1s;
+    margin: 5% auto;
+    display: flex;
+    width: 40%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-right: white solid;
+    border-left: white solid;
+}
+
+
+.credentials {
+    width: max-content;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
+}
+
+.form label {
+    margin-left: 15px;
+    width: max-content;
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 10px 10px;
+    text-shadow: 0px 0px 20px #decba4;
+}
+
+.register-form input.already-reg,
+.login-form input.already-reg {
+    width: fit-content;
+    background-image: none;
+    background: none;
+    border: none;
+    border-bottom: ridge white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+.register-form input.already-reg:hover,
+.login-form input.already-reg:hover {
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.register-form input.already-reg:not(:hover),
+.login-form input.already-reg:not(:hover) {
+    transition: 0.5s;
+}
+
+
+input[type=text],
+input[type=number],
+input[type=url],
+input[type=password] {
+    background: none;
+    outline: none;
+    border: none;
+    color: #DECBA4;
+    font-size: 20px;
+    width: 50%;
+    display: inline-block;
+    border-bottom: solid rgb(117, 117, 117);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0 4px 4px 4px;
+    margin: 15px auto;
+    resize: none;
+}
+
+.email:focus,
+.password:focus,
+.rePassword:focus,
+.recipe-browse:focus,
+.nutrient-name:focus,
+.nutrient-qty:focus {
+    color: #ffffff;
+    width: 60%;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    border-bottom: white solid;
+    background: none;
+    background-image: none;
+}
+
+
+.email:not(:focus),
+.password:not(:focus),
+.rePassword:not(:focus),
+.recipe-browse:not(:focus),
+.nutrient-name:not(:focus),
+.nutrient-qty:not(:focus) {
+    transition: 0.5s;
+}
+
+input.nutrient-name,
+input.nutrient-qty {
+    width: 50%;
+}
+
+.unit-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.add-recipe-text {
+    background: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #DECBA4;
+    font-size: 20px;
+    width: 100%;
+    display: inline-block;
+    border: ridge rgb(211 198 181);
+    box-sizing: border-box;
+    height: 8em;
+    border-radius: 0 4px 4px 4px;
+    margin: auto;
+    resize: vertical;
+}
+
+.add-recipe-text:focus::placeholder {
+    color: transparent;
+}
+
+.add-recipe-text:not(:focus)::placeholder {
+    color: grey;
+}
+
+.add-recipe-text:focus {
+    background: #0000008c;
+}
+
+.select-container {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px ridge wheat;
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-image: linear-gradient(45deg, #fcfcfc, #3e5151);
+}
+
+.select-container::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+.select-difficulty {
+
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    line-height: inherit;
+    outline: none;
+}
+
+.add-form input.add-form-submit {
+    width: fit-content;
+    background-image: none;
+    background: none;
+    border: none;
+    border-bottom: ridge white;
+    padding: 10px;
+    border-radius: 10px
+}
+
+
+
+input.search {
+    border: ridge rgb(211 198 181);
+    width: 50%;
+}
+
+
+input[type=submit] {
+    transition: .1s;
+    margin: 15px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 50px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #DECBA4, #3E5151);
+    border: ridge rgb(211 198 181);
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    transition: .1s;
+}
+
+form.search {
+    width: 450px;
+    font-size: 20px;
+    display: flex;
+    margin: 20px auto;
+    border-radius: 8%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+div.add-recipe-page {
+    display: flex;
+}
+
+.add-form {
+    float: left;
+    transition: .1s;
+    margin: 30px 30px 40px 30px;
+    display: flex;
+    width: 40%;
+    max-width: 100%;
+    min-width: max-content;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-right: white solid;
+    border-left: white solid;
+}
+
+.recipe-add {
+    word-break: break-word;
+    line-height: 30px;
+    word-spacing: 0.2mm;
+    letter-spacing: 0.4mm;
+    font-size: 21px;
+    text-align: left;
+    padding: 10px;
+    color: #decba4;
+    text-shadow: 0px 0px 20px #000000;
+}
+
+.add-form input[type=text]:focus::placeholder {
+    color: transparent;
+}
+
+.add-form input[type=text]:focus {
+    transition: 0.5s;
+    width: 100%;
+    border-bottom: solid white;
+}
+
+.add-form input[type=text]:not(:focus)::placeholder {
+    color: grey;
+}
+
+.add-form input[type=text]:not(:focus) {
+    transition: 0.5s;
+
+}
+
+h3 a {
+    color: #DECBA4;
+    font-size: 20px;
+    text-align: center;
+    /* text-shadow: -3px 1px 3px rgb(0, 0, 0); */
+}
+
+.already-reg a:hover {
+    cursor: pointer;
+    border-radius: 35%;
+    transition: .1s;
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+}
+
+.already-reg {
+    transition: .1s;
+    margin: auto;
+    display: flex;
+    width: 80%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.already-reg h1 {
+    width: fit-content;
+    display: flex;
+    border: ridge rgb(211 198 181);
+    font-weight: bold;
+    background: none;
+    color: white;
+    margin: auto;
+    text-align: center;
+    text-transform: inherit;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+h4 {
+    border-radius: 50%;
+    /* text-shadow: -3px 1px 3px rgb(240 203 123); */
+    font-size: 25px;
+    text-align: center;
+}
+
+.footer {
+    display: flex;
+    position: fixed;
+    padding: 5px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 25px;
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #ffffff;
+    font-size: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #b7a685, #3e5151);
+}
+
+.footer p {
+    margin: 10px 10px 10px 10px;
+    text-shadow: #000000 -3px 2px 10px;
+}
+
+.btn-footer {
+    margin: 10px 10px 10px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #000000 -8px 2px 10px;
+    text-decoration: none;
+}
+
+.btn-footer:hover {
+    color: #000000;
+    text-shadow: #ffffff 0px 0px 20px;
+}
+
+.btn-footer-created-by {
+    margin: 10px 10px 0px 0px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #000000 -3px 2px 10px;
+    text-decoration: underline;
+}
+
+.btn-footer-created-by:hover {
+    cursor: pointer;
+    margin: 10px 10px 0px 0px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: #ffffff -3px 2px 10px;
+    text-decoration: underline;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+    height: 55px;
+    color: #ffffff;
+    text-shadow: 0px 0px 20px #ffffff;
+    background-image: linear-gradient(to bottom, #DECBA4, #3e5151);
+}
+
+.wrapper {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.content {
+    border-radius: 10%;
+    border: ridge rgb(211 198 181);
+    padding: 5px;
+    vertical-align: middle;
+    text-align: center;
+    width: 60%;
+    word-break: normal;
+    background-color: rgb(172, 149, 116);
+}
+
+.already-reg img {
+    padding: 10px 10px 10px 10px;
+    margin: 5px 5px 5px 5px;
+    display: inline-block;
+    transition: .1s;
+    text-shadow: -3px 1px 3px rgb(240 203 123);
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    text-align: left;
+    border-radius: 50%;
+}
+
+.already-reg img:hover {
+    cursor: pointer;
+    display: flex;
+    /* transition: .1s; */
+    text-shadow: -3px 1px 3px rgb(240 203 123);
+    border-radius: 30%;
+}
+
+.about a {
+
+    font-size: 25px;
+    border-radius: 50%;
+}
+
+.about a:hover {
+    cursor: pointer;
+    transition: .1s;
+    cursor: pointer;
+    text-decoration: underline;
+    background: rgb(240, 203, 123);
+    background-clip: content-box;
+    border-radius: 20%;
+}
+
+.error-container {
+    margin: 50px;
+    padding: 0px;
+    width: inherit;
+    word-break: break-word;
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    transition: .1s;
+    margin: 40px auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    border: ridge rgb(211 198 181);
+    animation: hide 0s 3.5s;
+    animation-fill-mode: forwards;
+}
+
+.auth-error {
+    transition: .1s;
+    margin: auto;
+    width: fit-content;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    border: ridge rgb(211 198 181);
+}
+
+.auth-error-button {
+    margin: 10px 10px 0px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: #000000 -8px 2px 10px;
+    text-decoration: none;
+}
