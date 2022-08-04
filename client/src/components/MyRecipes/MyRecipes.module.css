@@ -218,7 +218,7 @@ div.meal a.btn {
     animation-fill-mode: forwards;
 }
 
-a.meal-image-link,
+
 img.meal-image-link,
 img.meal {
     margin: 5px 5px 5px 5px;
@@ -227,19 +227,15 @@ img.meal {
     display: inline-block;
     height: 200px;
     width: 200px;
-    /* transform: scale3d(1, 1, 1); */
+    transform: scale3d(0.95, 0.95, 0.95);
 }
 
-/* img.meal-image-link:hover, */
 a.meal-image-link:hover,
 a img.meal:hover {
-    /* transform: translate3d(0px, 0px, 0px) scale3d(1.1, 1.1, 1.1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); */
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
     transform-style: preserve-3d;
-    border: thin ridge;
     transition: .1s;
     cursor: pointer;
-    display: inline-block;
-    /* border-radius: 20%; */
 }
 
 .to-top {
