@@ -27,7 +27,7 @@ export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
                 </li>
 
                 <li>
-                    <NavLink to="#" name="logout" className="logout-main" onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>изход</NavLink>
+                    <NavLink to="#" name="logout" className={styles["logout-main"]} onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>изход</NavLink>
                 </li>
                 <li>
                     <NavLink to="/auth/profile" className={useCallback(({ isActive }) => isActive ? styles['profile-name-active'] : "profile-name", [])}> <strong>{email}</strong></NavLink>

@@ -18,7 +18,7 @@ export const NavBar = ({ setIsOpen, clientCookie }) => {
         <nav>
             <ul>
                 <li>
-                    <Link to="/"><img className="nav-logo" src={logo} alt="#" /></Link>
+                    <Link to="/"><img className={styles["nav-logo"]} src={logo} alt="#" /></Link>
                 </li>
             </ul>
             {user?.token && clientCookie !== null

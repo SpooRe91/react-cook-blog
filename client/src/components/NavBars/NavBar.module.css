@@ -5,7 +5,7 @@
 }
 
 .profile-name-active {
-    font-size: 20px;
+    font-size: 17px;
     text-decoration: overline white;
     /* -webkit-text-stroke: 1.5px #000000; */
     color: #000000;
@@ -77,4 +77,40 @@
     width: max-content;
     background-color: black;
     border-radius: 10px;
+}
+
+.nav-logo {
+    z-index: 9;
+    left: 5%;
+    position: absolute;
+    top: 30px;
+    height: 50px;
+    border: ridge #DECBA4;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.nav-logo:hover {
+    transform-style: preserve-3d;
+    transition: .1s;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 20% 0;
+}
+
+a.logout-main {
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #cc0606;
+    font-weight: bold;
+    text-shadow: white 0px 0px 20px;
+}
+
+a.logout-main:hover {
+    text-decoration: overline rgb(255, 95, 95);
+    cursor: pointer;
+    text-shadow: 0px 0px 20px rgb(255, 45, 45);
+    color: rgb(255, 255, 255);
+    transition: .1s;
 }
