@@ -16,7 +16,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
     let navigate = useNavigate();
 
     const handleLogout = async () => {
-        if (user?.token) {
+        if (user) {
             try {
                 await userLogout();
                 logoutSession();
@@ -29,7 +29,7 @@ export const Logout = ({ setIsOpen, cookies }) => {
                 navigate('/404');
             }
         } else {
-            throw new Error("Първо трябва да влезете!") && setErrorMessage({ error: "Първо трябва да влезете!" });
+            setErrorMessage({ error: "Първо трябва да влезете!" });
         }
     }
 
@@ -39,10 +39,10 @@ export const Logout = ({ setIsOpen, cookies }) => {
             <title>Изход</title>
             {
                 !user?.token &&
-                <div className="error-container">
-                    <p className="error-message">
+                <div className={styles["error-container"]}>
+                    <p className={styles["error-message"]}>
                         {"Тази операция не може да се изпълни, ако не сте влезли!"}
-                        <button className="btn" onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                     </p>
                 </div>
             }
@@ -50,11 +50,11 @@ export const Logout = ({ setIsOpen, cookies }) => {
                 ? <p className="error-message"> {errorMessage.error}</p>
                 : ""
             }
-            <div className={styles.darkBG} onClick={() => setIsOpen(false)} />
-            <div className={styles.centered}>
-                <h1 className={styles.logoutModalHeader}>Сигурни ли сте, че искате да излезете?</h1>
-                <input type="button" className={styles.logoutModalBtn} onClick={() => [setUser(null), handleLogout()]} value="Изход!" />
-                <input type="button" className={styles.logoutModalBtn} onClick={() => setIsOpen(false)} value="Отказ" />
+            <div className={styles["dark-bg"]} onClick={() => setIsOpen(false)} />
+            <div className={styles["centered"]}>
+                <h1 className={styles["logout-modal-header"]}>Сигурни ли сте, че искате да излезете?</h1>
+                <input type="button" className={styles["logout-modal-btn"]} onClick={() => [setUser(null), handleLogout()]} value="Изход!" />
+                <input type="button" className={styles["logout-modal-btn"]} onClick={() => setIsOpen(false)} value="Отказ" />
             </div>
         </>
     );
