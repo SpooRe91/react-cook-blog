@@ -52,7 +52,7 @@ router.put('/edit/:id',
         }
     });
 
-//----------------------------PUT EDIT profile------------------------------------//
+//----------------------------GET USER ------------------------------------//
 router.get('/user-get/:id', isAuth, async (req, res) => {
 
     try {
@@ -73,12 +73,15 @@ router.get('/user-get/:id', isAuth, async (req, res) => {
 
 });
 
+//----------------------------PUT EDIT profile------------------------------------//
+
 router.put('/user-edit/:id', isAuth, async (req, res) => {
 
     const image = { ...req.body }
 
     try {
         const edited = await foodService.editUserImage(image.image, req.params.id);
+        console.log(edited);
         res.status(202).json(edited);
 
     } catch (error) {
