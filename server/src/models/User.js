@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const EMAIL_PATTERN = /^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+$/;
+const EMAIL_PATTERN = /^[a-zA-Z0-9]+@[a-zA-Z]+.[a-zA-Z]+$/;
 const PASS_PATTERN = /[a-zA-Z0-9]/;
 
 const userSchema = new mongoose.Schema({
