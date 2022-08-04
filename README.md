@@ -27,10 +27,13 @@ after that:
 
 to start the server. if it is started successfully you should see the
 
-
+</br>
 **"Cook-blog API" listening to port http://localhost:3030"**
+</br>
 **"Cook-blog" React APP and REST API documentation is available at: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md"**
+</br>
 **"DB connected"**
+</br>
 
 
 for the React project, you will need to open the "client" folder in a separate terminal and type in:
