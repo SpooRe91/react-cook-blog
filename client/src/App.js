@@ -21,6 +21,7 @@ import { Profile } from "./components/Profile/Profile";
 import { Logout } from "./components/Logout/Logout";
 import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 import { EditRecipe } from "./components/Edit/EditRecipe";
+
 import { LoggedUserContext } from "./contexts/LoggedUserContext";
 import { ErrorContext } from "./contexts/ErrorMessageContext";
 
