@@ -10,9 +10,9 @@ import { ScrollButton } from '../common/ScrollButton';
 export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    
+
     const [products, setProducts] = useState([]);
-    
+
     useEffect(() => {
         if (products.length === 0) {
             getMacros()
@@ -39,6 +39,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const quantityHandler = (e) => {
         let value = Number(e.target.value);
+        if (value && value <= 0) value = 1;
         setQuantify(value);
     };
 
@@ -46,10 +47,10 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
         <>
             <title>Хранителни стойности</title>
             {errorMessage !== "" &&
-                <div className="error-container">
-                    <p className="error-message">
+                <div className={styles["error-container"]}>
+                    <p className={styles["error-message"]}>
                         {errorMessage.error}
-                        <button className="btn" onClick={() => setErrorMessage('')}>OK</button>
+                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
                     </p>
                 </div>
             }
@@ -62,24 +63,24 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                         </>
                         :
                         <>
-                            <div className="search-container">
+                            <div className={styles["search-container"]}>
                                 <h1 className={styles['table-headers']}>Търсене на продукти</h1>
                                 <h3 className={styles['table-headers']}>На тази таблица можете да намерите основните хранителни
                                     стойности на най-често срещаните и употребявани продукти!
                                 </h3>
                             </div>
-                            <div className="search-container">
-                                <form className="search-nutrients" method="GET">
+                            <div className={styles["search-container"]}>
+                                <form className={styles["search-nutrients"]} method="GET">
                                     <label htmlFor={styles['table-headers']}>
                                         Моля въведете име на Български
                                     </label>
-                                    <input type="text" className="nutrient-name" placeholder="пилешко..." name="search"
+                                    <input type="text" className={styles["nutrient-name"]} placeholder="пилешко..." name="search"
                                         value={filterValue} onChange={filterHandler}
                                     />
                                     <label htmlFor='quantity'>
                                         Моля въведете количество в грамове
                                     </label>
-                                    <input type="number" className="nutrient-qty" placeholder="1000гр..." name="quantity"
+                                    <input type="number" className={styles["nutrient-qty"]} placeholder="1000гр..." name="quantity"
                                         value={quantify || ''} onChange={quantityHandler}
                                     />
                                 </form>
@@ -114,8 +115,8 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                                                     quantify !== 0 || filterValue
                                                         ?
                                                         products.filter(p => p.name.toLowerCase().includes(filterValue))
-                                                            .map(row => <Macrotable key={row._id} {...row} value={quantify / 100} />)
-                                                        : products.map(row => <Macrotable key={row._id} {...row} value={1} />)
+                                                            .map(row => <Macrotable key={row._id} {...row} value={quantify / 100} setErrorMessage={setErrorMessage} />)
+                                                        : products.map(row => <Macrotable key={row._id} {...row} value={1} setErrorMessage={setErrorMessage} />)
                                                 }
                                             </>
                                         </tbody>

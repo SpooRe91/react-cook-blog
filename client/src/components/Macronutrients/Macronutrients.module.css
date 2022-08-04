@@ -2,6 +2,63 @@ body {
     font-size: 140%;
 }
 
+div.search-container {
+    display: flex;
+    width: auto;
+    margin: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.btn {
+    transition: .1s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #00000075;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 35%;
+    transition: 0s;
+}
+
+.search-nutrients {
+    display: flex;
+    max-width: fit-content;
+    min-width: max-content;
+    position: static;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.search-nutrients label {
+    text-shadow: white 0px 0px 20px;
+    margin: 10px auto;
+}
+
 .table-container {
     display: flex;
     align-items: center;
@@ -65,4 +122,74 @@ table td {
 
 ::placeholder {
     color: #919191;
+}
+
+input.nutrient-name:focus,
+input.nutrient-qty:focus {
+    color: #ffffff;
+    width: 60%;
+    transition: 0.5s;
+    border: none;
+    outline: none;
+    border-bottom: white solid;
+    background: none;
+    background-image: none;
+}
+
+input.nutrient-name:not(:focus),
+input.nutrient-qty:not(:focus) {
+    transition: 0.5s;
+}
+
+input.nutrient-name,
+input.nutrient-qty {
+    width: 50%;
+}
+
+input[type=number] {
+    background: none;
+    outline: none;
+    border: none;
+    color: #DECBA4;
+    font-size: 20px;
+    width: 50%;
+    display: inline-block;
+    border-bottom: solid rgb(117, 117, 117);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0 4px 4px 4px;
+    margin: 15px auto;
+    resize: none;
+}
+
+.error-container {
+    margin: 50px;
+    padding: 0px;
+    width: inherit;
+    word-break: break-word;
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    transition: .1s;
+    margin: 40px auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    border: ridge rgb(211 198 181);
+    animation: hide 0s 3.5s;
+    animation-fill-mode: forwards;
 }
