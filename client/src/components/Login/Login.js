@@ -33,7 +33,7 @@ export const Login = ({ setIsLoading }) => {
             .then(res => {
                 if (res.token) {
                     setSession({ ...res });
-                    setUser(previous => getSession());
+                    setUser(prev => getSession());
                     navigate('/recipe/browse', { replace: true });
                     setIsLoading(false);
                 }
