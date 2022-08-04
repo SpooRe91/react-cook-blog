@@ -25,14 +25,15 @@ after that:
 
 "npm start"
 
-to start the server. if it is started successfully you should see the
+to start the server. if it is started successfully you should see the below in the console:
 
-"
-"Cook-blog API" listening to port http://localhost:3030
-"Cook-blog" React APP and REST API documentation is available at: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md
-DB connected
-"
--
+**"Cook-blog API" listening to port http://localhost:3030"**
+</br>
+**"Cook-blog" React APP and REST API documentation is available at: https://github.com/SpooRe91/react-js-project-final/blob/main/Cook-Blog-readme.md"**
+</br>
+**"DB connected"**
+</br>
+
 
 for the React project, you will need to open the "client" folder in a separate terminal and type in:
 
@@ -97,7 +98,7 @@ options = {
 
 ***AUTH:***
 
-API/auth/register - **POST**
+**API/auth/register** - **POST**
 Provide your e-email, password and repeat password. Submit a POST request with the data provided as a body.
 
 example of the REGISTER request:
@@ -125,7 +126,7 @@ const userRegister = async (registerData) => {
 }
 ```
 
-API/auth/login - **POST**
+**API/auth/login** - **POST**
 Provide your e-email and password so and submit a POST request with the data provided as body.
 
 example of the LOGIN request:
@@ -153,7 +154,7 @@ const userLogin = async (loginData) => {
 
 ```
 
-API/auth/logout - **GET**
+**API/auth/logout** - **GET**
 To make a logout request, simply submit the request itself as shown below:
 
 ```js
@@ -174,7 +175,7 @@ export const userLogout = async () => {
     }
 }
 ```
- API/user-get/:id - **GET** - You need to be authorized to make this request. If you are authorized, you just need to make a simple GET request with the particular user ID, if there is such a user - you will receive the information about them, if not - you will receive the following error: "Няма такъв потребител!".
+ **API/user-get/:id** - **GET** - You need to be authorized to make this request. If you are authorized, you just need to make a simple GET request with the particular user ID, if there is such a user - you will receive the information about them, if not - you will receive the following error: "Няма такъв потребител!".
  
  A simple example of the get request:
  ```js
@@ -196,7 +197,7 @@ export const getUser = async (id) => {
     }
 };
 ```
-API/user-edit/:id **PUT** - You need to be authorized to make this request. If you are authorized, you just need to make a simple PUT request with the particular user ID, and add the body header with the image file. If the ID provided is correct, you will receive the following response - 
+**API/user-edit/:id** **PUT** - You need to be authorized to make this request. If you are authorized, you just need to make a simple PUT request with the particular user ID, and add the body header with the image file. If the ID provided is correct, you will receive the following response - 
 ```js
 {
   acknowledged: true,
@@ -234,7 +235,7 @@ const getOne = async (mealId) => {
 };
 ```
 
-API/recipe/add - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
+**API/recipe/add** - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
 
 example of an ADD request:
 API_ADD = http://localhost:3030/edit/id - (id of the meal)
@@ -296,7 +297,7 @@ const editMeal = async (mealId, mealData) => {
 }
 ```
 
-API/like/id - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
+**API/like/id ** - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
 
 example of a LIKE request:
 
@@ -347,7 +348,7 @@ const deleteMeal = async (mealId) => {
 }
 ```
 
-API/recipe/browse - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
+**API/recipe/browse** - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
 
 example of a BROWSE request, API_BROWSE = http://localhost:3030/recipe/browse
 
@@ -371,7 +372,7 @@ const getAll = async () => {
 };
 ```
 
-API/recipe/myRecipes - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
+**API/recipe/myRecipes** - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
 example of a myRecipes request:
 API_MYRECIPES = http://localhost:3030/recipe/myRecipes
 
@@ -416,7 +417,7 @@ const getOne = async (mealId) => {
 ```
 
 <br/>
-API/recipe/add - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
+**API/recipe/add ** - **POST** - Requires (authentication and authorization), creates a recipe object in the database. Returns the created object if the request was a success, and error message if a validation failed i.e. - (Validation failed: image: URL, на снимката трябва да е валиден!);
 
 example of an ADD request:
 API_ADD = http://localhost:3030/edit/id - (id of the meal)
@@ -482,7 +483,7 @@ const editMeal = async (mealId, mealData) => {
 
 <br/>
 <br/>
-API/like/id - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
+**API/like/id** - **GET** - get the likes for a particular item, returns an array of all user IDs, who liked this picture
 
 example of a LIKE request:
 
@@ -534,7 +535,7 @@ const deleteMeal = async (mealId) => {
 ```
 
 <br/>
-API/recipe/browse - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
+**API/recipe/browse** - **GET** - fetch all recipes on the database(doesn't require authentication or authorization). Returns an array of objects with all recipes in the database. If there are no recipes, it will return an empty array.
 
 example of a BROWSE request, API_BROWSE = http://localhost:3030/recipe/browse
 
@@ -559,7 +560,7 @@ const getAll = async () => {
 ```
 
 <br/>
-API/recipe/myRecipes - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
+**API/recipe/myRecipes** - **GET** - fetch the recipes of the currently logged user (reiquires authentication and authorization). Returns an array of objects representing each recipe, if there are no recipes - returns an empty array.
 example of a myRecipes request:
 API_MYRECIPES = http://localhost:3030/recipe/myRecipes
 
