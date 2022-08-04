@@ -54,7 +54,7 @@ function App() {
             <NavBar setIsOpen={setIsOpen} clientCookie={clientCookie} />
 
             {isOpen && isOpen.target === "logout" &&
-              <Logout setIsOpen={setIsOpen} cookies={cookies} />}
+              <Logout setIsOpen={setIsOpen} cookies={cookies} setClientCookie={setClientCookie} />}
             {/* ----------------------------------------------------------------------------------------------- */}
             <Routes>
               <Route path="/" element={<Homepage />} />
@@ -89,7 +89,7 @@ function App() {
               <Route path="/auth/profile" element={<Profile />} />
 
               <Route path="/recipe/macros" element={
-                <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading}/>}
+                <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="*" element={< ErrorPage />}
