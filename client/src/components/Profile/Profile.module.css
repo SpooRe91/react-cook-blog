@@ -1,20 +1,3 @@
-a.logout-main {
-    font-size: 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #cc0606;
-    font-weight: bold;
-    text-shadow: white 0px 0px 20px;
-}
-
-a.logout-main:hover {
-    text-decoration: overline rgb(255, 95, 95);
-    cursor: pointer;
-    text-shadow: 0px 0px 20px rgb(255, 45, 45);
-    color: rgb(255, 255, 255);
-    transition: .1s;
-}
-
 div.profile {
     height: 100%;
     border: none;
@@ -139,4 +122,22 @@ div.profile {
     cursor: pointer;
     border-radius: 35%;
     transition: 0s;
+}
+
+.change-pic-text {
+    transition: .1s;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    font-weight: bold;
+    max-width: max-content;
+    margin: 15px 15px;
+    margin-bottom: 15px;
+    color: #DECBA4;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: none;
+    border: none;
+    font-size: 20px;
 }
