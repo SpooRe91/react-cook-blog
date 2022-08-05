@@ -46,12 +46,12 @@ export const Login = ({ setIsLoading }) => {
     };
 
     useEffect(() => {
-        return (props) => {
+        return () => {
             setErrorMessage('');
             props.userHandler(getSession());
             console.log(getSession());
         };
-    }, [setErrorMessage]);
+    }, [setErrorMessage, props]);
 
     return (
         <>

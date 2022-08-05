@@ -54,11 +54,11 @@ export const Register = ({ setIsLoading }) => {
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
     //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
     useEffect(() => {
-        return (props) => {
+        return () => {
             setErrorMessage('');
             props.userHandler(getSession());
         }
-    }, [setErrorMessage]);
+    }, [setErrorMessage, props]);
 
     //--------------------------------------------------------------------------------------
     return (
