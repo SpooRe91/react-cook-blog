@@ -18,6 +18,7 @@ import { getOwn } from "../../services/mealService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
 import styles from "./Profile.module.css";
+import { ScrollButton } from "../common/ScrollButton";
 
 export const Profile = () => {
 
@@ -191,6 +192,7 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
+            <ScrollButton />
         </>
     )
 }
