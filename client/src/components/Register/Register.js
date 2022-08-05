@@ -10,7 +10,7 @@ import styles from "./Register.module.css";
 
 export const Register = ({ setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export const Register = ({ setIsLoading }) => {
                 console.log(res);
                 if (res.id) {
                     setSession({ ...res });
-                    setUser(previous => getSession());
+                    userHandler(getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
                 } else {
@@ -57,9 +57,9 @@ export const Register = ({ setIsLoading }) => {
     useEffect(() => {
         return () => {
             setErrorMessage('');
-            setUser(getSession());
+            userHandler(getSession());
         }
-    }, [setErrorMessage, setUser]);
+    }, [setErrorMessage, userHandler]);
 
     //--------------------------------------------------------------------------------------
     return (

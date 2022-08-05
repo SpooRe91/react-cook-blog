@@ -10,7 +10,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const AddRecipe = ({ setIsLoading }) => {
 
     const navigate = useNavigate();
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({

@@ -11,7 +11,7 @@ export const MealContainer = ({
     _id, name,
     image, owner,
     timesLiked }) => {
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);

@@ -10,7 +10,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const Logout = ({ setIsOpen, cookies, setClientCookie }) => {
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();
@@ -54,7 +54,7 @@ export const Logout = ({ setIsOpen, cookies, setClientCookie }) => {
             <div className={styles["dark-bg"]} onClick={() => setIsOpen(false)} />
             <div className={styles["centered"]}>
                 <h1 className={styles["logout-modal-header"]}>Сигурни ли сте, че искате да излезете?</h1>
-                <input type="button" className={styles["logout-modal-btn"]} onClick={() => [setUser(null), handleLogout()]} value="Изход!" />
+                <input type="button" className={styles["logout-modal-btn"]} onClick={() => [userHandler(null), handleLogout()]} value="Изход!" />
                 <input type="button" className={styles["logout-modal-btn"]} onClick={() => setIsOpen(false)} value="Отказ" />
             </div>
         </>

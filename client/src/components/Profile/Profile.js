@@ -21,7 +21,7 @@ import styles from "./Profile.module.css";
 
 export const Profile = () => {
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
 

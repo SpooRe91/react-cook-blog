@@ -14,7 +14,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [notDeleted, setnotDeleted] = useState([]);

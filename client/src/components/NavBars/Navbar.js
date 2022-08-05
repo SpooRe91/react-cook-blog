@@ -11,7 +11,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const NavBar = ({ setIsOpen, clientCookie }) => {
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "", []);
 
     return (
@@ -22,7 +22,7 @@ export const NavBar = ({ setIsOpen, clientCookie }) => {
                 </li>
             </ul>
             {user?.token && clientCookie !== null
-                ? <UserNavBar {...user} setUser={setUser} setIsOpen={setIsOpen} focusHandler={focusHandler} />
+                ? <UserNavBar {...user} setUser={userHandler} setIsOpen={setIsOpen} focusHandler={focusHandler} />
                 : <GuestNavBar focusHandler={focusHandler} />
             }
         </nav >);

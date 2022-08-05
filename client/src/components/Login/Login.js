@@ -10,7 +10,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Login = ({ setIsLoading }) => {
 
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ export const Login = ({ setIsLoading }) => {
             .then(res => {
                 if (res.token) {
                     setSession({ ...res });
-                    setUser(prev => getSession());
+                    userHandler(getSession());
                     navigate('/recipe/browse', { replace: true });
                     setIsLoading(false);
                 }
@@ -47,10 +47,10 @@ export const Login = ({ setIsLoading }) => {
     useEffect(() => {
         return () => {
             setErrorMessage('');
-            setUser(getSession());
+            userHandler(getSession());
             console.log(getSession());
         };
-    }, [setErrorMessage, setUser]);
+    }, [setErrorMessage, userHandler]);
 
     return (
         <>

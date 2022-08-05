@@ -30,6 +30,11 @@ function App() {
   const cookies = new Cookies();
 
   const [user, setUser] = useState(getSession());
+
+  const userHandler = (userInfo) => {
+    setUser(userInfo);
+  }
+
   const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
@@ -46,7 +51,7 @@ function App() {
 
   return (
     <ErrorContext.Provider value={{ errorMessage, setErrorMessage }}>
-      <LoggedUserContext.Provider value={{ user, setUser }}>
+      <LoggedUserContext.Provider value={{ user, userHandler }}>
         < div className="App" >
           <Header />
           {/* ----------------------------------------------------------------------------------------------- */}

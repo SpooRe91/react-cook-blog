@@ -14,7 +14,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
 
-    const { user, setUser } = useContext(LoggedUserContext);
+    const { user, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [filterValue, setFilterValue] = useState("");
