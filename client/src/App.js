@@ -43,7 +43,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.token) {
+    if (user) {
       cookies.set('user-session', [user.email, user.token, user.id], { path: "/", maxAge: 48000 });
       setClientCookie(cookies.get('user-session'));
     }

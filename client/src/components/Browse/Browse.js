@@ -121,7 +121,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             isLoading
                                 ?
                                 <div className={styles["already-reg"]}>
-                                    <BeatLoader loading={isLoading} />
+                                    <BeatLoader loading={() => isLoading} color={"white"} />
                                     <p>Рецептите се зареждат...</p>
                                 </div>
                                 :

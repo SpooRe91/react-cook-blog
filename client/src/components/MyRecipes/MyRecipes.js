@@ -88,7 +88,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                             isLoading
                                 ?
                                 <div className={styles["already-reg"]}>
-                                    <BeatLoader loading={isLoading} />
+                                    <BeatLoader loading={() => isLoading} color={"white"}/>
                                     <p>Вашите рецепти се зареждат... <Link to="/recipe/add" className={styles["already-reg"]}>ТУК</Link></p>
                                 </div>
                                 :

@@ -106,7 +106,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                 isLoading
                                     ?
                                     <>
-                                        <BeatLoader loading={() => isLoading} />
+                                        <BeatLoader loading={() => isLoading} color={"white"}/>
                                     </>
                                     :
                                     <>
