@@ -1,8 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { useEffect, useState } from "react";
-import Cookies from 'universal-cookie';
-
-import { getSession } from "./API/api";
+import { useState } from "react";
 
 import { Login } from "./components/Login/Login"
 import { NavBar } from "./components/NavBars/Navbar"
@@ -22,44 +19,31 @@ import { Logout } from "./components/Logout/Logout";
 import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 import { EditRecipe } from "./components/Edit/EditRecipe";
 
-import { LoggedUserContext } from "./contexts/LoggedUserContext";
+import { LoggedUserProvider } from "./contexts/LoggedUserContext";
 import { ErrorContext } from "./contexts/ErrorMessageContext";
 
 function App() {
-
-  const cookies = new Cookies();
-
-  const [user, setUser] = useState(getSession());
-
-  const userHandler = (userInfo) => {
-    setUser(userInfo);
-  }
-
-  const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      cookies.set('user-session', [user.email, user.token, user.id], { path: "/", maxAge: 48000 });
-      setClientCookie(cookies.get('user-session'));
-    }
-  }, [user, setClientCookie])
+
+
+
 
   return (
     <ErrorContext.Provider value={{ errorMessage, setErrorMessage }}>
-      <LoggedUserContext.Provider value={{ user, userHandler }}>
+      <LoggedUserProvider /*value={{ user, userHandler }}*/>
         < div className="App" >
           <Header />
           {/* ----------------------------------------------------------------------------------------------- */}
           <main className="App">
-            <NavBar setIsOpen={setIsOpen} clientCookie={clientCookie} />
+            <NavBar setIsOpen={setIsOpen} />
 
             {isOpen && isOpen.target === "logout" &&
-              <Logout setIsOpen={setIsOpen} cookies={cookies} setClientCookie={setClientCookie} />}
+              <Logout setIsOpen={setIsOpen}/>}
             {/* ----------------------------------------------------------------------------------------------- */}
             <Routes>
               <Route path="/" element={<Homepage />} />
@@ -103,11 +87,11 @@ function App() {
             </Routes>
           </main>
           {/* ----------------------------------------------------------------------------------------------- */}
-          <Footer setIsOpen={setIsOpen} user={user} />
+          <Footer setIsOpen={setIsOpen} />
           {isOpen && isOpen.target === "about" && <About setIsOpen={setIsOpen} />}
           {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
         </div >
-      </LoggedUserContext.Provider>
+      </LoggedUserProvider>
     </ErrorContext.Provider>
   );
 };
