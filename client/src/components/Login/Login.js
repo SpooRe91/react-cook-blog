@@ -10,7 +10,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Login = ({ setIsLoading }) => {
 
 
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
 
@@ -33,7 +33,8 @@ export const Login = ({ setIsLoading }) => {
             .then(res => {
                 if (res.token) {
                     setSession({ ...res });
-                    userHandler(getSession());
+                    props.userHandler(getSession());
+                    props.cookies.set('user-session', getSession(), { path: "/", maxAge: 48000 });
                     navigate('/recipe/browse', { replace: true });
                     setIsLoading(false);
                 }
@@ -45,12 +46,12 @@ export const Login = ({ setIsLoading }) => {
     };
 
     useEffect(() => {
-        return () => {
+        return (props) => {
             setErrorMessage('');
-            userHandler(getSession());
+            props.userHandler(getSession());
             console.log(getSession());
         };
-    }, [setErrorMessage, userHandler]);
+    }, [setErrorMessage]);
 
     return (
         <>
@@ -68,7 +69,7 @@ export const Login = ({ setIsLoading }) => {
                         </div>
                     }
                     {
-                        user ?
+                        props.user ?
                             <div className={styles["error-container"]}>
                                 <p className={styles["error-message"]}>
                                     {"Вече сте влезли!"}

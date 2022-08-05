@@ -9,9 +9,9 @@ import styles from "./NavBar.module.css"
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 
-export const NavBar = ({ setIsOpen, clientCookie }) => {
+export const NavBar = ({ setIsOpen }) => {
 
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
     const focusHandler = useCallback(({ isActive }) => isActive ? styles['active-element'] : "", []);
 
     return (
@@ -21,8 +21,8 @@ export const NavBar = ({ setIsOpen, clientCookie }) => {
                     <Link to="/"><img className={styles["nav-logo"]} src={logo} alt="#" /></Link>
                 </li>
             </ul>
-            {user?.token && clientCookie !== null
-                ? <UserNavBar {...user} setUser={userHandler} setIsOpen={setIsOpen} focusHandler={focusHandler} />
+            {props.user?.token && props.clientCookie !== null
+                ? <UserNavBar {...props.user} setUser={props.userHandler} setIsOpen={setIsOpen} focusHandler={focusHandler} />
                 : <GuestNavBar focusHandler={focusHandler} />
             }
         </nav >);

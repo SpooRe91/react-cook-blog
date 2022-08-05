@@ -10,14 +10,14 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const EditRecipe = ({ setIsLoading }) => {
     const navigate = useNavigate();
 
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
 
     useEffect(() => {
-        if (!user) {
+        if (!props.user) {
             navigate('/404');
         };
     });

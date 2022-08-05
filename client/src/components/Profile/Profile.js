@@ -21,7 +21,7 @@ import styles from "./Profile.module.css";
 
 export const Profile = () => {
 
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
 
@@ -38,7 +38,7 @@ export const Profile = () => {
             if (!img) return;
             const image = await resizeFile(img);
             const imageName = image.name + v4();
-            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${user?.email}/${imageName}`);
+            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${props.user?.email}/${imageName}`);
 
             const uploadTask = uploadBytesResumable(storageRef, image);
             uploadTask.on(
@@ -65,11 +65,11 @@ export const Profile = () => {
             );
         };
         uploadImg(img);
-    }, [img, setErrorMessage, user?.email]);
+    }, [img, setErrorMessage, props.user?.email]);
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
-        getUser(user?.id)
+        getUser(props.user?.id)
             .then(res => {
                 if (res._id) {
                     setUserProfile(res)
@@ -80,7 +80,7 @@ export const Profile = () => {
                 console.log(error.message);
                 setErrorMessage({ error: error.message });
             })
-    }, [img, setUserProfile, setErrorMessage, user?.id]);
+    }, [img, setUserProfile, setErrorMessage, props.user?.id]);
 
     //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
     useEffect(() => {
@@ -120,7 +120,7 @@ export const Profile = () => {
     //submit the url to the back-end, setThe img to null, set the updateState(so the chose file buttons appears and set progress bar to 0)------------
     const editHandler = () => {
         if (url) {
-            editUserImage(url, user?.id)
+            editUserImage(url, props.user?.id)
                 .then(res => {
                     setImg(null);
                     setToUpdate(false);
@@ -143,9 +143,12 @@ export const Profile = () => {
                 <div className={styles["profile-containter"]}>
                     <a href={userProfile?.image} target="_blank" rel="noreferrer"><img className={styles["profile-image-link"]} src={userProfile?.image} id="profile-photo" alt="" /></a>
 
-                    <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
-                        style={progress < 100 ? { "color": "red" } : { "color": "green" }}>
-                        {progress < 100 ? 'ПРОМЕНИ СНИМКАТА' : 'КАЧИ СНИМКАТА'}</button>
+                    <p className={styles["change-pic-text"]}>{progress < 100 ? 'ПРОМЕНИ СНИМКАТА ОТ' : 'КАЧИ СНИМКАТА ОТ'}
+                        <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
+                            style={progress < 100 ? { "color": "red" } : { "color": "green", "text-shadow": "white 0px 0px 20px" }}>
+                            ТУК
+                        </button>
+                    </p>
 
                     {
                         //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
@@ -178,7 +181,7 @@ export const Profile = () => {
                                         ?
                                         notDeleted.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
-                                                timesLiked={meal.likes} user={user}
+                                                timesLiked={meal.likes} user={props.user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
                                         <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>

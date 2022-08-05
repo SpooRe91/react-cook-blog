@@ -10,7 +10,7 @@ import styles from "./Register.module.css";
 
 export const Register = ({ setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
 
@@ -39,7 +39,7 @@ export const Register = ({ setIsLoading }) => {
                 console.log(res);
                 if (res.id) {
                     setSession({ ...res });
-                    userHandler(getSession());
+                    props.userHandler(getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
                 } else {
@@ -51,15 +51,14 @@ export const Register = ({ setIsLoading }) => {
             });
     }
 
-
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
     //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
     useEffect(() => {
-        return () => {
+        return (props) => {
             setErrorMessage('');
-            userHandler(getSession());
+            props.userHandler(getSession());
         }
-    }, [setErrorMessage, userHandler]);
+    }, [setErrorMessage]);
 
     //--------------------------------------------------------------------------------------
     return (
@@ -77,7 +76,7 @@ export const Register = ({ setIsLoading }) => {
                 }
                 <>
                     {
-                        user?.token
+                        props.user?.token
                             ?
                             <div className={styles["error-container"]}>
                                 <p className={styles["error-message"]}>

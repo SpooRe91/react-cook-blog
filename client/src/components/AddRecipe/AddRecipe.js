@@ -10,7 +10,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const AddRecipe = ({ setIsLoading }) => {
 
     const navigate = useNavigate();
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({
@@ -23,7 +23,7 @@ export const AddRecipe = ({ setIsLoading }) => {
     });
     
     useEffect(() => {
-        if (!user) {
+        if (!props.user) {
             navigate('/404');
         };
     });
@@ -123,7 +123,6 @@ export const AddRecipe = ({ setIsLoading }) => {
                     </p>
                     <p className={styles["recipe-add"]}>
                         2. Моля въведете валиден URL започващ с http:// или https://
-                        или можете да качите снимка на вашето ястие, като натиснете бутона "качи симка".
                     </p>
 
                     <p className={styles["recipe-add"]}>

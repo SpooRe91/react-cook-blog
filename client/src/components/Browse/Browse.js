@@ -14,7 +14,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
 
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { ...props } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [notDeleted, setnotDeleted] = useState([]);
@@ -151,7 +151,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             (toLoad && !filterValue)
                             &&
                             moreRecipesToLoad.map(meal => <MealContainer key={meal._id} {...meal}
-                                user={user} timesLiked={meal.likes}
+                                user={props.user} timesLiked={meal.likes}
                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                         }
                     </div>

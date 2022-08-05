@@ -6,8 +6,6 @@ import styles from "./ErrorPage.module.css";
 export const ErrorPage = () => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
-    console.log(errorMessage.error);
-
     useEffect(() => {
         return () => {
             setErrorMessage("")
