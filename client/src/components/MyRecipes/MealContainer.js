@@ -48,7 +48,7 @@ export const MealContainer = ({
                         </>
                 }
                 {errorMessage &&
-                    <p className={styles["error-message"]}> {errorMessage.error}</p>
+                    <p className={styles["error-message"]}> {errorMessage}</p>
                 }
             </div >
         </>

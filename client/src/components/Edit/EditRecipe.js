@@ -18,6 +18,7 @@ export const EditRecipe = ({ setIsLoading }) => {
 
     useEffect(() => {
         if (!props.user) {
+            setErrorMessage('Моля, първо влезте!');
             navigate('/404');
         };
     });
@@ -34,6 +35,10 @@ export const EditRecipe = ({ setIsLoading }) => {
     useEffect(() => {
         getOne(mealId)
             .then(res => {
+                if (res.owner !== props.user.id) {
+                    setErrorMessage('Тази операция не е позволена!');
+                    navigate('/404');
+                }
                 if (res !== undefined && res !== null) {
                     setMeal(res);
                     setValues(res);
@@ -45,7 +50,7 @@ export const EditRecipe = ({ setIsLoading }) => {
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage( error.message );
             })
     }, [mealId, setIsLoading, setErrorMessage]);
 
@@ -72,7 +77,7 @@ export const EditRecipe = ({ setIsLoading }) => {
             })
             .catch(error => {
                 console.log(error);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             })
         return () => {
             setErrorMessage('');
@@ -85,7 +90,7 @@ export const EditRecipe = ({ setIsLoading }) => {
             {errorMessage !== "" &&
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
-                        {errorMessage.error}
+                        {errorMessage}
                         <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
                             OK
                         </button>
@@ -120,7 +125,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                         <option value="трудно">трудно</option>
                     </select>
                 </div>
-                
+
                 <div className={styles["already-reg"]}>
                     <label htmlFor="fullRecipe">Пълна рецепта</label>
                     <textarea className={styles["add-recipe-text"]} type="text" name="fullRecipe" onChange={changeHandler} value={values.fullRecipe} required />

@@ -39,7 +39,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
             })
             .catch(error => {
                 console.log(error.message);
-                return setErrorMessage({ error: error.message });
+                return setErrorMessage(error.message);
             });
         return () => {
             setErrorMessage('');
@@ -60,10 +60,10 @@ export const Details = ({ isLoading, setIsLoading }) => {
                 setIsLiked(true);
                 setNumberOfLikes(likes => likes + 1);
             } catch (error) {
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             }
         } else {
-            setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
+            setErrorMessage("Вече сте харесали тази рецепта!")
         }
     }
 
@@ -94,7 +94,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                     ?
                     <div className={styles["error-container"]}>
                         <p className={styles["error-message"]}>
-                            {errorMessage.error}
+                            {errorMessage}
                             <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                         </p>
                     </div>

@@ -79,7 +79,7 @@ export const Profile = () => {
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             })
     }, [img, setUserProfile, setErrorMessage, props.user?.id]);
 
@@ -93,7 +93,7 @@ export const Profile = () => {
                 if (res.message) throw new Error(res.message);
             }).catch(error => {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             });
         return () => {
             setErrorMessage('');
@@ -130,7 +130,7 @@ export const Profile = () => {
                 })
                 .catch(error => {
                     console.log(error.message);
-                    setErrorMessage({ error: error.message });
+                    setErrorMessage(error.message);
                 })
         }
     }

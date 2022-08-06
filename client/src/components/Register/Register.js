@@ -42,13 +42,12 @@ export const Register = ({ setIsLoading }) => {
                     props.userHandler(getSession());
                     navigate('/recipe/browse');
                     setIsLoading(false);
-                } else {
-                    console.log(res.message);
-                    setErrorMessage({ error: res.message });
-                    throw new Error(res.message);
                 }
                 if (res.message) throw new Error(res.message);
-            });
+            })
+            .catch(error => {
+                setErrorMessage(error.message)
+            })
     }
 
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
@@ -58,18 +57,19 @@ export const Register = ({ setIsLoading }) => {
             setErrorMessage('');
             props.userHandler(getSession());
         }
-    }, [setErrorMessage, props]);
-
+    }, [setErrorMessage]);
+    console.log(errorMessage);
     //--------------------------------------------------------------------------------------
     return (
         <>
             <title>Регистрация</title>
 
             <div>
+                {errorMessage !== '' && <p>Грешка</p>}
                 {errorMessage !== "" &&
                     <div className={styles["error-container"]}>
                         <p className={styles["error-message"]}>
-                            {errorMessage.error}
+                            {errorMessage}
                             <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
                         </p>
                     </div>

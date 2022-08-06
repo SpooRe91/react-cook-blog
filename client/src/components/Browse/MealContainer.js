@@ -44,10 +44,10 @@ export const MealContainer = ({
                 }
                 if (result.message) throw new Error(result.message);
             } catch (error) {
-                setErrorMessage({ error: error.message })
+                setErrorMessage(error.message)
             }
         } else {
-            setErrorMessage({ error: "Вече сте харесали тази рецепта!" })
+            setErrorMessage("Вече сте харесали тази рецепта!")
         }
     };
 
@@ -75,7 +75,7 @@ export const MealContainer = ({
                     <>
                         <div className={styles["error-container"]}>
                             <p className={styles["error-message"]}>
-                                {errorMessage.error}
+                                {errorMessage}
                                 <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                     OK
                                 </button>

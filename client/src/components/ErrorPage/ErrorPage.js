@@ -10,16 +10,17 @@ export const ErrorPage = () => {
         return () => {
             setErrorMessage("")
         }
-    }, [setErrorMessage])
+    }, [setErrorMessage]);
 
     return (
         <div className={styles["error-container"]}>
             <title>Грешка...</title>
             <>
                 {
-                    <p className={styles["error-message"]}> {errorMessage.error
-                        ? errorMessage.error || errorMessage
-                        : "Възникна грешка при изпълнение на заявката Ви"
+                    <p className={styles["error-message"]}> {
+                        errorMessage
+                            ? errorMessage
+                            : "Възникна грешка при изпълнение на заявката Ви"
                     }
                     </p>
                 }

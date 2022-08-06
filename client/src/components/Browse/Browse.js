@@ -20,7 +20,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const [notDeleted, setnotDeleted] = useState([]);
 
     const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
-    const [recipesToShow, setRecipesToShow] = useState([]);
+    const [recentRecipesToShow, setRecentRecipesToShow] = useState([]);
 
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
@@ -36,7 +36,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             });
         return () => {
             setErrorMessage('');
@@ -47,7 +47,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     useEffect(() => {
         setMoreRecipesToLoad(state =>
             [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
-        setRecipesToShow(state =>
+        setRecentRecipesToShow(state =>
             [...state, ...(notDeleted.slice(notDeleted.length - 4))]);
         setIsLoading(false);
     }, [notDeleted, setIsLoading]);
@@ -79,7 +79,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                         <>
                             <div className={styles["error-container"]}>
                                 <p className={styles["error-message"]}>
-                                    {errorMessage.error}
+                                    {errorMessage}
                                     <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                         OK
                                     </button>
@@ -138,7 +138,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
                                         ?
-                                        recipesToShow.map(meal =>
+                                        recentRecipesToShow.map(meal =>
                                             <MealContainer key={meal._id} {...meal} timesLiked={meal.likes}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage}
                                             />)

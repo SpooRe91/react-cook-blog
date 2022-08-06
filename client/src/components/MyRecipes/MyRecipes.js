@@ -40,7 +40,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             }).catch(error => {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
             });
         return () => {
             setErrorMessage('');
@@ -64,7 +64,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                     <>
                         <div className={styles["error-container"]}>
                             <p className={styles["error-message"]}>
-                                {errorMessage.error}
+                                {errorMessage}
                                 <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
                                     OK
                                 </button>

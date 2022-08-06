@@ -19,7 +19,7 @@ export const OnwerButtons = ({ _id, setErrorMessage }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
-                setErrorMessage({ error: error.message })
+                setErrorMessage(error.message)
             });
     };
 

@@ -27,11 +27,11 @@ export const Logout = ({ setIsOpen }) => {
                 setIsOpen(false);
             } catch (error) {
                 console.log(error.message);
-                setErrorMessage({ error: error.message });
+                setErrorMessage(error.message);
                 navigate('/404');
             }
         } else {
-            setErrorMessage({ error: "Първо трябва да влезете!" });
+            setErrorMessage("Първо трябва да влезете!");
         }
     }
 
@@ -49,7 +49,7 @@ export const Logout = ({ setIsOpen }) => {
                 </div>
             }
             {errorMessage
-                ? <p className="error-message"> {errorMessage.error}</p>
+                ? <p className="error-message"> {errorMessage}</p>
                 : ""
             }
             <div className={styles["dark-bg"]} onClick={() => setIsOpen(false)} />

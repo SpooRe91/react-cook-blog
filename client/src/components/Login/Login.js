@@ -41,7 +41,7 @@ export const Login = ({ setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
-                return setErrorMessage({ error: error.message })
+                return setErrorMessage(error.message)
             })
     };
 
@@ -51,17 +51,18 @@ export const Login = ({ setIsLoading }) => {
             props.userHandler(getSession());
             console.log(getSession());
         };
-    }, [setErrorMessage, props]);
+    }, [setErrorMessage]);
 
     return (
         <>
             <title>Вход</title>
             <div>
                 <>
+                
                     {errorMessage !== "" &&
                         <div className={styles["error-container"]}>
                             <p className={styles["error-message"]}>
-                                {errorMessage.error}
+                                {errorMessage}
                                 <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
                                     OK
                                 </button>
