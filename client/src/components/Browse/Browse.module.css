@@ -274,7 +274,7 @@ div.meal a.btn {
 img.meal-image-link,
 a.meal-image-link,
 img.meal {
-    margin: 5px 5px 5px 5px;
+    margin: 5px;
     border: none;
     border-radius: 10%;
     display: inline-block;
