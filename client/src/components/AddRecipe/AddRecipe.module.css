@@ -245,7 +245,7 @@ article.recipe-details {
 .error-container {
     margin: 50px;
     padding: 0px;
-    width: inherit;
+    width: fit-content;
     word-break: break-word;
     display: flex;
     align-content: center;

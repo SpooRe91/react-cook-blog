@@ -1,20 +1,23 @@
 .error-container {
+    top: 50%;
+    right: 10%;
+    float: right;
     margin: 50px;
     padding: 0px;
-    width: inherit;
+    width: fit-content;
     word-break: break-word;
-    display: flex;
     align-content: center;
     justify-items: center;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    position: absolute;
 }
+
 
 .error-message {
     transition: .1s;
     margin: 40px auto;
-    display: block;
     width: fit-content;
     max-width: 100%;
     color: white;
