@@ -1,6 +1,7 @@
-export const Macrotable = ({ name, water, protein, fat, carb, calories, value, setErrorMessage }) => {
+export const Macrotable = ({ name, water, protein, fat, carb, calories, value }) => {
 
-    if (value === 0 || value < 0) value = 1;
+    if (value <= 0) value = 1;
+    
     return (
         <>
             {

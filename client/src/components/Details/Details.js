@@ -14,7 +14,7 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const Details = ({ isLoading, setIsLoading }) => {
 
     const navigate = useNavigate();
-    const { ...props } = useContext(LoggedUserContext);
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});
@@ -47,14 +47,14 @@ export const Details = ({ isLoading, setIsLoading }) => {
     }, [mealId, setIsLoading, setErrorMessage]);
 
     useEffect(() => {
-        if (arrayOfLikes?.find(x => x === props.user?.id)) {
+        if (arrayOfLikes?.find(x => x === user?.id)) {
             setIsLiked(true)
         };
-    }, [arrayOfLikes, setIsLiked, props.user]);
+    }, [arrayOfLikes, setIsLiked, user]);
 
 
     const likeHandler = async (e) => {
-        if (!arrayOfLikes.find(x => x === props.user?.id)) {
+        if (!arrayOfLikes.find(x => x === user?.id)) {
             try {
                 await addLike(meal._id);
                 setIsLiked(true);
@@ -70,7 +70,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
 
     const likeHeartWithCount = (
         <span className={styles["number-of-likes"]}>
-            <FaHeart className={styles["number-of-likes"]} style={isLiked || props.user?.id === meal.owner
+            <FaHeart className={styles["number-of-likes"]} style={isLiked || user?.id === meal.owner
                 ? { 'color': "red" }
                 : { 'color': "white" }}
             />{numberOfLikes}
@@ -106,7 +106,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                 isLoading
                                     ?
                                     <>
-                                        <BeatLoader loading={() => isLoading} color={"white"}/>
+                                        <BeatLoader loading={() => isLoading} color={"white"} />
                                     </>
                                     :
                                     <>
@@ -117,11 +117,11 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                             alt="" />
                                         </a>
                                         <div>
-                                            {props.user?.token && meal?.owner === props.user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
+                                            {user?.token && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
                                         </div>
                                         <div className={styles["like-container"]}>
                                             {
-                                                props.user !== null && props.user?.id !== meal.owner
+                                                user !== null && user?.id !== meal.owner
                                                     ?//if we have a logged user and is not the owner
                                                     numberOfLikes !== 0
                                                         ?//if there are likes

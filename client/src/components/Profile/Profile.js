@@ -22,7 +22,7 @@ import { ScrollButton } from "../common/ScrollButton";
 
 export const Profile = () => {
 
-    const { ...props } = useContext(LoggedUserContext);
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
 
@@ -39,7 +39,7 @@ export const Profile = () => {
             if (!img) return;
             const image = await resizeFile(img);
             const imageName = image.name + v4();
-            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${props.user?.email}/${imageName}`);
+            const storageRef = ref(storage, `gs://cook-blog-d3ed8.appspot.com/profilePics/${user?.email}/${imageName}`);
 
             const uploadTask = uploadBytesResumable(storageRef, image);
             uploadTask.on(
@@ -66,11 +66,11 @@ export const Profile = () => {
             );
         };
         uploadImg(img);
-    }, [img, setErrorMessage, props.user?.email]);
+    }, [img, setErrorMessage, user?.email]);
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
-        getUser(props.user?.id)
+        getUser(user?.id)
             .then(res => {
                 if (res._id) {
                     setUserProfile(res)
@@ -81,7 +81,7 @@ export const Profile = () => {
                 console.log(error.message);
                 setErrorMessage(error.message);
             })
-    }, [img, setUserProfile, setErrorMessage, props.user?.id]);
+    }, [img, setUserProfile, setErrorMessage, user?.id]);
 
     //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
     useEffect(() => {
@@ -121,7 +121,7 @@ export const Profile = () => {
     //submit the url to the back-end, setThe img to null, set the updateState(so the chose file buttons appears and set progress bar to 0)------------
     const editHandler = () => {
         if (url) {
-            editUserImage(url, props.user?.id)
+            editUserImage(url, user?.id)
                 .then(res => {
                     setImg(null);
                     setToUpdate(false);
@@ -146,7 +146,7 @@ export const Profile = () => {
 
                     <p className={styles["change-pic-text"]}>{progress < 100 ? 'ПРОМЕНИ СНИМКАТА ОТ' : 'КАЧИ СНИМКАТА ОТ'}
                         <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
-                            style={progress < 100 ? { "color": "red" } : { "color": "green", "text-shadow": "white 0px 0px 20px" }}>
+                            style={progress < 100 ? { "color": "red" } : { "color": "green", "textShadow": "white 0px 0px 20px" }}>
                             ТУК
                         </button>
                     </p>
@@ -182,7 +182,7 @@ export const Profile = () => {
                                         ?
                                         notDeleted.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
-                                                timesLiked={meal.likes} user={props.user}
+                                                timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
                                         <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>

@@ -39,6 +39,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const quantityHandler = (e) => {
         let value = Number(e.target.value);
+        if (value <= 0) value = 0;
         setQuantify(value);
     };
 
@@ -58,7 +59,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                     isLoading
                         ?
                         <>
-                            <BeatLoader loading={() => isLoading} color={"white"}/>
+                            <BeatLoader loading={() => isLoading} color={"white"} />
                         </>
                         :
                         <>

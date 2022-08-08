@@ -10,15 +10,14 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const EditRecipe = ({ setIsLoading }) => {
     const navigate = useNavigate();
 
-    const { ...props } = useContext(LoggedUserContext);
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
 
     useEffect(() => {
-        if (!props.user) {
-            setErrorMessage('Моля, първо влезте!');
+        if (!user) {
             navigate('/404');
         };
     });
@@ -35,7 +34,7 @@ export const EditRecipe = ({ setIsLoading }) => {
     useEffect(() => {
         getOne(mealId)
             .then(res => {
-                if (res.owner !== props.user.id) {
+                if (res.owner !== user?.id) {
                     setErrorMessage('Тази операция не е позволена!');
                     navigate('/404');
                 }
@@ -44,13 +43,13 @@ export const EditRecipe = ({ setIsLoading }) => {
                     setValues(res);
                     setIsLoading(false);
                 } else {
-                    throw new Error('No recipe found!')
+                    throw new Error('Няма намерена рецепта!')
                 }
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage( error.message );
+                setErrorMessage(error.message);
             })
     }, [mealId, setIsLoading, setErrorMessage]);
 
@@ -85,18 +84,9 @@ export const EditRecipe = ({ setIsLoading }) => {
     }
 
     return (
-        <div>
+        <div className="edit-containter">
             <title>Промени рецепта {meal.name}</title>
-            {errorMessage !== "" &&
-                <div className={styles["error-container"]}>
-                    <p className={styles["error-message"]}>
-                        {errorMessage}
-                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
-                            OK
-                        </button>
-                    </p>
-                </div>
-            }
+
             <h1 className={styles["already-reg"]}>Промени рецепта</h1>
 
             <form className={styles["add-form"]} method="POST" onSubmit={editHandler}>
@@ -137,7 +127,16 @@ export const EditRecipe = ({ setIsLoading }) => {
                 <input type="submit" value="Промени" className={styles["add-form-submit"]} />
                 <Link to={`/details/${mealId}`} className={styles["btn"]}>назад</Link>
             </form >
-
+            {errorMessage !== "" &&
+                <div className={styles["error-container"]}>
+                    <p className={styles["error-message"]}>
+                        {errorMessage}
+                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
+                            OK
+                        </button>
+                    </p>
+                </div>
+            }
         </div >
     )
 

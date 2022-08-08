@@ -10,19 +10,19 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const Logout = ({ setIsOpen }) => {
 
-    const { ...props } = useContext(LoggedUserContext);
+    const { user, cookies, setClientCookie, userHandler } = useContext(LoggedUserContext);
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();
 
     const handleLogout = async () => {
-        if (props.user) {
+        if (user) {
             try {
                 await userLogout();
                 logoutSession();
-                props.cookies.remove('user-session', { path: "/", maxAge: 48000 });
-                props.setClientCookie(props.cookies.get('user-session'));
+                cookies.remove('user-session', { path: "/", maxAge: 48000 });
+                setClientCookie(cookies.get('user-session'));
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
@@ -40,7 +40,7 @@ export const Logout = ({ setIsOpen }) => {
         <>
             <title>Изход</title>
             {
-                !props.user?.token &&
+                !user?.token &&
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
                         {"Тази операция не може да се изпълни, ако не сте влезли!"}
@@ -55,7 +55,7 @@ export const Logout = ({ setIsOpen }) => {
             <div className={styles["dark-bg"]} onClick={() => setIsOpen(false)} />
             <div className={styles["centered"]}>
                 <h1 className={styles["logout-modal-header"]}>Сигурни ли сте, че искате да излезете?</h1>
-                <input type="button" className={styles["logout-modal-btn"]} onClick={() => [props.userHandler(null), handleLogout()]} value="Изход!" />
+                <input type="button" className={styles["logout-modal-btn"]} onClick={() => [userHandler(null), handleLogout()]} value="Изход!" />
                 <input type="button" className={styles["logout-modal-btn"]} onClick={() => setIsOpen(false)} value="Отказ" />
             </div>
         </>

@@ -13,7 +13,7 @@ const mealSchema = new mongoose.Schema({
             validator: function (value) {
                 return URL_PATERN.test(value);
             },
-            message: "URL, на снимката трябва да е валиден!"
+            message: "URL-ът, на снимката трябва да бъде валиден формат, и също трябва да започва с http:// или  https://"
         }
     },
     fullRecipe: {

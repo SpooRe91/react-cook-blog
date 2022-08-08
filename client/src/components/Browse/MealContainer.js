@@ -11,7 +11,8 @@ export const MealContainer = ({
     _id, name,
     image, owner,
     timesLiked }) => {
-    const { ...props } = useContext(LoggedUserContext);
+        
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);
@@ -27,15 +28,15 @@ export const MealContainer = ({
         if (timesLiked !== null && timesLiked !== undefined) {
             setNumberOfLikes(timesLiked.length);
         }
-        if (timesLiked?.find(x => x === props.user?.id)) {
+        if (timesLiked?.find(x => x === user?.id)) {
             setIsLiked(true)
         }
-    }, [timesLiked, setIsLiked, props.user]);
+    }, [timesLiked, setIsLiked, user]);
 
 
     const likeHandler = async (e) => {
 
-        if (!timesLiked?.find(x => x === props.user?.id)) {
+        if (!timesLiked?.find(x => x === user?.id)) {
             try {
                 const result = await addLike(_id);
                 if (result.status !== 400) {
@@ -53,7 +54,7 @@ export const MealContainer = ({
 
     const likeHeartWithCount = (
         <span className={styles["number-of-likes"]}>
-            <FaHeart className={styles["number-of-likes"]} style={isLiked || props.user?.id === owner
+            <FaHeart className={styles["number-of-likes"]} style={isLiked || user?.id === owner
                 ? { 'color': "red" }
                 : { 'color': "white" }}
             />{numberOfLikes}
@@ -93,7 +94,7 @@ export const MealContainer = ({
                     <img className={styles["meal"]} src={image} alt="" /></Link>
                 <Link className={styles["btn"]} to={`/details/${_id}`}>Подробно</Link>
                 {
-                    props.user?.token && props.user?.id !== owner
+                    user?.token && user?.id !== owner
                         ?//if we have a logged user and is not the owner
                         numberOfLikes !== 0
                             ?//if there are likes

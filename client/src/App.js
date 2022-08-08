@@ -20,22 +20,16 @@ import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 import { EditRecipe } from "./components/Edit/EditRecipe";
 
 import { LoggedUserProvider } from "./contexts/LoggedUserContext";
-import { ErrorContext } from "./contexts/ErrorMessageContext";
+import { ErrorContextProvider } from "./contexts/ErrorMessageContext";
 
 function App() {
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
-
-  const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
-
-
-
-
   return (
-    <ErrorContext.Provider value={{ errorMessage, setErrorMessage }}>
-      <LoggedUserProvider /*value={{ user, userHandler }}*/>
+    <ErrorContextProvider>
+      <LoggedUserProvider>
         < div className="App" >
           <Header />
           {/* ----------------------------------------------------------------------------------------------- */}
@@ -43,7 +37,7 @@ function App() {
             <NavBar setIsOpen={setIsOpen} />
 
             {isOpen && isOpen.target === "logout" &&
-              <Logout setIsOpen={setIsOpen}/>}
+              <Logout setIsOpen={setIsOpen} />}
             {/* ----------------------------------------------------------------------------------------------- */}
             <Routes>
               <Route path="/" element={<Homepage />} />
@@ -92,7 +86,7 @@ function App() {
           {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
         </div >
       </LoggedUserProvider>
-    </ErrorContext.Provider>
+    </ErrorContextProvider>
   );
 };
 

@@ -1,16 +1,21 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import styles from "./ErrorPage.module.css";
 
 export const ErrorPage = () => {
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     useEffect(() => {
+        if (!user) {
+            setErrorMessage("Моля, първо влезте!");
+        }
         return () => {
             setErrorMessage("")
         }
-    }, [setErrorMessage]);
+    }, [setErrorMessage, user]);
 
     return (
         <div className={styles["error-container"]}>

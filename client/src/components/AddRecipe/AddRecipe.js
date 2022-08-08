@@ -10,7 +10,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const AddRecipe = ({ setIsLoading }) => {
 
     const navigate = useNavigate();
-    const { ...props } = useContext(LoggedUserContext);
+    const { user } = useContext(LoggedUserContext);
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({
@@ -21,13 +21,13 @@ export const AddRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
-    
+
     useEffect(() => {
-        if (!props.user) {
+        if (!user) {
             navigate('/404');
         };
     });
-    
+
     //removes the error message
     useEffect(() => {
         return () => {

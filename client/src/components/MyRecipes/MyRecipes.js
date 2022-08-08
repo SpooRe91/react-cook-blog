@@ -14,15 +14,14 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
 
-    const {...props} = useContext(LoggedUserContext);
+    const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [filterValue, setFilterValue] = useState("");
     const [notDeleted, setNotDeleted] = useState([])
 
     useEffect(() => {
-        if (!props.user) {
-            setErrorMessage('Моля, първо влезте!');
+        if (!user) {
             navigate('/404');
         };
     });
@@ -88,7 +87,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                             isLoading
                                 ?
                                 <div className={styles["already-reg"]}>
-                                    <BeatLoader loading={() => isLoading} color={"white"}/>
+                                    <BeatLoader loading={() => isLoading} color={"white"} />
                                     <p>Вашите рецепти се зареждат... <Link to="/recipe/add" className={styles["already-reg"]}>ТУК</Link></p>
                                 </div>
                                 :
@@ -97,14 +96,14 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                                     notDeleted.filter(x => x.name.toLowerCase().includes(filterValue))
                                         .map(meal =>
                                             <MealContainer key={meal._id} {...meal}
-                                                timesLiked={meal.likes} user={props.user}
+                                                timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                     :
                                     notDeleted !== undefined && notDeleted !== null && notDeleted?.length > 0
                                         ?
                                         notDeleted.map(meal =>
                                             <MealContainer key={meal._id} {...meal}
-                                                timesLiked={meal.likes} user={props.user}
+                                                timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
                                         <div className={styles["already-reg"]}>
