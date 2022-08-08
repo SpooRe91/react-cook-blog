@@ -57,7 +57,7 @@ export const Register = ({ setIsLoading }) => {
             setErrorMessage('');
             userHandler(getSession());
         }
-    }, [setErrorMessage]);
+    }, [setErrorMessage, userHandler]);
     console.log(errorMessage);
     //--------------------------------------------------------------------------------------
     return (

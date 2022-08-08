@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
+//-------------------------------------------------------------------------------------------------
 import styles from "./AddRecipe.module.css";
-
+//-------------------------------------------------------------------------------------------------
 import { create } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const AddRecipe = ({ setIsLoading }) => {
-
+    //-------------------------------------------------------------------------------------------------
     const navigate = useNavigate();
     const { user } = useContext(LoggedUserContext);
-
+    //-------------------------------------------------------------------------------------------------
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({
         name: '',
@@ -22,26 +22,24 @@ export const AddRecipe = ({ setIsLoading }) => {
         fullRecipe: '',
     });
 
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         if (!user) {
             navigate('/404');
         };
-    });
-
-    //removes the error message
-    useEffect(() => {
         return () => {
             setErrorMessage('');
         }
-    }, [setErrorMessage]);
+    }, [setErrorMessage, navigate, user]);
 
+    //-------------------------------------------------------------------------------------------------
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
         }));
         setErrorMessage('');
     };
-
+    //-------------------------------------------------------------------------------------------------
     const createHandler = (e) => {
         e.preventDefault();
         create(values)
@@ -58,11 +56,8 @@ export const AddRecipe = ({ setIsLoading }) => {
                 setErrorMessage(error.message);
             })
     }
-
-
-
+    //-------------------------------------------------------------------------------------------------
     return (
-
         <>
             <title>Добави рецепта</title>
 
@@ -84,7 +79,7 @@ export const AddRecipe = ({ setIsLoading }) => {
                 <div className={styles["already-reg"]}>
                     <label htmlFor="portions">брой порции</label>
                     <input type="number" name="portions" id="portions" onChange={changeHandler}
-                        placeholder={4} required value={values.portions < 0 ? 0 : values.portions} />
+                        placeholder={4} required value={values.portions <= 0 ? 0 : values.portions} />
                 </div>
 
                 <label htmlFor="difficulty">трудност</label>

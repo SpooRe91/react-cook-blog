@@ -2,29 +2,28 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { FaHeart } from 'react-icons/fa';
+//-------------------------------------------------------------------------------------------------
 import styles from "./Details.module.css";
-
 import { addLike, getOne } from "../../services/mealService";
-
+//-------------------------------------------------------------------------------------------------
 import { OnwerButtons } from "./OwnerButtons"
 import { ScrollButton } from "../common/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-
+//-------------------------------------------------------------------------------------------------
 export const Details = ({ isLoading, setIsLoading }) => {
-
-    const navigate = useNavigate();
+    //-------------------------------------------------------------------------------------------------
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-
+    //-------------------------------------------------------------------------------------------------
+    const navigate = useNavigate();
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
-
+    //-------------------------------------------------------------------------------------------------
     const [numberOfLikes, setNumberOfLikes] = useState(null);
     const [arrayOfLikes, setArrayOfLikes] = useState(null);
-
     const [isLiked, setIsLiked] = useState(false);
-
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         getOne(mealId)
             .then(res => {
@@ -46,13 +45,14 @@ export const Details = ({ isLoading, setIsLoading }) => {
         }
     }, [mealId, setIsLoading, setErrorMessage]);
 
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         if (arrayOfLikes?.find(x => x === user?.id)) {
             setIsLiked(true)
         };
     }, [arrayOfLikes, setIsLiked, user]);
 
-
+    //-------------------------------------------------------------------------------------------------
     const likeHandler = async (e) => {
         if (!arrayOfLikes.find(x => x === user?.id)) {
             try {
@@ -67,7 +67,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
         }
     }
 
-
+    //-------------------------------------------------------------------------------------------------
     const likeHeartWithCount = (
         <span className={styles["number-of-likes"]}>
             <FaHeart className={styles["number-of-likes"]} style={isLiked || user?.id === meal.owner
@@ -76,17 +76,17 @@ export const Details = ({ isLoading, setIsLoading }) => {
             />{numberOfLikes}
         </span>);
 
-
+    //-------------------------------------------------------------------------------------------------
     const likeButton = (
         <button type="button" className={styles["like-button"]}
             onClick={(e) => likeHandler(e)}>харесай &#11166;{likeHeartWithCount}
         </button>)
 
-
+    //-------------------------------------------------------------------------------------------------
     let createdOn = new Date(meal.updatedAt).toString();
     createdOn = createdOn.slice(0, createdOn.indexOf('GMT'));
 
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <>
             {
@@ -100,6 +100,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                     </div>
                     :
                     <>
+
                         <title>Детайли: {meal.name}</title>
                         <div className={styles["details"]}>
                             {
@@ -141,45 +142,53 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                                     likeHeartWithCount
                                             }
                                         </div>
+
+                                        <article>
+
+                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
+                                                style={{ "color": "wheat" }}>
+                                                {meal.portions}
+                                            </strong>
+                                            </p>
+
+                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
+                                                style={{ "color": "wheat" }}>
+                                                {meal.difficulty}
+                                            </strong>
+                                            </p>
+
+                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
+                                                style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
+                                                {createdOn}
+                                            </span>
+                                            </p>
+
+                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
+                                                style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
+                                                {meal.ownerName}
+                                            </span>
+                                            </p>
+
+                                        </article>
                                     </>
                             }
-                            <article>
-
-                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
-                                    style={{ "color": "wheat" }}>
-                                    {meal.portions}
-                                </strong>
-                                </p>
-
-                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
-                                    style={{ "color": "wheat" }}>
-                                    {meal.difficulty}
-                                </strong>
-                                </p>
-
-                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
-                                    style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
-                                    {createdOn}
-                                </span>
-                                </p>
-
-                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
-                                    style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
-                                    {meal.ownerName}
-                                </span>
-                                </p>
-
-                            </article>
-                            {<ScrollButton />}
                         </div>
+                        <ScrollButton />
+                        {
+                            isLoading
+                                ?
+                                <>
+                                    <BeatLoader loading={() => isLoading} color={"white"} />
+                                </>
+                                :
+                                <article className={styles["recipe-details"]}>
+                                    <label htmlFor="ingredients">Необходими съставки:</label>
+                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
 
-                        <article className={styles["recipe-details"]}>
-                            <label htmlFor="ingredients">Необходими съставки:</label>
-                            <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
-
-                            <label htmlFor="ingredients">Рецепта:</label>
-                            <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
-                        </article>
+                                    <label htmlFor="ingredients">Рецепта:</label>
+                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
+                                </article>
+                        }
                     </>
             }
             <ScrollButton />

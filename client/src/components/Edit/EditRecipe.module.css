@@ -4,7 +4,7 @@
     float: right;
     margin: 50px;
     padding: 0px;
-    width: fit-content;
+    width: 50ch;
     word-break: break-word;
     align-content: center;
     justify-items: center;

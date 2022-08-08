@@ -2,29 +2,34 @@ import { useContext, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import styles from "./Browse.module.css"
-
+//-------------------------------------------------------------------------------------------------
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "../common/ScrollButton";
-
+//-------------------------------------------------------------------------------------------------
 import { getAll } from "../../services/mealService";
-
+//-------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+//-------------------------------------------------------------------------------------------------
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
+    //-------------------------------------------------------------------------------------------------
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
+    //-------------------------------------------------------------------------------------------------
 
     const [notDeleted, setnotDeleted] = useState([]);
+    //-------------------------------------------------------------------------------------------------
 
     const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
     const [recentRecipesToShow, setRecentRecipesToShow] = useState([]);
+    //-------------------------------------------------------------------------------------------------
 
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
-
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         getAll()
             .then(res => {
@@ -43,7 +48,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         }
     }, [setnotDeleted, setIsLoading, setErrorMessage]);
 
-
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         setMoreRecipesToLoad(state =>
             [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
@@ -52,19 +57,18 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         setIsLoading(false);
     }, [notDeleted, setIsLoading]);
 
-
+    //-------------------------------------------------------------------------------------------------
     const filtered = notDeleted.filter(x => x.name.toLowerCase().includes(filterValue));
 
-
+    //-------------------------------------------------------------------------------------------------
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
-
+    //-------------------------------------------------------------------------------------------------
     const toLoadHandler = () => {
         setToLoad(state => !state);
     };
-
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <>
             <div className={styles["search-container"]}>

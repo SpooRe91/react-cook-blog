@@ -1,7 +1,7 @@
 import styles from "./Homepage.module.css";
 
 export const Homepage = () => {
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <>
             <title>Начало</title>

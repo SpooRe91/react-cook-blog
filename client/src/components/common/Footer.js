@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Common.module.css"
-
+//-------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
-
+//-------------------------------------------------------------------------------------------------
 export const Footer = ({ setIsOpen }) => {
-
+    //-------------------------------------------------------------------------------------------------
     const { user } = useContext(LoggedUserContext);
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <footer className={styles["footer"]}>
             <p>Copyright © designed by <a href="https://github.com/SpooRe91" target={"_blank"} rel="noreferrer" className={styles["btn-footer-created-by"]}>Martin Bogdanov</a> </p>

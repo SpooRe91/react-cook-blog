@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { FaArrowCircleUp } from 'react-icons/fa';
 import styles from "../Browse/Browse.module.css";
-
+//-------------------------------------------------------------------------------------------------
 export const ScrollButton = () => {
-
+    //-------------------------------------------------------------------------------------------------
     const [visible, setVisible] = useState(false)
-
+    //-------------------------------------------------------------------------------------------------
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         if (scrolled > 300) {
@@ -15,7 +15,7 @@ export const ScrollButton = () => {
             setVisible(false)
         }
     };
-
+    //-------------------------------------------------------------------------------------------------
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -23,9 +23,9 @@ export const ScrollButton = () => {
             behavior: "smooth"
         });
     };
-
+    //-------------------------------------------------------------------------------------------------
     window.addEventListener('scroll', toggleVisible);
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <FaArrowCircleUp onClick={scrollToTop} className={styles["to-top"]}
             style={{ display: visible ? 'inline' : 'none' }} title="To top" />

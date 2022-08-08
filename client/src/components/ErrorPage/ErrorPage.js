@@ -5,9 +5,10 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import styles from "./ErrorPage.module.css";
 
 export const ErrorPage = () => {
+    //-------------------------------------------------------------------------------------------------
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         if (!user) {
             setErrorMessage("Моля, първо влезте!");
@@ -16,6 +17,7 @@ export const ErrorPage = () => {
             setErrorMessage("")
         }
     }, [setErrorMessage, user]);
+    //-------------------------------------------------------------------------------------------------
 
     return (
         <div className={styles["error-container"]}>

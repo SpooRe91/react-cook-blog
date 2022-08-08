@@ -1,26 +1,33 @@
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-
+//-------------------------------------------------------------------------------------------------
 import styles from "./EditRecipe.module.css";
-
+//-------------------------------------------------------------------------------------------------
 import { getOne, editMeal } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
-
+//-------------------------------------------------------------------------------------------------
 export const EditRecipe = ({ setIsLoading }) => {
     const navigate = useNavigate();
+    //-------------------------------------------------------------------------------------------------
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
+    //-------------------------------------------------------------------------------------------------
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
+    //-------------------------------------------------------------------------------------------------
 
     useEffect(() => {
         if (!user) {
             navigate('/404');
         };
-    });
+        return () => {
+            setErrorMessage('');
+        }
+    }, [navigate, user, setErrorMessage]);
+    //-------------------------------------------------------------------------------------------------
 
     const [values, setValues] = useState({
         name: '',
@@ -30,7 +37,7 @@ export const EditRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
-
+    //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         getOne(mealId)
             .then(res => {
@@ -51,9 +58,9 @@ export const EditRecipe = ({ setIsLoading }) => {
                 console.log(error.message);
                 setErrorMessage(error.message);
             })
-    }, [mealId, setIsLoading, setErrorMessage]);
+    }, [mealId, setIsLoading, setErrorMessage, user?.id, navigate]);
 
-
+    //-------------------------------------------------------------------------------------------------
     const changeHandler = (e) => {
         setValues(state => ({
             ...state, [e.target.name]: e.target.value
@@ -61,7 +68,7 @@ export const EditRecipe = ({ setIsLoading }) => {
         setErrorMessage('');
     };
 
-
+    //-------------------------------------------------------------------------------------------------
     const editHandler = (e) => {
         e.preventDefault();
 
@@ -82,7 +89,7 @@ export const EditRecipe = ({ setIsLoading }) => {
             setErrorMessage('');
         }
     }
-
+    //-------------------------------------------------------------------------------------------------
     return (
         <div className="edit-containter">
             <title>Промени рецепта {meal.name}</title>
@@ -108,7 +115,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 <label htmlFor="difficulty">трудност</label>
                 <div className={styles["select-container"]}>
                     <select name="difficulty" id="difficulty" className={styles["select-difficulty"]} onChange={changeHandler}>
-                        <option defaultValue=""></option>
+                        <option defaultValue={values.difficulty}>{values.difficulty}</option>
                         <option value="лесно">лесно</option>
                         <option value="средно">средно</option>
                         <option value="за напреднали">за напреднали</option>
