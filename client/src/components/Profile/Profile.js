@@ -19,12 +19,13 @@ import { MealContainer } from "../MyRecipes/MealContainer";
 
 import styles from "./Profile.module.css";
 import { ScrollButton } from "../common/ScrollButton";
+import { useParams } from "react-router-dom";
 
 export const Profile = () => {
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-
+    const { id } = useParams();
 
     const [img, setImg] = useState(null);
     const [url, setUrl] = useState("");
@@ -70,35 +71,42 @@ export const Profile = () => {
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
-        getUser(user?.id)
-            .then(res => {
-                if (res._id) {
-                    setUserProfile(res)
-                }
-                if (res.message) throw new Error(res.message);
-            })
-            .catch(error => {
-                console.log(error.message);
-                setErrorMessage(error.message);
-            })
-    }, [img, setUserProfile, setErrorMessage, user?.id]);
-
-    //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
-    useEffect(() => {
-        getOwn()
-            .then(res => {
-                if (res.length > 0) {
-                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
-                }
-                if (res.message) throw new Error(res.message);
-            }).catch(error => {
-                console.log(error.message);
-                setErrorMessage(error.message);
-            });
+        if (user) {
+            getUser(id)
+                .then(res => {
+                    if (res._id) {
+                        setUserProfile(res)
+                    }
+                    if (res.message) throw new Error(res.message);
+                })
+                .catch(error => {
+                    console.log(error.message);
+                    setErrorMessage(error.message);
+                });
+        }
         return () => {
             setErrorMessage('');
         }
-    }, [setErrorMessage]);
+    }, [img, setUserProfile, setErrorMessage, user, id]);
+
+    //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
+    useEffect(() => {
+        if (user) {
+            getOwn()
+                .then(res => {
+                    if (res.length > 0) {
+                        setNotDeleted(state => res.filter(x => x.isDeleted !== true));
+                    }
+                    if (res.message) throw new Error(res.message);
+                }).catch(error => {
+                    console.log(error.message);
+                    setErrorMessage(error.message);
+                });
+        }
+        return () => {
+            setErrorMessage('');
+        }
+    }, [setErrorMessage, user]);
 
     //RESIZE THE IMAGE-------------------------------------------------------------------------
 

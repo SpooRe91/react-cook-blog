@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from "./NavBar.module.css"
 
-export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
+export const UserNavBar = ({ id, email, setIsOpen, focusHandler }) => {
 
     return (
         <>
             <ul>
                 <li>
-                    <NavLink to="/">Начало</NavLink>
+                    <NavLink to="/" className={focusHandler}>Начало</NavLink>
                 </li>
                 <li>
                     <NavLink to="/recipe/browse" className={focusHandler}>търсене на рецепти</NavLink>
@@ -30,7 +30,7 @@ export const UserNavBar = ({ email, setIsOpen, focusHandler }) => {
                     <NavLink to="#" name="logout" className={styles["logout-main"]} onClick={(e) => { setIsOpen({ state: true, target: e.target.name }) }}>изход</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/auth/profile" className={useCallback(({ isActive }) => isActive ? styles['profile-name-active'] : "profile-name", [])}> <strong>{email}</strong></NavLink>
+                    <NavLink to={`/auth/profile/${id}`} className={useCallback(({ isActive }) => isActive ? styles['profile-name-active'] : "profile-name", [])}> <strong>{email}</strong></NavLink>
                 </li>
             </ul>
         </>

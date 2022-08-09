@@ -41,6 +41,7 @@ function App() {
             {/* ----------------------------------------------------------------------------------------------- */}
             <Routes>
               <Route path="/" element={<Homepage />} />
+              {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="/auth/login" element={
                 <Login setIsLoading={setIsLoading} />
               } />
@@ -69,7 +70,7 @@ function App() {
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/profile" element={<Profile />} />
+              <Route path="/auth/profile/:id" element={<Profile />} />
 
               <Route path="/recipe/macros" element={
                 <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading} />}

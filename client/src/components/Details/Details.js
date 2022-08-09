@@ -118,7 +118,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                             alt="" />
                                         </a>
                                         <div>
-                                            {user?.token && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
+                                            {user && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage}/>}
                                         </div>
                                         <div className={styles["like-container"]}>
                                             {

@@ -94,6 +94,7 @@
     border-radius: 0 4px 4px 4px;
     margin: 15px auto;
     resize: none;
+    transition: 0.5s;
 }
 
 .add-form input[type=text]:focus,
