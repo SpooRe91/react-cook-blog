@@ -21,13 +21,6 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const [notDeleted, setNotDeleted] = useState([])
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
-        if (!user) {
-            navigate('/404');
-        };
-    });
-
-    //-------------------------------------------------------------------------------------------------
-    useEffect(() => {
         getOwn()
             .then(res => {
                 if (res.length > 0) {

@@ -13,6 +13,9 @@ export const ErrorPage = () => {
         if (!user) {
             setErrorMessage("Моля, първо влезте!");
         }
+        if (user) {
+            setErrorMessage('Вече сте влязли!')
+        }
         return () => {
             setErrorMessage("")
         }
@@ -27,7 +30,7 @@ export const ErrorPage = () => {
                     <p className={styles["error-message"]}> {
                         errorMessage
                             ? errorMessage
-                            : "Възникна грешка при изпълнение на заявката Ви"
+                            : "Възникна грешка при изпълнение на заявката Ви!"
                     }
                     </p>
                 }

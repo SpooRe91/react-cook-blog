@@ -10,7 +10,7 @@ import styles from "./Register.module.css";
 
 export const Register = ({ setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    const { user, userHandler } = useContext(LoggedUserContext);
+    const { userHandler } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
 
@@ -76,17 +76,6 @@ export const Register = ({ setIsLoading }) => {
                 }
                 <>
                     {
-                        user?.token
-                            ?
-                            <div className={styles["error-container"]}>
-                                <p className={styles["error-message"]}>
-                                    {"Вече сте влезли!"}
-                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
-                                        OK
-                                    </button>
-                                </p>
-                            </div>
-                            :
                             <>
                                 <h3 className={styles["already-reg"]}>Регистрация</h3>
                                 <form method="POST" onSubmit={registerHandler} className={styles["register-form"]}>

@@ -21,6 +21,8 @@ import { EditRecipe } from "./components/Edit/EditRecipe";
 
 import { LoggedUserProvider } from "./contexts/LoggedUserContext";
 import { ErrorContextProvider } from "./contexts/ErrorMessageContext";
+import { NoUserGuard } from "./Guards/NoUserGuard";
+import { LoggedUserGuard } from "./Guards/LoggedUserGuard";
 
 function App() {
 
@@ -42,24 +44,41 @@ function App() {
             <Routes>
               <Route path="/" element={<Homepage />} />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/login" element={
-                <Login setIsLoading={setIsLoading} />
-              } />
+              <Route path="/auth/login" element={(
+                <LoggedUserGuard>
+                  <Login setIsLoading={setIsLoading} />
+                </LoggedUserGuard>
+              )} />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/register" element={<Register setIsLoading={setIsLoading} />}
+              <Route path="/auth/register" element={(
+                <LoggedUserGuard>
+                  <Register setIsLoading={setIsLoading} />
+                </LoggedUserGuard>
+              )}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="/404" element={<ErrorPage />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/recipe/add" element={<AddRecipe setIsLoading={setIsLoading} />}
+              <Route path="/recipe/add" element={(
+                <NoUserGuard>
+                  <AddRecipe setIsLoading={setIsLoading} />
+                </NoUserGuard>
+              )}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/edit/:mealId" element={<EditRecipe setIsLoading={setIsLoading} />}
+              <Route path="/edit/:mealId" element={(
+                <NoUserGuard>
+                  <EditRecipe setIsLoading={setIsLoading} />
+                </NoUserGuard>
+              )}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/recipe/myRecipes" element={
-                <MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />}
+              <Route path="/recipe/myRecipes" element={(
+                <NoUserGuard >
+                  <MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />
+                </NoUserGuard>
+              )}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
               <Route path="/recipe/browse" element={
@@ -70,7 +89,11 @@ function App() {
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
               {/* ----------------------------------------------------------------------------------------------- */}
-              <Route path="/auth/profile/:id" element={<Profile />} />
+              <Route path="/auth/profile/:id" element={(
+                <NoUserGuard >
+                  <Profile />
+                </NoUserGuard>
+              )} />
 
               <Route path="/recipe/macros" element={
                 <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading} />}
@@ -87,7 +110,7 @@ function App() {
           {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
         </div >
       </LoggedUserProvider>
-    </ErrorContextProvider>
+    </ErrorContextProvider >
   );
 };
 

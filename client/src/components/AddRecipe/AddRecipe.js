@@ -24,9 +24,6 @@ export const AddRecipe = ({ setIsLoading }) => {
 
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
-        if (!user) {
-            navigate('/404');
-        };
         return () => {
             setErrorMessage('');
         }

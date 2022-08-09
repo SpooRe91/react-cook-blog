@@ -20,9 +20,6 @@ export const EditRecipe = ({ setIsLoading }) => {
     //-------------------------------------------------------------------------------------------------
 
     useEffect(() => {
-        if (!user) {
-            navigate('/404');
-        };
         return () => {
             setErrorMessage('');
         }
@@ -37,12 +34,12 @@ export const EditRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
+    
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         getOne(mealId)
             .then(res => {
                 if (res.owner !== user?.id) {
-                    setErrorMessage('Тази операция не е позволена!');
                     navigate('/404');
                 }
                 if (res !== undefined && res !== null) {
@@ -84,10 +81,8 @@ export const EditRecipe = ({ setIsLoading }) => {
             .catch(error => {
                 console.log(error);
                 setErrorMessage(error.message);
-            })
-        return () => {
-            setErrorMessage('');
-        }
+            });
+        setErrorMessage('');
     }
     //-------------------------------------------------------------------------------------------------
     return (
