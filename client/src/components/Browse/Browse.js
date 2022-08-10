@@ -2,15 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import styles from "./Browse.module.css"
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "../common/ScrollButton";
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 import { getAll } from "../../services/mealService";
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
@@ -36,6 +36,8 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 if (res.length > 0) {
                     setnotDeleted(res.filter(x => x.isDeleted !== true));
                     setIsLoading(state => !state);
+                } else {
+                    return setIsLoading(false);
                 }
                 if (res.message) throw new Error(res.message);
             })
@@ -48,12 +50,10 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         }
     }, [setnotDeleted, setIsLoading, setErrorMessage]);
 
-    //-------------------------------------------------------------------------------------------------
+    //--------------------------------SHOWS RECENT RECIPES---------------------------------------------
     useEffect(() => {
-        setMoreRecipesToLoad(state =>
-            [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
         setRecentRecipesToShow(state =>
-            [...state, ...(notDeleted.slice(notDeleted.length - 4))]);
+            [...(notDeleted?.slice(notDeleted.length - 4))]);
         setIsLoading(false);
     }, [notDeleted, setIsLoading]);
 
@@ -64,9 +64,15 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase());
     };
-    //-------------------------------------------------------------------------------------------------
+    //-----------------------------TOGGLE BETWEEN SHOW ALL ALL OR JUST SHOW RECENT---------------------
     const toLoadHandler = () => {
         setToLoad(state => !state);
+        if (!toLoad) {//if toLoad is true
+            setMoreRecipesToLoad(state =>
+                [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
+        } else {//if toLoad is false
+            setMoreRecipesToLoad([]);
+        }
     };
     //-------------------------------------------------------------------------------------------------
     return (
@@ -140,7 +146,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                         :
                                         <p className={styles["arrow"]}>Няма намерени резултати</p>
                                     :
-                                    notDeleted !== undefined && notDeleted !== null && notDeleted.length > 0
+                                    notDeleted !== undefined && notDeleted !== null
                                         ?
                                         recentRecipesToShow.map(meal =>
                                             <MealContainer key={meal._id} {...meal} timesLiked={meal.likes}

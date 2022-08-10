@@ -27,7 +27,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                     setNotDeleted(state => res.filter(x => x.isDeleted !== true));
                     setIsLoading(false);
                 } else {
-                    setIsLoading(false);
+                    return setIsLoading(false);
                 }
                 if (res.message) throw new Error(res.message);
             }).catch(error => {
@@ -101,7 +101,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
                                         <div className={styles["already-reg"]}>
-                                            <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className={styles["already-reg"]}>ТУК</Link></p>
+                                            <p>За сега няма намерени рецепти, добавете рецепта <Link to="/recipe/add" className={styles["btn"]}>ТУК</Link></p>
                                         </div>
                         }
                     </div>
