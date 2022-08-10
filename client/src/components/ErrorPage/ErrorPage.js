@@ -10,12 +10,6 @@ export const ErrorPage = () => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
-        if (!user) {
-            setErrorMessage("Моля, първо влезте!");
-        }
-        if (user) {
-            setErrorMessage('Вече сте влязли!')
-        }
         return () => {
             setErrorMessage("")
         }
@@ -29,8 +23,12 @@ export const ErrorPage = () => {
                 {
                     <p className={styles["error-message"]}> {
                         errorMessage
-                            ? errorMessage
-                            : "Възникна грешка при изпълнение на заявката Ви!"
+                            ?
+                            errorMessage
+                            :
+                            !user
+                                ? "Неоторизирана заявка, моля първо влезте!"
+                                : "Нямате достъп до тази заявка!"
                     }
                     </p>
                 }

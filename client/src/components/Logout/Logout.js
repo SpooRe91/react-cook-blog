@@ -11,7 +11,6 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 export const Logout = ({ setIsOpen }) => {
 
     const { user, cookies, setClientCookie, userHandler } = useContext(LoggedUserContext);
-
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();
@@ -28,7 +27,7 @@ export const Logout = ({ setIsOpen }) => {
             } catch (error) {
                 console.log(error.message);
                 setErrorMessage(error.message);
-                navigate('/404');
+                navigate('/404', { replace: true });
             }
         } else {
             setErrorMessage("Първо трябва да влезете!");
@@ -40,11 +39,11 @@ export const Logout = ({ setIsOpen }) => {
         <>
             <title>Изход</title>
             {
-                !user?.token &&
+                !user &&
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
                         {"Тази операция не може да се изпълни, ако не сте влезли!"}
-                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/', { replace: true })]}>OK</button>
                     </p>
                 </div>
             }

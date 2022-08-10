@@ -43,7 +43,7 @@ export const AddRecipe = ({ setIsLoading }) => {
             .then(res => {
                 console.log(res)
                 if (res._id) {
-                    navigate('/recipe/myRecipes');
+                    navigate('/recipe/myRecipes', { replace: true });
                     setIsLoading(false);
                 }
                 if (res.message) throw new Error(res.message);

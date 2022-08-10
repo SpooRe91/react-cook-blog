@@ -14,7 +14,7 @@ export const OnwerButtons = ({ _id, setErrorMessage }) => {
         deleteMeal(_id)
             .then(res => {
                 if (res.status === 202) {
-                    navigate('/recipe/myRecipes');
+                    navigate('/recipe/myRecipes', { replace: true });
                 }
                 if (res.message) throw new Error(res.message);
             })

@@ -84,7 +84,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             <div className={styles["error-container"]}>
                                 <p className={styles["error-message"]}>
                                     {errorMessage}
-                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>
+                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/', { replace: true })]}>
                                         OK
                                     </button>
                                 </p>

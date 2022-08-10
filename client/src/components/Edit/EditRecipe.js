@@ -21,9 +21,13 @@ export const EditRecipe = ({ setIsLoading }) => {
 
     useEffect(() => {
         return () => {
-            setErrorMessage('');
+            if (errorMessage) {
+                navigate('/404', { replace: true });
+            } else {
+                setErrorMessage('');
+            }
         }
-    }, [navigate, user, setErrorMessage]);
+    }, [setErrorMessage]);
     //-------------------------------------------------------------------------------------------------
 
     const [values, setValues] = useState({
@@ -34,13 +38,13 @@ export const EditRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
-    
+
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         getOne(mealId)
             .then(res => {
                 if (res.owner !== user?.id) {
-                    navigate('/404');
+                    navigate('/404', { replace: true });
                 }
                 if (res !== undefined && res !== null) {
                     setMeal(res);
@@ -74,7 +78,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 if (res.acknowledged && res.modifiedCount !== 0) {
                     setMeal(res);
                     setIsLoading(false);
-                    navigate(`/details/${meal._id}`);
+                    navigate(`/details/${meal._id}`, { replace: true });
                 }
                 if (res.message) throw new Error(res.message);
             })
