@@ -17,6 +17,7 @@ import { editUserImage, getUser } from "../../services/userService";
 import { getOwn } from "../../services/mealService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
+import dummyPic from "./dummy-profile-pic.jpg";
 import styles from "./Profile.module.css";
 import { ScrollButton } from "../common/ScrollButton";
 import { useParams } from "react-router-dom";
@@ -71,19 +72,17 @@ export const Profile = () => {
 
     //GET THE CURRENT USER-------------------------------------------------------------------------
     useEffect(() => {
-        if (user) {
-            getUser(id)
-                .then(res => {
-                    if (res._id) {
-                        setUserProfile(res)
-                    }
-                    if (res.message) throw new Error(res.message);
-                })
-                .catch(error => {
-                    console.log(error.message);
-                    setErrorMessage(error.message);
-                });
-        }
+        getUser(id)
+            .then(res => {
+                if (res._id) {
+                    setUserProfile(res)
+                }
+                if (res.message) throw new Error(res.message);
+            })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage(error.message);
+            });
         return () => {
             setErrorMessage('');
         }
@@ -91,18 +90,16 @@ export const Profile = () => {
 
     //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
     useEffect(() => {
-        if (user) {
-            getOwn()
-                .then(res => {
-                    if (res.length > 0) {
-                        setNotDeleted(state => res.filter(x => x.isDeleted !== true));
-                    }
-                    if (res.message) throw new Error(res.message);
-                }).catch(error => {
-                    console.log(error.message);
-                    setErrorMessage(error.message);
-                });
-        }
+        getOwn()
+            .then(res => {
+                if (res.length > 0) {
+                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
+                }
+                if (res.message) throw new Error(res.message);
+            }).catch(error => {
+                console.log(error.message);
+                setErrorMessage(error.message);
+            });
         return () => {
             setErrorMessage('');
         }
@@ -150,15 +147,16 @@ export const Profile = () => {
             <div className={styles["profile"]}>
 
                 <div className={styles["profile-containter"]}>
-                    <a href={userProfile?.image} target="_blank" rel="noreferrer"><img className={styles["profile-image-link"]} src={userProfile?.image} id="profile-photo" alt="" /></a>
 
+                    <a href={!userProfile?.image ? dummyPic : userProfile.image} target="_blank" rel="noreferrer">
+                        <img className={styles["profile-image-link"]} src={!userProfile?.image ? dummyPic : userProfile.image} id="profile-photo" alt="" />
+                    </a>
                     <p className={styles["change-pic-text"]}>{progress < 100 ? 'ПРОМЕНИ СНИМКАТА ОТ' : 'КАЧИ СНИМКАТА ОТ'}
                         <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
                             style={progress < 100 ? { "color": "red" } : { "color": "green", "textShadow": "white 0px 0px 20px" }}>
                             ТУК
                         </button>
                     </p>
-
                     {
                         //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
                         toUpdate
