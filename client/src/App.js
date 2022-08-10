@@ -34,83 +34,77 @@ function App() {
       <LoggedUserProvider>
         < div className="App" >
           <Header />
-          {/* --------------------------------------NavBar----------------------------------------------- */}
           <main className="App">
             <NavBar setIsOpen={setIsOpen} />
-            {/* -------------------------------------Logout------------------------------------------------- */}
+
+            {/* -------------------------------------Logout-----------------------------------------------------*/}
             {isOpen && isOpen.target === "logout" &&
               <Logout setIsOpen={setIsOpen} />}
-            {/* -------------------------------------Homepage------------------------------------------------- */}
+
+            {/* -------------------------------------Homepage---------------------------------------------------*/}
             <Routes>
               <Route path="/" element={<Homepage />} />
-              {/* --------------------------------------Login-------------------------------------------------- */}
-              <Route path="/auth/login" element={(
-                <LoggedUserGuard>
-                  <Login setIsLoading={setIsLoading} />
-                </LoggedUserGuard>
-              )}
+              {/* --------------------------------------LOGIN & REGISTER----------------------------------------*/}
+              <Route element={<LoggedUserGuard />} >
+                <Route path="/auth/login" element={<Login setIsLoading={setIsLoading} />} />
+                <Route path="/auth/Register" element={<Register setIsLoading={setIsLoading} />} />
+              </Route>
+
+              {/* ------------------------------------ErrorPage-------------------------------------------------*/}
+              <Route path="/404"
+                element={<ErrorPage />}
               />
-              {/* ---------------------------------Register---------------------------------------------------- */}
-              <Route path="/auth/register" element={(
-                <LoggedUserGuard>
-                  <Register setIsLoading={setIsLoading} />
-                </LoggedUserGuard>
-              )}
-              />
-              {/* ------------------------------------ErrorPage------------------------------------------------- */}
-              <Route path="/404" element={<ErrorPage />}
-              />
-              {/* ----------------------------------AddRecipe-------------------------------------------------- */}
-              <Route path="/recipe/add" element={(
-                <NoUserGuard>
-                  <AddRecipe setIsLoading={setIsLoading} />
-                </NoUserGuard>
-              )}
-              />
-              {/* -----------------------------------EditRecipe----------------------------------------------- */}
-              <Route path="/edit/:mealId" element={(
-                <NoUserGuard>
-                  <EditRecipe setIsLoading={setIsLoading} />
-                </NoUserGuard>
-              )}
-              />
-              {/* ------------------------------------MyRecipes------------------------------------------------- */}
-              <Route path="/recipe/myRecipes" element={(
-                <NoUserGuard >
-                  <MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />
-                </NoUserGuard>
-              )}
-              />
-              {/* ------------------------------------Browse------------------------------------------------- */}
+
+              {/* -----------------------------------USER only routes-------------------------------------------*/}
+
+              <Route element={<NoUserGuard />} >
+                {/* ------------------------------------Profile-------------------------------------------------*/}
+                <Route path="/auth/profile/:id"
+                  element={<Profile />} />
+                {/* ------------------------------------MyRecipes-----------------------------------------------*/}
+                <Route path="/recipe/myRecipes"
+                  element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />}
+                />
+                {/* -----------------------------------EditRecipe-----------------------------------------------*/}
+                <Route path="/edit/:mealId"
+                  element={<EditRecipe setIsLoading={setIsLoading} />}
+                />
+                {/* ----------------------------------AddRecipe-------------------------------------------------*/}
+                <Route path="/recipe/add"
+                  element={<AddRecipe setIsLoading={setIsLoading} />}
+                />
+              </Route>
+
+              {/* -----------------------------------USER AND NON-USER ROUTES ----------------------------------*/}
+
+              {/* ------------------------------------Browse----------------------------------------------------*/}
               <Route path="/recipe/browse" element={
                 <Browse isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              {/* -----------------------------------Details-------------------------------------------------- */}
+              
+              {/* -----------------------------------Details-----------------------------------------------------*/}
               <Route path="/details/:mealId" element={
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              {/* ------------------------------------Profile-------------------------------------------------- */}
-              <Route path="/auth/profile/:id" element={(
-                <NoUserGuard >
-                  <Profile />
-                </NoUserGuard>
-              )} />
-              {/* ---------------------------------Macronutrients------------------------------------------------- */}
+
+              {/* ---------------------------------Macronutrients------------------------------------------------*/}
               <Route path="/recipe/macros" element={
                 <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              {/* ----------------------------------If route is not valid - ErrorPage-----------------------------*/}
+
+              {/* ----------------------------------If route is not valid - ErrorPage----------------------------*/}
               <Route path="*" element={< ErrorPage />} />
-              {/* ----------------------------------------------------------------------------------------------- */}
+           
             </Routes>
           </main>
-          {/* ---------------------------------------Footer------------------------------------------- */}
+
+          {/* ---------------------------------------Footer------------------------------------------------------*/}
           <Footer setIsOpen={setIsOpen} />
-          {/* ---------------------------------------About------------------------------------------- */}
+          {/* ---------------------------------------About-------------------------------------------------------*/}
           {isOpen && isOpen.target === "about" && <About setIsOpen={setIsOpen} />}
-          {/* ---------------------------------------Contacts------------------------------------------- */}
+          {/* ---------------------------------------Contacts----------------------------------------------------*/}
           {isOpen && isOpen.target === "contacts" && <Contacts setIsOpen={setIsOpen} />}
-          {/* ---------------------------------------------------------------------------------- */}
+          {/* ---------------------------------------------------------------------------------------------------*/}
         </div >
       </LoggedUserProvider>
     </ErrorContextProvider >
