@@ -27,7 +27,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 setErrorMessage('');
             }
         }
-    }, [setErrorMessage]);
+    }, [navigate, errorMessage, setErrorMessage]);
     //-------------------------------------------------------------------------------------------------
 
     const [values, setValues] = useState({
