@@ -10,7 +10,7 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 export const Logout = ({ setIsOpen }) => {
 
-    const { user, cookies, setClientCookie, userHandler } = useContext(LoggedUserContext);
+    const { user, cookies, userHandler } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     let navigate = useNavigate();
@@ -21,7 +21,6 @@ export const Logout = ({ setIsOpen }) => {
                 await userLogout();
                 logoutSession();
                 cookies.remove('user-session', { path: "/", maxAge: 48000 });
-                setClientCookie(cookies.get('user-session'));
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
@@ -33,7 +32,6 @@ export const Logout = ({ setIsOpen }) => {
             setErrorMessage("Първо трябва да влезете!");
         }
     }
-
 
     return (
         <>

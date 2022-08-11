@@ -141,6 +141,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                                     ://if there is no logged user
                                                     likeHeartWithCount
                                             }
+                                            <input type="button" className={styles["delete-confirm-btn"]} onClick={() => navigate(-1)} value="Назад" />
                                         </div>
 
                                         <article>

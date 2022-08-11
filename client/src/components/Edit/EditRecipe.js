@@ -22,8 +22,6 @@ export const EditRecipe = ({ setIsLoading }) => {
     useEffect(() => {
         return () => {
             if (errorMessage) {
-                navigate('/404', { replace: true });
-            } else {
                 setErrorMessage('');
             }
         }
@@ -131,7 +129,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                     <textarea className={styles["add-recipe-text"]} type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
                 <input type="submit" value="Промени" className={styles["add-form-submit"]} />
-                <Link to={`/details/${mealId}`} className={styles["btn"]}>назад</Link>
+                <input type="button" className={styles["add-form-submit"]} onClick={() => navigate(-1)} value="Назад"/>
             </form >
             {errorMessage !== "" &&
                 <div className={styles["error-container"]}>
