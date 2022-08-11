@@ -1,7 +1,5 @@
 module.exports = () => (req, res, next) => {
 
-    const allowedOrigin = ["http://localhost:3000", 'https://cook-blog-d3ed8.web.app'];
-
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader("Allow-Control-Access-Policy", "true");
     res.setHeader("Access-Control-Allow-Credentials", "true");
