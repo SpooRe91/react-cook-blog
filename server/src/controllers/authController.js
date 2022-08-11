@@ -29,7 +29,8 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
                 token,
             }
 
-            res.cookie(SESSION_NAME, token, { httpOnly: true });//automatic login after registration
+            res.cookie(SESSION_NAME, token, { httpOnly: true, maxAge: 48000 });//automatic login after registration
+
             res.status(201).json(userInfo)
         } else {
             throw new Error('Unable to register such user! Please try again!')
@@ -60,7 +61,7 @@ router.post('/login', isGuest, async (req, res, next) => {
             token,
         }
 
-        res.cookie(SESSION_NAME, token, { httpOnly: true });
+        res.cookie(SESSION_NAME, token, { httpOnly: true, maxAge: 48000 });
         res.status(200).json(userInfo);
 
     } catch (error) {

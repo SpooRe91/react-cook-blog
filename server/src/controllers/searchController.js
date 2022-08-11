@@ -12,8 +12,9 @@ router.get('/browse', async (req, res) => {
             throw new Error("Не можахме да намерим рецепти или сървърът не отговаря!");
         }
 
-        res.json(allMeals);
+        res.status(200).json(allMeals);
     } catch (error) {
+
         res.status(400).json({ message: getErrorMessage(error) });
     }
 
@@ -21,13 +22,14 @@ router.get('/browse', async (req, res) => {
 
 router.get('/myRecipes', isAuth, async (req, res) => {
 
+
     try {
         let allMeals = await foodService.getOwn(req.user._id);
 
         if (!allMeals.length > 0) {
             throw new Error("Няма намерени рецепти!");
         }
-        res.json(allMeals);
+        res.status(200).json(allMeals);
 
     } catch (error) {
         res.status(400).json({ message: getErrorMessage(error) });
@@ -42,7 +44,7 @@ router.get('/macros', async (req, res) => {
         if (allMeals.length <= 0) {
             throw new Error("Ресурсите не могат да бъдат намерени!");
         };
-        res.json(allMeals);
+        res.status(200).json(allMeals);
     } catch (error) {
         res.status(400).json({ message: getErrorMessage(error) });
     }

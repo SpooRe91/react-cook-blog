@@ -7,11 +7,13 @@ import styles from './Macronutrients.module.css';
 
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from '../common/ScrollButton';
+import { useNavigate } from 'react-router-dom';
 export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (products.length === 0) {
@@ -23,7 +25,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                     }
                 }).catch(error => {
                     console.log(error.message);
-                    setErrorMessage(error.message);
+                    setErrorMessage('Данните не могат да бъдат достъпени в този момент!');
                 });
         } else {
             return
@@ -50,7 +52,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
                         {errorMessage}
-                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
+                        <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
                     </p>
                 </div>
             }
