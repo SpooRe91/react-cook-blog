@@ -82,7 +82,7 @@ export const AddRecipe = ({ setIsLoading }) => {
                 <label htmlFor="difficulty">трудност</label>
                 <div className={styles["select-container"]}>
                     <select name="difficulty" id="difficulty" className={styles["select-difficulty"]} onChange={changeHandler}>
-                        <option defaultValue=""></option>
+                        <option value={null}>Моля изберете сложност</option>
                         <option value="лесно">лесно</option>
                         <option value="средно">средно</option>
                         <option value="за напреднали">за напреднали</option>

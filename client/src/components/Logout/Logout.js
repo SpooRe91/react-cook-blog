@@ -21,6 +21,7 @@ export const Logout = ({ setIsOpen }) => {
                 await userLogout();
                 logoutSession();
                 cookies.remove('user-session', { path: "/", maxAge: 48000 });
+                setErrorMessage('');
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
