@@ -29,8 +29,7 @@ router.post('/register', isGuest, modelValidator(User), registerValidator, async
                 token,
             }
 
-            res.cookie(SESSION_NAME, token, { httpOnly: true });//automatic login after registration
-
+            res.cookie(SESSION_NAME, token, { httpOnly: true, sameSite: "none", maxAge: 24 * 60 * 60 * 1000, secure: true });//automatic login after registration
             res.status(201).json(userInfo)
         } else {
             throw new Error('Unable to register such user! Please try again!')
@@ -61,7 +60,7 @@ router.post('/login', isGuest, async (req, res, next) => {
             token,
         }
 
-        res.cookie(SESSION_NAME, token, { httpOnly: true });
+        res.cookie(SESSION_NAME, token, { httpOnly: true, sameSite: "none", maxAge: 24 * 60 * 60 * 1000, secure: true });
         res.status(200).json(userInfo);
 
     } catch (error) {
@@ -72,7 +71,7 @@ router.post('/login', isGuest, async (req, res, next) => {
 
 
 router.get('/logout', isAuth, (req, res) => {
-    res.clearCookie(SESSION_NAME);
+    res.clearCookie(SESSION_NAME, { path: "/", domain: "localhost", httpOnly: true, sameSite: "none", secure: true });
     res.status(204).end();
     console.log("Logged out!");
 });
