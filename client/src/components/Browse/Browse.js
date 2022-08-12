@@ -36,14 +36,12 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 if (res.length > 0) {
                     setnotDeleted(res.filter(x => x.isDeleted !== true));
                     setIsLoading(state => !state);
-                } else {
-                    return setIsLoading(false);
                 }
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage(error.message);
+                setErrorMessage('Данните не могат да бъдат достъпени в момента, моля опитайте по-късно!');
             });
         return () => {
             setErrorMessage('');
@@ -80,24 +78,13 @@ export const Browse = ({ isLoading, setIsLoading }) => {
             <div className={styles["search-container"]}>
                 <title>Търсене на рецепти</title>
 
-                {errorMessage !== ""
-                    ?
-                    !notDeleted?.length > 0
-                        ?
-                        ""
-                        :
-                        <>
-                            <div className={styles["error-container"]}>
-                                <p className={styles["error-message"]}>
-                                    {errorMessage}
-                                    <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/', { replace: true })]}>
-                                        OK
-                                    </button>
-                                </p>
-                            </div>
-                        </>
-                    :
-                    ""
+                {errorMessage !== "" &&
+                    <div className={styles["error-container"]}>
+                        <p className={styles["error-message"]}>
+                            {errorMessage}
+                            <button className={styles["btn"]} onClick={() => [setErrorMessage(''), navigate('/')]}>OK</button>
+                        </p>
+                    </div>
                 }
                 <div>
                     <h1 className={styles["already-reg"]}>Търсене на рецепти</h1>
