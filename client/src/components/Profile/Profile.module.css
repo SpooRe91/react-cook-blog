@@ -58,7 +58,7 @@ div.profile {
 }
 
 .profile-image-link {
-    margin: 5px 5px 5px 5px;
+    margin: 35px auto;
     border: none;
     border-radius: 10%;
     display: inline-block;

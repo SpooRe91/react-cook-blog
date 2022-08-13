@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 } from "uuid";
 import Resizer from "react-image-file-resizer";
 
@@ -175,13 +176,13 @@ export const Profile = () => {
                     < div >
 
                         <article>
-                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>email: </strong>
+                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашият email: </strong>
                                 <span style={{ "color": "white" }}>
                                     {userProfile?.email}
                                 </span>
                             </p>
 
-                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>публикации</strong></p>
+                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашите публикации:</strong></p>
                             <div className={styles["profile-publications-container"]}>
                                 {
                                     notDeleted.length > 0
@@ -191,13 +192,17 @@ export const Profile = () => {
                                                 timesLiked={meal.likes} user={user}
                                                 setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
                                         :
-                                        <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>Потребителят няма публикации</strong></p>
+                                        <>
+                                            <p className={styles["recipe-diff-count"]} style={{ "color": "red" }}><strong>Все още нямате публикации!</strong></p>
+                                            <p className={styles["recipe-diff-count"]}> Създайте нова от<Link to="/recipe/add" className={styles["recipe-diff-count"]} style={{ "color": "white" }}>ТУК</Link></p>
+
+                                        </>
                                 }
                             </div>
                         </article>
                     </div>
                 </div>
-            </div>
+            </div >
             <ScrollButton />
         </>
     )

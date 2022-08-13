@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { logoutSession } from "../../API/api";
 import { userLogout } from "../../services/userService";
@@ -15,13 +15,18 @@ export const Logout = ({ setIsOpen }) => {
 
     let navigate = useNavigate();
 
+    useEffect(() => {
+        return () => {
+            setErrorMessage('');
+        }
+    }, [setErrorMessage])
+
     const handleLogout = async () => {
         if (user) {
             try {
                 await userLogout();
                 logoutSession();
                 cookies.remove('user-session', { path: "/", maxAge: 48000 });
-                setErrorMessage('');
                 navigate('/auth/login', { replace: true });
                 setIsOpen(false);
             } catch (error) {
