@@ -60,7 +60,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
 
     //-------------------------------------------------------------------------------------------------
     const filterHandler = (e) => {
-        setFilterValue(e.target.value.toLowerCase());
+        setFilterValue(e.target.value.toLowerCase().trim());
     };
     //-----------------------------TOGGLE BETWEEN SHOW ALL ALL OR JUST SHOW RECENT---------------------
     const toLoadHandler = () => {

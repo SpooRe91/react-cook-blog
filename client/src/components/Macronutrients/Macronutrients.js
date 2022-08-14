@@ -36,7 +36,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
     const [quantify, setQuantify] = useState("");
 
     const filterHandler = (e) => {
-        setFilterValue(e.target.value.toLowerCase());
+        setFilterValue(e.target.value.toLowerCase().trim());
     };
 
     const quantityHandler = (e) => {
