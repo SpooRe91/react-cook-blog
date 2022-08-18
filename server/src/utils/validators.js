@@ -9,11 +9,11 @@ exports.registerValidator = async (req, res, next) => {
     try {
 
         if (existing) {
-            throw new Error('Invalid e-mail or password!');
+            throw new Error('Невалиден e-mail или парола!');
         };
 
         if (password !== rePassword) {
-            throw new Error('Passwords must match!');
+            throw new Error('Паролите трябва да съвпадат!');
         };
         next();
     } catch (error) {
