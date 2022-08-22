@@ -67,11 +67,11 @@ function App() {
                 />
                 {/* -----------------------------------EditRecipe-----------------------------------------------*/}
                 <Route path="/edit/:mealId"
-                  element={<EditRecipe setIsLoading={setIsLoading} />}
+                  element={<EditRecipe isLoading={isLoading} setIsLoading={setIsLoading} />}
                 />
                 {/* ----------------------------------AddRecipe-------------------------------------------------*/}
                 <Route path="/recipe/add"
-                  element={<AddRecipe setIsLoading={setIsLoading} />}
+                  element={<AddRecipe isLoading={isLoading} setIsLoading={setIsLoading} />}
                 />
               </Route>
 
@@ -81,7 +81,7 @@ function App() {
               <Route path="/recipe/browse" element={
                 <Browse isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              
+
               {/* -----------------------------------Details-----------------------------------------------------*/}
               <Route path="/details/:mealId" element={
                 <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
@@ -94,7 +94,7 @@ function App() {
 
               {/* ----------------------------------If route is not valid - ErrorPage----------------------------*/}
               <Route path="*" element={< ErrorPage />} />
-           
+
             </Routes>
           </main>
 
