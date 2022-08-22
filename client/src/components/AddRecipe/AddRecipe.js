@@ -70,7 +70,7 @@ export const AddRecipe = ({ setIsLoading }) => {
                 <div className={styles["already-reg"]}>
                     <label htmlFor="image">снимка</label>
                     <input type="text" name="image" id="image" onChange={changeHandler}
-                        placeholder={"https://some-image.com..."} required value={values.image} />
+                        placeholder={"https://some-image.com...."} required value={values.image} />
                 </div>
 
                 <div className={styles["already-reg"]}>
