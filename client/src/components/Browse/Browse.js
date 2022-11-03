@@ -105,7 +105,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             {
                                 toLoad
                                     ?
-                                    <p className={styles["arrow"]}>&#11167; Вижте всички рецепти (scroll-нете надолу) &#11167;</p>
+                                    <p className={styles["arrow"]}>&#11167; Вижте всички рецепти долу (scroll-нете надолу) &#11167;</p>
                                     :
                                     <p className={styles["arrow"]}>Най-скорокорошни рецепти</p>
                             }
