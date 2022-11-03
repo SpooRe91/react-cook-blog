@@ -13,7 +13,7 @@ export const About = ({ setIsOpen }) => {
                         REST API e писан с Express.js и върви на Node.js
                     </p>
                     <p className={styles["already-reg"]}>
-                        Надявам се, да ви хареса това приложение! Ако имате препоръки или забележки, моля <strong>свържете се</strong> с мен на
+                        Ако имате препоръки или забележки, моля <strong>свържете се</strong> с мен на
                         <span> <strong>m.bogdanov9110@gmail.com</strong></span>
                     </p>
                     <div>
