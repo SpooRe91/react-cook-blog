@@ -8,13 +8,13 @@
     box-sizing: border-box;
 }
 
+
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
-        /* overflow-x: hidden;
-        overflow-y: scroll; */
-        overflow-y: overlay;
-        overflow-x: overlay;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        min-width: 320px;
         font-family: 'Open Sans', sans-serif;
     }
 }
