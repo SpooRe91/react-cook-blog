@@ -32,7 +32,7 @@ function App() {
   return (
     <ErrorContextProvider>
       <LoggedUserProvider>
-        < div className="App" >
+        <div className="App">
           <Header />
           <main className="App">
             <NavBar setIsOpen={setIsOpen} />
