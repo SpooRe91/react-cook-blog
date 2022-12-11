@@ -99,7 +99,6 @@ router.delete('/delete/:id',
         let meal = req.meal;
         try {
             const result = await foodService.delete(req.params.id);
-
             if (!result.acknowledged && result.modifiedCount === 0) {
                 throw new Error(`Елемент с ID: ${meal._id} не е намерен!`);
             }

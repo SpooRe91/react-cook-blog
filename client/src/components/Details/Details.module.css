@@ -180,6 +180,7 @@ p.recipe {
     line-height: 30px;
     word-spacing: 0.2mm;
     letter-spacing: 0.4mm;
+    white-space: pre-wrap;
     font-size: 21px;
     text-align: left;
     padding: 10px;
