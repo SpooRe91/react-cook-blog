@@ -3,6 +3,7 @@
     "decode-uri-component": "^0.2.2",
     "firebase": "^9.9.1",
     "firebase-tools": "^11.3.0",
+    "json5": "^2.2.3",
     "jsonwebtoken": "^9.0.0",
     "loader-utils": "^3.2.1",
     "minimatch": "^5.1.0",
