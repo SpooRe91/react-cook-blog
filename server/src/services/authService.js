@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const { SALT_ROUNDS } = require('../config/constants');
-const { secret } = require('../config/env');
+const secret = process.env.SECRET;
 const { getErrorMessage } = require('../utils/errorHelpers');
 
 /*----------------------register--------------------------*/
