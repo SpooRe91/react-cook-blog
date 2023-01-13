@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.011d02d7.css",
-    "main.js": "/static/js/main.c9e76056.js",
+    "main.css": "/static/css/main.7fbb5c46.css",
+    "main.js": "/static/js/main.72e5f552.js",
     "static/js/787.0338a01f.chunk.js": "/static/js/787.0338a01f.chunk.js",
     "static/media/main-background-min.jpg": "/static/media/main-background-min.02a910f032d9ca61c2cc.jpg",
     "static/media/spaghetti-with-pesto-prawns-served-plate.jpg": "/static/media/spaghetti-with-pesto-prawns-served-plate.630f9a5e7b7a2d270392.jpg",
     "static/media/logo.jpg": "/static/media/logo.9f10bf066d0ec25ab88a.jpg",
     "static/media/dummy-profile-pic.jpg": "/static/media/dummy-profile-pic.e8014c14259e3944c886.jpg",
     "index.html": "/index.html",
-    "main.011d02d7.css.map": "/static/css/main.011d02d7.css.map",
-    "main.c9e76056.js.map": "/static/js/main.c9e76056.js.map",
+    "main.7fbb5c46.css.map": "/static/css/main.7fbb5c46.css.map",
+    "main.72e5f552.js.map": "/static/js/main.72e5f552.js.map",
     "787.0338a01f.chunk.js.map": "/static/js/787.0338a01f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.011d02d7.css",
-    "static/js/main.c9e76056.js"
+    "static/css/main.7fbb5c46.css",
+    "static/js/main.72e5f552.js"
   ]
 }
