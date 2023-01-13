@@ -1,5 +1,7 @@
 # cook-blog API
 **************************
+REACT PROJECT DEPLOYED AND HOSTED AT - https://cook-blog-d3ed8.web.app/  - **PLEASE GIVE IT A FEW SECONDS,  SO THE SERVER WHICH IS DEPLOYED ON ANOTHER PLATFORM CAN ACTUALLY RESPOND (YOU CAN REFRESH THE PAGE A FEW TIMES)**
+**************************
 # cook-blog ReactJS project + REST API doc
 ***************************
 IF YOU DOWNLOAD THE WHOLE PROJECT.
