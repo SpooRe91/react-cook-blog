@@ -47,6 +47,9 @@ typings/
 # TypeScript cache
 *.tsbuildinfo
 
+#firebase
+.firebase
+
 # Optional npm cache directory
 .npm
 

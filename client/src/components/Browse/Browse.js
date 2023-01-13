@@ -113,7 +113,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                     </>
                 }
                 {
-                    < div className={styles["meal-containter"]}>
+                    <div className={styles["meal-containter"]}>
                         {
                             isLoading
                                 ?

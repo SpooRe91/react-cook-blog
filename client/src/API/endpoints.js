@@ -1,5 +1,5 @@
 
-export const API_URL = "http://localhost:3030";//GET
+export const API_URL = "https://server-cook2.onrender.com";//GET
 
 export const endpoints = {
     //REGULAR + MODIFICATIONS***************

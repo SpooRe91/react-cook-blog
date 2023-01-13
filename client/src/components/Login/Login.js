@@ -61,7 +61,6 @@ export const Login = ({ setIsLoading }) => {
             <title>Вход</title>
             <div>
                 <>
-
                     {errorMessage !== "" &&
                         <div className={styles["error-container"]}>
                             <p className={styles["error-message"]}>
@@ -86,13 +85,11 @@ export const Login = ({ setIsLoading }) => {
 
                                 <input className={styles["already-reg"]} type="submit" value="Вход" />
                             </form>
-
                             <h3 className={styles["already-reg"]}>Нямате регистрация? <Link to="/auth/register">Регистрирайте се тук!</Link></h3>
                         </>
                     }
-
                 </>
-            </div >
+            </div>
         </>
     );
 
