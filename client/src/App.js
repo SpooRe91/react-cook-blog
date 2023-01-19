@@ -27,7 +27,7 @@ import { LoggedUserGuard } from "./components/common/LoggedUserGuard";
 function App() {
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <ErrorContextProvider>
@@ -39,15 +39,15 @@ function App() {
 
             {/* -------------------------------------Logout-----------------------------------------------------*/}
             {isOpen && isOpen.target === "logout" &&
-              <Logout setIsOpen={setIsOpen} />}
+              <Logout isLoading={isLoading} setIsLoading={setIsLoading} setIsOpen={setIsOpen} />}
 
             {/* -------------------------------------Homepage---------------------------------------------------*/}
             <Routes>
               <Route path="/" element={<Homepage />} />
               {/* --------------------------------------LOGIN & REGISTER----------------------------------------*/}
               <Route element={<LoggedUserGuard />} >
-                <Route path="/auth/login" element={<Login setIsLoading={setIsLoading} />} />
-                <Route path="/auth/Register" element={<Register setIsLoading={setIsLoading} />} />
+                <Route path="/auth/login" element={<Login isLoading={isLoading} setIsLoading={setIsLoading} />} />
+                <Route path="/auth/Register" element={<Register isLoading={isLoading} setIsLoading={setIsLoading} />} />
               </Route>
 
               {/* ------------------------------------ErrorPage-------------------------------------------------*/}
