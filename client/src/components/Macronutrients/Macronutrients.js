@@ -17,6 +17,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     useEffect(() => {
         if (products.length === 0) {
+            setIsLoading(state => true);
             getMacros()
                 .then(res => {
                     if (res.length > 0) {
@@ -25,10 +26,14 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                     }
                 }).catch(error => {
                     console.log(error.message);
+                    setIsLoading(false);
                     setErrorMessage('Данните не могат да бъдат достъпени в този момент!');
                 });
         } else {
             return
+        }
+        return () => {
+            setIsLoading(false);
         }
     }, [setErrorMessage, setProducts, products, setIsLoading]);
 
@@ -61,7 +66,11 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                     isLoading
                         ?
                         <>
-                            <BeatLoader loading={() => isLoading} color={"white"} />
+                            <div className={styles["already-reg-loading"]}>
+                                <h3 className={styles["already-reg"]}>Макронутриенти</h3>
+                                <BeatLoader loading={() => isLoading} color={"white"} />
+                                <p>Моля изчакайте...</p>
+                            </div>
                         </>
                         :
                         <>
