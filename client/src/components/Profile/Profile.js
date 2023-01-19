@@ -152,11 +152,24 @@ export const Profile = () => {
                     <a href={!userProfile?.image ? dummyPic : userProfile.image} target="_blank" rel="noreferrer">
                         <img className={styles["profile-image-link"]} src={!userProfile?.image ? dummyPic : userProfile.image} id="profile-photo" alt="" />
                     </a>
-                    <p className={styles["change-pic-text"]}>{progress < 100 ? 'ПРОМЕНИ СНИМКАТА ОТ' : 'КАЧИ СНИМКАТА ОТ'}
-                        <button className={styles["btn"]} onClick={() => img ? editHandler() : setToUpdate(state => !state)}
-                            style={progress < 100 ? { "color": "red" } : { "color": "green", "textShadow": "white 0px 0px 20px" }}>
-                            ТУК
-                        </button>
+                    <p className={styles["change-pic-text"]}>{'ПРОМЯНА НА СНИМКА'}
+
+                        {
+                            !img
+                                ?
+                                <button className={styles["btn"]} onClick={() => setToUpdate(state => !state)}
+                                    style={{ "color": "red" }}>
+                                    Избери снимка
+                                </button>
+                                :
+                                progress === 100
+                                    ?
+                                    <button className={styles["btn"]} onClick={() => editHandler()}
+                                        style={{ "color": "green", "textShadow": "white 0px 0px 20px" }} >
+                                        Качи снимка
+                                    </button>
+                                    : null
+                        }
                     </p>
                     {
                         //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
