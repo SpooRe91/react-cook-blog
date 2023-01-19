@@ -7,8 +7,9 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 import styles from "./Register.module.css";
+import { BeatLoader } from "react-spinners";
 
-export const Register = ({ setIsLoading }) => {
+export const Register = ({ isLoading, setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const { userHandler } = useContext(LoggedUserContext);
 
@@ -33,7 +34,7 @@ export const Register = ({ setIsLoading }) => {
     //REGISTER HANDLER - HANDLES THE REGISTRATION REQUEST AND SETS THE REGISTERED USER-------
     const registerHandler = (e) => {
         e.preventDefault();
-
+        setIsLoading(state => true);
         userRegister(value)
             .then(res => {
                 console.log(res);
@@ -41,7 +42,7 @@ export const Register = ({ setIsLoading }) => {
                     setSession({ ...res });
                     userHandler(getSession());
                     navigate('/recipe/browse', { replace: true });
-                    setIsLoading(false);
+                    setIsLoading(state => false);
                 }
                 if (res.message) throw new Error(res.message);
             })
@@ -69,13 +70,24 @@ export const Register = ({ setIsLoading }) => {
                     <div className={styles["error-container"]}>
                         <p className={styles["error-message"]}>
                             {errorMessage}
-                            <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
+                            <button className={styles["btn"]} onClick={() => [setErrorMessage(''), setIsLoading(state => false)]}>OK</button>
                         </p>
                     </div>
                 }
-                <>
-                    {
+                {
+                    isLoading
+                        ?
                         <>
+                            <div className={styles["already-reg-loading"]}>
+                                <h3 className={styles["already-reg"]}>Регистрация</h3>
+                                <BeatLoader loading={() => isLoading} color={"white"} />
+                                <p>Моля изчакайте...</p>
+                            </div>
+                        </>
+                        :
+
+                        <>
+
                             <h3 className={styles["already-reg"]}>Регистрация</h3>
                             <form method="POST" onSubmit={registerHandler} className={styles["register-form"]}>
                                 <label className={styles["credentials"]} htmlFor="email">e-mail</label>
@@ -94,8 +106,7 @@ export const Register = ({ setIsLoading }) => {
                             </form>
                             <h3 className={styles["already-reg"]}>Вече сте регистрирани?<Link to="/auth/login" className={styles["already-reg"]}>Влезте от тук!</Link></h3>
                         </>
-                    }
-                </>
+                }
             </div>
         </>
     );
