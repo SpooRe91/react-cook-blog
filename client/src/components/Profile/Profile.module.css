@@ -107,13 +107,13 @@ div.profile {
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
+    padding: 1rem;
     color: #DECBA4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background: none;
-    border: none;
-    font-size: 20px;
+    background: #00000075;
+    border-radius: 10px;
 }
 
 .btn:hover {

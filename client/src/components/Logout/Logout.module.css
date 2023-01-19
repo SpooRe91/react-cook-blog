@@ -55,6 +55,15 @@
     text-align: center;
 }
 
+.already-reg {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    flex-direction: column;
+}
+
 .error-container {
     margin: 50px;
     padding: 0px;
@@ -96,6 +105,7 @@
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
+    padding: 1rem;
     color: #DECBA4;
     align-content: center;
     align-items: center;
