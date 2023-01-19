@@ -25,6 +25,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
     const [isLiked, setIsLiked] = useState(false);
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
+        setIsLoading(true);
         getOne(mealId)
             .then(res => {
                 if (!res.isDeleted && res._id) {
@@ -102,78 +103,85 @@ export const Details = ({ isLoading, setIsLoading }) => {
                     <>
 
                         <title>Детайли: {meal.name}</title>
-                        <div className={styles["details"]}>
-                            {
-                                isLoading
-                                    ?
-                                    <>
+                        {
+
+                            isLoading
+                                ?
+                                <>
+                                    <div className={styles["already-reg-loading"]}>
                                         <BeatLoader loading={() => isLoading} color={"white"} />
-                                    </>
-                                    :
-                                    <>
-                                        <h1 className={styles["meal-name"]}>
-                                            {meal.name}
-                                        </h1>
-                                        <a href={meal.image} target={"_blank"} rel="noreferrer"><img className={styles["meal-details"]} src={meal.image}
-                                            alt="" />
-                                        </a>
-                                        <div>
-                                            {user && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage}/>}
-                                        </div>
-                                        <div className={styles["like-container"]}>
-                                            {
-                                                user !== null && user?.id !== meal.owner
-                                                    ?//if we have a logged user and is not the owner
-                                                    numberOfLikes !== 0
-                                                        ?//if there are likes
-                                                        isLiked
-                                                            ?//if the current element is liked by the logged user
-                                                            <span>Харесано от Вас! {likeHeartWithCount}</span>
-                                                            ://if  it's not liked by the logged user
+                                        <p>Моля изчакайте...</p>
+                                    </div>
+                                </>
+                                :
+                                <div className={styles["details"]}>
+                                    {
+
+                                        <>
+                                            <h1 className={styles["meal-name"]}>
+                                                {meal.name}
+                                            </h1>
+                                            <a href={meal.image} target={"_blank"} rel="noreferrer"><img className={styles["meal-details"]} src={meal.image}
+                                                alt="" />
+                                            </a>
+                                            <div>
+                                                {user && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
+                                            </div>
+                                            <div className={styles["like-container"]}>
+                                                {
+                                                    user !== null && user?.id !== meal.owner
+                                                        ?//if we have a logged user and is not the owner
+                                                        numberOfLikes !== 0
+                                                            ?//if there are likes
+                                                            isLiked
+                                                                ?//if the current element is liked by the logged user
+                                                                <span>Харесано от Вас! {likeHeartWithCount}</span>
+                                                                ://if  it's not liked by the logged user
+                                                                <>
+                                                                    {likeButton}
+                                                                </>
+                                                            ://if there are no likes and the user can like it
                                                             <>
+                                                                <span>Няма харесвания</span>
                                                                 {likeButton}
                                                             </>
-                                                        ://if there are no likes and the user can like it
-                                                        <>
-                                                            <span>Няма харесвания</span>
-                                                            {likeButton}
-                                                        </>
-                                                    ://if there is no logged user
-                                                    likeHeartWithCount
-                                            }
-                                            <input type="button" className={styles["delete-confirm-btn"]} onClick={() => navigate(-1)} value="Назад" />
-                                        </div>
+                                                        ://if there is no logged user
+                                                        likeHeartWithCount
+                                                }
+                                                <input type="button" className={styles["delete-confirm-btn"]} onClick={() => navigate(-1)} value="Назад" />
+                                            </div>
 
-                                        <article>
+                                            <article>
 
-                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
-                                                style={{ "color": "wheat" }}>
-                                                {meal.portions}
-                                            </strong>
-                                            </p>
+                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
+                                                    style={{ "color": "wheat" }}>
+                                                    {meal.portions}
+                                                </strong>
+                                                </p>
 
-                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
-                                                style={{ "color": "wheat" }}>
-                                                {meal.difficulty}
-                                            </strong>
-                                            </p>
+                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
+                                                    style={{ "color": "wheat" }}>
+                                                    {meal.difficulty}
+                                                </strong>
+                                                </p>
 
-                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
-                                                style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
-                                                {createdOn}
-                                            </span>
-                                            </p>
+                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
+                                                    style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
+                                                    {createdOn}
+                                                </span>
+                                                </p>
 
-                                            <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
-                                                style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
-                                                {meal.ownerName}
-                                            </span>
-                                            </p>
+                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
+                                                    style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
+                                                    {meal.ownerName}
+                                                </span>
+                                                </p>
 
-                                        </article>
-                                    </>
-                            }
-                        </div>
+                                            </article>
+                                        </>
+                                    }
+                                </div>
+                        }
                         <ScrollButton />
                         {
                             isLoading

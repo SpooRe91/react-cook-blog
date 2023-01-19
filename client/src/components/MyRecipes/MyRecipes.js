@@ -21,6 +21,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const [notDeleted, setNotDeleted] = useState([])
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
+        setIsLoading(true)
         getOwn()
             .then(res => {
                 if (res.length > 0) {

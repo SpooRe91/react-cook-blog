@@ -31,6 +31,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const [filterValue, setFilterValue] = useState("");
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
+        setIsLoading(state => true);
         getAll()
             .then(res => {
                 if (res.length > 0) {

@@ -40,9 +40,9 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
     //-------------------------------------------------------------------------------------------------
     const createHandler = (e) => {
         e.preventDefault();
+        setIsLoading(true);
         create(values)
             .then(res => {
-                console.log(res)
                 if (res._id) {
                     navigate('/recipe/myRecipes', { replace: true });
                     setIsLoading(false);
