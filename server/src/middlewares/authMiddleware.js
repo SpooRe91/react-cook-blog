@@ -1,7 +1,7 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-
 const { SESSION_NAME } = require('../config/constants');
-const { secret } = require('../config/env');
+const secret = process.env.SECRET
 
 exports.auth = (req, res, next) => {
     let token = req.cookies[SESSION_NAME];
