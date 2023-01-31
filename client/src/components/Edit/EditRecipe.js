@@ -1,4 +1,4 @@
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 //-------------------------------------------------------------------------------------------------
 import styles from "./EditRecipe.module.css";
@@ -129,7 +129,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                     <textarea className={styles["add-recipe-text"]} type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
                 </div>
                 <input type="submit" value="Промени" className={styles["add-form-submit"]} />
-                <input type="button" className={styles["add-form-submit"]} onClick={() => navigate(-1)} value="Назад"/>
+                <input type="button" className={styles["add-form-submit"]} onClick={() => navigate(-1)} value="Назад" />
             </form >
             {errorMessage !== "" &&
                 <div className={styles["error-container"]}>
