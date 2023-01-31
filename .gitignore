@@ -38,6 +38,8 @@ bower_components
 build/
 .cache
 .\build
+.build
+*\build
 # Dependency directories
 node_modules/
 jspm_packages/
