@@ -6,10 +6,11 @@ import styles from "./Browse.module.css"
 import { MealContainer } from "./MealContainer";
 import { ScrollButton } from "../common/ScrollButton";
 //-----------------------------------------------------------------------------------------------------
-import { getAll } from "../../services/mealService";
 //-----------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { useAllMeals } from "../../customHooks/useAllMeals";
+
 //-----------------------------------------------------------------------------------------------------
 
 export const Browse = ({ isLoading, setIsLoading }) => {
@@ -18,46 +19,36 @@ export const Browse = ({ isLoading, setIsLoading }) => {
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    //-------------------------------------------------------------------------------------------------
-
-    const [notDeleted, setnotDeleted] = useState([]);
-    //-------------------------------------------------------------------------------------------------
-
-    const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
-    const [recentRecipesToShow, setRecentRecipesToShow] = useState([]);
-    //-------------------------------------------------------------------------------------------------
 
     const [toLoad, setToLoad] = useState(false);
     const [filterValue, setFilterValue] = useState("");
+    const [notDeleted, setNotDeleted] = useState([]);
+    const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
+
     //-------------------------------------------------------------------------------------------------
+
+    const { getAllMeals, loading } = useAllMeals();
+
     useEffect(() => {
         setIsLoading(state => true);
-        getAll()
-            .then(res => {
+        getAllMeals()
+            .then((res) => {
                 if (res.length > 0) {
-                    setnotDeleted(res.filter(x => x.isDeleted !== true));
-                    setIsLoading(state => !state);
+                    setNotDeleted(res.filter(x => x.isDeleted !== true));
+                    setIsLoading(state => loading);
                 }
-                if (res.message) throw new Error(res.message);
             })
             .catch(error => {
                 console.log(error.message);
-                setErrorMessage('Данните не могат да бъдат достъпени в момента, моля опитайте по-късно!');
-            });
+                setErrorMessage(error.message);
+            })
         return () => {
             setErrorMessage('');
         }
-    }, [setnotDeleted, setIsLoading, setErrorMessage]);
+    }, [loading, setIsLoading, setErrorMessage])
 
-    //--------------------------------SHOWS RECENT RECIPES---------------------------------------------
-    useEffect(() => {
-        setRecentRecipesToShow(state =>
-            [...(notDeleted?.slice(notDeleted.length - 4))]);
-        setIsLoading(false);
-    }, [notDeleted, setIsLoading]);
-
-    //-------------------------------------------------------------------------------------------------
-    const filtered = notDeleted.filter(x => x.name.toLowerCase().includes(filterValue));
+    const recentRecipesToShow = notDeleted?.slice(notDeleted?.length - 4);
+    const filtered = notDeleted?.filter(x => x.name.toLowerCase().includes(filterValue));
 
     //-------------------------------------------------------------------------------------------------
     const filterHandler = (e) => {
@@ -68,11 +59,12 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         setToLoad(state => !state);
         if (!toLoad) {//if toLoad is true
             setMoreRecipesToLoad(state =>
-                [...state, ...(notDeleted?.slice(0, notDeleted.length - 4))]);
+                [...state, ...(notDeleted.slice(0, notDeleted?.length - 4))]);
         } else {//if toLoad is false
             setMoreRecipesToLoad([]);
         }
     };
+
     //-------------------------------------------------------------------------------------------------
     return (
         <>
@@ -119,7 +111,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                             isLoading
                                 ?
                                 <div className={styles["already-reg"]}>
-                                    <BeatLoader loading={() => isLoading} color={"white"} />
+                                    <BeatLoader color={"white"} />
                                     <p>Рецептите се зареждат...</p>
                                 </div>
                                 :
@@ -134,7 +126,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                         :
                                         <p className={styles["arrow"]}>Няма намерени резултати</p>
                                     :
-                                    notDeleted !== undefined && notDeleted !== null
+                                    notDeleted?.length > 0
                                         ?
                                         recentRecipesToShow.map(meal =>
                                             <MealContainer key={meal._id} {...meal} timesLiked={meal.likes}

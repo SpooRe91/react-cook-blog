@@ -27,7 +27,7 @@ import { LoggedUserGuard } from "./components/common/LoggedUserGuard";
 function App() {
 
   const [isOpen, setIsOpen] = useState({ state: false, target: null });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <ErrorContextProvider>
@@ -60,7 +60,7 @@ function App() {
               <Route element={<NoUserGuard />} >
                 {/* ------------------------------------Profile-------------------------------------------------*/}
                 <Route path="/auth/profile/:id"
-                  element={<Profile />} />
+                  element={<Profile isLoading={isLoading} setIsLoading={setIsLoading} />} />
                 {/* ------------------------------------MyRecipes-----------------------------------------------*/}
                 <Route path="/recipe/myRecipes"
                   element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />}

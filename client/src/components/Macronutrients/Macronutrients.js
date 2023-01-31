@@ -1,44 +1,42 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { BeatLoader } from 'react-spinners';
-import { getMacros } from '../../services/mealService';
 import { Macrotable } from './Macrotable';
 
 import styles from './Macronutrients.module.css';
-
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from '../common/ScrollButton';
 import { useNavigate } from 'react-router-dom';
+import { useAllMacros } from '../../customHooks/useMacros';
+
 export const Macronutrients = ({ isLoading, setIsLoading }) => {
 
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [products, setProducts] = useState([]);
+    const [quantify, setQuantify] = useState("");
+    const [filterValue, setFilterValue] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (products.length === 0) {
-            setIsLoading(state => true);
-            getMacros()
-                .then(res => {
-                    if (res.length > 0) {
-                        setProducts(res);
-                        setIsLoading(false);
-                    }
-                }).catch(error => {
-                    console.log(error.message);
-                    setIsLoading(false);
-                    setErrorMessage('Данните не могат да бъдат достъпени в този момент!');
-                });
-        } else {
-            return
-        }
-        return () => {
-            setIsLoading(false);
-        }
-    }, [setErrorMessage, setProducts, products, setIsLoading]);
+    const { getAllMacros, loading } = useAllMacros();
 
-    const [filterValue, setFilterValue] = useState("");
-    const [quantify, setQuantify] = useState("");
+    useEffect(() => {
+        setIsLoading(state => true);
+
+        getAllMacros().then((res) => {
+            if (res.length > 0) {
+                setProducts(res);
+                setIsLoading(state => loading);
+            }
+        })
+            .catch(error => {
+                console.log(error.message);
+                setErrorMessage(error.message);
+            })
+        return () => {
+            setErrorMessage('');
+        }
+    }, [loading, setErrorMessage, setIsLoading]);
 
     const filterHandler = (e) => {
         setFilterValue(e.target.value.toLowerCase().trim());
@@ -119,8 +117,8 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                                         </thead>
                                         <tbody>
                                             {/* филтриране по време на писане, ако има нещо въведено в state 
-                                            тогава работим с първия филтър, ако ли не изобразяваме всичко,
-                                            също при въвеждане на стойност самостоятелно или с име, се променят и стойностите */}
+                                                тогава работим с първия филтър, ако ли не изобразяваме всичко,
+                                                също при въвеждане на стойност самостоятелно или с име, се променят и стойностите */}
                                             <>
                                                 {
                                                     quantify !== 0 || filterValue
@@ -141,3 +139,8 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
         </>
     );
 }
+
+
+
+
+

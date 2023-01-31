@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 //-------------------------------------------------------------------------------------------------
-import { getOwn } from "../../services/mealService";
 //-------------------------------------------------------------------------------------------------
 import styles from "./MyRecipes.module.css";
 import { ScrollButton } from "../common/ScrollButton";
@@ -10,6 +9,7 @@ import { MealContainer } from "./MealContainer"
 //-------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import { useOwnMeals } from "../../customHooks/useOwnMeals";
 //-------------------------------------------------------------------------------------------------
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
@@ -20,25 +20,28 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const [filterValue, setFilterValue] = useState("");
     const [notDeleted, setNotDeleted] = useState([])
     //-------------------------------------------------------------------------------------------------
+
+    const { getAllOwnMeals, loading } = useOwnMeals();
+
     useEffect(() => {
-        setIsLoading(true)
-        getOwn()
-            .then(res => {
+        setIsLoading(state => true);
+
+        getAllOwnMeals()
+            .then((res) => {
                 if (res.length > 0) {
-                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
-                    setIsLoading(false);
-                } else {
-                    return setIsLoading(false);
+                    setNotDeleted(res.filter(x => x.isDeleted !== true));
+                    setIsLoading(state => loading);
                 }
-                if (res.message) throw new Error(res.message);
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.log(error.message);
                 setErrorMessage(error.message);
-            });
+            })
         return () => {
             setErrorMessage('');
         }
-    }, [setIsLoading, setErrorMessage]);
+    }, [loading, setIsLoading, setErrorMessage]);
+
 
     //-------------------------------------------------------------------------------------------------
     const filterHandler = (e) => {

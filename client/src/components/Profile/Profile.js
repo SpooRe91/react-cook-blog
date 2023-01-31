@@ -14,21 +14,23 @@ import {
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
-import { editUserImage, getUser } from "../../services/userService";
-import { getOwn } from "../../services/mealService";
+import { editUserImage } from "../../services/userService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
 import dummyPic from "./dummy-profile-pic.jpg";
 import styles from "./Profile.module.css";
 import { ScrollButton } from "../common/ScrollButton";
 import { useParams } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
+import { useProfile } from "../../customHooks/useMyProfile";
+import { useOwnMeals } from "../../customHooks/useOwnMeals";
 
-export const Profile = () => {
+export const Profile = ({ isLoading, setIsLoading }) => {
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const { id } = useParams();
-
+    console.log(id);
     const [img, setImg] = useState(null);
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
@@ -71,40 +73,41 @@ export const Profile = () => {
         uploadImg(img);
     }, [img, setErrorMessage, user?.email]);
 
+    const { getUserProfile, loading } = useProfile(id);
+    const { getAllOwnMeals } = useOwnMeals();
+
     //GET THE CURRENT USER-------------------------------------------------------------------------
+    //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
+
     useEffect(() => {
-        getUser(id)
-            .then(res => {
-                if (res._id) {
-                    setUserProfile(res)
-                }
-                if (res.message) throw new Error(res.message);
+        setIsLoading(state => true);
+
+        getUserProfile()
+            .then((res) => {
+                setUserProfile(res);
+                setIsLoading(state => loading);
             })
             .catch(error => {
                 console.log(error.message);
                 setErrorMessage(error.message);
             });
-        return () => {
-            setErrorMessage('');
-        }
-    }, [img, setUserProfile, setErrorMessage, user, id]);
 
-    //GET THE CURRENT USER'S PUBLICATIONS-------------------------------------------------------------------------
-    useEffect(() => {
-        getOwn()
-            .then(res => {
+        getAllOwnMeals()
+            .then((res) => {
                 if (res.length > 0) {
-                    setNotDeleted(state => res.filter(x => x.isDeleted !== true));
+                    setNotDeleted(res.filter(x => x.isDeleted !== true));
+                    setIsLoading(state => loading);
                 }
-                if (res.message) throw new Error(res.message);
-            }).catch(error => {
+            })
+            .catch(error => {
                 console.log(error.message);
                 setErrorMessage(error.message);
-            });
+            })
         return () => {
             setErrorMessage('');
         }
-    }, [setErrorMessage, user]);
+    }, [loading, setErrorMessage, setIsLoading]);
+
 
     //RESIZE THE IMAGE-------------------------------------------------------------------------
 
@@ -146,76 +149,84 @@ export const Profile = () => {
             <title>Profile</title>
 
             <div className={styles["profile"]}>
+                {
+                    isLoading
+                        ?
+                        <div className={styles["already-reg"]}>
+                            <BeatLoader loading={() => isLoading} color={"white"} />
+                            <p>Вашият профил се зарежда, моля изчакайте... </p>
+                        </div>
+                        :
+                        <div className={styles["profile-containter"]}>
 
-                <div className={styles["profile-containter"]}>
+                            <a href={!userProfile?.image ? dummyPic : userProfile.image} target="_blank" rel="noreferrer">
+                                <img className={styles["profile-image-link"]} src={!userProfile?.image ? dummyPic : userProfile.image} id="profile-photo" alt="" />
+                            </a>
+                            <p className={styles["change-pic-text"]}>{'ПРОМЯНА НА СНИМКА'}
 
-                    <a href={!userProfile?.image ? dummyPic : userProfile.image} target="_blank" rel="noreferrer">
-                        <img className={styles["profile-image-link"]} src={!userProfile?.image ? dummyPic : userProfile.image} id="profile-photo" alt="" />
-                    </a>
-                    <p className={styles["change-pic-text"]}>{'ПРОМЯНА НА СНИМКА'}
-
-                        {
-                            !img
-                                ?
-                                <button className={styles["btn"]} onClick={() => setToUpdate(state => !state)}
-                                    style={{ "color": "red" }}>
-                                    Избери снимка
-                                </button>
-                                :
-                                progress === 100
-                                    ?
-                                    <button className={styles["btn"]} onClick={() => editHandler()}
-                                        style={{ "color": "green", "textShadow": "white 0px 0px 20px" }} >
-                                        Качи снимка
-                                    </button>
-                                    : null
-                        }
-                    </p>
-                    {
-                        //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
-                        toUpdate
-                            ?
-                            <div style={{ "display": "block" }}>
-                                <input type="file" id="picture" name="смени снимка" onChange={(e) => [e.target.files[0], setImg(e.target.files[0])]}
-                                    accept="image/x-png,image/gif, image/jpeg, image/jpg" />
-
-                                <progress value={progress} max="100" style={progress === 100 ? { "display": "none" } : { "display": "block" }} />
-                                <p style={progress === 100 ? { "display": "none" } : { "display": "block" }}> {progress}{progress === 100 ? "% DONE!" : "%"}
-                                </p>
-                            </div>
-                            :
-                            ""
-                    }
-                    < div >
-
-                        <article>
-                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашият email: </strong>
-                                <span style={{ "color": "white" }}>
-                                    {userProfile?.email}
-                                </span>
-                            </p>
-
-                            <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашите публикации:</strong></p>
-                            <div className={styles["profile-publications-container"]}>
                                 {
-                                    notDeleted.length > 0
+                                    !img
                                         ?
-                                        notDeleted.map(meal =>
-                                            <MealContainer key={meal._id} {...meal}
-                                                timesLiked={meal.likes} user={user}
-                                                setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                        <button className={styles["btn"]} onClick={() => setToUpdate(state => !state)}
+                                            style={{ "color": "red" }}>
+                                            Избери снимка
+                                        </button>
                                         :
-                                        <>
-                                            <p className={styles["recipe-diff-count"]} style={{ "color": "red" }}><strong>Все още нямате публикации!</strong></p>
-                                            <p className={styles["recipe-diff-count"]}> Създайте нова от<Link to="/recipe/add" className={styles["recipe-diff-count"]} style={{ "color": "white" }}>ТУК</Link></p>
-
-                                        </>
+                                        progress === 100
+                                            ?
+                                            <button className={styles["btn"]} onClick={() => editHandler()}
+                                                style={{ "color": "green", "textShadow": "white 0px 0px 20px" }} >
+                                                Качи снимка
+                                            </button>
+                                            : null
                                 }
+                            </p>
+                            {
+                                //indicates whether the button for image uplaod is clicked, so the browse button and progress bad can appear
+                                toUpdate
+                                    ?
+                                    <div style={{ "display": "block" }}>
+                                        <input type="file" id="picture" name="смени снимка" onChange={(e) => [e.target.files[0], setImg(e.target.files[0])]}
+                                            accept="image/x-png,image/gif, image/jpeg, image/jpg" />
+
+                                        <progress value={progress} max="100" style={progress === 100 ? { "display": "none" } : { "display": "block" }} />
+                                        <p style={progress === 100 ? { "display": "none" } : { "display": "block" }}> {progress}{progress === 100 ? "% DONE!" : "%"}
+                                        </p>
+                                    </div>
+                                    :
+                                    ""
+                            }
+                            < div >
+
+                                <article>
+                                    <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашият email: </strong>
+                                        <span style={{ "color": "white" }}>
+                                            {userProfile?.email}
+                                        </span>
+                                    </p>
+
+                                    <p className={styles["recipe-diff-count"]} style={{ "color": "wheat" }}><strong>вашите публикации:</strong></p>
+                                    <div className={styles["profile-publications-container"]}>
+                                        {
+                                            notDeleted.length > 0
+                                                ?
+                                                notDeleted.map(meal =>
+                                                    <MealContainer key={meal._id} {...meal}
+                                                        timesLiked={meal.likes} user={user}
+                                                        setErrorMessage={setErrorMessage} errorMessage={errorMessage} />)
+                                                :
+                                                <>
+                                                    <p className={styles["recipe-diff-count"]} style={{ "color": "red" }}><strong>Все още нямате публикации!</strong></p>
+                                                    <p className={styles["recipe-diff-count"]}> Създайте нова от<Link to="/recipe/add" className={styles["recipe-diff-count"]} style={{ "color": "white" }}>ТУК</Link></p>
+
+                                                </>
+                                        }
+                                    </div>
+                                </article>
                             </div>
-                        </article>
-                    </div>
-                </div>
-            </div >
+                        </div>
+                }
+            </div>
             <ScrollButton />
         </>
     )
