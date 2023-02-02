@@ -95,7 +95,7 @@
     "has-symbols": "^1.0.3",
     "has-unicode": "^2.0.1",
     "has-yarn": "^2.1.0",
-    "http-cache-semantics": "^4.1.0",
+    "http-cache-semantics": "^4.1.1",
     "http-errors": "^2.0.0",
     "https-proxy-agent": "^5.0.1",
     "iconv-lite": "^0.4.24",
