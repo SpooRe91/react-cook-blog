@@ -33,7 +33,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
         setIsLoading(state => true);
         getAllMeals()
             .then((res) => {
-                if (res.length > 0) {
+                if (res !== undefined && res?.length > 0) {
                     setNotDeleted(res.filter(x => x.isDeleted !== true));
                     setIsLoading(state => loading);
                 }
