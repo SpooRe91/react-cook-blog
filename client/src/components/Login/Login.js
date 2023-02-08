@@ -7,7 +7,7 @@ import { getSession, setSession } from "../../API/api";
 //-------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-// import { BeatLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 
 export const Login = ({ isLoading, setIsLoading }) => {
 
@@ -78,7 +78,7 @@ export const Login = ({ isLoading, setIsLoading }) => {
                         <>
                             <div className={styles["already-reg-loading"]}>
                                 <h3 className={styles["already-reg"]}>Вход</h3>
-                                {/* <BeatLoader loading={() => isLoading} color={"white"} /> */}
+                                <BeatLoader loading={() => isLoading} color={"white"} />
                                 <p>Моля изчакайте...</p>
                             </div>
                         </>
