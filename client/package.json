@@ -32,6 +32,7 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.4",
     "react-switch": "^7.0.0",
+    "request": "^2.88.2",
     "uuid": "^8.3.2",
     "vm2": "^3.9.10",
     "web-vitals": "^2.1.4",
