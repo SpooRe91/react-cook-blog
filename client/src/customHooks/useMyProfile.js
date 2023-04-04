@@ -6,7 +6,7 @@ import { ErrorContext } from "../contexts/ErrorMessageContext";
 export function useProfile(id) {
     const { setErrorMessage } = useContext(ErrorContext);
 
-    const getUserProfile = () => getUser(id)
+    const getUserProfile = (controller, signal) => getUser(id, controller, signal)
         .then(res => {
             if (res._id) {
                 return res;
@@ -14,6 +14,7 @@ export function useProfile(id) {
             if (res.message) throw new Error(res.message);
         })
         .catch(error => {
+            if (controller.signal.aborted) { return }
             console.log(error.message);
             setErrorMessage(error.message);
         });

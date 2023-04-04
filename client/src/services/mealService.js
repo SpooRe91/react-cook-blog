@@ -1,9 +1,10 @@
 import { endpoints } from '../API/endpoints';
 
-export const getOne = async (mealId) => {
+export const getOne = async (mealId, controller, signal) => {
 
     try {
         const res = await fetch(endpoints.API_DETAILS(mealId), {
+            signal: signal,
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -14,14 +15,16 @@ export const getOne = async (mealId) => {
         })
         return await res.json();
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message);
     }
 };
 
-export const getAll = async () => {
+export const getAll = async (signal, controller) => {
 
     try {
         const res = await fetch(endpoints.API_BROWSE, {
+            signal: signal,
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -32,14 +35,16 @@ export const getAll = async () => {
         });
         return await res.json();
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 };
 
-export const getOwn = async () => {
+export const getOwn = async (signal, controller) => {
 
     try {
         const res = await fetch(endpoints.API_MYRECIPES, {
+            signal: signal,
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -50,14 +55,16 @@ export const getOwn = async () => {
         });
         return await res.json();
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 };
 
-export const getMacros = async () => {
+export const getMacros = async (signal, controller) => {
 
     try {
         const res = await fetch(endpoints.API_MACROS, {
+            signal: signal,
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -68,14 +75,16 @@ export const getMacros = async () => {
         });
         return await res.json();
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 };
 
-export const create = async (createData) => {
+export const create = async (createData, signal, controller) => {
 
     try {
         const creteResult = await fetch(endpoints.API_ADD, {
+            signal: signal,
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -89,14 +98,16 @@ export const create = async (createData) => {
         return await creteResult.json();
 
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 }
 
 
-export const editMeal = async (mealId, mealData) => {
+export const editMeal = async (mealId, mealData, signal, controller) => {
     try {
         const editStatusInfo = await fetch(endpoints.API_EDIT(mealId), {
+            signal: signal,
             method: 'PUT',
             mode: 'cors',
             credentials: 'include',
@@ -110,14 +121,16 @@ export const editMeal = async (mealId, mealData) => {
         return await editStatusInfo.json();
 
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 }
 
-export const addLike = async (mealId) => {
+export const addLike = async (mealId, signal, controller) => {
 
     try {
         const creteResult = await fetch(endpoints.API_LIKE(mealId), {
+            signal: signal,
             mode: 'cors',
             credentials: 'include',
             headers: {
@@ -129,14 +142,16 @@ export const addLike = async (mealId) => {
         });
         return await creteResult.json();
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 }
 
-export const deleteMeal = async (mealId) => {
+export const deleteMeal = async (mealId, signal, controller) => {
 
     try {
         const deleteStatus = await fetch(endpoints.API_DELETE(mealId), {
+            signal: signal,
             method: 'DELETE',
             mode: 'cors',
             credentials: 'include',
@@ -150,6 +165,7 @@ export const deleteMeal = async (mealId) => {
         return deleteStatus;
 
     } catch (error) {
+        if (controller.signal.aborted) { return }
         throw new Error(error.message)
     }
 }

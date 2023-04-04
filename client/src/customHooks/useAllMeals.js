@@ -7,7 +7,7 @@ import { ErrorContext } from "../contexts/ErrorMessageContext";
 export function useAllMeals() {
     const { setErrorMessage } = useContext(ErrorContext);
 
-    const getAllMeals = () => getAll()
+    const getAllMeals = (signal, controller) => getAll(signal, controller)
         .then(res => {
             if (res.length > 0) {
                 return res;
@@ -15,6 +15,7 @@ export function useAllMeals() {
             if (res.message) throw new Error(res.message);
 
         }).catch(error => {
+            if (controller.signal.aborted) { return }
             console.log(error.message);
             setErrorMessage(error.message);
             return;
