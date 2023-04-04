@@ -22,11 +22,13 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
     //-------------------------------------------------------------------------------------------------
 
     const { getAllOwnMeals, loading } = useOwnMeals();
+    const controller = new AbortController();
+    const { signal } = controller;
 
     useEffect(() => {
         setIsLoading(state => true);
 
-        getAllOwnMeals()
+        getAllOwnMeals(signal, controller)
             .then((res) => {
                 if (res.length > 0) {
                     setNotDeleted(res.filter(x => x.isDeleted !== true));
@@ -34,11 +36,13 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                 }
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
             })
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
     }, [loading, setIsLoading, setErrorMessage]);
 

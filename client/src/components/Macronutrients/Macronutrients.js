@@ -21,20 +21,24 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
     const { getAllMacros, loading } = useAllMacros();
 
     useEffect(() => {
+        const controller = new AbortController();
+        const { signal } = controller;
+
         setIsLoading(state => true);
 
-        getAllMacros().then((res) => {
+        getAllMacros(controller, signal).then((res) => {
             if (res.length > 0) {
                 setProducts(res);
                 setIsLoading(state => loading);
             }
+        }).catch(error => {
+            if (controller.signal.aborted) { return }
+            console.log(error.message);
+            setErrorMessage(error.message);
         })
-            .catch(error => {
-                console.log(error.message);
-                setErrorMessage(error.message);
-            })
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
     }, [loading, setErrorMessage, setIsLoading]);
 

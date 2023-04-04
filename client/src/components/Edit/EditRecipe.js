@@ -36,11 +36,13 @@ export const EditRecipe = ({ setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
-
+    const controller = new AbortController();
+    const { signal } = controller;
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
+
         setIsLoading(true);
-        getOne(mealId)
+        getOne(mealId, controller, signal)
             .then(res => {
                 if (res.owner !== user?.id) {
                     navigate('/404', { replace: true });
@@ -55,9 +57,15 @@ export const EditRecipe = ({ setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
-            })
+            });
+
+        return (() => {
+            setErrorMessage('');
+            controller.abort();
+        })
     }, [mealId, setIsLoading, setErrorMessage, user?.id, navigate]);
 
     //-------------------------------------------------------------------------------------------------
@@ -72,7 +80,7 @@ export const EditRecipe = ({ setIsLoading }) => {
     const editHandler = (e) => {
         e.preventDefault();
         setIsLoading(true);
-        editMeal(mealId, values)
+        editMeal(mealId, values, signal, controller)
             .then(res => {
                 if (res.acknowledged && res.modifiedCount !== 0) {
                     setMeal(res);
@@ -82,6 +90,7 @@ export const EditRecipe = ({ setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error);
                 setErrorMessage(error.message);
             });

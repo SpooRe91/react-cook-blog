@@ -22,13 +22,15 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
         ingredients: '',
         fullRecipe: '',
     });
-
+    const controller = new AbortController();
+    const { signal } = controller;
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
-    }, [setErrorMessage, navigate, user]);
+    }, [navigate, user]);
 
     //-------------------------------------------------------------------------------------------------
     const changeHandler = (e) => {
@@ -39,9 +41,10 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
     };
     //-------------------------------------------------------------------------------------------------
     const createHandler = (e) => {
+
         e.preventDefault();
         setIsLoading(true);
-        create(values)
+        create(values, signal, controller)
             .then(res => {
                 if (res._id) {
                     navigate('/recipe/myRecipes', { replace: true });
@@ -50,6 +53,7 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
             })

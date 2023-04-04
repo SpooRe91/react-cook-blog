@@ -30,8 +30,12 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const { getAllMeals, loading } = useAllMeals();
 
     useEffect(() => {
+
+        const controller = new AbortController();
+        const { signal } = controller;
+
         setIsLoading(state => true);
-        getAllMeals()
+        getAllMeals(signal, controller)
             .then((res) => {
                 if (res !== undefined && res?.length > 0) {
                     setNotDeleted(res.filter(x => x.isDeleted !== true));
@@ -39,11 +43,13 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 }
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
             })
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
     }, [loading, setIsLoading, setErrorMessage])
 

@@ -24,9 +24,12 @@ export const Details = ({ isLoading, setIsLoading }) => {
     const [arrayOfLikes, setArrayOfLikes] = useState(null);
     const [isLiked, setIsLiked] = useState(false);
     //-------------------------------------------------------------------------------------------------
+    const controller = new AbortController();
+    const { signal } = controller;
+
     useEffect(() => {
         setIsLoading(true);
-        getOne(mealId)
+        getOne(mealId, controller, signal)
             .then(res => {
                 if (!res.isDeleted && res._id) {
                     setMeal(res);
@@ -38,11 +41,13 @@ export const Details = ({ isLoading, setIsLoading }) => {
                 setIsLoading(false);
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 return setErrorMessage(error.message);
             });
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
     }, [mealId, setIsLoading, setErrorMessage]);
 
@@ -57,10 +62,11 @@ export const Details = ({ isLoading, setIsLoading }) => {
     const likeHandler = async (e) => {
         if (!arrayOfLikes.find(x => x === user?.id)) {
             try {
-                await addLike(meal._id);
+                await addLike(meal._id, signal, controller);
                 setIsLiked(true);
                 setNumberOfLikes(likes => likes + 1);
             } catch (error) {
+                if (controller.signal.aborted) { return }
                 setErrorMessage(error.message);
             }
         } else {

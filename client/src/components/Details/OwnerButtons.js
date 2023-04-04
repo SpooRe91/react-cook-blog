@@ -9,9 +9,11 @@ export const OnwerButtons = ({ _id, setErrorMessage }) => {
     const navigate = useNavigate();
 
     const [isClicked, setIsClicked] = useState(false);
+    const controller = new AbortController();
+    const signal = controller;
 
     const deleteHandler = (e) => {
-        deleteMeal(_id)
+        deleteMeal(_id, signal, controller)
             .then(res => {
                 if (res.status === 202) {
                     navigate('/recipe/myRecipes', { replace: true });
@@ -19,7 +21,8 @@ export const OnwerButtons = ({ _id, setErrorMessage }) => {
                 if (res.message) throw new Error(res.message);
             })
             .catch(error => {
-                setErrorMessage(error.message)
+                if (controller.signal.aborted) { return }
+                setErrorMessage(error.message);
             });
     };
 
@@ -35,7 +38,7 @@ export const OnwerButtons = ({ _id, setErrorMessage }) => {
                     <div className={styles["owner-buttons"]}>
                         <p>Сигурни ли сте, че искате да изтриете рецептата?</p>
                         <input type="button" className={styles["delete-confirm-btn"]} onClick={deleteHandler} value="да" />
-                        <input type="button" className={styles["delete-confirm-btn"]} onClick={confirmHandler} value="не"/>
+                        <input type="button" className={styles["delete-confirm-btn"]} onClick={confirmHandler} value="не" />
                     </div>
                     :
                     <div className={styles["owner-buttons"]}>

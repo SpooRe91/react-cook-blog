@@ -38,6 +38,8 @@ export const Profile = ({ isLoading, setIsLoading }) => {
     const [toUpdate, setToUpdate] = useState(false);
     const [userProfile, setUserProfile] = useState(null);
 
+    const controller = new AbortController();
+    const { signal } = controller;
     //UPLOAD THE IMAGE, ONCE THE FILE IS SELECTED-------------------------------------------------------------------------
     useEffect(() => {
         const uploadImg = async (img) => {
@@ -92,7 +94,7 @@ export const Profile = ({ isLoading, setIsLoading }) => {
                 setErrorMessage(error.message);
             });
 
-        getAllOwnMeals()
+        getAllOwnMeals(signal, controller)
             .then((res) => {
                 if (res.length > 0) {
                     setNotDeleted(res.filter(x => x.isDeleted !== true));
@@ -100,11 +102,13 @@ export const Profile = ({ isLoading, setIsLoading }) => {
                 }
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
             })
         return () => {
             setErrorMessage('');
+            controller.abort();
         }
     }, [loading, setErrorMessage, setIsLoading]);
 
