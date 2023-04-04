@@ -17,7 +17,6 @@ export const UserNavBar = ({ id, email, setIsOpen, focusHandler }) => {
                     <div className={styles["dropdown-content"]}>
                         <div className={styles['content-holder']}>
                             <NavLink to="/recipe/myRecipes" name="drop-item" className={styles["btn-details-back"]}>моите рецепти</NavLink>
-                            <br />
                             <NavLink to="/recipe/add" name="drop-item" className={styles["btn-details-back"]} >добави рецепта</NavLink>
                         </div>
                     </div>
