@@ -83,6 +83,7 @@
     border-radius: 10px;
     background-image: linear-gradient(180deg, #000000d1, #3e5151);
     font-size: 26px;
+    padding: 5px;
 }
 
 .show-more-less:hover {
