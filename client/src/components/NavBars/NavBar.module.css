@@ -1,14 +1,14 @@
 .active-element {
     text-decoration: overline white;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    color: rgb(255 146 34);
 }
 
 .profile-name-active {
     font-size: 17px;
     text-decoration: overline white;
     /* -webkit-text-stroke: 1.5px #000000; */
-    color: #000000;
+    color: rgb(255 146 34);
     font-weight: bold;
     text-shadow: white 0px 0px 20px;
 }
@@ -34,6 +34,8 @@
 }
 
 .content-holder {
+    display: flex;
+    gap: 4px;
     height: 50px;
     display: none;
     position: absolute;
@@ -45,12 +47,10 @@
 }
 
 .dropdown-content a {
-    margin: 10px 10px;
-    padding: 0.5px;
+    padding: 4.5px;
     font-size: 18px;
     text-decoration: none;
     text-transform: uppercase;
-    /* -webkit-text-stroke: 0.3px #000000; */
     color: #ffffff;
     font-weight: bold;
     text-shadow: #ffffff 0px 0px 20px;
@@ -60,23 +60,25 @@
 
 .dropdown-content a:hover {
     background-color: #DECBA4;
-    color: #000000;
+    color: #777777;
     text-decoration: none;
 }
+
+
 
 .dropbtn:hover {
     cursor: pointer;
     color: #ffffff;
 }
 
-.dropbtn:hover .content-holder{
-    display: block;
-    cursor: pointer;
-    height: 60px;
-    width: max-content;
-    background-color: black;
-    border-radius: 10px;
+.dropbtn:hover .content-holder {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background: black;
+    border-radius: 9px;
 }
+
 
 .nav-logo {
     z-index: 9;
