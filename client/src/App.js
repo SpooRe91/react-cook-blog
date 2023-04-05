@@ -1,26 +1,26 @@
-import { Route, Routes } from "react-router-dom"
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom"
 
 import { Login } from "./components/Login/Login"
-import { NavBar } from "./components/NavBars/Navbar"
-import { Register } from "./components/Register/Register";
-import { Contacts } from "./components/Contacts/Contacts";
 import { About } from "./components/About/About";
+import { NavBar } from "./components/NavBars/Navbar"
+import { Browse } from "./components/Browse/Browse";
+import { Footer } from "./components/common/Footer";
+import { Logout } from "./components/Logout/Logout";
+import { Profile } from "./components/Profile/Profile";
+import { Details } from "./components/Details/Details";
+import { Contacts } from "./components/Contacts/Contacts";
+import { Register } from "./components/Register/Register";
+import { Homepage } from "./components/Homepage/Homepage";
 import { ErrorPage } from "./components/ErrorPage/ErrorPage";
 import { AddRecipe } from "./components/AddRecipe/AddRecipe";
-import { Browse } from "./components/Browse/Browse";
-import { Details } from "./components/Details/Details";
 import { MyRecipes } from "./components/MyRecipes/MyRecipes";
-import { Homepage } from "./components/Homepage/Homepage";
-import { Footer } from "./components/common/Footer";
-import { Profile } from "./components/Profile/Profile";
-import { Logout } from "./components/Logout/Logout";
-import { Macronutrients } from "./components/Macronutrients/Macronutrients";
 import { EditRecipe } from "./components/Edit/EditRecipe";
+import { NoUserGuard } from "./components/common/NoUserGuard";
+import { Macronutrients } from "./components/Macronutrients/Macronutrients";
+import { LoggedUserGuard } from "./components/common/LoggedUserGuard";
 import { LoggedUserProvider } from "./contexts/LoggedUserContext";
 import { ErrorContextProvider } from "./contexts/ErrorMessageContext";
-import { NoUserGuard } from "./components/common/NoUserGuard";
-import { LoggedUserGuard } from "./components/common/LoggedUserGuard";
 
 
 function App() {
@@ -33,62 +33,43 @@ function App() {
       <LoggedUserProvider>
         <NavBar setIsOpen={setIsOpen} />
         <div className="App">
-          {/* -------------------------------------Logout-----------------------------------------------------*/}
+
           {isOpen && isOpen.target === "logout" &&
             <Logout isLoading={isLoading} setIsLoading={setIsLoading} setIsOpen={setIsOpen} />}
 
-          {/* -------------------------------------Homepage---------------------------------------------------*/}
           <Routes>
             <Route path="/" element={<Homepage />} />
-            {/* --------------------------------------LOGIN & REGISTER----------------------------------------*/}
             <Route element={<LoggedUserGuard />} >
               <Route path="/auth/login" element={<Login isLoading={isLoading} setIsLoading={setIsLoading} />} />
               <Route path="/auth/Register" element={<Register isLoading={isLoading} setIsLoading={setIsLoading} />} />
             </Route>
 
-            {/* ------------------------------------ErrorPage-------------------------------------------------*/}
             <Route path="/404"
               element={<ErrorPage />}
             />
-
-            {/* -----------------------------------USER only routes-------------------------------------------*/}
-
             <Route element={<NoUserGuard />} >
-              {/* ------------------------------------Profile-------------------------------------------------*/}
               <Route path="/auth/profile/:id"
                 element={<Profile isLoading={isLoading} setIsLoading={setIsLoading} />} />
-              {/* ------------------------------------MyRecipes-----------------------------------------------*/}
               <Route path="/recipe/myRecipes"
                 element={<MyRecipes isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              {/* -----------------------------------EditRecipe-----------------------------------------------*/}
               <Route path="/edit/:mealId"
                 element={<EditRecipe isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
-              {/* ----------------------------------AddRecipe-------------------------------------------------*/}
               <Route path="/recipe/add"
                 element={<AddRecipe isLoading={isLoading} setIsLoading={setIsLoading} />}
               />
             </Route>
 
-            {/* -----------------------------------USER AND NON-USER ROUTES ----------------------------------*/}
-
-            {/* ------------------------------------Browse----------------------------------------------------*/}
             <Route path="/recipe/browse" element={
               <Browse isLoading={isLoading} setIsLoading={setIsLoading} />}
             />
-
-            {/* -----------------------------------Details-----------------------------------------------------*/}
             <Route path="/details/:mealId" element={
               <Details isLoading={isLoading} setIsLoading={setIsLoading} />}
             />
-
-            {/* ---------------------------------Macronutrients------------------------------------------------*/}
             <Route path="/recipe/macros" element={
               <Macronutrients isLoading={isLoading} setIsLoading={setIsLoading} />}
             />
-
-            {/* ----------------------------------If route is not valid - ErrorPage----------------------------*/}
             <Route path="*" element={< ErrorPage />} />
 
           </Routes>
