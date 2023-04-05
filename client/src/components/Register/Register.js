@@ -14,7 +14,7 @@ export const Register = ({ isLoading, setIsLoading }) => {
     const { userHandler } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
-
+    setIsLoading(state => false);
     const [value, setValues] = useState({
         email: '',
         password: '',
@@ -87,9 +87,10 @@ export const Register = ({ isLoading, setIsLoading }) => {
                         :
 
                         <>
-
-                            <h3 className={styles["already-reg"]}>Регистрация</h3>
                             <form method="POST" onSubmit={registerHandler} className={styles["register-form"]}>
+                                <div>
+                                    <h3 className={styles["already-reg"]}>Регистрация</h3>
+                                </div>
                                 <label className={styles["credentials"]} htmlFor="email">e-mail</label>
                                 <input type="text" className={styles["email"]} id="email" name="email"
                                     placeholder="e-mail..." required onChange={changeHandler} value={value.email} />
@@ -103,8 +104,8 @@ export const Register = ({ isLoading, setIsLoading }) => {
                                     placeholder="повторете паролата..." required onChange={changeHandler} value={value.rePassword} />
 
                                 <input className={styles["already-reg"]} type="submit" value="Регистриране" />
+                                <h3 className={styles["already-reg"]}>Вече сте регистрирани?<Link to="/auth/login" className={styles["already-reg"]}>Влезте от тук!</Link></h3>
                             </form>
-                            <h3 className={styles["already-reg"]}>Вече сте регистрирани?<Link to="/auth/login" className={styles["already-reg"]}>Влезте от тук!</Link></h3>
                         </>
                 }
             </div>
