@@ -15,7 +15,7 @@ export const Login = ({ isLoading, setIsLoading }) => {
     const { userHandler, cookies } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
-
+    setIsLoading(state => false);
     const [value, setValues] = useState({
         email: '',
         password: ''
