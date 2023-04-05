@@ -192,9 +192,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                         {
                             isLoading
                                 ?
-                                <>
-                                    <BeatLoader loading={() => isLoading} color={"white"} />
-                                </>
+                                null
                                 :
                                 <article className={styles["recipe-details"]}>
                                     <label htmlFor="ingredients">Необходими съставки:</label>
