@@ -30,7 +30,6 @@ export const Profile = ({ isLoading, setIsLoading }) => {
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const { id } = useParams();
-    console.log(id);
     const [img, setImg] = useState(null);
     const [url, setUrl] = useState("");
     const [progress, setProgress] = useState(0);
@@ -66,6 +65,7 @@ export const Profile = ({ isLoading, setIsLoading }) => {
                             setUrl(url);
                         })
                         .catch((error) => {
+                            if (controller.signal.aborted) { return }
                             setErrorMessage(error.message);
                             console.log(error.message);
                         })
@@ -90,6 +90,7 @@ export const Profile = ({ isLoading, setIsLoading }) => {
                 setIsLoading(state => loading);
             })
             .catch(error => {
+                if (controller.signal.aborted) { return }
                 console.log(error.message);
                 setErrorMessage(error.message);
             });
