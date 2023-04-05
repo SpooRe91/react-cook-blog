@@ -4,13 +4,32 @@
 }
 
 .landing-page-section {
-    margin-left: 35%
+    background-image: url(http://localhost:3000/static/media/spaghetti-with-pesto-prawns-served-plate.630f9a5….jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.landing-page-section1 {
+    background-image: url(../../../public/images/second-board.JPG);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.second-header {
+    display: flex;
+    gap: 4rem;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5%;
 }
 
 .landing-page-article div {
     background-image: url(../../../public/images/spaghetti-with-pesto-prawns-served-plate.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 4.5em auto 4.7em auto;
     height: 30em;
     display: flex;
@@ -23,11 +42,36 @@
 }
 
 .landing-page-header {
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: #cc4900bd;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ffffffbd;
     margin: auto;
-    text-shadow: #cdbc98 2px 3px 2px;
+    text-shadow: coral 2px 2px 0px;
     font-size: 4em;
+    color: black;
+}
+
+.landing-page-header1 {
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #000000;
+    text-shadow: #000000 0px 0px 20px, #000000 2px 4px 20px, #000000 2px 4px 20px, #000000 2px 4px 1px;
+    font-size: 2em;
+    color: #FF9800;
+}
+
+.landing-page-section1 article {
+    backdrop-filter: blur(5px);
+
+}
+
+.landing-page-header1 a {
+    font-size: 2rem;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+}
+
+.landing-page-header1 a:hover {
+    text-shadow: 0px 0px 20px rgb(255, 255, 255), 1px 1px 0px rgb(255, 255, 255);
+    color: rgb(192, 67, 22);
 }
 
 .landing-page-span {

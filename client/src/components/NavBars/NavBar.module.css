@@ -2,6 +2,7 @@
     text-decoration: overline white;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: rgb(255 146 34);
+    transition: all 200ms ease-in-out;
 }
 
 .profile-name-active {
@@ -11,6 +12,7 @@
     color: rgb(255 146 34);
     font-weight: bold;
     text-shadow: white 0px 0px 20px;
+    transition: all 200ms ease-in-out;
 }
 
 .dropbtn {
@@ -23,6 +25,7 @@
     text-shadow: #000000 -4px 1px 3px;
     background: none;
     border: none;
+    transition: all 200ms ease-in-out;
 }
 
 
@@ -44,6 +47,7 @@
     /* box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%); */
     z-index: 9;
     padding: 5px;
+    transition: all 200ms ease-in-out;
 }
 
 .dropdown-content a {
@@ -56,6 +60,7 @@
     text-shadow: #ffffff 0px 0px 20px;
     border-radius: 5px;
     border-width: 50px;
+    transition: all 200ms ease-in-out;
 }
 
 .dropdown-content a:hover {
@@ -77,6 +82,7 @@
     height: fit-content;
     background: black;
     border-radius: 9px;
+    transition: all 200ms ease-in-out;
 }
 
 
@@ -89,6 +95,7 @@
     border: ridge #DECBA4;
     margin: auto;
     border-radius: 50%;
+    transition: all 200ms ease-in-out;
 }
 
 .nav-logo:hover {
@@ -106,6 +113,7 @@ a.logout-main {
     color: #cc0606;
     font-weight: bold;
     text-shadow: white 0px 0px 20px;
+    transition: all 200ms ease-in-out;
 }
 
 a.logout-main:hover {
