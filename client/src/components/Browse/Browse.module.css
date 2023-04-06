@@ -202,10 +202,8 @@ div.meal-containter {
     margin: 15px;
     margin-bottom: 3em;
     padding: 10px;
+    width: 62%;
     flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
 }
 
 /* MEAL CONTAINTER */
