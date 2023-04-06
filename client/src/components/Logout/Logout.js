@@ -7,7 +7,7 @@ import styles from "./Logout.module.css"
 
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
-import { BeatLoader } from "react-spinners";
+import LoadingComponent from "../common/LoadingComponent";
 
 export const Logout = ({ isLoading, setIsLoading, setIsOpen }) => {
 
@@ -69,10 +69,7 @@ export const Logout = ({ isLoading, setIsLoading, setIsOpen }) => {
             <div className={styles["centered"]}>
                 {isLoading
                     ?
-                    <div className={styles["already-reg"]}>
-                        <BeatLoader loading={() => isLoading} color={"white"} />
-                        <p>Моля изчакайте...</p>
-                    </div>
+                    <LoadingComponent {...{ isLoading }} />
                     :
                     <>
                         <h1 className={styles["logout-modal-header"]}>Сигурни ли сте, че искате да излезете?</h1>

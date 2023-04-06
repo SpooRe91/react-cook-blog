@@ -7,14 +7,14 @@ import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 
 import styles from "./Register.module.css";
-import { BeatLoader } from "react-spinners";
+import LoadingComponent from "../common/LoadingComponent";
 
 export const Register = ({ isLoading, setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const { userHandler } = useContext(LoggedUserContext);
 
     let navigate = useNavigate();
-    setIsLoading(state => false);
+
     const [value, setValues] = useState({
         email: '',
         password: '',
@@ -42,7 +42,6 @@ export const Register = ({ isLoading, setIsLoading }) => {
                     setSession({ ...res });
                     userHandler(getSession());
                     navigate('/recipe/browse', { replace: true });
-                    setIsLoading(state => false);
                 }
                 if (res.message) throw new Error(res.message);
             })
@@ -54,7 +53,9 @@ export const Register = ({ isLoading, setIsLoading }) => {
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
     //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
     useEffect(() => {
+        setIsLoading(state => false);
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
             userHandler(getSession());
         }
@@ -77,13 +78,7 @@ export const Register = ({ isLoading, setIsLoading }) => {
                 {
                     isLoading
                         ?
-                        <>
-                            <div className={styles["already-reg-loading"]}>
-                                <h3 className={styles["already-reg"]}>Регистрация</h3>
-                                <BeatLoader loading={() => isLoading} color={"white"} />
-                                <p>Моля изчакайте...</p>
-                            </div>
-                        </>
+                        <LoadingComponent {...{ isLoading }} />
                         :
 
                         <>

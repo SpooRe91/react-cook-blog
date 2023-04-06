@@ -7,7 +7,7 @@ import { getSession, setSession } from "../../API/api";
 //-------------------------------------------------------------------------------------------------
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
-import { BeatLoader } from "react-spinners";
+import LoadingComponent from "../common/LoadingComponent";
 
 export const Login = ({ isLoading, setIsLoading }) => {
 
@@ -15,7 +15,7 @@ export const Login = ({ isLoading, setIsLoading }) => {
     const { userHandler, cookies } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const navigate = useNavigate();
-    setIsLoading(state => false);
+
     const [value, setValues] = useState({
         email: '',
         password: ''
@@ -38,7 +38,6 @@ export const Login = ({ isLoading, setIsLoading }) => {
                     userHandler(getSession());
                     cookies.set('user-session', getSession(), { path: "/", maxAge: 48000 });
                     navigate('/recipe/browse', { replace: true });
-                    setIsLoading(state => false);
                 }
                 if (res.message) throw new Error(res.message);
             })
@@ -49,7 +48,9 @@ export const Login = ({ isLoading, setIsLoading }) => {
 
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
+        setIsLoading(state => false);
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
             userHandler(getSession());
         };
@@ -59,7 +60,6 @@ export const Login = ({ isLoading, setIsLoading }) => {
     return (
         <>
             <title>Вход</title>
-            {isLoading ? "LOADING..." : null}
             <div>
                 <>
                     {errorMessage !== '' && <p>Грешка</p>}
@@ -75,13 +75,7 @@ export const Login = ({ isLoading, setIsLoading }) => {
                     }
                     {isLoading
                         ?
-                        <>
-                            <div className={styles["already-reg-loading"]}>
-                                <h3 className={styles["already-reg"]}>Вход</h3>
-                                <BeatLoader loading={() => isLoading} color={"white"} />
-                                <p>Моля изчакайте...</p>
-                            </div>
-                        </>
+                        <LoadingComponent {...{ isLoading }} />
                         :
                         <>
                             <form className={styles["login-form"]} method="POST" onSubmit={loginHandler}>
