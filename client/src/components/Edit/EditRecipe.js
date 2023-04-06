@@ -6,8 +6,9 @@ import styles from "./EditRecipe.module.css";
 import { getOne, editMeal } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
+import LoadingComponent from "../common/LoadingComponent";
 //-------------------------------------------------------------------------------------------------
-export const EditRecipe = ({ setIsLoading }) => {
+export const EditRecipe = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
     //-------------------------------------------------------------------------------------------------
 
@@ -151,7 +152,13 @@ export const EditRecipe = ({ setIsLoading }) => {
                     </p>
                 </div>
             }
-        </div >
+            {
+                isLoading
+                    ?
+                    <LoadingComponent {...{ isLoading }} />
+                    : null
+            }
+        </div>
     )
 
 }

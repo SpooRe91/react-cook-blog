@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { v4 } from "uuid";
 import Resizer from "react-image-file-resizer";
 
 
+import styles from "./Profile.module.css";
+import dummyPic from "./dummy-profile-pic.jpg";
 import { storage } from "../../firebase/firebase-config";
 import {
     ref,
@@ -17,13 +19,10 @@ import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { editUserImage } from "../../services/userService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
-import dummyPic from "./dummy-profile-pic.jpg";
-import styles from "./Profile.module.css";
-import { ScrollButton } from "../common/ScrollButton";
-import { useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
+import LoadingComponent from "../common/LoadingComponent";
 import { useProfile } from "../../customHooks/useMyProfile";
 import { useOwnMeals } from "../../customHooks/useOwnMeals";
+import { ScrollButton } from "../common/ScrollButton";
 
 export const Profile = ({ isLoading, setIsLoading }) => {
 
@@ -157,10 +156,7 @@ export const Profile = ({ isLoading, setIsLoading }) => {
                 {
                     isLoading
                         ?
-                        <div className={styles["already-reg"]}>
-                            <BeatLoader loading={() => isLoading} color={"white"} />
-                            <p>Вашият профил се зарежда, моля изчакайте... </p>
-                        </div>
+                        <LoadingComponent {...{ isLoading }} />
                         :
                         <div className={styles["profile-containter"]}>
 

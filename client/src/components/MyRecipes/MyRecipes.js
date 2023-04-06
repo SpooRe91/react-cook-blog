@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 import styles from "./MyRecipes.module.css";
@@ -10,6 +9,7 @@ import { MealContainer } from "./MealContainer"
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { useOwnMeals } from "../../customHooks/useOwnMeals";
+import LoadingComponent from "../common/LoadingComponent";
 //-------------------------------------------------------------------------------------------------
 export const MyRecipes = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
@@ -88,10 +88,7 @@ export const MyRecipes = ({ isLoading, setIsLoading }) => {
                         {
                             isLoading
                                 ?
-                                <div className={styles["already-reg"]}>
-                                    <BeatLoader loading={() => isLoading} color={"white"} />
-                                    <p>Вашите рецепти се зареждат... </p>
-                                </div>
+                                <LoadingComponent {...{ isLoading }} />
                                 :
                                 filterValue
                                     ?

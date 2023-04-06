@@ -6,7 +6,7 @@ import styles from "./AddRecipe.module.css";
 import { create } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
-import { BeatLoader } from "react-spinners";
+import LoadingComponent from "../common/LoadingComponent";
 
 export const AddRecipe = ({ isLoading, setIsLoading }) => {
     //-------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
     return (
         <>
             {isLoading
-                ? <BeatLoader />
+                ? <LoadingComponent {...{ isLoading }} />
                 :
                 <>
                     <title>Добави рецепта</title>

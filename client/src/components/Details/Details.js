@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BeatLoader } from "react-spinners";
 import { FaHeart } from 'react-icons/fa';
 //-------------------------------------------------------------------------------------------------
 import styles from "./Details.module.css";
@@ -10,6 +9,7 @@ import { OnwerButtons } from "./OwnerButtons"
 import { ScrollButton } from "../common/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
+import LoadingComponent from "../common/LoadingComponent";
 //-------------------------------------------------------------------------------------------------
 export const Details = ({ isLoading, setIsLoading }) => {
     //-------------------------------------------------------------------------------------------------
@@ -106,103 +106,94 @@ export const Details = ({ isLoading, setIsLoading }) => {
                         </p>
                     </div>
                     :
-                    <>
+                    <div className={styles['main-container']}>
+                        <>
 
-                        <title>Детайли: {meal.name}</title>
-                        {
+                            <title>Детайли: {meal.name}</title>
+                            {
 
-                            isLoading
-                                ?
-                                <>
-                                    <div className={styles["already-reg-loading"]}>
-                                        <BeatLoader loading={() => isLoading} color={"white"} />
-                                        <p>Моля изчакайте...</p>
-                                    </div>
-                                </>
-                                :
-                                <div className={styles["details"]}>
-                                    {
+                                isLoading
+                                    ?
+                                    <LoadingComponent {...{ isLoading }} />
+                                    :
+                                    <div className={styles["details"]}>
+                                        {
 
-                                        <>
-                                            <h1 className={styles["meal-name"]}>
-                                                {meal.name}
-                                            </h1>
-                                            <a href={meal.image} target={"_blank"} rel="noreferrer"><img className={styles["meal-details"]} src={meal.image}
-                                                alt="" />
-                                            </a>
-                                            <div>
-                                                {user && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
-                                            </div>
-                                            <div className={styles["like-container"]}>
-                                                {
-                                                    user !== null && user?.id !== meal.owner
-                                                        ?//if we have a logged user and is not the owner
-                                                        numberOfLikes !== 0
-                                                            ?//if there are likes
-                                                            isLiked
-                                                                ?//if the current element is liked by the logged user
-                                                                <span>Харесано от Вас! {likeHeartWithCount}</span>
-                                                                ://if  it's not liked by the logged user
+                                            <>
+                                                <h1 className={styles["meal-name"]}>
+                                                    {meal.name}
+                                                </h1>
+                                                <a href={meal.image} target={"_blank"} rel="noreferrer"><img className={styles["meal-details"]} src={meal.image}
+                                                    alt="" />
+                                                </a>
+                                                <div>
+                                                    {user && meal?.owner === user?.id && <OnwerButtons {...meal} setErrorMessage={setErrorMessage} />}
+                                                </div>
+                                                <div className={styles["like-container"]}>
+                                                    {
+                                                        user !== null && user?.id !== meal.owner
+                                                            ?//if we have a logged user and is not the owner
+                                                            numberOfLikes !== 0
+                                                                ?//if there are likes
+                                                                isLiked
+                                                                    ?//if the current element is liked by the logged user
+                                                                    <span>Харесано от Вас! {likeHeartWithCount}</span>
+                                                                    ://if  it's not liked by the logged user
+                                                                    <>
+                                                                        {likeButton}
+                                                                    </>
+                                                                ://if there are no likes and the user can like it
                                                                 <>
+                                                                    <span>Няма харесвания</span>
                                                                     {likeButton}
                                                                 </>
-                                                            ://if there are no likes and the user can like it
-                                                            <>
-                                                                <span>Няма харесвания</span>
-                                                                {likeButton}
-                                                            </>
-                                                        ://if there is no logged user
-                                                        likeHeartWithCount
-                                                }
-                                                <input type="button" className={styles["delete-confirm-btn"]} onClick={() => navigate(-1)} value="Назад" />
-                                            </div>
+                                                            ://if there is no logged user
+                                                            likeHeartWithCount
+                                                    }
+                                                    <input type="button" className={styles["delete-confirm-btn"]} onClick={() => navigate(-1)} value="Назад" />
+                                                </div>
 
-                                            <article>
+                                                <article>
 
-                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
-                                                    style={{ "color": "wheat" }}>
-                                                    {meal.portions}
-                                                </strong>
-                                                </p>
+                                                    <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>порции: <strong
+                                                        style={{ "color": "wheat" }}>
+                                                        {meal.portions}
+                                                    </strong>
+                                                    </p>
 
-                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
-                                                    style={{ "color": "wheat" }}>
-                                                    {meal.difficulty}
-                                                </strong>
-                                                </p>
+                                                    <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>сложност: <strong
+                                                        style={{ "color": "wheat" }}>
+                                                        {meal.difficulty}
+                                                    </strong>
+                                                    </p>
 
-                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
-                                                    style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
-                                                    {createdOn}
-                                                </span>
-                                                </p>
+                                                    <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено на: <span
+                                                        style={meal.updatedAt ? { "color": "wheat" } : { color: "white" }} >
+                                                        {createdOn}
+                                                    </span>
+                                                    </p>
 
-                                                <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
-                                                    style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
-                                                    {meal.ownerName}
-                                                </span>
-                                                </p>
+                                                    <p className={styles["recipe-diff-count"]} style={{ "color": "white" }}>Създадено от: <span
+                                                        style={meal.ownerName ? { "color": "wheat" } : { color: "white" }}>
+                                                        {meal.ownerName}
+                                                    </span>
+                                                    </p>
 
-                                            </article>
-                                        </>
-                                    }
-                                </div>
-                        }
-                        <ScrollButton />
-                        {
-                            isLoading
-                                ?
-                                null
-                                :
-                                <article className={styles["recipe-details"]}>
-                                    <label htmlFor="ingredients">Необходими съставки:</label>
-                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
+                                                </article>
+                                            </>
+                                        }
+                                    </div>
+                            }
+                            <article className={styles["recipe-details"]}>
+                                <label htmlFor="ingredients">Необходими съставки:</label>
+                                <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
 
-                                    <label htmlFor="ingredients">Рецепта:</label>
-                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
-                                </article>
-                        }
-                    </>
+                                <label htmlFor="ingredients">Рецепта:</label>
+                                <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
+                            </article>
+                            <ScrollButton />
+                        </>
+                    </div>
             }
             <ScrollButton />
         </>

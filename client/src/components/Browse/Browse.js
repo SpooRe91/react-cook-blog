@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { BeatLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import styles from "./Browse.module.css"
 //-----------------------------------------------------------------------------------------------------
@@ -10,6 +9,7 @@ import { ScrollButton } from "../common/ScrollButton";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { useAllMeals } from "../../customHooks/useAllMeals";
+import LoadingComponent from "../common/LoadingComponent";
 
 //-----------------------------------------------------------------------------------------------------
 
@@ -116,10 +116,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                         {
                             isLoading
                                 ?
-                                <div className={styles["already-reg"]}>
-                                    <BeatLoader color={"white"} />
-                                    <p>Рецептите се зареждат...</p>
-                                </div>
+                                <LoadingComponent {...{ isLoading }} />
                                 :
                                 filterValue
                                     ?

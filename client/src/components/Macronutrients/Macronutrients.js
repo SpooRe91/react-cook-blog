@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { BeatLoader } from 'react-spinners';
-import { Macrotable } from './Macrotable';
+import LoadingComponent from "../common/LoadingComponent";
 
 import styles from './Macronutrients.module.css';
+import { Macrotable } from './Macrotable';
+import { useNavigate } from 'react-router-dom';
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from '../common/ScrollButton';
-import { useNavigate } from 'react-router-dom';
 import { useAllMacros } from '../../customHooks/useMacros';
 
 export const Macronutrients = ({ isLoading, setIsLoading }) => {
@@ -67,13 +67,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                 {
                     isLoading
                         ?
-                        <>
-                            <div className={styles["already-reg-loading"]}>
-                                <h3 className={styles["already-reg"]}>Макронутриенти</h3>
-                                <BeatLoader loading={() => isLoading} color={"white"} />
-                                <p>Моля изчакайте...</p>
-                            </div>
-                        </>
+                        <LoadingComponent {...{ isLoading }} />
                         :
                         <>
                             <div className={styles["search-container"]}>
