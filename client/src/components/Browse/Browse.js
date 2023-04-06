@@ -48,6 +48,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 setErrorMessage(error.message);
             })
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
             controller.abort();
         }

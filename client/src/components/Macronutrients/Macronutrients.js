@@ -37,6 +37,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
             setErrorMessage(error.message);
         })
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
             controller.abort();
         }

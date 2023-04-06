@@ -46,6 +46,7 @@ export const Details = ({ isLoading, setIsLoading }) => {
                 return setErrorMessage(error.message);
             });
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
             controller.abort();
         }

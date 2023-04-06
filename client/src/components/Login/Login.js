@@ -48,9 +48,7 @@ export const Login = ({ isLoading, setIsLoading }) => {
 
     //-------------------------------------------------------------------------------------------------
     useEffect(() => {
-        setIsLoading(state => false);
         return () => {
-            setIsLoading(state => false);
             setErrorMessage('');
             userHandler(getSession());
         };

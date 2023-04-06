@@ -64,6 +64,7 @@ export const EditRecipe = ({ isLoading, setIsLoading }) => {
             });
 
         return (() => {
+            setIsLoading(state => false);
             setErrorMessage('');
             controller.abort();
         })

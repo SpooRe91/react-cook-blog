@@ -18,6 +18,7 @@ export const Logout = ({ isLoading, setIsLoading, setIsOpen }) => {
 
     useEffect(() => {
         return () => {
+            setIsLoading(state => false);
             setErrorMessage('');
         }
     }, [setErrorMessage])

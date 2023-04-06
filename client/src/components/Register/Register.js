@@ -53,9 +53,7 @@ export const Register = ({ isLoading, setIsLoading }) => {
     //USE EFFECT, ON UNMOUNT TO ACTIVATE THE CHANGEHANDLER, WHICH WILL REMOVE ANY ERROR ELEMENTS
     //AND SETS THE USER IN LOCAL AND SESSION STORAGE AS PER WHATEVER IS SET BEFOREHAND
     useEffect(() => {
-        setIsLoading(state => false);
         return () => {
-            setIsLoading(state => false);
             setErrorMessage('');
             userHandler(getSession());
         }
