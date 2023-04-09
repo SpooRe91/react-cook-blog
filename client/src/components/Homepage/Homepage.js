@@ -36,7 +36,7 @@ export const Homepage = () => {
                         </h4>
 
                         <h4 className={styles["landing-page-header1"]}>
-                            We also have a macronutrients table, right <Link to="auth/register">here</Link>
+                            We also have a macronutrients table, right <Link to="recipe/macros">here</Link>
                         </h4>
                     </article>
                 </section>
