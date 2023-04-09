@@ -86,31 +86,42 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                         </p>
                     </div>
                 }
-                <div>
-                    <h1 className={styles["already-reg"]}>Търсене на рецепти</h1>
-                    <form className={styles["search"]} method="GET">
-                        {<input type="text" className={styles["recipe-browse"]} placeholder="Търси..." name="search"
-                            defaultValue={filterValue} onChange={filterHandler} />}
-                    </form>
-                </div>
                 {
-                    <>
-                        <p className={styles["arrow"]}>Резултатите от търсенето се отразяват на изобразяването на рецептите,
-                            ако няма резултат, нищо няма да се изобрази.
-                        </p>
-                        <input type="button" className={styles["show-more-less"]}
-                            value={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
-                        />
-                        <h1 className={styles["already-reg"]}>
-                            {
-                                toLoad
-                                    ?
-                                    <p className={styles["arrow"]}>&#11167; Вижте всички рецепти! (scroll-нете надолу) &#11167;</p>
-                                    :
-                                    <p className={styles["arrow"]}>Най-скорокорошни рецепти</p>
-                            }
-                        </h1>
-                    </>
+                    isLoading
+                        ?
+                        null
+                        :
+                        <div>
+                            <h1 className={styles["already-reg"]}>Търсене на рецепти</h1>
+                            <form className={styles["search"]} method="GET">
+                                {<input type="text" className={styles["recipe-browse"]} placeholder="Търси..." name="search"
+                                    defaultValue={filterValue} onChange={filterHandler} />}
+                            </form>
+                        </div>
+                }
+                {
+                    isLoading
+                        ?
+                        null
+                        :
+                        <>
+                            <p className={styles["arrow"]}>Резултатите от търсенето се отразяват на изобразяването на рецептите,
+                                ако няма резултат, нищо няма да се изобрази.
+                            </p>
+                            <input type="button" className={styles["show-more-less"]}
+                                value={toLoad ? "Покажи скорошни" : "Покажи всички"} onClick={toLoadHandler}
+                            />
+                            <h1 className={styles["already-reg"]}>
+                                {
+                                    toLoad
+                                        ?
+                                        <p className={styles["arrow"]}>&#11167; Вижте всички рецепти! (scroll-нете надолу) &#11167;</p>
+                                        :
+                                        <p className={styles["arrow"]}>Най-скорокорошни рецепти</p>
+
+                                }
+                            </h1>
+                        </>
                 }
                 {
                     <div className={styles["meal-containter"]}>

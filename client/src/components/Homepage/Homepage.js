@@ -16,7 +16,6 @@ export const Homepage = () => {
             </section>
             <div className={styles['second-header']}>
                 <section className={styles["landing-page-section1"]}>
-
                     <article>
                         <h4 className={styles["landing-page-header1"]}>
                             Here you can browse different recipes and share your own
@@ -24,12 +23,6 @@ export const Homepage = () => {
                         <h4 className={styles["landing-page-header1"]}>
                             Checkout the newest recipes over <Link to="recipe/browse">here</Link>
                         </h4>
-                    </article>
-
-                </section>
-
-                <section className={styles["landing-page-section1"]}>
-                    <article>
                         <h4 className={styles["landing-page-header1"]}>
                             So hop on, and explore the culinary world
                         </h4>
@@ -37,11 +30,7 @@ export const Homepage = () => {
                             You can register from <Link to="auth/register">here</Link> or
                             login from <Link to="auth/login">here</Link>
                         </h4>
-                    </article>
-                </section>
 
-                <section className={styles["landing-page-section1"]}>
-                    <article>
                         <h4 className={styles["landing-page-header1"]}>
                             All you need to do is register and start
                         </h4>

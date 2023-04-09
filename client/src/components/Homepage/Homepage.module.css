@@ -4,14 +4,12 @@
 }
 
 .landing-page-section {
-    background-image: url(http://localhost:3000/static/media/spaghetti-with-pesto-prawns-served-plate.630f9a5….jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    backdrop-filter: blur(5px);
+    width: 100%;
 }
 
 .landing-page-section1 {
-    background-image: url(../../../public/images/second-board.JPG);
+    background-image: url(../../../public/images/slider-2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -23,10 +21,15 @@
     flex-direction: column;
     width: 100%;
     margin-bottom: 5%;
+    background-image: url(../../../public/images/slider-2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(5px);
 }
 
 .landing-page-article div {
-    background-image: url(../../../public/images/spaghetti-with-pesto-prawns-served-plate.jpg);
+    background-image: url(../../../public/images/slider-2.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
