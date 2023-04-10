@@ -80,11 +80,11 @@ nav ul {
     border: ridge #DECBA4;
     margin: auto;
     border-radius: 50%;
+    transition: all 200ms ease-in-out;
 }
 
 .nav-logo:hover {
     transform-style: preserve-3d;
-    transition: .1s;
     cursor: pointer;
     display: inline-block;
     border-radius: 20% 0;
@@ -97,6 +97,7 @@ nav ul li a {
     color: #ffffff;
     font-weight: bold;
     text-shadow: #000000 -4px 1px 3px;
+    transition: all 200ms ease-in-out;
 }
 
 nav ul li a:hover {
@@ -104,7 +105,6 @@ nav ul li a:hover {
     cursor: pointer;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: rgb(255 146 34);
-    transition: .1s;
 }
 
 a.logout-main {
