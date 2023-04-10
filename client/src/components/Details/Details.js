@@ -107,16 +107,15 @@ export const Details = ({ isLoading, setIsLoading }) => {
                         </p>
                     </div>
                     :
-                    <div className={styles['main-container']}>
-                        <>
+                    isLoading
+                        ?
+                        <LoadingComponent {...{ isLoading }} />
+                        :
+                        <div className={styles['main-container']}>
+                            <>
 
-                            <title>Детайли: {meal.name}</title>
-                            {
-
-                                isLoading
-                                    ?
-                                    <LoadingComponent {...{ isLoading }} />
-                                    :
+                                <title>Детайли: {meal.name}</title>
+                                {
                                     <div className={styles["details"]}>
                                         {
 
@@ -184,17 +183,17 @@ export const Details = ({ isLoading, setIsLoading }) => {
                                             </>
                                         }
                                     </div>
-                            }
-                            <article className={styles["recipe-details"]}>
-                                <label htmlFor="ingredients">Необходими съставки:</label>
-                                <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
+                                }
+                                <article className={styles["recipe-details"]}>
+                                    <label htmlFor="ingredients">Необходими съставки:</label>
+                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.ingredients}</span></p>
 
-                                <label htmlFor="ingredients">Рецепта:</label>
-                                <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
-                            </article>
-                            <ScrollButton />
-                        </>
-                    </div>
+                                    <label htmlFor="ingredients">Рецепта:</label>
+                                    <p className={styles["recipe"]} name="ingredients"><span>{meal.fullRecipe}</span></p>
+                                </article>
+                                <ScrollButton />
+                            </>
+                        </div>
             }
             <ScrollButton />
         </>
