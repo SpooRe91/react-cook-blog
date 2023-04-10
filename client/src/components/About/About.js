@@ -9,12 +9,9 @@ export const About = ({ setIsOpen }) => {
                     <h1 className={styles["already-reg"]}>Относно <span>"Cook-blog by Martin Bogdanov"</span></h1>
                     <p className={styles["already-reg"]}>
                         "Cook-Blog" e SP приложение, създадено с React JS.
-                        Има способността да извършва CRUD операции чрез AJAX заявки към REST API написан от мен.
-                        REST API e писан с Express.js и върви на Node.js
-                    </p>
-                    <p className={styles["already-reg"]}>
-                        Ако имате препоръки или забележки, моля <strong>свържете се</strong> с мен на
-                        <span> <strong>m.bogdanov9110@gmail.com</strong></span>
+                        Има способността да извършва AJAX заявки към REST API също написан от мен.
+                        За REST API са използвани Express.js, а за база данни - MongoDB, и върви на Node.js.
+                        Ако имате препоръки или забележки, моля свържете се с мен на m.bogdanov9110@gmail.com
                     </p>
                     <div>
                         {/*button which closes the modal, when clicked */}
