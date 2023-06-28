@@ -198,7 +198,7 @@
     "safe-buffer": "^5.2.1",
     "safer-buffer": "^2.1.2",
     "saslprep": "^1.0.3",
-    "semver": "^5.7.1",
+    "semver": "^7.5.3",
     "semver-diff": "^3.1.1",
     "send": "^0.18.0",
     "serve-static": "^1.15.0",
