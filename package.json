@@ -16,8 +16,10 @@
     "react-image-file-resizer": "^0.4.8",
     "react-spinners": "^0.13.3",
     "request": "^2.88.2",
+    "semver": "^7.5.3",
     "uuid": "^8.3.2",
     "vm2": "^3.9.19",
+    "word-wrap": "^1.2.3",
     "yaml": "^2.2.2"
   }
 }
