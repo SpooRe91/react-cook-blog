@@ -1,5 +1,5 @@
 
-export const API_URL = "https://mb-cook-server.vercel.app";//GET
+export const API_URL = "https://mb-multi-tool-api.vercel.app";//GET
 
 export const endpoints = {
     //REGULAR + MODIFICATIONS***************
