@@ -27,7 +27,7 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
         setIsLoading(state => true);
 
         getAllMacros(controller, signal).then((res) => {
-            if (res.length > 0) {
+            if (res && res.length > 0) {
                 setProducts(res);
                 setIsLoading(state => loading);
             }
