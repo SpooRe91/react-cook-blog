@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@grpc/grpc-js": "^1.11.1",
     "cacheable-request": "^10.2.7",
     "cookiejar": "^2.1.4",
     "decode-uri-component": "^0.2.2",
@@ -11,6 +12,7 @@
     "jsonwebtoken": "^9.0.0",
     "loader-utils": "^3.2.1",
     "minimatch": "^5.1.0",
+    "protobufjs": "^7.3.2",
     "qs": "^6.11.0",
     "react-cookie": "^4.1.1",
     "react-icons": "^4.4.0",
