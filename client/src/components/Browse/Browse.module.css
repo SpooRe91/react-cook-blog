@@ -43,7 +43,7 @@ div.search-container {
 }
 
 .error-message {
-    transition: .1s;
+    transition: 0.1s;
     margin: 40px auto;
     display: block;
     width: fit-content;
@@ -55,14 +55,14 @@ div.search-container {
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    background-image: linear-gradient(to right, #ff0000, #3e5151);
     border: ridge rgb(211 198 181);
     animation: hide 0s 3.5s;
     animation-fill-mode: forwards;
 }
 
 .btn {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@ div.search-container {
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
-    color: #DECBA4;
+    color: #decba4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -79,7 +79,7 @@ div.search-container {
 }
 
 .already-reg {
-    transition: .1s;
+    transition: 0.1s;
     margin: auto;
     display: flex;
     width: 80%;
@@ -110,11 +110,11 @@ form.search {
     flex-wrap: nowrap;
 }
 
-input[type=text] {
+input[type="text"] {
     background: none;
     outline: none;
     border: none;
-    color: #DECBA4;
+    color: #decba4;
     font-size: 20px;
     width: 50%;
     display: inline-block;
@@ -143,8 +143,8 @@ input[type=text] {
 
 a {
     word-break: break-word;
-    transition: .1s;
-    color: #DECBA4;
+    transition: 0.1s;
+    color: #decba4;
     text-transform: uppercase;
     text-align: left;
 }
@@ -168,20 +168,20 @@ p.name {
 p.name:hover {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: rgb(255, 255, 255);
-    transition: .1s;
+    transition: 0.1s;
     cursor: pointer;
     background: none;
 }
 
 .show-more-less {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     font-weight: bold;
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
     padding: 5px;
-    color: #DECBA4;
+    color: #decba4;
     border: ridge 1px white;
     border-radius: 10px;
     background-image: linear-gradient(180deg, #000000d1, #3e5151);
@@ -202,8 +202,9 @@ div.meal-containter {
     margin: 15px;
     margin-bottom: 3em;
     padding: 10px;
-    width: 62%;
+    width: 75%;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* MEAL CONTAINTER */
@@ -214,7 +215,7 @@ span.number-of-likes {
     text-align: center;
     padding: 5px;
     outline: thick white;
-    color: #DECBA4;
+    color: #decba4;
     text-shadow: #9d9d9d 0px 0px 20px;
     background: #0000006e;
     border-radius: 10px;
@@ -236,7 +237,7 @@ button.like-button {
 button.like-button:hover {
     transition: 0.1s;
     cursor: pointer;
-    color: #DECBA4;
+    color: #decba4;
 }
 
 div.meal {
@@ -249,10 +250,9 @@ div.meal {
     margin: 10px;
     color: white;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    align-content: center;
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     background-color: #00000087;
 }

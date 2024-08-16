@@ -1,5 +1,5 @@
 .already-reg {
-    transition: .1s;
+    transition: 0.1s;
     margin: auto;
     display: flex;
     width: 80%;
@@ -73,11 +73,11 @@ form.search {
     transition: 0.5s;
 }
 
-input[type=text] {
+input[type="text"] {
     background: none;
     outline: none;
     border: none;
-    color: #DECBA4;
+    color: #decba4;
     font-size: 20px;
     width: 50%;
     display: inline-block;
@@ -89,13 +89,12 @@ input[type=text] {
     resize: none;
 }
 
-div.meal-containter {
+.meal-containter {
     display: flex;
     gap: 1.5rem;
     margin: 15px;
     width: 100%;
-    margin-bottom: 3em;
-    padding: 10px;
+    padding: 3rem 1rem;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -108,7 +107,7 @@ span.number-of-likes {
     text-align: center;
     padding: 5px;
     outline: thick white;
-    color: #DECBA4;
+    color: #decba4;
     text-shadow: #9d9d9d 0px 0px 20px;
     background: #000000a8;
     border-radius: 10px;
@@ -138,7 +137,7 @@ p.name {
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
-    color: #DECBA4;
+    color: #decba4;
     text-overflow: ellipsis;
     max-width: 325px;
     font-size: 20px;
@@ -149,7 +148,7 @@ p.name {
 p.name:hover {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: rgb(255, 255, 255);
-    transition: .1s;
+    transition: 0.1s;
     cursor: pointer;
     background: none;
 }
@@ -164,7 +163,7 @@ div.meal a.btn {
 }
 
 .btn {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -172,7 +171,7 @@ div.meal a.btn {
     max-width: max-content;
     margin: 15px 15px;
     margin-bottom: 15px;
-    color: #DECBA4;
+    color: #decba4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -181,7 +180,7 @@ div.meal a.btn {
 }
 
 a.btn {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -189,7 +188,7 @@ a.btn {
     max-width: max-content;
     margin: 15px auto;
     margin-bottom: 15px;
-    color: #DECBA4;
+    color: #decba4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -219,7 +218,7 @@ a.btn {
 }
 
 .error-message {
-    transition: .1s;
+    transition: 0.1s;
     margin: 40px auto;
     display: block;
     width: fit-content;
@@ -231,12 +230,11 @@ a.btn {
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    background-image: linear-gradient(to right, #ff0000, #3e5151);
     border: ridge rgb(211 198 181);
     animation: hide 0s 3.5s;
     animation-fill-mode: forwards;
 }
-
 
 img.meal-image-link,
 img.meal {
@@ -251,9 +249,10 @@ img.meal {
 
 a.meal-image-link:hover,
 a img.meal:hover {
-    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg)
+        skew(0deg, 0deg);
     transform-style: preserve-3d;
-    transition: .1s;
+    transition: 0.1s;
     cursor: pointer;
 }
 

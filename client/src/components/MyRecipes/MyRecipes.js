@@ -36,10 +36,10 @@ export const MyRecipes = () => {
                     </p>
                 </div>
             )}
-            {!!notDeleted && (
-                <div className={styles["search-container"]}>
-                    <div>
-                        <h1 className={styles["already-reg"]}>Моите рецепти</h1>
+            <div className={styles["search-container"]}>
+                <div>
+                    <h1 className={styles["already-reg"]}>Моите рецепти</h1>
+                    {!isLoading && !!notDeleted.length && (
                         <form className={styles["search"]} method="GET">
                             <input
                                 type="text"
@@ -50,11 +50,11 @@ export const MyRecipes = () => {
                                 onChange={filterHandler}
                             />
                         </form>
-                    </div>
+                    )}
                 </div>
-            )}
+            </div>
 
-            {!notDeleted && (
+            {!isLoading && !notDeleted.length && (
                 <div className={styles["already-reg"]}>
                     <p>
                         За сега няма намерени рецепти, добавете рецепта{" "}
@@ -68,30 +68,31 @@ export const MyRecipes = () => {
             {isLoading && <LoadingComponent {...{ isLoading }} />}
             {
                 <div className={styles["meal-containter"]}>
-                    {filterValue
-                        ? notDeleted
-                              .filter((x) => x.name.toLowerCase().includes(filterValue))
-                              .map((meal) => (
-                                  <MealContainer
-                                      key={meal._id}
-                                      {...meal}
-                                      timesLiked={meal.likes}
-                                      user={user}
-                                      setErrorMessage={setErrorMessage}
-                                      errorMessage={errorMessage}
-                                  />
-                              ))
-                        : notDeleted &&
-                          notDeleted.map((meal) => (
-                              <MealContainer
-                                  key={meal._id}
-                                  {...meal}
-                                  timesLiked={meal.likes}
-                                  user={user}
-                                  setErrorMessage={setErrorMessage}
-                                  errorMessage={errorMessage}
-                              />
-                          ))}
+                    {filterValue &&
+                        notDeleted &&
+                        notDeleted
+                            .filter((x) => x.name.toLowerCase().includes(filterValue))
+                            .map((meal) => (
+                                <MealContainer
+                                    key={meal._id}
+                                    {...meal}
+                                    timesLiked={meal.likes}
+                                    user={user}
+                                    setErrorMessage={setErrorMessage}
+                                    errorMessage={errorMessage}
+                                />
+                            ))}
+                    {notDeleted &&
+                        notDeleted?.map((meal) => (
+                            <MealContainer
+                                key={meal._id}
+                                {...meal}
+                                timesLiked={meal.likes}
+                                user={user}
+                                setErrorMessage={setErrorMessage}
+                                errorMessage={errorMessage}
+                            />
+                        ))}
                 </div>
             }
             <ScrollButton />

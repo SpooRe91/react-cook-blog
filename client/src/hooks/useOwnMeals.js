@@ -14,10 +14,10 @@ export function useOwnMeals() {
             setIsLoading(true);
             try {
                 const res = await getOwn(signal, controller);
-
-                if (res) {
-                    setNotDeleted(res);
+                if (!Array.isArray(res)) {
+                    return;
                 }
+                setNotDeleted(res);
             } catch (error) {
                 if (signal.aborted) {
                     return;
