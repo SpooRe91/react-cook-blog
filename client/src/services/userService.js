@@ -8,7 +8,6 @@ export const userRegister = async (registerData) => {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                "Allow-Control-Access-Policy": true,
                 "Access-Control-Allow-Credentials": true,
             },
             body: JSON.stringify(registerData),
