@@ -20,8 +20,8 @@ import { editUserImage } from "../../services/userService";
 import { MealContainer } from "../MyRecipes/MealContainer";
 
 import LoadingComponent from "../common/LoadingComponent";
-import { useProfile } from "../../customHooks/useMyProfile";
-import { useOwnMeals } from "../../customHooks/useOwnMeals";
+import { useProfile } from "../../hooks/useMyProfile";
+import { useOwnMeals } from "../../hooks/useOwnMeals";
 import { ScrollButton } from "../common/ScrollButton";
 
 export const Profile = ({ isLoading, setIsLoading }) => {

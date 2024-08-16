@@ -1,69 +1,69 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-//-------------------------------------------------------------------------------------------------
+
 import styles from "./AddRecipe.module.css";
-//-------------------------------------------------------------------------------------------------
+
 import { create } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import LoadingComponent from "../common/LoadingComponent";
 
 export const AddRecipe = ({ isLoading, setIsLoading }) => {
-    //-------------------------------------------------------------------------------------------------
     const navigate = useNavigate();
     const { user } = useContext(LoggedUserContext);
-    //-------------------------------------------------------------------------------------------------
+
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
     const [values, setValues] = useState({
-        name: '',
-        image: '',
+        name: "",
+        image: "",
         portions: 0,
-        difficulty: '',
-        ingredients: '',
-        fullRecipe: '',
+        difficulty: "",
+        ingredients: "",
+        fullRecipe: "",
     });
     const controller = new AbortController();
     const { signal } = controller;
-    //-------------------------------------------------------------------------------------------------
+
     useEffect(() => {
         return () => {
-            setErrorMessage('');
+            setErrorMessage("");
             controller.abort();
-        }
+        };
     }, [navigate, user]);
 
-    //-------------------------------------------------------------------------------------------------
     const changeHandler = (e) => {
-        setValues(state => ({
-            ...state, [e.target.name]: e.target.value
+        setValues((state) => ({
+            ...state,
+            [e.target.name]: e.target.value,
         }));
-        setErrorMessage('');
+        setErrorMessage("");
     };
-    //-------------------------------------------------------------------------------------------------
-    const createHandler = (e) => {
 
+    const createHandler = (e) => {
         e.preventDefault();
         setIsLoading(true);
         create(values, signal, controller)
-            .then(res => {
+            .then((res) => {
                 if (res._id) {
-                    navigate('/recipe/myRecipes', { replace: true });
+                    navigate("/recipe/myRecipes", { replace: true });
                     setIsLoading(false);
                 }
                 if (res.message) throw new Error(res.message);
             })
-            .catch(error => {
-                if (controller.signal.aborted) { return }
+            .catch((error) => {
+                if (controller.signal.aborted) {
+                    return;
+                }
                 console.log(error.message);
                 setErrorMessage(error.message);
-            })
-    }
-    //-------------------------------------------------------------------------------------------------
+            });
+    };
+
     return (
         <>
-            {isLoading
-                ? <LoadingComponent {...{ isLoading }} />
-                :
+            {isLoading ? (
+                <LoadingComponent {...{ isLoading }} />
+            ) : (
                 <>
                     <title>Добави рецепта</title>
 
@@ -72,25 +72,51 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
                     <form className={styles["add-form"]} method="POST" onSubmit={createHandler}>
                         <div className={styles["already-reg"]}>
                             <label htmlFor="name">име</label>
-                            <input type="text" name="name" id="name" onChange={changeHandler}
-                                placeholder="някакво име..." required value={values.name} />
+                            <input
+                                type="text"
+                                name="name"
+                                id="name"
+                                onChange={changeHandler}
+                                placeholder="някакво име..."
+                                required
+                                value={values.name}
+                            />
                         </div>
 
                         <div className={styles["already-reg"]}>
                             <label htmlFor="image">снимка</label>
-                            <input type="text" name="image" id="image" onChange={changeHandler}
-                                placeholder={"https://some-image.com...."} required value={values.image} />
+                            <input
+                                type="text"
+                                name="image"
+                                id="image"
+                                onChange={changeHandler}
+                                placeholder={"https://some-image.com...."}
+                                required
+                                value={values.image}
+                            />
                         </div>
 
                         <div className={styles["already-reg"]}>
                             <label htmlFor="portions">брой порции</label>
-                            <input type="number" name="portions" id="portions" onChange={changeHandler}
-                                placeholder={4} required value={values.portions <= 0 ? 0 : values.portions} />
+                            <input
+                                type="number"
+                                name="portions"
+                                id="portions"
+                                onChange={changeHandler}
+                                placeholder={4}
+                                required
+                                value={values.portions <= 0 ? 0 : values.portions}
+                            />
                         </div>
 
                         <label htmlFor="difficulty">трудност</label>
                         <div className={styles["select-container"]}>
-                            <select name="difficulty" id="difficulty" className={styles["select-difficulty"]} onChange={changeHandler}>
+                            <select
+                                name="difficulty"
+                                id="difficulty"
+                                className={styles["select-difficulty"]}
+                                onChange={changeHandler}
+                            >
                                 <option value={null}>Моля изберете сложност</option>
                                 <option value="лесно">лесно</option>
                                 <option value="средно">средно</option>
@@ -101,21 +127,37 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
 
                         <div className={styles["already-reg"]}>
                             <label htmlFor="ingredients">необходими продукти</label>
-                            <textarea className={styles["add-recipe-text"]} type=" text" id="ingredients" name="ingredients"
-                                onChange={changeHandler} value={values.ingredients} placeholder="Продукт 1, продукт 2..." required />
+                            <textarea
+                                className={styles["add-recipe-text"]}
+                                type=" text"
+                                id="ingredients"
+                                name="ingredients"
+                                onChange={changeHandler}
+                                value={values.ingredients}
+                                placeholder="Продукт 1, продукт 2..."
+                                required
+                            />
                         </div>
 
                         <div className={styles["already-reg"]}>
                             <label htmlFor="fullRecipe">пълна рецепта</label>
-                            <textarea className={styles["add-recipe-text"]} type="text" id="fullRecipe" name="fullRecipe"
-                                onChange={changeHandler} value={values.fullRecipe} placeholder="Първата стъпка е..." required />
-                        </div >
-
+                            <textarea
+                                className={styles["add-recipe-text"]}
+                                type="text"
+                                id="fullRecipe"
+                                name="fullRecipe"
+                                onChange={changeHandler}
+                                value={values.fullRecipe}
+                                placeholder="Първата стъпка е..."
+                                required
+                            />
+                        </div>
 
                         <input type="submit" value="създай" className={styles["add-form-submit"]} />
-                        <Link to={'/recipe/browse'} className={styles["btn"]}>назад</Link>
-
-                    </form >
+                        <Link to={"/recipe/browse"} className={styles["btn"]}>
+                            назад
+                        </Link>
+                    </form>
                     <div>
                         <article className={styles["recipe-details"]}>
                             <h1 className={styles["already-reg"]}>Кратка информация:</h1>
@@ -130,28 +172,32 @@ export const AddRecipe = ({ isLoading, setIsLoading }) => {
                                 3. Моля въведете броят на порциите, които предоставя тази рецепта.
                             </p>
                             <p className={styles["recipe-add"]}>
-                                4. Моля въведете трудността на рецептата от падащото меню със заглавие "трудност".
+                                4. Моля въведете трудността на рецептата от падащото меню със заглавие
+                                "трудност".
                             </p>
                             <p className={styles["recipe-add"]}>
-                                5. В полето "пълна рецепта", моля въведете пълното описание на рецептата. Имайте предвид,
-                                че форматирането на текста се запазва.
+                                5. В полето "пълна рецепта", моля въведете пълното описание на рецептата.
+                                Имайте предвид, че форматирането на текста се запазва.
                             </p>
                             <p className={styles["recipe-add"]}>
-                                6. Докато изброявате продуктите в полето "необходими продукти", имайте предвид,
-                                че форматирането на текста се запазва, така че, ако желаете можете да въвеждате продуктите един под друг.
+                                6. Докато изброявате продуктите в полето "необходими продукти", имайте
+                                предвид, че форматирането на текста се запазва, така че, ако желаете можете да
+                                въвеждате продуктите един под друг.
                             </p>
-                            {errorMessage !== "" &&
+                            {errorMessage !== "" && (
                                 <div className={styles["error-container"]}>
                                     <p className={styles["error-message"]}>
                                         {errorMessage}
-                                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>OK</button>
+                                        <button className={styles["btn"]} onClick={() => setErrorMessage("")}>
+                                            OK
+                                        </button>
                                     </p>
                                 </div>
-                            }
+                            )}
                         </article>
                     </div>
                 </>
-            }
+            )}
         </>
     );
-}
+};

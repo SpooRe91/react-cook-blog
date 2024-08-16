@@ -7,7 +7,7 @@ import { Macrotable } from './Macrotable';
 import { useNavigate } from 'react-router-dom';
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { ScrollButton } from '../common/ScrollButton';
-import { useAllMacros } from '../../customHooks/useMacros';
+import { useAllMacros } from '../../hooks/useMacros';
 
 export const Macronutrients = ({ isLoading, setIsLoading }) => {
 

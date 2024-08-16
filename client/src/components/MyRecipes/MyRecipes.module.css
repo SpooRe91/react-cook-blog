@@ -93,11 +93,12 @@ div.meal-containter {
     display: flex;
     gap: 1.5rem;
     margin: 15px;
-    width: 62%;
+    width: 100%;
     margin-bottom: 3em;
     padding: 10px;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 }
 
 span.number-of-likes {

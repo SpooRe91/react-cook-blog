@@ -1,89 +1,85 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-//-------------------------------------------------------------------------------------------------
+
 import styles from "./EditRecipe.module.css";
-//-------------------------------------------------------------------------------------------------
+
 import { getOne, editMeal } from "../../services/mealService";
 import { ErrorContext } from "../../contexts/ErrorMessageContext";
 import { LoggedUserContext } from "../../contexts/LoggedUserContext";
 import LoadingComponent from "../common/LoadingComponent";
-//-------------------------------------------------------------------------------------------------
+
 export const EditRecipe = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
-    //-------------------------------------------------------------------------------------------------
 
     const { user } = useContext(LoggedUserContext);
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
-    //-------------------------------------------------------------------------------------------------
 
     const [meal, setMeal] = useState({});
     const { mealId } = useParams();
-    //-------------------------------------------------------------------------------------------------
 
     useEffect(() => {
         return () => {
             if (errorMessage) {
-                setErrorMessage('');
+                setErrorMessage("");
             }
-        }
+        };
     }, [navigate, errorMessage, setErrorMessage]);
-    //-------------------------------------------------------------------------------------------------
 
     const [values, setValues] = useState({
-        name: '',
-        image: '',
+        name: "",
+        image: "",
         portions: 0,
-        difficulty: '',
-        ingredients: '',
-        fullRecipe: '',
+        difficulty: "",
+        ingredients: "",
+        fullRecipe: "",
     });
     const controller = new AbortController();
     const { signal } = controller;
-    //-------------------------------------------------------------------------------------------------
-    useEffect(() => {
 
+    useEffect(() => {
         setIsLoading(true);
         getOne(mealId, controller, signal)
-            .then(res => {
+            .then((res) => {
                 if (res.owner !== user?.id) {
-                    navigate('/404', { replace: true });
+                    navigate("/404", { replace: true });
                 }
                 if (res !== undefined && res !== null) {
                     setMeal(res);
                     setValues(res);
                     setIsLoading(false);
                 } else {
-                    throw new Error('Няма намерена рецепта!')
+                    throw new Error("Няма намерена рецепта!");
                 }
                 if (res.message) throw new Error(res.message);
             })
-            .catch(error => {
-                if (controller.signal.aborted) { return }
+            .catch((error) => {
+                if (controller.signal.aborted) {
+                    return;
+                }
                 console.log(error.message);
                 setErrorMessage(error.message);
             });
 
-        return (() => {
-            setIsLoading(state => false);
-            setErrorMessage('');
+        return () => {
+            setIsLoading((state) => false);
+            setErrorMessage("");
             controller.abort();
-        })
+        };
     }, [mealId, setIsLoading, setErrorMessage, user?.id, navigate]);
 
-    //-------------------------------------------------------------------------------------------------
     const changeHandler = (e) => {
-        setValues(state => ({
-            ...state, [e.target.name]: e.target.value
+        setValues((state) => ({
+            ...state,
+            [e.target.name]: e.target.value,
         }));
-        setErrorMessage('');
+        setErrorMessage("");
     };
 
-    //-------------------------------------------------------------------------------------------------
     const editHandler = (e) => {
         e.preventDefault();
         setIsLoading(true);
         editMeal(mealId, values, signal, controller)
-            .then(res => {
+            .then((res) => {
                 if (res.acknowledged && res.modifiedCount !== 0) {
                     setMeal(res);
                     setIsLoading(false);
@@ -91,14 +87,16 @@ export const EditRecipe = ({ isLoading, setIsLoading }) => {
                 }
                 if (res.message) throw new Error(res.message);
             })
-            .catch(error => {
-                if (controller.signal.aborted) { return }
+            .catch((error) => {
+                if (controller.signal.aborted) {
+                    return;
+                }
                 console.log(error);
                 setErrorMessage(error.message);
             });
-        setErrorMessage('');
-    }
-    //-------------------------------------------------------------------------------------------------
+        setErrorMessage("");
+    };
+
     return (
         <div className="edit-containter">
             <title>Промени рецепта {meal.name}</title>
@@ -117,13 +115,25 @@ export const EditRecipe = ({ isLoading, setIsLoading }) => {
 
                 <div className={styles["already-reg"]}>
                     <label htmlFor="portions">брой порции</label>
-                    <input type="number" name="portions" id="portions" onChange={changeHandler}
-                        placeholder={4} required value={values.portions < 0 ? 0 : values.portions} />
+                    <input
+                        type="number"
+                        name="portions"
+                        id="portions"
+                        onChange={changeHandler}
+                        placeholder={4}
+                        required
+                        value={values.portions < 0 ? 0 : values.portions}
+                    />
                 </div>
 
                 <label htmlFor="difficulty">трудност</label>
                 <div className={styles["select-container"]}>
-                    <select name="difficulty" id="difficulty" className={styles["select-difficulty"]} onChange={changeHandler}>
+                    <select
+                        name="difficulty"
+                        id="difficulty"
+                        className={styles["select-difficulty"]}
+                        onChange={changeHandler}
+                    >
                         <option defaultValue={values.difficulty}>{values.difficulty}</option>
                         <option value="лесно">лесно</option>
                         <option value="средно">средно</option>
@@ -134,32 +144,45 @@ export const EditRecipe = ({ isLoading, setIsLoading }) => {
 
                 <div className={styles["already-reg"]}>
                     <label htmlFor="fullRecipe">Пълна рецепта</label>
-                    <textarea className={styles["add-recipe-text"]} type="text" name="fullRecipe" onChange={changeHandler} value={values.fullRecipe} required />
-                </div >
+                    <textarea
+                        className={styles["add-recipe-text"]}
+                        type="text"
+                        name="fullRecipe"
+                        onChange={changeHandler}
+                        value={values.fullRecipe}
+                        required
+                    />
+                </div>
                 <div className={styles["already-reg"]}>
                     <label htmlFor="ingredients">Необходими продукти</label>
-                    <textarea className={styles["add-recipe-text"]} type=" text" name="ingredients" onChange={changeHandler} value={values.ingredients} required />
+                    <textarea
+                        className={styles["add-recipe-text"]}
+                        type=" text"
+                        name="ingredients"
+                        onChange={changeHandler}
+                        value={values.ingredients}
+                        required
+                    />
                 </div>
                 <input type="submit" value="Промени" className={styles["add-form-submit"]} />
-                <input type="button" className={styles["add-form-submit"]} onClick={() => navigate(-1)} value="Назад" />
-            </form >
-            {errorMessage !== "" &&
+                <input
+                    type="button"
+                    className={styles["add-form-submit"]}
+                    onClick={() => navigate(-1)}
+                    value="Назад"
+                />
+            </form>
+            {errorMessage !== "" && (
                 <div className={styles["error-container"]}>
                     <p className={styles["error-message"]}>
                         {errorMessage}
-                        <button className={styles["btn"]} onClick={() => setErrorMessage('')}>
+                        <button className={styles["btn"]} onClick={() => setErrorMessage("")}>
                             OK
                         </button>
                     </p>
                 </div>
-            }
-            {
-                isLoading
-                    ?
-                    <LoadingComponent {...{ isLoading }} />
-                    : null
-            }
+            )}
+            {isLoading ? <LoadingComponent {...{ isLoading }} /> : null}
         </div>
-    )
-
-}
+    );
+};

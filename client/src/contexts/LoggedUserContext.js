@@ -7,17 +7,16 @@ export const LoggedUserContext = createContext();
 const cookies = new Cookies();
 
 export const LoggedUserProvider = ({ children }) => {
-
     const [user, setUser] = useState(getSession());
-    const [clientCookie, setClientCookie] = useState(cookies.get('user-session'));
+    const [clientCookie, setClientCookie] = useState(cookies.get("user-session" || "session"));
 
     useEffect(() => {
         if (getSession() !== null) {
-            cookies.set('user-session', getSession(), { path: "/", maxAge: 48000 });
-            setClientCookie(cookies.get('user-session'));
+            cookies.set("user-session", getSession(), { path: "/", maxAge: 48000 });
+            setClientCookie(cookies.get("user-session"));
         }
-    }, [setClientCookie])
-    
+    }, [setClientCookie]);
+
     const userHandler = (userInfo) => {
         setUser(userInfo);
     };
@@ -26,5 +25,5 @@ export const LoggedUserProvider = ({ children }) => {
         <LoggedUserContext.Provider value={{ user, userHandler, clientCookie, setClientCookie, cookies }}>
             {children}
         </LoggedUserContext.Provider>
-    )
-}
+    );
+};

@@ -1,47 +1,39 @@
 .landing-page-article {
     width: 100%;
-
-}
-
-.landing-page-section {
-    backdrop-filter: blur(5px);
-    width: 100%;
-}
-
-.landing-page-section1 {
-    background-image: url(../../../public/images/slider-2.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 .second-header {
+    background-image: url("../../../public/images/slider-2.png");
     display: flex;
-    gap: 4rem;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 5%;
-    background-image: url(../../../public/images/slider-2.png);
+    flex-wrap: wrap;
+    column-gap: 5rem;
+    row-gap: 2rem;
+    justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    backdrop-filter: blur(5px);
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 5rem;
+}
+.second-header::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #0000006c;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.landing-page-article div {
-    background-image: url(../../../public/images/slider-2.png);
+.first-header {
+    background-image: url("http://localhost:3000/static/media/slider-2.d3ee320….png");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin: 4.5em auto 4.7em auto;
-    height: 30em;
-    display: flex;
     text-align: center;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     align-content: center;
-    flex-direction: column;
+    padding: 2rem;
 }
 
 .landing-page-header {
@@ -49,7 +41,16 @@
     -webkit-text-stroke-color: #ffffffbd;
     margin: auto;
     text-shadow: coral 2px 2px 0px;
-    font-size: 4em;
+    font-size: 4rem;
+    color: black;
+}
+
+.landing-page-header-mobile {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #ffffffbd;
+    margin: auto;
+    text-shadow: coral 2px 2px 0px;
+    font-size: 2rem;
     color: black;
 }
 
@@ -57,17 +58,47 @@
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: #000000;
     text-shadow: #000000 0px 0px 20px, #000000 2px 4px 20px, #000000 2px 4px 20px, #000000 2px 4px 1px;
-    font-size: 2em;
-    color: #FF9800;
+    font-size: 2rem;
+    color: #ff9800;
+}
+
+.landing-page-header1-mobile {
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #000000;
+    text-shadow: #000000 0px 0px 20px, #000000 2px 4px 20px, #000000 2px 4px 20px, #000000 2px 4px 1px;
+    font-size: 1.5rem;
+    color: #ff9800;
+}
+
+.second-header-card {
+    max-width: 450px;
+    z-index: 1;
+    box-shadow: 2px 2px 4px 1px grey;
+    border-radius: 12px;
+    padding: 0.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.second-header-card-mobile {
+    max-width: 450px;
+    z-index: 1;
+    box-shadow: 2px 2px 4px 1px grey;
+    border-radius: 12px;
+    padding: 0.5rem;
+    backdrop-filter: blur(5px);
 }
 
 .landing-page-section1 article {
     backdrop-filter: blur(5px);
-
 }
 
 .landing-page-header1 a {
     font-size: 2rem;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
+}
+
+.landing-page-header1-mobile a {
     text-decoration: none;
     transition: all 200ms ease-in-out;
 }
@@ -98,7 +129,7 @@
 }
 
 .error-message {
-    transition: .1s;
+    transition: 0.1s;
     margin: 40px auto;
     display: block;
     width: fit-content;
@@ -110,14 +141,14 @@
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    background-image: linear-gradient(to right, #ff0000, #3e5151);
     border: ridge rgb(211 198 181);
     animation: hide 0s 3.5s;
     animation-fill-mode: forwards;
 }
 
 .btn {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -126,7 +157,7 @@
     margin: 15px 15px;
     margin-bottom: 15px;
     padding: 1rem;
-    color: #DECBA4;
+    color: #decba4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
