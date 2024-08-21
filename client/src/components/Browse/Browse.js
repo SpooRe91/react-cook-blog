@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./Browse.module.css";
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './Browse.module.css';
 
-import { MealContainer } from "./MealContainer";
-import { ScrollButton } from "../common/ScrollButton";
+import { MealContainer } from './MealContainer';
+import { ScrollButton } from '../common/ScrollButton';
 
-import { LoggedUserContext } from "../../contexts/LoggedUserContext";
-import { ErrorContext } from "../../contexts/ErrorMessageContext";
-import { useAllMeals } from "../../hooks/useAllMeals";
-import LoadingComponent from "../common/LoadingComponent";
+import { LoggedUserContext } from '../../contexts/LoggedUserContext';
+import { ErrorContext } from '../../contexts/ErrorMessageContext';
+import { useAllMeals } from '../../hooks/useAllMeals';
+import LoadingComponent from '../common/LoadingComponent';
 
 export const Browse = ({ isLoading, setIsLoading }) => {
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
     const [toLoad, setToLoad] = useState(false);
-    const [filterValue, setFilterValue] = useState("");
+    const [filterValue, setFilterValue] = useState('');
     const [notDeleted, setNotDeleted] = useState([]);
     const [moreRecipesToLoad, setMoreRecipesToLoad] = useState([]);
 
@@ -44,7 +44,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
             });
         return () => {
             setIsLoading((state) => false);
-            setErrorMessage("");
+            setErrorMessage('');
             controller.abort();
         };
     }, [loading, setIsLoading, setErrorMessage]);
@@ -59,26 +59,24 @@ export const Browse = ({ isLoading, setIsLoading }) => {
     const toLoadHandler = () => {
         setToLoad((state) => !state);
         if (!toLoad) {
-            //if toLoad is true
             setMoreRecipesToLoad((state) => [...state, ...notDeleted.slice(0, notDeleted?.length - 4)]);
         } else {
-            //if toLoad is false
             setMoreRecipesToLoad([]);
         }
     };
 
     return (
         <>
-            <div className={styles["search-container"]}>
+            <div className={styles['search-container']}>
                 <title>Търсене на рецепти</title>
 
-                {errorMessage !== "" && (
-                    <div className={styles["error-container"]}>
-                        <p className={styles["error-message"]}>
+                {errorMessage !== '' && (
+                    <div className={styles['error-container']}>
+                        <p className={styles['error-message']}>
                             {errorMessage}
                             <button
-                                className={styles["btn"]}
-                                onClick={() => [setErrorMessage(""), navigate("/")]}
+                                className={styles['btn']}
+                                onClick={() => [setErrorMessage(''), navigate('/')]}
                             >
                                 OK
                             </button>
@@ -87,14 +85,14 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 )}
                 {isLoading ? null : (
                     <div>
-                        <h1 className={styles["already-reg"]}>Търсене на рецепти</h1>
-                        <form className={styles["search"]} method="GET">
+                        <h1 className={styles['already-reg']}>Търсене на рецепти</h1>
+                        <form className={styles['search']} method='GET'>
                             {
                                 <input
-                                    type="text"
-                                    className={styles["recipe-browse"]}
-                                    placeholder="Търси..."
-                                    name="search"
+                                    type='text'
+                                    className={styles['recipe-browse']}
+                                    placeholder='Търси...'
+                                    name='search'
                                     defaultValue={filterValue}
                                     onChange={filterHandler}
                                 />
@@ -104,29 +102,29 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                 )}
                 {isLoading ? null : (
                     <>
-                        <p className={styles["arrow"]}>
+                        <p className={styles['arrow']}>
                             Резултатите от търсенето се отразяват на изобразяването на рецептите, ако няма
                             резултат, нищо няма да се изобрази.
                         </p>
                         <input
-                            type="button"
-                            className={styles["show-more-less"]}
-                            value={toLoad ? "Покажи скорошни" : "Покажи всички"}
+                            type='button'
+                            className={styles['show-more-less']}
+                            value={toLoad ? 'Покажи скорошни' : 'Покажи всички'}
                             onClick={toLoadHandler}
                         />
-                        <h1 className={styles["already-reg"]}>
+                        <h1 className={styles['already-reg']}>
                             {toLoad ? (
-                                <p className={styles["arrow"]}>
+                                <p className={styles['arrow']}>
                                     &#11167; Вижте всички рецепти! (scroll-нете надолу) &#11167;
                                 </p>
                             ) : (
-                                <p className={styles["arrow"]}>Най-скорокорошни рецепти</p>
+                                <p className={styles['arrow']}>Най-скорокорошни рецепти</p>
                             )}
                         </h1>
                     </>
                 )}
                 {
-                    <div className={styles["meal-containter"]}>
+                    <div className={styles['meal-containter']}>
                         {isLoading ? (
                             <LoadingComponent {...{ isLoading }} />
                         ) : filterValue ? (
@@ -141,7 +139,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                     />
                                 ))
                             ) : (
-                                <p className={styles["arrow"]}>Няма намерени резултати</p>
+                                <p className={styles['arrow']}>Няма намерени резултати</p>
                             )
                         ) : notDeleted?.length > 0 ? (
                             recentRecipesToShow.map((meal) => (
@@ -154,7 +152,7 @@ export const Browse = ({ isLoading, setIsLoading }) => {
                                 />
                             ))
                         ) : (
-                            <div className={styles["already-reg"]}>
+                            <div className={styles['already-reg']}>
                                 <p>Все още няма рецепти!</p>
                             </div>
                         )}

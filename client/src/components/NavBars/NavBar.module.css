@@ -8,7 +8,6 @@
 .profile-name-active {
     font-size: 17px;
     text-decoration: overline white;
-    /* -webkit-text-stroke: 1.5px #000000; */
     color: rgb(255 146 34);
     font-weight: bold;
     text-shadow: white 0px 0px 20px;
@@ -16,6 +15,7 @@
 }
 
 .dropbtn {
+    position: relative;
     width: max-content;
     font-size: 17px;
     text-decoration: none;
@@ -43,7 +43,6 @@
     position: absolute;
     background: none;
     min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%); */
     z-index: 9;
     padding: 5px;
     transition: all 200ms ease-in-out;
@@ -58,7 +57,6 @@
     font-weight: bold;
     text-shadow: #ffffff 0px 0px 20px;
     border-radius: 5px;
-    border-width: 50px;
     transition: all 200ms ease-in-out;
 }
 
@@ -111,7 +109,6 @@
     cursor: pointer;
 }
 
-
 a.logout-main {
     font-size: 20px;
     text-decoration: none;
@@ -157,9 +154,79 @@ nav ul li * {
     transition: all 200ms ease-in-out;
 }
 
-nav ul li *:hover {
-    text-decoration: overline white;
+nav ul li a:hover {
     cursor: pointer;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: rgb(255 146 34);
+}
+
+@media (max-width: 1024px) {
+    .nav-list {
+        justify-content: center;
+    }
+
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-logo {
+        height: 48px;
+    }
+
+    .nav-list-mobile {
+        gap: 0.5rem;
+    }
+
+    .dropdown-content {
+        position: absolute;
+        background: none;
+        border: none;
+        top: 20px;
+    }
+
+    .dropbtn:hover .content-holder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dropbtn {
+        font-size: 16px;
+    }
+
+    .logout-main {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-logo {
+        height: 40px;
+    }
+
+    .nav-list-mobile {
+        gap: 0.25rem;
+    }
+
+    .dropbtn {
+        font-size: 14px;
+    }
+
+    .logout-main {
+        font-size: 16px;
+    }
+
+    .dropdown-content a {
+        font-size: 16px;
+    }
 }

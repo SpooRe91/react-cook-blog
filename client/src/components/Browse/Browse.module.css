@@ -20,272 +20,258 @@
 
 div.search-container {
     display: flex;
-    width: auto;
-    margin: auto;
-    justify-content: center;
-    flex-wrap: wrap;
     flex-direction: column;
-    align-content: center;
     align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 5rem 1rem;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+.search-container a {
+    text-decoration: none;
 }
 
 .error-container {
     margin: 50px;
-    padding: 0px;
-    width: inherit;
-    word-break: break-word;
+    padding: 0;
+    width: 100%;
+    text-align: center;
     display: flex;
-    align-content: center;
-    justify-items: center;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
 .error-message {
-    transition: 0.1s;
-    margin: 40px auto;
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-    color: white;
-    text-align: center;
     font-size: 20px;
-    text-decoration: none;
     padding: 14px 16px;
-    text-shadow: -3px 1px 3px rgb(0 0 0);
-    border-radius: 20px;
     background-image: linear-gradient(to right, #ff0000, #3e5151);
-    border: ridge rgb(211 198 181);
-    animation: hide 0s 3.5s;
-    animation-fill-mode: forwards;
+    border-radius: 20px;
+    color: white;
+    text-shadow: -3px 1px 3px rgb(0 0 0);
+    max-width: 100%;
+    word-break: break-word;
+    animation: hide 0s 3.5s forwards;
 }
 
 .btn {
-    transition: 0.1s;
     text-decoration: none;
-    display: flex;
-    justify-content: center;
     font-weight: bold;
-    max-width: max-content;
-    margin: 15px 15px;
-    margin-bottom: 15px;
     color: #decba4;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
     background: #00000075;
     border-radius: 10px;
+    padding: 10px 20px;
+    margin: 15px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #3e5151;
+    color: #ffffff;
 }
 
 .already-reg {
-    transition: 0.1s;
     margin: auto;
-    display: flex;
-    width: 80%;
-    color: white;
+    width: 100%;
     text-align: center;
+    color: white;
     font-size: 20px;
-    text-decoration: none;
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 form.search {
-    width: 450px;
-    font-size: 20px;
-    display: flex;
+    width: 100%;
+    max-width: 600px;
     margin: 20px auto;
-    border-radius: 8%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: nowrap;
+    text-align: center;
 }
 
-input[type="text"] {
-    background: none;
-    outline: none;
-    border: none;
-    color: #decba4;
-    font-size: 20px;
-    width: 50%;
-    display: inline-block;
-    border-bottom: solid rgb(117, 117, 117);
-    box-sizing: border-box;
+input[type='text'] {
+    width: 80%;
     padding: 10px;
-    border-radius: 0 4px 4px 4px;
-    margin: 15px auto;
-    resize: none;
-}
-
-.recipe-browse:focus {
-    color: #ffffff;
-    width: 60%;
-    transition: 0.5s;
-    border: none;
-    outline: none;
-    border-bottom: white solid;
-    background: none;
-    background-image: none;
-}
-
-.recipe-browse:not(:focus) {
-    transition: 0.5s;
-}
-
-a {
-    word-break: break-word;
-    transition: 0.1s;
+    font-size: 18px;
+    margin: 15px 0;
     color: #decba4;
-    text-transform: uppercase;
-    text-align: left;
-}
-
-p.arrow {
-    font-size: 25px;
-    color: white;
-    text-shadow: 0px 0px 20px white;
-}
-
-p.name {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 325px;
-    font-size: 17.5px;
-    font-weight: bold;
-    margin: 15px auto;
-}
-
-p.name:hover {
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
-    color: rgb(255, 255, 255);
-    transition: 0.1s;
-    cursor: pointer;
     background: none;
+    border: 2px solid #757575;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type='text']:focus {
+    border-color: white;
 }
 
 .show-more-less {
-    transition: 0.1s;
-    text-decoration: none;
-    font-weight: bold;
-    max-width: max-content;
-    margin: 15px 15px;
-    margin-bottom: 15px;
-    padding: 5px;
+    margin: 15px;
+    padding: 10px 20px;
+    font-size: 22px;
     color: #decba4;
-    border: ridge 1px white;
-    border-radius: 10px;
     background-image: linear-gradient(180deg, #000000d1, #3e5151);
-    font-size: 26px;
+    border-radius: 10px;
+    border: ridge 1px white;
+    transition: background 0.3s ease;
 }
 
 .show-more-less:hover {
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
+    background-image: linear-gradient(360deg, #000000d1, #3e5151);
     color: #ffffff;
     cursor: pointer;
-    transition: 0s;
-    background-image: linear-gradient(360deg, #000000d1, #3e5151);
 }
 
 div.meal-containter {
     display: flex;
-    gap: 1.5rem;
-    margin: 15px;
-    margin-bottom: 3em;
-    padding: 10px;
-    width: 75%;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-/* MEAL CONTAINTER */
-span.number-of-likes {
-    margin: 20px 10px;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    padding: 5px;
-    outline: thick white;
-    color: #decba4;
-    text-shadow: #9d9d9d 0px 0px 20px;
-    background: #0000006e;
-    border-radius: 10px;
-    border: ridge rgb(211 198 181);
-}
-
-button.like-button {
-    font-size: 18px;
-    padding: 0px;
-    width: fit-content;
-    margin: 15px;
-    background: none;
-    outline: none;
-    border: none;
-    color: white;
-    text-shadow: 0px 0px 20px white;
-}
-
-button.like-button:hover {
-    transition: 0.1s;
-    cursor: pointer;
-    color: #decba4;
+    gap: 1.5rem;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 1200px;
 }
 
 div.meal {
-    box-shadow: 1px 0px 6px 0px #3e5151;
-    border-radius: 10%;
     display: flex;
-    width: 350px;
-    height: 410px;
-    vertical-align: text-top;
-    margin: 10px;
-    color: white;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 350px;
+    margin: 10px;
+    padding: 20px;
     background-color: #00000087;
+    border-radius: 10px;
+    box-shadow: 1px 0px 6px 0px #3e5151;
+    text-align: center;
+    color: white;
+}
+
+div.meal img.meal {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+div.meal p.name {
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #decba4;
+    max-width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px auto;
 }
 
 div.meal a.btn {
-    font-size: 22.5px;
+    font-size: 18px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+span.number-of-likes {
+    font-size: 18px;
+    color: #decba4;
+    text-shadow: 0px 0px 20px #9d9d9d;
+    background: #0000006e;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+button.like-button {
     background: none;
-}
-
-.btn:hover {
-    text-shadow: 0px 0px 20px rgb(255, 255, 255);
-    color: #ffffff;
-    cursor: pointer;
-    border-radius: 35%;
-    transition: 0s;
-}
-
-img.meal-image-link,
-a.meal-image-link,
-img.meal {
-    margin: 5px;
     border: none;
-    border-radius: 10%;
-    display: inline-block;
-    height: 200px;
-    width: 200px;
-    transition: all 200ms ease-in-out;
+    color: white;
+    font-size: 18px;
+    margin: 15px;
+    cursor: pointer;
 }
 
-/* img.meal-image-link:hover, */
-a.meal-image-link:hover {
-    transform-style: preserve-3d;
-    filter: drop-shadow(0px -8px 9px coral);
-    cursor: pointer;
-    display: inline-block;
+button.like-button:hover {
+    color: #decba4;
+}
+
+@media (max-width: 768px) {
+    .already-reg,
+    .error-message {
+        font-size: 18px;
+    }
+
+    input[type='text'] {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .show-more-less {
+        font-size: 20px;
+        padding: 8px 16px;
+    }
+
+    div.meal {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    div.meal img.meal {
+        width: 180px;
+        height: 180px;
+    }
+
+    div.meal p.name {
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    div.meal a.btn {
+        font-size: 16px;
+    }
+
+    span.number-of-likes {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .already-reg,
+    .error-message {
+        font-size: 16px;
+    }
+
+    input[type='text'] {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .show-more-less {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+
+    div.meal {
+        max-width: 280px;
+    }
+
+    div.meal img.meal {
+        width: 160px;
+        height: 160px;
+    }
+
+    div.meal p.name {
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    div.meal a.btn {
+        font-size: 14px;
+    }
+
+    span.number-of-likes {
+        font-size: 14px;
+    }
 }

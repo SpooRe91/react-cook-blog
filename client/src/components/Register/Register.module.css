@@ -12,7 +12,7 @@
 }
 
 .error-message {
-    transition: .1s;
+    transition: 0.1s;
     margin: 40px auto;
     display: block;
     width: fit-content;
@@ -24,14 +24,12 @@
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    background-image: linear-gradient(to right, #ff0000, #3E5151);
+    background-image: linear-gradient(to right, #ff0000, #3e5151);
     border: ridge rgb(211 198 181);
-    animation: hide 0s 3.5s;
-    animation-fill-mode: forwards;
 }
 
 .btn {
-    transition: .1s;
+    transition: 0.1s;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -40,7 +38,7 @@
     margin: 15px 15px;
     margin-bottom: 15px;
     padding: 1rem;
-    color: #DECBA4;
+    color: #decba4;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
@@ -56,29 +54,24 @@
 }
 
 .register-form {
-    transition: .1s;
+    transition: 0.1s;
     margin: 5% auto;
     display: flex;
-    width: 40%;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 500px;
+    padding: 14px 16px;
     color: white;
     text-align: center;
     font-size: 20px;
-    text-decoration: none;
-    padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
     border-right: white solid;
     border-left: white solid;
 }
 
 .register-form input.already-reg {
-    width: fit-content;
-    background-image: none;
     background: none;
     border: none;
     border-bottom: ridge white;
@@ -91,164 +84,168 @@
     transition: 0.5s;
 }
 
-.register-form input.already-reg:not(:hover) {
-    transition: 0.5s;
-}
-
 .already-reg {
-    transition: .1s;
+    transition: 0.1s;
     margin: auto;
     display: flex;
-    width: 80%;
+    width: 100%;
+    max-width: 500px;
     color: white;
     text-align: center;
     font-size: 20px;
-    text-decoration: none;
     padding: 14px 16px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    flex-direction: column;
-    align-content: center;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.already-reg-loading {
-    display: flex;
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    transform: translate(-50%, -50%);
-    color: white;
-    height: max-content;
-    text-shadow: 0px 0px 20px rgb(255 255 255);
-    border: ridge rgb(211 198 181);
-    padding: 1em;
-    width: 35%;
-    border-radius: 10px;
-    align-content: center;
     flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.384);
 }
 
 h3.already-reg {
-    transition: .1s;
     margin: auto;
-    display: flex;
-    width: 80%;
-    color: white;
-    text-align: center;
-    font-size: 30px;
-    text-decoration: none;
-    padding: 14px 16px;
-    text-shadow: -3px 1px 3px rgb(0 0 0);
-    border-radius: 20px;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    font-size: 24px;
 }
 
 .credentials {
-    width: max-content;
     color: #ffffff;
     text-decoration: underline;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: uppercase;
-    padding: 10px 10px;
+    padding: 10px;
     text-shadow: 0px 0px 20px #decba4;
 }
 
-input[type=text],
-input[type=password] {
+input[type='text'],
+input[type='password'] {
     background: none;
     outline: none;
     border: none;
-    color: #DECBA4;
-    font-size: 20px;
-    width: 50%;
+    color: #decba4;
+    font-size: 18px;
+    width: 80%;
     display: inline-block;
     border-bottom: solid rgb(117, 117, 117);
     box-sizing: border-box;
     padding: 10px;
     border-radius: 0 4px 4px 4px;
     margin: 15px auto;
-    resize: none;
 }
 
 .email:focus,
 .password:focus,
 .rePassword:focus {
     color: #ffffff;
-    width: 60%;
+    width: 90%;
     transition: 0.5s;
-    border: none;
-    outline: none;
     border-bottom: white solid;
-    background: none;
-    background-image: none;
-}
-
-.email:not(:focus),
-.password:not(:focus),
-.rePassword:not(:focus) {
-    transition: 0.5s;
 }
 
 .form label {
-    margin-left: 15px;
-    width: max-content;
     color: #ffffff;
     text-decoration: underline;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: uppercase;
-    padding: 10px 10px;
+    padding: 10px;
     text-shadow: 0px 0px 20px #decba4;
 }
 
-input[type=submit] {
-    transition: .1s;
+input[type='submit'] {
+    transition: 0.1s;
     margin: 15px;
     display: inline-block;
     color: white;
     text-align: center;
     font-size: 20px;
-    text-decoration: none;
     padding: 14px 50px;
     text-shadow: -3px 1px 3px rgb(0 0 0);
     border-radius: 20px;
-    background-image: linear-gradient(to right, #DECBA4, #3E5151);
+    background-image: linear-gradient(to right, #decba4, #3e5151);
     border: ridge rgb(211 198 181);
 }
 
-input[type=submit]:hover {
+input[type='submit']:hover {
     cursor: pointer;
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: #ffffff;
-    transition: .1s;
+    transition: 0.1s;
 }
 
 .already-reg a {
-    display: flex;
-    width: max-content;
-    margin: auto;
-    transition: .1s;
-    color: #DECBA4;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+    color: #decba4;
+    text-decoration: none;
 }
 
 .already-reg a:hover {
     text-shadow: 0px 0px 20px rgb(255, 255, 255);
     color: #ffffff;
-    transition: .1s;
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .register-form {
+        width: 90%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .register-form input.already-reg {
+        font-size: 14px;
+    }
+
+    .already-reg {
+        font-size: 18px;
+    }
+
+    .credentials {
+        font-size: 16px;
+    }
+
+    input[type='text'],
+    input[type='password'] {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    input[type='submit'] {
+        font-size: 18px;
+        padding: 12px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-form {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .register-form input.already-reg {
+        font-size: 14px;
+    }
+
+    .already-reg {
+        font-size: 16px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .credentials {
+        font-size: 14px;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='password'] {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    input[type='submit'] {
+        font-size: 16px;
+        padding: 10px 30px;
+    }
+
+    h3.already-reg {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
 }

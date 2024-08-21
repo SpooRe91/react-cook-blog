@@ -1,9 +1,48 @@
 /* THIS WILL BE VERY SHORT, JUST NEED TO IMPORT THE REMAINING CSS INTO MODULES */
 
 @import url(//fonts.googleapis.com/css?family=Open+Sans);
-@import url("./ResetCSS.css");
+@import url('./ResetCSS.css');
+html {
+    font-size: 16px; /* Default base size */
+    word-break: break-word;
+}
+
+@media only screen and (max-width: 1200px) {
+    html {
+        font-size: 15px;
+        word-break: break-word;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    html {
+        font-size: 14px;
+        word-break: break-word;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 13px;
+        word-break: break-word;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    html {
+        font-size: 12px;
+        word-break: break-word;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    html {
+        font-size: 11px;
+        word-break: break-word;
+    }
+}
 :root {
-    background-image: url("../../public/images/main-background-min.jpg");
+    background-image: url('../../public/images/main-background-min.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,7 +53,7 @@
     scroll-behavior: smooth;
     overflow-y: auto;
     overflow-x: hidden;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     min-width: 320px;
 }
 
