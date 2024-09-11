@@ -1,18 +1,18 @@
 {
   "dependencies": {
-    "@grpc/grpc-js": "^1.11.1",
+    "@grpc/grpc-js": "^1.11.2",
     "cacheable-request": "^12.0.1",
     "cookiejar": "^2.1.4",
     "decode-uri-component": "^0.4.1",
-    "firebase": "^10.13.0",
-    "firebase-tools": "^13.15.3",
-    "follow-redirects": "^1.15.6",
-    "jose": "^5.7.0",
+    "firebase": "^10.13.1",
+    "firebase-tools": "^13.17.0",
+    "follow-redirects": "^1.15.9",
+    "jose": "^5.8.0",
     "json5": "^2.2.3",
     "jsonwebtoken": "^9.0.2",
     "loader-utils": "^3.3.1",
     "minimatch": "^10.0.1",
-    "protobufjs": "^7.3.2",
+    "protobufjs": "^7.4.0",
     "qs": "^6.13.0",
     "react-cookie": "^7.2.0",
     "react-icons": "^5.3.0",
@@ -24,6 +24,18 @@
     "vm2": "^3.9.19",
     "word-wrap": "^1.2.5",
     "ws": "^8.18.0",
-    "yaml": "^2.5.0"
-  }
+    "yaml": "^2.5.1"
+  },
+  "name": "react-js-project-final",
+  "version": "1.0.0",
+  "description": "![COOK-Blog App](https://github.com/SpooRe91/react-js-project-final/assets/85784810/c335fbf0-3ed7-414f-aaff-357118370fc0)",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "upgrade": "ncu -u && npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
