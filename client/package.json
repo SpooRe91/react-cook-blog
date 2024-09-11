@@ -1,71 +1,72 @@
 {
-  "name": "react-js-project-final",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-regular-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^6.4.8",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
-    "braces": "^3.0.3",
-    "cookiejar": "^2.1.4",
-    "crypto-random-string": "^5.0.0",
-    "decode-uri-component": "^0.4.1",
-    "ejs": "^3.1.10",
-    "firebase": "^10.13.0",
-    "firebase-tools": "^13.15.3",
-    "http-cache-semantics": "^4.1.1",
-    "json5": "^2.2.3",
-    "jsonwebtoken": "^9.0.2",
-    "loader-utils": "^3.3.1",
-    "minimatch": "^10.0.1",
-    "protobufjs": "^7.3.2",
-    "qs": "^6.13.0",
-    "react": "^18.3.1",
-    "react-cookie": "^7.2.0",
-    "react-dom": "^18.3.1",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^5.3.0",
-    "react-image-file-resizer": "^0.4.8",
-    "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.26.1",
-    "react-scripts": "5.0.1",
-    "react-spinners": "^0.14.1",
-    "react-switch": "^7.0.0",
-    "request": "^2.88.2",
-    "semver": "^7.6.3",
-    "uuid": "^10.0.0",
-    "vm2": "^3.9.19",
-    "web-vitals": "^4.2.3",
-    "webpack": "^5.93.0",
-    "word-wrap": "^1.2.5",
-    "ws": "^8.18.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "react-js-project-final",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.6.0",
+        "@fortawesome/free-regular-svg-icons": "^6.6.0",
+        "@fortawesome/free-solid-svg-icons": "^6.6.0",
+        "@fortawesome/react-fontawesome": "^0.2.2",
+        "@testing-library/jest-dom": "^6.5.0",
+        "@testing-library/react": "^16.0.1",
+        "@testing-library/user-event": "^14.5.2",
+        "braces": "^3.0.3",
+        "cookiejar": "^2.1.4",
+        "crypto-random-string": "^5.0.0",
+        "decode-uri-component": "^0.4.1",
+        "ejs": "^3.1.10",
+        "firebase": "^10.13.1",
+        "firebase-tools": "^13.17.0",
+        "http-cache-semantics": "^4.1.1",
+        "json5": "^2.2.3",
+        "jsonwebtoken": "^9.0.2",
+        "loader-utils": "^3.3.1",
+        "minimatch": "^10.0.1",
+        "protobufjs": "^7.4.0",
+        "qs": "^6.13.0",
+        "react": "^18.3.1",
+        "react-cookie": "^7.2.0",
+        "react-dom": "^18.3.1",
+        "react-helmet": "^6.1.0",
+        "react-icons": "^5.3.0",
+        "react-image-file-resizer": "^0.4.8",
+        "react-responsive-carousel": "^3.2.23",
+        "react-router-dom": "^6.26.2",
+        "react-scripts": "5.0.1",
+        "react-spinners": "^0.14.1",
+        "react-switch": "^7.0.0",
+        "request": "^2.88.2",
+        "semver": "^7.6.3",
+        "uuid": "^10.0.0",
+        "vm2": "^3.9.19",
+        "web-vitals": "^4.2.3",
+        "webpack": "^5.94.0",
+        "word-wrap": "^1.2.5",
+        "ws": "^8.18.0"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "upgrade": "ncu -u && npm install"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
