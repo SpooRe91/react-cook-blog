@@ -1,4 +1,4 @@
-.table-headers-container{
+.table-headers-container {
     display: flex;
     flex-direction: column;
     background-color: #000000cc;
@@ -36,14 +36,15 @@
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
 }
 
-.nutrient-name, .nutrient-qty {
+.nutrient-name,
+.nutrient-qty {
     background: none;
     outline: none;
     border: none;
@@ -57,11 +58,11 @@
     margin: 10px 0;
 }
 
-.nutrient-name:focus, .nutrient-qty:focus {
+.nutrient-name:focus,
+.nutrient-qty:focus {
     color: #ffffff;
     border-bottom: white solid;
 }
-
 
 .btn {
     transition: 0.1s;
@@ -110,9 +111,9 @@
 
 .product-name {
     font-size: 1.25rem;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 10px;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    text-shadow: 1px 0px 0px #000000, 2px 0px 0px #ad681cbd, 1px 1px 0px #000000, 2px 2px 0px #e38f31bd;
 }
 
 .product-nutrition {
