@@ -70,6 +70,28 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
         }
         return products;
     }, [quantity, products]);
+
+    const filteredOrNotMacros = useMemo(() => {
+        const macros = {
+            filtered: [],
+            notFiltered: [],
+        };
+        if (filterValue) {
+            macros.filtered = calculatedMacros.filter((el) => el.name.toLowerCase().includes(filterValue));
+        } else {
+            macros.notFiltered = calculatedMacros;
+        }
+        return !!macros.filtered.length ? macros.filtered : macros.notFiltered;
+    }, [quantity, products, filterValue]);
+
+    const FilterResultComponent = () =>
+        filterValue &&
+        (filteredOrNotMacros.length ? (
+            <p>{`${filteredOrNotMacros.length} резултат${filteredOrNotMacros.length > 1 ? 'а' : ''}`}</p>
+        ) : (
+            <p>Няма намерени резултати</p>
+        ));
+
     return (
         <>
             <title>Хранителни стойности</title>
@@ -91,62 +113,63 @@ export const Macronutrients = ({ isLoading, setIsLoading }) => {
                     <LoadingComponent {...{ isLoading }} />
                 ) : (
                     <>
-                        <div className={styles['search-container']}>
-                            <h1 className={styles['table-headers']}>Търсене на продукти</h1>
-                            <h3 className={styles['table-headers']}>
-                                На тази таблица можете да намерите основните хранителни стойности на най-често
-                                срещаните и употребявани продукти!
-                            </h3>
-                        </div>
-                        <div className={styles['search-container']}>
-                            <form className={styles['search-nutrients']} method='GET'>
-                                <label htmlFor={styles['table-headers']}>
-                                    Моля въведете име на Български
-                                </label>
-                                <input
-                                    type='text'
-                                    className={styles['nutrient-name']}
-                                    placeholder='пилешко...'
-                                    name='search'
-                                    value={filterValue}
-                                    onChange={filterHandler}
-                                />
-                                <label htmlFor='quantity'>Моля въведете количество в грамове</label>
-                                <input
-                                    type='number'
-                                    className={styles['nutrient-qty']}
-                                    placeholder='1000гр...'
-                                    name='quantity'
-                                    value={quantity || ''}
-                                    onChange={quantityHandler}
-                                    maxLength='6'
-                                />
-                            </form>
-                        </div>
-                        <div className={styles['table-headers']}>
-                            <h3 className={styles['table-headers']}>
-                                Стойностите са в грамове и се отнасят за 100гр. продукт!
-                            </h3>
-                            <h3 className={styles['table-headers']}>
-                                !!!Важно: Данните са относителни, и може да същестува разминаване с други
-                                източници!
-                            </h3>
+                        <div className={styles['table-headers-container']}>
+                            <div className={styles['search-container']}>
+                                <h1 className={styles['table-headers']}>Търсене на продукти</h1>
+                                <h3 className={styles['table-headers']}>
+                                    На тази таблица можете да намерите основните хранителни стойности на
+                                    най-често срещаните и употребявани продукти!
+                                </h3>
+                            </div>
+                            <div className={styles['search-container']}>
+                                <form className={styles['search-nutrients']} method='GET'>
+                                    <label htmlFor={styles['table-headers']}>
+                                        Моля въведете име на Български
+                                    </label>
+                                    <input
+                                        type='text'
+                                        className={styles['nutrient-name']}
+                                        placeholder='пилешко...'
+                                        name='search'
+                                        value={filterValue}
+                                        onChange={filterHandler}
+                                    />
+                                    <FilterResultComponent />
+                                    <label htmlFor='quantity'>Моля въведете количество в грамове</label>
+                                    <input
+                                        type='number'
+                                        className={styles['nutrient-qty']}
+                                        placeholder='1000гр...'
+                                        name='quantity'
+                                        value={quantity || ''}
+                                        onChange={quantityHandler}
+                                        maxLength='6'
+                                    />
+                                </form>
+                            </div>
+                            <div className={styles['table-headers']}>
+                                <h3 className={styles['table-headers']}>
+                                    Стойностите са в грамове и се отнасят за 100гр. продукт!
+                                </h3>
+                                <h3 className={styles['table-headers']}>
+                                    !!!Важно: Данните са относителни, и може да същестува разминаване с други
+                                    източници!
+                                </h3>
+                            </div>
                         </div>
                         <div className={styles['items-container']}>
-                            {calculatedMacros
-                                .filter((p) => p.name.toLowerCase().includes(filterValue))
-                                .map((product) => (
-                                    <div key={product._id} className={styles['product-item']}>
-                                        <div className={styles['product-name']}>{product.name}</div>
-                                        <div className={styles['product-nutrition']}>
-                                            <p>Вода: {product.water} г</p>
-                                            <p>Белтъчини: {product.protein} г</p>
-                                            <p>Мазнини: {product.fat} г</p>
-                                            <p>Въглехидрати: {product.carb} г</p>
-                                            <p>Калории: {product.calories} ккал</p>
-                                        </div>
+                            {filteredOrNotMacros.map((product) => (
+                                <div key={product._id} className={styles['product-item']}>
+                                    <div className={styles['product-name']}>{product.name}</div>
+                                    <div className={styles['product-nutrition']}>
+                                        <p>Вода: {product.water} г</p>
+                                        <p>Белтъчини: {product.protein} г</p>
+                                        <p>Мазнини: {product.fat} г</p>
+                                        <p>Въглехидрати: {product.carb} г</p>
+                                        <p>Калории: {product.calories} ккал</p>
                                     </div>
-                                ))}
+                                </div>
+                            ))}
                         </div>
                     </>
                 )}

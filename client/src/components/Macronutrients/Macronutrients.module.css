@@ -1,3 +1,14 @@
+.table-headers-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #000000cc;
+    backdrop-filter: blur(5px);
+    width: 75%;
+    border-radius: 10px;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+}
+
 .search-container {
     display: flex;
     width: 100%;
@@ -13,7 +24,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: white;
     font-size: 1.1rem;
     text-align: center;
     font-weight: bold;
@@ -24,6 +34,34 @@
     text-shadow: white 0px 0px 20px;
     margin: 10px auto;
 }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.nutrient-name, .nutrient-qty {
+    background: none;
+    outline: none;
+    border: none;
+    color: #e88b05;
+    font-size: 16px;
+    width: 100%;
+    border-bottom: solid rgb(117, 117, 117);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 0 4px 4px 4px;
+    margin: 10px 0;
+}
+
+.nutrient-name:focus, .nutrient-qty:focus {
+    color: #ffffff;
+    border-bottom: white solid;
+}
+
 
 .btn {
     transition: 0.1s;
@@ -52,7 +90,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     width: 60%;
-    padding: 5rem 1rem;
     margin: 0 auto;
 }
 
@@ -86,11 +123,10 @@
 
 .table-headers {
     font-size: 1.5rem;
-    color: white;
+    color: #e88b05;
     text-align: center;
     margin: 15px auto;
     text-shadow: rgb(211 198 181 / 45%) 0px 0px 20px;
-    padding: 2rem;
 }
 
 .error-container {
